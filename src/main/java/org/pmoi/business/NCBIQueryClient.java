@@ -52,12 +52,13 @@ public class NCBIQueryClient {
         while (true) {
             try {
                 LOGGER.info(String.format("Processing gene: [%s]", gene.getGeneEntrezID()));
-                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=gene&id=%s&retmod=text&api_key=%s", gene.getGeneEntrezID(), MainEntry.NCBI_API_KEY));
+                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=gene&id=%s&retmode=text&api_key=%s", gene.getGeneEntrezID(), MainEntry.NCBI_API_KEY));
                 HttpConnector httpConnector = new HttpConnector();
                 String ncbiResultContent = httpConnector.getContent(url);
-                // the first line always contains the gene name following the format: 1. NAME
-                ncbiResultContent = ncbiResultContent.split("\n")[0];
-                gene.setGeneName(ncbiResultContent.split(" ")[1]);
+                // the first line always contains the gene name following the format: 1. NAME\n
+                //TODO replace this using regex
+                ncbiResultContent = ncbiResultContent.split("\n")[1];
+                gene.setGeneName(ncbiResultContent.substring(3));
                 return;
             } catch (IOException e) {
                 LOGGER.warn(String.format("Unknown error when getting gene name. Gene: [%s]. Retrying (%d/%d)", gene.getGeneEntrezID(), counter + 1, max));
