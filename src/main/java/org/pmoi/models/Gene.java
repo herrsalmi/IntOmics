@@ -11,6 +11,10 @@ public class Gene {
         this.geneName = geneName;
     }
 
+    public Gene(int entrezID) {
+        this.geneEntrezID = String.valueOf(entrezID);
+    }
+
     public Gene(String geneName, String geneEntrezID) {
         this.geneName = geneName;
         this.geneEntrezID = geneEntrezID;
