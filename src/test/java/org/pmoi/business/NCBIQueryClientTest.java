@@ -17,22 +17,22 @@ class NCBIQueryClientTest {
         // 1
         Gene gene = new Gene("", "1278");
         ncbiQueryClient.entrezIDToGeneName(gene);
-        assertEquals("COL1A2", gene.getGeneName());
+        assertEquals("COL1A2", gene.getName());
         //2
-        gene.setGeneEntrezID("2335");
+        gene.setEntrezID("2335");
         ncbiQueryClient.entrezIDToGeneName(gene);
-        assertEquals("FN1", gene.getGeneName());
+        assertEquals("FN1", gene.getName());
         //3
-        gene.setGeneEntrezID("7057");
+        gene.setEntrezID("7057");
         ncbiQueryClient.entrezIDToGeneName(gene);
-        assertEquals("THBS1", gene.getGeneName());
+        assertEquals("THBS1", gene.getName());
         //4
-        gene.setGeneEntrezID("3857");
+        gene.setEntrezID("3857");
         ncbiQueryClient.entrezIDToGeneName(gene);
-        assertEquals("KRT9", gene.getGeneName());
+        assertEquals("KRT9", gene.getName());
         //5
-        gene.setGeneEntrezID("71");
+        gene.setEntrezID("71");
         ncbiQueryClient.entrezIDToGeneName(gene);
-        assertEquals("ACTG1", gene.getGeneName());
+        assertEquals("ACTG1", gene.getName());
     }
 }

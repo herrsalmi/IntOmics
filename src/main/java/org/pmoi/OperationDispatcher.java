@@ -6,7 +6,9 @@ import org.pmoi.business.GeneOntologyMapper;
 import org.pmoi.business.NCBIQueryClient;
 import org.pmoi.business.SecretomeManager;
 import org.pmoi.business.StringdbQueryClient;
+import org.pmoi.models.Feature;
 import org.pmoi.models.Gene;
+import org.pmoi.models.Protein;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -16,12 +18,14 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class OperationDispatcher {
     private static final Logger LOGGER = LogManager.getRootLogger();
@@ -32,65 +36,32 @@ public class OperationDispatcher {
     }
 
     public void run() {
-        List<String> membranome = getMembranomeFromDEGenes().stream().map(Gene::getGeneName).collect(Collectors.toList());
-        List<String> secretome = getSecretomeFromFile("secretome.txt").stream().map(Gene::getGeneName).collect(Collectors.toList());
+        List<Gene> membranome = getMembranomeFromDEGenes("Gene_DE.csv");
+        List<Protein> allSecretome = getSecretomeFromFile("Secretome.csv");
+        List<Protein> secretome = allSecretome.stream().filter(Protein::isMoreExpressedInDepletedSamples).collect(Collectors.toList());
 
-        LOGGER.info("Number of secreted proteins: " + secretome.size());
+        LOGGER.info("Number of secreted proteins: " + allSecretome.size());
+        LOGGER.info("Number of secreted proteins more expressed in depleted samples: " + secretome.size());
 
         writeInteractions(secretome, membranome, "interactionNetworkS2M.tsv");
 
-//        StringBuffer outputBuffer = new StringBuffer("#node1\tnode2\tscore\n");
-//        membranome.forEach(e -> {
-//            Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e);
-//            List<String> interactorsNames = new ArrayList<>(interactors.keySet());
-//            interactorsNames.retainAll(secretome);
-//            if (!interactorsNames.isEmpty()) {
-//                interactorsNames.forEach(interactor -> outputBuffer.append(e).append("\t")
-//                        .append(interactor).append("\t")
-//                        .append(interactors.get(interactor)).append("\n"));
-//            }
-//        });
-//
-//        try {
-//            BufferedWriter bw = Files.newBufferedWriter(Paths.get("interactionNetworkM2S.tsv"));
-//            bw.write(outputBuffer.toString());
-//            bw.flush();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        StringBuffer finalOutputBuffer = new StringBuffer("#node1\tnode2\tscore\n");
-//        secretome.forEach(e -> {
-//            Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e);
-//            List<String> interactorsNames = new ArrayList<>(interactors.keySet());
-//            interactorsNames.retainAll(membranome);
-//            if (!interactorsNames.isEmpty()) {
-//                interactorsNames.forEach(interactor -> finalOutputBuffer.append(e).append("\t")
-//                        .append(interactor).append("\t")
-//                        .append(interactors.get(interactor)).append("\n"));
-//            }
-//        });
-//
-//        try {
-//            BufferedWriter bw = Files.newBufferedWriter(Paths.get("interactionNetworkS2M.tsv"));
-//            bw.write(finalOutputBuffer.toString());
-//            bw.flush();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
-    private void writeInteractions(List<String> set1, List<String> set2, String outputFileName) {
-        StringBuffer outputBuffer = new StringBuffer("#node1\tnode2\tscore\n");
+    private void writeInteractions(List<Protein> set1, List<Gene> set2, String outputFileName) {
+        StringBuffer outputBuffer = new StringBuffer("#node1\tnode2\tinteraction_score\tgene_fdr\tgene_fc\n");
         ExecutorService executorService = Executors.newFixedThreadPool(3);
 
         set1.forEach( e -> executorService.submit(() -> {
-            Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e);
+            Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
             List<String> interactorsNames = new ArrayList<>(interactors.keySet());
-            interactorsNames.retainAll(set2);
+            interactorsNames.retainAll(set2.stream().map(Feature::getName).collect(Collectors.toList()));
             if (!interactorsNames.isEmpty()) {
-                interactorsNames.forEach(interactor -> outputBuffer.append(String.format("%s\t%s\t%s\n", e, interactor, interactors.get(interactor))));
+
+                interactorsNames.forEach(interactor -> {
+                    String fdr = set2.stream().filter(g -> g.getName().equals(interactor)).map(Gene::getFdr).collect(Collectors.joining());
+                    String foldChange = set2.stream().filter(g -> g.getName().equals(interactor)).map(Gene::getFoldChange).collect(Collectors.joining());
+                    outputBuffer.append(String.format("%s\t%s\t%s\t%s\t%s\n", e.getName(), interactor, interactors.get(interactor), fdr, foldChange));
+                });
             }
         }));
 
@@ -110,7 +81,7 @@ public class OperationDispatcher {
         }
     }
 
-    private List<Gene> getMembranomeFromDEGenes() {
+    private List<Gene> getMembranomeFromDEGenes(String fileName) {
         NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
         GeneOntologyMapper goMapper = new GeneOntologyMapper();
         try {
@@ -119,12 +90,11 @@ public class OperationDispatcher {
             e.printStackTrace();
         }
 
-        List<Gene> inputGenes = readDEGeneFile("DE_genes.txt");
+        List<Gene> inputGenes = Objects.requireNonNull(readDEGeneFile(fileName)).stream().distinct().collect(Collectors.toList());
 
         ExecutorService executor = Executors.newFixedThreadPool(4);
         AtomicInteger index = new AtomicInteger(0);
 
-        assert inputGenes != null;
         inputGenes.forEach(g -> executor.submit(() -> ncbiQueryClient.geneNameToEntrezID(inputGenes.get(index.getAndIncrement()))));
 
         executor.shutdown();
@@ -136,17 +106,19 @@ public class OperationDispatcher {
 
         // if a gene has no EntrezID it will also get removed here
         return inputGenes.parallelStream()
-                .filter(g -> g.getGeneEntrezID() != null && !g.getGeneEntrezID().isEmpty())
-                .filter(e -> goMapper.checkGO(e.getGeneEntrezID()))
+                .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
+                .filter(e -> goMapper.checkGO(e.getEntrezID()))
                 .collect(Collectors.toList());
     }
 
-    private List<Gene> getSecretomeFromFile(String filePath) {
-        List<Gene> inputGenes = readSecretomeGeneFile(filePath);
+    private List<Protein> getSecretomeFromFile(String filePath) {
+        List<Protein> inputProtein = Objects.requireNonNull(LoadSecretomeFile(filePath))
+                .stream()
+                .filter(e -> e.getEntrezID() != null)
+                .collect(Collectors.toList());
         NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
         ExecutorService executor = Executors.newFixedThreadPool(4);
-        assert inputGenes != null;
-        inputGenes.forEach(g -> executor.submit(() -> ncbiQueryClient.entrezIDToGeneName(g)));
+        inputProtein.forEach(g -> executor.submit(() -> ncbiQueryClient.entrezIDToGeneName(g)));
 
         executor.shutdown();
         try {
@@ -157,12 +129,18 @@ public class OperationDispatcher {
 
         // keep only proteins that match an entry in the DB
         SecretomeManager secretomeDB = SecretomeManager.getInstance();
-        return inputGenes.stream().filter(e -> secretomeDB.isSecreted(e.getGeneName())).collect(Collectors.toList());
+        return inputProtein.stream()
+                .filter(e -> e.getName() != null)
+                .filter(e -> secretomeDB.isSecreted(e.getName()))
+                .collect(Collectors.toList());
     }
 
     private List<Gene> readDEGeneFile(String filePath) {
+        //TODO modify this to into account the new format
+        //TODO remember that the first line is a header
         try {
             return Files.lines(Path.of(filePath))
+                    .skip(1)
                     .filter(Predicate.not(String::isBlank))
                     .distinct()
                     .map(Gene::new)
@@ -173,12 +151,13 @@ public class OperationDispatcher {
         return null;
     }
 
-    private List<Gene> readSecretomeGeneFile(String filePath) {
+    private List<Protein> LoadSecretomeFile(String filePath) {
         try {
             return Files.lines(Path.of(filePath))
+                    .skip(1)
                     .filter(Predicate.not(String::isBlank))
                     .distinct()
-                    .map(e -> new Gene(Integer.parseInt(e)))
+                    .map(Protein::new)
                     .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();

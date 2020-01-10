@@ -2,43 +2,46 @@ package org.pmoi.models;
 
 import java.util.Objects;
 
-public class Gene {
+public class Gene extends Feature{
 
-    private String geneName;
-    private String geneEntrezID;
+    private String fdr;
+    private String foldChange;
 
-    public Gene(String geneName) {
-        this.geneName = geneName;
+    public Gene(String line) {
+        String[] info = line.split(";");
+        this.name = info[0];
+        this.fdr = info[1];
+        this.foldChange = info[2];
     }
 
     public Gene(int entrezID) {
-        this.geneEntrezID = String.valueOf(entrezID);
+        this.entrezID = String.valueOf(entrezID);
     }
 
-    public Gene(String geneName, String geneEntrezID) {
-        this.geneName = geneName;
-        this.geneEntrezID = geneEntrezID;
+    public Gene(String name, String entrezID) {
+        this.name = name;
+        this.entrezID = entrezID;
     }
 
-    public String getGeneName() {
-        return geneName;
+    public String getFdr() {
+        return fdr;
     }
 
-    public void setGeneName(String geneName) {
-        this.geneName = geneName;
+    public void setFdr(String fdr) {
+        this.fdr = fdr;
     }
 
-    public String getGeneEntrezID() {
-        return geneEntrezID;
+    public String getFoldChange() {
+        return foldChange;
     }
 
-    public void setGeneEntrezID(String geneEntrezID) {
-        this.geneEntrezID = geneEntrezID;
+    public void setFoldChange(String foldChange) {
+        this.foldChange = foldChange;
     }
 
     @Override
     public String toString() {
-        return String.format("[%s : %s]", this.getGeneName(), this.getGeneEntrezID());
+        return String.format("[%s : %s]", this.getName(), this.getEntrezID());
     }
 
     @Override
@@ -46,12 +49,12 @@ public class Gene {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Gene gene = (Gene) o;
-        return geneName.equals(gene.geneName) &&
-                Objects.equals(geneEntrezID, gene.geneEntrezID);
+        return name.equals(gene.name) &&
+                Objects.equals(entrezID, gene.entrezID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(geneName, geneEntrezID);
+        return Objects.hash(name, entrezID);
     }
 }

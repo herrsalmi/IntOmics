@@ -1,5 +1,6 @@
 package org.pmoi;
 
+
 public class MainEntry {
 
     private static final String VERSION = "0.1";
@@ -13,7 +14,6 @@ public class MainEntry {
         OperationDispatcher operationDispatcher = new OperationDispatcher();
         operationDispatcher.run();
     }
-
 
 
     public static void main(String[] args) {

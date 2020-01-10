@@ -13,4 +13,5 @@ class SecretomeManagerTest {
         assertFalse(secretomeDB.isSecreted("ALBU"));
         assertFalse(secretomeDB.isSecreted("wwox"));
     }
+
 }
