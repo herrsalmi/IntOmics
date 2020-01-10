@@ -12,8 +12,6 @@ import org.pmoi.models.Gene;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -24,7 +22,6 @@ public class NCBIQueryClient {
 
     public String geneNameToEntrezID(Gene gene) {
         int counter = 0;
-        int max = 10;
         while (true) {
             try {
                 LOGGER.info(String.format("Processing gene: [%s]", gene.getGeneName()));
@@ -37,8 +34,8 @@ public class NCBIQueryClient {
                 return gene.getGeneEntrezID();
 
             } catch (JDOMException | IOException e) {
-                LOGGER.warn(String.format("Unknown error when getting ID. Gene: [%s]. Retrying (%d/%d)", gene.getGeneName(), counter + 1, max));
-                if (++counter == max) {
+                LOGGER.warn(String.format("Unknown error when getting ID. Gene: [%s]. Retrying (%d/%d)", gene.getGeneName(), counter + 1, MainEntry.MAX_TRIES));
+                if (++counter == MainEntry.MAX_TRIES) {
                     LOGGER.error(String.format("Error getting ID for Gene: [%s]. Aborting!", gene.getGeneName()));
                     return null;
                 }
@@ -48,7 +45,6 @@ public class NCBIQueryClient {
 
     public void entrezIDToGeneName(Gene gene) {
         int counter = 0;
-        int max = 10;
         while (true) {
             try {
                 LOGGER.info(String.format("Processing gene: [%s]", gene.getGeneEntrezID()));
@@ -61,8 +57,8 @@ public class NCBIQueryClient {
                 gene.setGeneName(ncbiResultContent.substring(3));
                 return;
             } catch (IOException e) {
-                LOGGER.warn(String.format("Unknown error when getting gene name. Gene: [%s]. Retrying (%d/%d)", gene.getGeneEntrezID(), counter + 1, max));
-                if (++counter == max) {
+                LOGGER.warn(String.format("Unknown error when getting gene name. Gene: [%s]. Retrying (%d/%d)", gene.getGeneEntrezID(), counter + 1, MainEntry.MAX_TRIES));
+                if (++counter == MainEntry.MAX_TRIES) {
                     LOGGER.error(String.format("Error getting name for Gene: [%s]. Aborting!", gene.getGeneEntrezID()));
                     return;
                 }

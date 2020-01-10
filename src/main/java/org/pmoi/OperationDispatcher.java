@@ -1,9 +1,11 @@
 package org.pmoi;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.pmoi.business.GeneOntologyMapper;
 import org.pmoi.business.NCBIQueryClient;
+import org.pmoi.business.SecretomeManager;
 import org.pmoi.business.StringdbQueryClient;
-import org.pmoi.handler.HttpConnector;
 import org.pmoi.models.Gene;
 
 import java.io.BufferedWriter;
@@ -14,13 +16,16 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class OperationDispatcher {
-    StringdbQueryClient stringdbQueryClient;
+    private static final Logger LOGGER = LogManager.getRootLogger();
+    private StringdbQueryClient stringdbQueryClient;
 
     public OperationDispatcher() {
         stringdbQueryClient = new StringdbQueryClient();
@@ -29,50 +34,83 @@ public class OperationDispatcher {
     public void run() {
         List<String> membranome = getMembranomeFromDEGenes().stream().map(Gene::getGeneName).collect(Collectors.toList());
         List<String> secretome = getSecretomeFromFile("secretome.txt").stream().map(Gene::getGeneName).collect(Collectors.toList());
+
+        LOGGER.info("Number of secreted proteins: " + secretome.size());
+
+        writeInteractions(secretome, membranome, "interactionNetworkS2M.tsv");
+
+//        StringBuffer outputBuffer = new StringBuffer("#node1\tnode2\tscore\n");
+//        membranome.forEach(e -> {
+//            Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e);
+//            List<String> interactorsNames = new ArrayList<>(interactors.keySet());
+//            interactorsNames.retainAll(secretome);
+//            if (!interactorsNames.isEmpty()) {
+//                interactorsNames.forEach(interactor -> outputBuffer.append(e).append("\t")
+//                        .append(interactor).append("\t")
+//                        .append(interactors.get(interactor)).append("\n"));
+//            }
+//        });
+//
+//        try {
+//            BufferedWriter bw = Files.newBufferedWriter(Paths.get("interactionNetworkM2S.tsv"));
+//            bw.write(outputBuffer.toString());
+//            bw.flush();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        StringBuffer finalOutputBuffer = new StringBuffer("#node1\tnode2\tscore\n");
+//        secretome.forEach(e -> {
+//            Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e);
+//            List<String> interactorsNames = new ArrayList<>(interactors.keySet());
+//            interactorsNames.retainAll(membranome);
+//            if (!interactorsNames.isEmpty()) {
+//                interactorsNames.forEach(interactor -> finalOutputBuffer.append(e).append("\t")
+//                        .append(interactor).append("\t")
+//                        .append(interactors.get(interactor)).append("\n"));
+//            }
+//        });
+//
+//        try {
+//            BufferedWriter bw = Files.newBufferedWriter(Paths.get("interactionNetworkS2M.tsv"));
+//            bw.write(finalOutputBuffer.toString());
+//            bw.flush();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+    }
+
+    private void writeInteractions(List<String> set1, List<String> set2, String outputFileName) {
         StringBuffer outputBuffer = new StringBuffer("#node1\tnode2\tscore\n");
-        membranome.forEach(e -> {
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+
+        set1.forEach( e -> executorService.submit(() -> {
             Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e);
             List<String> interactorsNames = new ArrayList<>(interactors.keySet());
-            interactorsNames.retainAll(secretome);
+            interactorsNames.retainAll(set2);
             if (!interactorsNames.isEmpty()) {
-                interactorsNames.forEach(interactor -> outputBuffer.append(e).append("\t")
-                        .append(interactor).append("\t")
-                        .append(interactors.get(interactor)).append("\n"));
+                interactorsNames.forEach(interactor -> outputBuffer.append(String.format("%s\t%s\t%s\n", e, interactor, interactors.get(interactor))));
             }
-        });
+        }));
+
+        executorService.shutdown();
+        try {
+            executorService.awaitTermination(1, TimeUnit.DAYS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         try {
-            BufferedWriter bw = Files.newBufferedWriter(Paths.get("interationNetworkM2S.tsv"));
+            BufferedWriter bw = Files.newBufferedWriter(Paths.get(outputFileName));
             bw.write(outputBuffer.toString());
             bw.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        StringBuffer finalOutputBuffer = new StringBuffer("#node1\tnode2\tscore\n");
-        secretome.forEach(e -> {
-            Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e);
-            List<String> interactorsNames = new ArrayList<>(interactors.keySet());
-            interactorsNames.retainAll(membranome);
-            if (!interactorsNames.isEmpty()) {
-                interactorsNames.forEach(interactor -> finalOutputBuffer.append(e).append("\t")
-                        .append(interactor).append("\t")
-                        .append(interactors.get(interactor)).append("\n"));
-            }
-        });
-
-        try {
-            BufferedWriter bw = Files.newBufferedWriter(Paths.get("interationNetworkS2M.tsv"));
-            bw.write(finalOutputBuffer.toString());
-            bw.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     private List<Gene> getMembranomeFromDEGenes() {
-        HttpConnector connector = new HttpConnector();
         NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
         GeneOntologyMapper goMapper = new GeneOntologyMapper();
         try {
@@ -84,14 +122,10 @@ public class OperationDispatcher {
         List<Gene> inputGenes = readDEGeneFile("DE_genes.txt");
 
         ExecutorService executor = Executors.newFixedThreadPool(4);
-        List<Future<String>> future = new ArrayList<>(1000);
         AtomicInteger index = new AtomicInteger(0);
-        Callable<String> callable = () -> ncbiQueryClient.geneNameToEntrezID(inputGenes.get(index.getAndIncrement()));
 
         assert inputGenes != null;
-        inputGenes.forEach(g -> {
-            future.add(executor.submit(callable));
-        });
+        inputGenes.forEach(g -> executor.submit(() -> ncbiQueryClient.geneNameToEntrezID(inputGenes.get(index.getAndIncrement()))));
 
         executor.shutdown();
         try {
@@ -108,13 +142,11 @@ public class OperationDispatcher {
     }
 
     private List<Gene> getSecretomeFromFile(String filePath) {
-        List<Gene> inputGenes = readSecretomeGeneFile("secretome.txt");
+        List<Gene> inputGenes = readSecretomeGeneFile(filePath);
         NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
         ExecutorService executor = Executors.newFixedThreadPool(4);
         assert inputGenes != null;
-        inputGenes.forEach(g -> {
-            executor.submit(() -> ncbiQueryClient.entrezIDToGeneName(g));
-        });
+        inputGenes.forEach(g -> executor.submit(() -> ncbiQueryClient.entrezIDToGeneName(g)));
 
         executor.shutdown();
         try {
@@ -123,7 +155,9 @@ public class OperationDispatcher {
             e.printStackTrace();
         }
 
-        return inputGenes;
+        // keep only proteins that match an entry in the DB
+        SecretomeManager secretomeDB = SecretomeManager.getInstance();
+        return inputGenes.stream().filter(e -> secretomeDB.isSecreted(e.getGeneName())).collect(Collectors.toList());
     }
 
     private List<Gene> readDEGeneFile(String filePath) {
