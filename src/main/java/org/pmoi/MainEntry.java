@@ -23,7 +23,7 @@ public class MainEntry {
     public static final boolean USE_GENE_NAME = true;
     private static final String PROG_NAME = "IntOmics";
     public static final int MAX_TRIES = 100;
-    public static final int STRINGDB_SCORE = 980;
+    public static final int STRINGDB_SCORE = 950;
     public static final String NCBI_API_KEY = "40065544fb6667a5a723b649063fbe596e08";
 
     private BiMap<String, String> internalDB;
@@ -32,7 +32,7 @@ public class MainEntry {
 //        loadInternalDB();
 //        System.exit(0);
         OperationDispatcher operationDispatcher = new OperationDispatcher();
-        operationDispatcher.run("interactionNetworkS2M_GO.tsv", ProteomeType.LABEL_FREE, SecretomeMappingMode.GOTERM);
+        operationDispatcher.run("interactionNetworkS2M_LF_GO.test.tsv", ProteomeType.LABEL_FREE, SecretomeMappingMode.GOTERM);
     }
 
     private void loadInternalDB() {
@@ -65,7 +65,7 @@ public class MainEntry {
                 try {
                     map.put(e, ncbiQueryClient.entrezIDToGeneName(e));
                 } catch (IllegalArgumentException ex) {
-                    System.out.println(String.format("ERROR! unable to insert gene name for [%s], value already present", e));
+                    System.out.println(String.format("\nERROR! unable to insert gene name for [%s], value already present", e));
                 }
 
             }));

@@ -94,3 +94,8 @@ fabric.properties
 
 # Log files
 logs/
+
+# Input files
+*.csv
+*.tsv
+*.txt

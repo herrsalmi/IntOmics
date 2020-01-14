@@ -33,7 +33,7 @@ class ProteinTest {
         Protein protein = new Protein("Mothers against decapentaplegic homolog 1 OS=Homo sapiens GN=SMAD1 PE=1 SV=1", 124.2, 62.4);
         StringdbQueryClient stringdbQueryClient = new StringdbQueryClient();
         Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(protein.getName());
-        //assertEquals("SMAD1", protein.getName());
+        assertEquals("SMAD1", protein.getName());
         interactors.forEach((k, v) -> System.out.println(k + " : " + v));
         assertEquals(4, interactors.size());
     }
