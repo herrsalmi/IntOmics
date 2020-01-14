@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="IntOmics" target="12" />
+      <module name="IntOmics" target="13" />
     </bytecodeTargetLevel>
   </component>
 </project>

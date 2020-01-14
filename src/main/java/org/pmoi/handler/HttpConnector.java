@@ -57,7 +57,7 @@ public class HttpConnector {
                 }
                 return output;
             } catch (IOException e) {
-                LOGGER.warn("HTTP Connection: Network I/O error while connecting to server. Retrying ... (" + ++count + "/" + MainEntry.MAX_TRIES + ")");
+                //LOGGER.warn("HTTP Connection: Network I/O error while connecting to server. Retrying ... (" + ++count + "/" + MainEntry.MAX_TRIES + ")");
                 if (count == MainEntry.MAX_TRIES) throw e;
             }
         }

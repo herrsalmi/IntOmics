@@ -24,9 +24,15 @@ public class GeneOntologyMapper {
         });
     }
 
-    public boolean checkGO(String entrezID) {
+    public boolean checkMembrannomeGO(String entrezID) {
         if (!internalDB.containsKey(entrezID))
             return false;
         return internalDB.get(entrezID).contains("GO:0009986") || internalDB.get(entrezID).contains("GO:0005886");
+    }
+
+    public boolean checkSecretomeGO(String entrezID) {
+        if (!internalDB.containsKey(entrezID))
+            return false;
+        return internalDB.get(entrezID).contains("GO:0031012") || internalDB.get(entrezID).contains("GO:0005615");
     }
 }

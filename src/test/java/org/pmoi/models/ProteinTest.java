@@ -1,6 +1,9 @@
 package org.pmoi.models;
 
 import org.junit.jupiter.api.Test;
+import org.pmoi.business.StringdbQueryClient;
+
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,6 +26,16 @@ class ProteinTest {
         protein = new Protein("4521;32,07;;;;;");
         assertEquals(32.07, protein.depletedMeanScore());
         assertEquals(0, protein.rinsedMeanScore());
+    }
+
+    @Test
+    void alternativeObjectConstruction() {
+        Protein protein = new Protein("Mothers against decapentaplegic homolog 1 OS=Homo sapiens GN=SMAD1 PE=1 SV=1", 124.2, 62.4);
+        StringdbQueryClient stringdbQueryClient = new StringdbQueryClient();
+        Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(protein.getName());
+        //assertEquals("SMAD1", protein.getName());
+        interactors.forEach((k, v) -> System.out.println(k + " : " + v));
+        assertEquals(4, interactors.size());
     }
 
 }

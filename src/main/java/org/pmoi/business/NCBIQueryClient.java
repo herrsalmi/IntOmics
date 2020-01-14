@@ -26,7 +26,7 @@ public class NCBIQueryClient {
         while (true) {
             try {
                 LOGGER.info(String.format("Processing feature: [%s]", feature.getName()));
-                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=%s&sort=relevance&api_key=%s", feature.getName(), MainEntry.NCBI_API_KEY));
+                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=%s AND Homo sapiens[Organism]&sort=relevance&api_key=%s", feature.getName(), MainEntry.NCBI_API_KEY));
                 SAXBuilder saxBuilder = new SAXBuilder();
                 Document document = saxBuilder.build(url);
                 Element ncbiId = document.getRootElement().getChild("IdList");
@@ -67,4 +67,9 @@ public class NCBIQueryClient {
         }
     }
 
+    public String entrezIDToGeneName(String id) {
+        Gene gene = new Gene("", id);
+        entrezIDToGeneName(gene);
+        return gene.getName();
+    }
 }

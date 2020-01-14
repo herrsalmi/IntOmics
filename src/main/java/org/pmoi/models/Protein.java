@@ -5,6 +5,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Protein extends Feature{
@@ -16,6 +18,17 @@ public class Protein extends Feature{
     public Protein(String name, String entrezID) {
         this.name = name;
         this.entrezID = entrezID;
+    }
+
+    public Protein(String description, Double scoreD, Double scoreR) {
+        Pattern patter = Pattern.compile("GN=([A-Z0-9]+)");
+        Matcher matcher = patter.matcher(description);
+        if (matcher.find())
+            this.name = matcher.group(1).trim();
+        depletedSamplesScore = new ArrayList<>(1);
+        rinsedSamplesScore = new ArrayList<>(1);
+        depletedSamplesScore.add(scoreD);
+        rinsedSamplesScore.add(scoreR);
     }
 
     public Protein(String line) {
@@ -66,5 +79,14 @@ public class Protein extends Feature{
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + entrezID.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Protein{" +
+                "depletedSamplesScore=" + depletedSamplesScore +
+                ", rinsedSamplesScore=" + rinsedSamplesScore +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -1,0 +1,5 @@
+#node1	node2	interaction_score	gene_fdr	gene_fc
+SMAD1	SMURF2	0.984	0,0071	-1,7228
+IGF2	IGF1R	0.997	0,034	1,4806
+IGF2	VEGFA	0.98	0,0002	-2,2468
+LEP	JAK2	0.984	0,0003	1,7384
