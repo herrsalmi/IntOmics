@@ -1,6 +1,6 @@
 package org.pmoi.models;
 
-public enum Mode {
+public enum ProteomeType {
     LABEL_FREE,
     LCMS
 }

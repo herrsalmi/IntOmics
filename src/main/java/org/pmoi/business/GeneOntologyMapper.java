@@ -13,10 +13,15 @@ public class GeneOntologyMapper {
     private Map<String, List<String>> internalDB;
 
     public GeneOntologyMapper() {
-        this.internalDB = new ConcurrentHashMap<>(1000);
+        this.internalDB = new ConcurrentHashMap<>(100000);
+        try {
+            load("gene2go");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void load(String file) throws IOException {
+    private void load(String file) throws IOException {
         Files.lines(Path.of(file)).skip(1).forEach(l -> {
             String[] data = l.split("\t");
             internalDB.putIfAbsent(data[1], new ArrayList<>());
@@ -24,7 +29,7 @@ public class GeneOntologyMapper {
         });
     }
 
-    public boolean checkMembrannomeGO(String entrezID) {
+    public boolean checkMembranomeGO(String entrezID) {
         if (!internalDB.containsKey(entrezID))
             return false;
         return internalDB.get(entrezID).contains("GO:0009986") || internalDB.get(entrezID).contains("GO:0005886");

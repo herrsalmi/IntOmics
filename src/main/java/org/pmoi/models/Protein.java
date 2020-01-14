@@ -87,6 +87,7 @@ public class Protein extends Feature{
                 "depletedSamplesScore=" + depletedSamplesScore +
                 ", rinsedSamplesScore=" + rinsedSamplesScore +
                 ", name='" + name + '\'' +
+                ", entrezID='" + entrezID + '\'' +
                 '}';
     }
 }

@@ -2,15 +2,9 @@ package org.pmoi;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.business.GeneOntologyMapper;
-import org.pmoi.business.NCBIQueryClient;
-import org.pmoi.business.SecretomeManager;
-import org.pmoi.business.StringdbQueryClient;
+import org.pmoi.business.*;
 import org.pmoi.handler.Parser;
-import org.pmoi.models.Feature;
-import org.pmoi.models.Gene;
-import org.pmoi.models.Mode;
-import org.pmoi.models.Protein;
+import org.pmoi.models.*;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -20,7 +14,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -35,18 +28,21 @@ public class OperationDispatcher {
         stringdbQueryClient = new StringdbQueryClient();
     }
 
-    public void run(Mode mode) {
-
+    public void run(String output,ProteomeType proteomeType, SecretomeMappingMode mappingMode) {
+        MembranomeManager membranomeManager = MembranomeManager.getInstance();
+        SecretomeManager secretomeManager = SecretomeManager.getInstance();
+        secretomeManager.setMappingMode(mappingMode);
         List<Protein> allSecretome;
-        switch (mode) {
+        LOGGER.info("Loading secretome");
+        switch (proteomeType) {
             case LABEL_FREE:
-                allSecretome = getSecretomeFromLabelFreeFile("Secretome_label_free.csv");
+                allSecretome = secretomeManager.getSecretomeFromLabelFreeFile("Secretome_label_free.csv");
                 break;
             case LCMS:
-                allSecretome = getSecretomeFromLCMSFile("Secretome.csv");
+                allSecretome = secretomeManager.getSecretomeFromLCMSFile("Secretome.csv");
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + mode);
+                throw new IllegalStateException("Unexpected value: " + proteomeType);
         }
         assert allSecretome != null;
         List<Protein> secretome = allSecretome.stream().filter(Protein::isMoreExpressedInDepletedSamples).collect(Collectors.toList());
@@ -57,11 +53,13 @@ public class OperationDispatcher {
 //        secretome.forEach(System.out::println);
 //        System.exit(0);
         //
-        List<Gene> membranome = getMembranomeFromDEGenes("Gene_DE.csv");
+        LOGGER.info("Loading transcriptome");
+        List<Gene> membranome = membranomeManager.getMembranomeFromDEGenes("Gene_DE.csv");
 
         LOGGER.info("Number of secreted proteins: " + allSecretome.size());
         LOGGER.info("Number of secreted proteins more expressed in depleted samples: " + secretome.size());
-        writeInteractions(secretome, membranome, "interactionNetworkS2M_LF_GO.tsv");
+
+        writeInteractions(secretome, membranome, output);
 
     }
 
@@ -97,117 +95,6 @@ public class OperationDispatcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private List<Gene> getMembranomeFromDEGenes(String fileName) {
-        NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
-        GeneOntologyMapper goMapper = new GeneOntologyMapper();
-        try {
-            goMapper.load("gene2go");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        List<Gene> inputGenes = Objects.requireNonNull(readDEGeneFile(fileName)).stream().distinct().collect(Collectors.toList());
-        ExecutorService executor = Executors.newFixedThreadPool(4);
-        inputGenes.forEach(g -> executor.submit(() -> ncbiQueryClient.geneNameToEntrezID(g)));
-        executor.shutdown();
-        try {
-            executor.awaitTermination(10, TimeUnit.DAYS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        // if a gene has no EntrezID it will also get removed here
-        return inputGenes.parallelStream()
-                .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
-                .filter(e -> goMapper.checkMembrannomeGO(e.getEntrezID()))
-                .collect(Collectors.toList());
-    }
-
-    private List<Protein> getSecretomeFromLCMSFile(String filePath) {
-        List<Protein> inputProtein = Objects.requireNonNull(LoadSecretomeFile(filePath))
-                .stream()
-                .filter(e -> e.getEntrezID() != null)
-                .collect(Collectors.toList());
-        NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
-        ExecutorService executor = Executors.newFixedThreadPool(4);
-        inputProtein.forEach(g -> executor.submit(() -> ncbiQueryClient.entrezIDToGeneName(g)));
-
-        executor.shutdown();
-        try {
-            executor.awaitTermination(10, TimeUnit.DAYS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // keep only proteins that match an entry in the DB
-        SecretomeManager secretomeDB = SecretomeManager.getInstance();
-        return inputProtein.stream()
-                .filter(e -> e.getName() != null)
-                .filter(e -> secretomeDB.isSecreted(e.getName()))
-                .collect(Collectors.toList());
-    }
-
-    private List<Protein> getSecretomeFromLabelFreeFile(String filePath) {
-        try {
-            SecretomeManager secretomeDB = SecretomeManager.getInstance();
-            var inputProteins =  Files.lines(Path.of(filePath))
-                    .skip(1)
-                    .filter(Predicate.not(String::isBlank))
-                    .distinct()
-                    .map(e -> e.split(";"))
-                    .filter(e -> Parser.tryParseDouble(e[3]))
-                    .filter(e -> Parser.tryParseDouble(e[4]))
-                    .filter(e -> Double.parseDouble(e[3]) < 0.05 && Double.parseDouble(e[4]) > 1.3)
-                    .map(e -> new Protein(e[6], Double.parseDouble(e[7]), Double.parseDouble(e[8])))
-                    //.filter(e -> secretomeDB.isSecreted(e.getName()))
-                    .collect(Collectors.toList());
-
-            ExecutorService executor = Executors.newFixedThreadPool(4);
-            NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
-            inputProteins.forEach(g -> executor.submit(() -> ncbiQueryClient.geneNameToEntrezID(g)));
-            executor.shutdown();
-            try {
-                executor.awaitTermination(10, TimeUnit.DAYS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            GeneOntologyMapper goMapper = new GeneOntologyMapper();
-            return inputProteins.stream()
-                    .filter(e -> goMapper.checkSecretomeGO(e.getEntrezID()))
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private List<Gene> readDEGeneFile(String filePath) {
-        try {
-            return Files.lines(Path.of(filePath))
-                    .skip(1)
-                    .filter(Predicate.not(String::isBlank))
-                    .distinct()
-                    .map(Gene::new)
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private List<Protein> LoadSecretomeFile(String filePath) {
-        try {
-            return Files.lines(Path.of(filePath))
-                    .skip(1)
-                    .filter(Predicate.not(String::isBlank))
-                    .distinct()
-                    .map(Protein::new)
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
 }

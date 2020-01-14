@@ -60,7 +60,7 @@ public class NCBIQueryClient {
             } catch (IOException e) {
                 LOGGER.warn(String.format("Unknown error when getting feature name. Feature: [%s]. Retrying (%d/%d)", feature.getEntrezID(), counter + 1, MainEntry.MAX_TRIES));
                 if (++counter == MainEntry.MAX_TRIES) {
-                    LOGGER.error(String.format("Error getting name for feature: [%s]. Aborting!", feature.getEntrezID()));
+                    LOGGER.error(String.format("\nError getting name for feature: [%s]. Aborting!", feature.getEntrezID()));
                     return;
                 }
             }
