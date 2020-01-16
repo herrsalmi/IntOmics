@@ -2,7 +2,7 @@ package org.pmoi.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.handler.Parser;
+import org.pmoi.handler.NumberParser;
 import org.pmoi.models.Protein;
 import org.pmoi.models.SecretomeMappingMode;
 
@@ -112,8 +112,8 @@ public class SecretomeManager {
                     .filter(Predicate.not(String::isBlank))
                     .distinct()
                     .map(e -> e.split(";"))
-                    .filter(e -> Parser.tryParseDouble(e[3]))
-                    .filter(e -> Parser.tryParseDouble(e[4]))
+                    .filter(e -> NumberParser.tryParseDouble(e[3]))
+                    .filter(e -> NumberParser.tryParseDouble(e[4]))
                     .filter(e -> Double.parseDouble(e[3]) < 0.05 && Double.parseDouble(e[4]) > 1.3)
                     .map(e -> new Protein(e[6], Double.parseDouble(e[7]), Double.parseDouble(e[8])))
                     .collect(Collectors.toList());

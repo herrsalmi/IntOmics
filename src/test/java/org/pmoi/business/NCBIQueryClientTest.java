@@ -1,5 +1,6 @@
 package org.pmoi.business;
 
+import org.junit.jupiter.api.Test;
 import org.pmoi.models.Gene;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,5 +35,10 @@ class NCBIQueryClientTest {
         gene.setEntrezID("71");
         ncbiQueryClient.entrezIDToGeneName(gene);
         assertEquals("ACTG1", gene.getName());
+    }
+
+    @Test
+    void fetchDescription() {
+        assertEquals("leptin receptor", ncbiQueryClient.fetchDescription("3953"));
     }
 }

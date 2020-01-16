@@ -59,8 +59,8 @@ public class Protein extends Feature{
         return  Double.valueOf(decimalFormat.format(rinsedSamplesScore.stream().collect(Collectors.summarizingDouble(Double::doubleValue)).getAverage()).replace(',', '.'));
     }
 
-    public boolean isMoreExpressedInDepletedSamples() {
-        return depletedMeanScore() > rinsedMeanScore();
+    public boolean isMoreExpressedInDepletedSamples(double fc) {
+        return depletedMeanScore() > rinsedMeanScore() && (depletedMeanScore() / rinsedMeanScore()) >= fc;
     }
 
     @Override

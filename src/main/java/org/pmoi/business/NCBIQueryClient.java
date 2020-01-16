@@ -14,6 +14,8 @@ import org.pmoi.models.Gene;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author A Salmi
@@ -44,7 +46,7 @@ public class NCBIQueryClient {
         }
     }
 
-    public void entrezIDToGeneName(Feature feature) {
+    public String entrezIDToGeneName(Feature feature) {
         int counter = 0;
         while (true) {
             try {
@@ -56,12 +58,12 @@ public class NCBIQueryClient {
                 //TODO replace this using regex
                 ncbiResultContent = ncbiResultContent.split("\n")[1];
                 feature.setName(ncbiResultContent.substring(3));
-                return;
+                return feature.getName();
             } catch (IOException e) {
                 LOGGER.warn(String.format("Unknown error when getting feature name. Feature: [%s]. Retrying (%d/%d)", feature.getEntrezID(), counter + 1, MainEntry.MAX_TRIES));
                 if (++counter == MainEntry.MAX_TRIES) {
                     LOGGER.error(String.format("\nError getting name for feature: [%s]. Aborting!", feature.getEntrezID()));
-                    return;
+                    return null;
                 }
             }
         }
@@ -71,5 +73,27 @@ public class NCBIQueryClient {
         Gene gene = new Gene("", id);
         entrezIDToGeneName(gene);
         return gene.getName();
+    }
+
+    public String fetchDescription(String id) {
+        int counter = 0;
+        while (true) {
+            try {
+                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=gene&id=%s&retmode=text&api_key=%s", id, MainEntry.NCBI_API_KEY));
+                HttpConnector httpConnector = new HttpConnector();
+                String ncbiResultContent = httpConnector.getContent(url);
+                //TODO replace this using regex
+                Pattern pattern = Pattern.compile("Name: (.*)(?= \\[)");
+                Matcher matcher = pattern.matcher(ncbiResultContent);
+                if (matcher.find()) {
+                    return matcher.group(1);
+                }
+                return null;
+            } catch (IOException e) {
+                if (++counter == MainEntry.MAX_TRIES) {
+                    return null;
+                }
+            }
+        }
     }
 }

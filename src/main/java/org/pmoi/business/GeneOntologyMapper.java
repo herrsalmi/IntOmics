@@ -3,30 +3,35 @@ package org.pmoi.business;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class GeneOntologyMapper {
 
-    private Map<String, List<String>> internalDB;
+    private Map<String, Set<String>> internalDB;
 
     public GeneOntologyMapper() {
         this.internalDB = new ConcurrentHashMap<>(100000);
         try {
-            load("gene2go");
+            load();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void load(String file) throws IOException {
-        Files.lines(Path.of(file)).skip(1).forEach(l -> {
+    private void load() throws IOException {
+        Files.lines(Path.of("gene2go")).skip(1).forEach(l -> {
             String[] data = l.split("\t");
-            internalDB.putIfAbsent(data[1], new ArrayList<>());
+            internalDB.putIfAbsent(data[1], new HashSet<>());
             internalDB.get(data[1]).add(data[2]);
         });
+        Files.lines(Path.of("mart_export.txt")).skip(1)
+                .map(l -> l.split("\t"))
+                .filter(data -> data.length == 4)
+                .forEach(data -> {
+                    internalDB.putIfAbsent(data[3], new HashSet<>());
+                    internalDB.get(data[3]).add(data[1]);
+                });
     }
 
     public boolean checkMembranomeGO(String entrezID) {

@@ -4,9 +4,6 @@ import java.util.Objects;
 
 public class Gene extends Feature{
 
-    private String fdr;
-    private String foldChange;
-
     public Gene(String line) {
         String[] info = line.split(";");
         this.name = info[0];
@@ -21,22 +18,6 @@ public class Gene extends Feature{
     public Gene(String name, String entrezID) {
         this.name = name;
         this.entrezID = entrezID;
-    }
-
-    public String getFdr() {
-        return fdr;
-    }
-
-    public void setFdr(String fdr) {
-        this.fdr = fdr;
-    }
-
-    public String getFoldChange() {
-        return foldChange;
-    }
-
-    public void setFoldChange(String foldChange) {
-        this.foldChange = foldChange;
     }
 
     @Override

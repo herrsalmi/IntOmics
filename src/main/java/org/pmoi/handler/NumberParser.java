@@ -1,6 +1,6 @@
 package org.pmoi.handler;
 
-public class Parser {
+public class NumberParser {
 
     public static boolean tryParseDouble(String value) {
         try {

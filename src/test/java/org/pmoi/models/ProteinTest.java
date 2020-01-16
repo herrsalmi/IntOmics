@@ -18,6 +18,7 @@ class ProteinTest {
         protein = new Protein("4048;191,6;;;144,69;59,41;187,2");
         assertEquals(191.6, protein.depletedMeanScore());
         assertEquals(130.43, protein.rinsedMeanScore());
+        assertTrue(protein.isMoreExpressedInDepletedSamples(1.3));
 
         protein = new Protein("4048;;;;144,69;59,41;187,2");
         assertEquals(0, protein.depletedMeanScore());
