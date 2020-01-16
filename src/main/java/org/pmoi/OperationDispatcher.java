@@ -94,33 +94,46 @@ public class OperationDispatcher {
         LOGGER.info("Writing results ...");
 
         NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
-        StringBuffer outputBuffer = new StringBuffer(String.format("%-10s %-6s %-45s %-10s %-6s %-45s %-10s %-10s %-10s %-10s %-10s\n",
-                "#protein", "ID", "name", "gene", "ID", "name", "interaction_score", "score D", "score R", "gene_fdr", "gene_fc"));
+        StringBuffer outputBuffer = new StringBuffer(String.format("%-10s %-6s %-50s %-10s %-10s %-10s %-6s %-50s %-10s %-10s %-10s\n",
+                "#protein", "ID", "name", "score D", "score R", "gene", "ID", "name", "I score", "gene_fdr", "gene_fc"));
         List<ResultsFX> fxList = new ArrayList<>();
-        resultSet.forEach(e -> {
-            e.getProtein().setDescription(ncbiQueryClient.fetchDescription(e.getProtein().getEntrezID()));
-            e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
-            outputBuffer.append(String.format("%-10s %-6s %-45s %-10s %-6s %-45s %-10s %-10s %-10s %-10s %-10s\n",
-                    e.getProtein().getName(), e.getProtein().getEntrezID(), e.getProtein().getDescription(),
-                    e.getGene().getName(), e.getGene().getEntrezID(), e.getGene().getDescription(),
-                    e.getInteractionScore(), e.getProtein().depletedMeanScore(), e.getProtein().rinsedMeanScore(),
-                    e.getGene().getFdr(), e.getGene().getFoldChange()));
-            fxList.add(new ResultsFX(e.getProtein().getName(), e.getProtein().getEntrezID(), e.getProtein().getDescription(),
-                    e.getGene().getName(), e.getGene().getEntrezID(), e.getGene().getDescription(),
-                    e.getInteractionScore(), String.valueOf(e.getProtein().depletedMeanScore()), String.valueOf(e.getProtein().rinsedMeanScore()),
-                    e.getGene().getFdr(), e.getGene().getFoldChange(), ""));
-        });
+        resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
+                .forEach((k, v) -> {
+                    k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
+                    v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
+                    outputBuffer.append(String.format("%-10s %-6s %-50s %-10s %-10s %-10s %-6s %-50s %-10s %-10s %-10s\n",
+                            k.getName(), k.getEntrezID(), k.getDescription(), k.depletedMeanScore(), k.rinsedMeanScore(),
+                            v.get(0).getGene().getName(), v.get(0).getGene().getEntrezID(), v.get(0).getGene().getDescription(),
+                            v.get(0).getInteractionScore(), v.get(0).getGene().getFdr(), v.get(0).getGene().getFoldChange()));
+                    v.stream().skip(1).forEach(e -> {
+                        e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
+                        outputBuffer.append(String.format("%-10s %-6s %-50s %-10s %-10s %-10s %-6s %-50s %-10s %-10s %-10s\n",
+                                "", "", "", "", "", e.getGene().getName(), e.getGene().getEntrezID(),
+                                e.getGene().getDescription(), e.getInteractionScore(),
+                                e.getGene().getFdr(), e.getGene().getFoldChange()));
+                    });
+                });
+//        resultSet.forEach(e -> {
+//            e.getProtein().setDescription(ncbiQueryClient.fetchDescription(e.getProtein().getEntrezID()));
+//            e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
+//            outputBuffer.append(String.format("%-10s %-6s %-50s %-10s %-10s %-10s %-6s %-50s %-10s %-10s %-10s\n",
+//                    e.getProtein().getName(), e.getProtein().getEntrezID(), e.getProtein().getDescription(),
+//                    e.getGene().getName(), e.getGene().getEntrezID(), e.getGene().getDescription(),
+//                    e.getInteractionScore(), e.getProtein().depletedMeanScore(), e.getProtein().rinsedMeanScore(),
+//                    e.getGene().getFdr(), e.getGene().getFoldChange()));
+//            fxList.add(new ResultsFX(e.getProtein().getName(), e.getProtein().getEntrezID(), e.getProtein().getDescription(),
+//                    e.getGene().getName(), e.getGene().getEntrezID(), e.getGene().getDescription(),
+//                    e.getInteractionScore(), String.valueOf(e.getProtein().depletedMeanScore()), String.valueOf(e.getProtein().rinsedMeanScore()),
+//                    e.getGene().getFdr(), e.getGene().getFoldChange(), ""));
+//        });
 
-        try {
-            BufferedWriter bw = Files.newBufferedWriter(Paths.get(outputFileName));
+        try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(outputFileName))) {
             bw.write(outputBuffer.toString());
-            bw.flush();
-            bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        MainFX.main(fxList);
+//        MainFX.main(fxList);
     }
 
 }

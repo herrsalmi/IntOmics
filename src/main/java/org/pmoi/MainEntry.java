@@ -30,10 +30,10 @@ public class MainEntry {
     public static BiMap<String, String> internalDB;
 
     public MainEntry() {
-        loadInternalDB();
+        //loadInternalDB();
         //System.exit(0);
         OperationDispatcher operationDispatcher = new OperationDispatcher();
-        operationDispatcher.run("interactionNetworkS2M_LF_GO_900.tsv", ProteomeType.LABEL_FREE, SecretomeMappingMode.GOTERM);
+        operationDispatcher.run("interactionNetworkS2M_LF_GO_900.2.tsv", ProteomeType.LABEL_FREE, SecretomeMappingMode.GOTERM);
     }
 
     private void loadInternalDB() {
