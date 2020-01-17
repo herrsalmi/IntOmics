@@ -33,7 +33,7 @@ public class MainEntry {
         //loadInternalDB();
         //System.exit(0);
         OperationDispatcher operationDispatcher = new OperationDispatcher();
-        operationDispatcher.run("interactionNetworkS2M_LF_GO_900.2.tsv", ProteomeType.LABEL_FREE, SecretomeMappingMode.GOTERM);
+        operationDispatcher.run("interactionNetworkS2M_LCMS_GO_900.tsv", ProteomeType.LCMS, SecretomeMappingMode.GOTERM);
     }
 
     private void loadInternalDB() {

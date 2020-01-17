@@ -37,7 +37,7 @@ public class GeneOntologyMapper {
     public boolean checkMembranomeGO(String entrezID) {
         if (!internalDB.containsKey(entrezID))
             return false;
-        return internalDB.get(entrezID).contains("GO:0009986") || internalDB.get(entrezID).contains("GO:0005886");
+        return internalDB.get(entrezID).contains("GO:0009986") || internalDB.get(entrezID).contains("GO:0005886") || internalDB.get(entrezID).contains("GO:0004888");
     }
 
     public boolean checkSecretomeGO(String entrezID) {
