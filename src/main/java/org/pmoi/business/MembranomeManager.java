@@ -23,10 +23,22 @@ public class MembranomeManager {
 
     }
 
+    public List<Gene> getDEGenesExceptMembranome(String filename) {
+        GeneOntologyMapper goMapper = new GeneOntologyMapper();
+        Predicate<Gene> condition = e -> !goMapper.checkMembranomeGO(e.getEntrezID());
+        return getDEGenesWithCondition(condition, filename);
+    }
+
     public List<Gene> getMembranomeFromDEGenes(String fileName) {
+        GeneOntologyMapper goMapper = new GeneOntologyMapper();
+        Predicate<Gene> condition = e -> goMapper.checkMembranomeGO(e.getEntrezID());
+        return getDEGenesWithCondition(condition, fileName);
+    }
+
+    private List<Gene> getDEGenesWithCondition(Predicate<Gene> condition, String filename) {
         NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
         GeneOntologyMapper goMapper = new GeneOntologyMapper();
-        List<Gene> inputGenes = Objects.requireNonNull(readDEGeneFile(fileName)).stream().distinct().collect(Collectors.toList());
+        List<Gene> inputGenes = Objects.requireNonNull(readDEGeneFile(filename)).stream().distinct().collect(Collectors.toList());
         ExecutorService executor = Executors.newFixedThreadPool(4);
         inputGenes.forEach(g -> executor.submit(() -> ncbiQueryClient.geneNameToEntrezID(g)));
         executor.shutdown();
@@ -38,7 +50,7 @@ public class MembranomeManager {
         // if a gene has no EntrezID it will also get removed here
         return inputGenes.parallelStream()
                 .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
-                .filter(e -> goMapper.checkMembranomeGO(e.getEntrezID()))
+                .filter(condition)
                 .collect(Collectors.toList());
     }
 

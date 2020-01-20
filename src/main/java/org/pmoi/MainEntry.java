@@ -30,10 +30,10 @@ public class MainEntry {
     public static BiMap<String, String> internalDB;
 
     public MainEntry() {
-        //loadInternalDB();
-        //System.exit(0);
+        loadInternalDB();
+        System.exit(0);
         OperationDispatcher operationDispatcher = new OperationDispatcher();
-        operationDispatcher.run("interactionNetworkS2M_LCMS_GO_900.tsv", ProteomeType.LCMS, SecretomeMappingMode.GOTERM);
+        operationDispatcher.run("interactionNetworkS2M_LCMS_GO_900.test.tsv", ProteomeType.LCMS, SecretomeMappingMode.GOTERM);
     }
 
     private void loadInternalDB() {
@@ -52,21 +52,21 @@ public class MainEntry {
 
     private void createInternalDB() {
         try {
-            var geneIDs = Files.lines(Paths.get("gene2go"))
+            var geneNames = Files.lines(Paths.get("genes.txt"))
                     .skip(1)
-                    .map(e -> e.split("\t")[1])
+                    .map(e -> e.split("\\.")[0])
                     .collect(Collectors.toSet());
             BiMap<String, String> map = Maps.synchronizedBiMap(HashBiMap.create(200000));
 
             NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
             ExecutorService executorService = Executors.newFixedThreadPool(4);
             AtomicInteger counter = new AtomicInteger(1);
-            geneIDs.forEach(e -> executorService.submit(() -> {
-                System.out.print(String.format("\rProcessing %d out of %d", counter.getAndIncrement(), geneIDs.size()));
+            geneNames.forEach(e -> executorService.submit(() -> {
+                System.out.print(String.format("\rProcessing %d out of %d ", counter.getAndIncrement(), geneNames.size()));
                 try {
-                    map.put(e, ncbiQueryClient.entrezIDToGeneName(e));
+                    map.put(ncbiQueryClient.geneNameToEntrezID(e), e);
                 } catch (IllegalArgumentException ex) {
-                    System.out.println(String.format("\nERROR! unable to insert gene name for [%s], value already present", e));
+                    System.out.println(String.format("\nERROR! unable to insert gene name for [%s], value already present ", e));
                 }
 
             }));

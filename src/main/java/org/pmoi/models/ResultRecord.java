@@ -1,6 +1,8 @@
 package org.pmoi.models;
 
-public class ResultRecord {
+import java.util.Comparator;
+
+public class ResultRecord implements Comparable<ResultRecord>{
     private Protein protein;
     private Gene gene;
     private String interactionScore;
@@ -34,4 +36,12 @@ public class ResultRecord {
     public void setInteractionScore(String interactionScore) {
         this.interactionScore = interactionScore;
     }
+
+    @Override
+    public int compareTo(ResultRecord o) {
+        if (o != null)
+            return Double.compare(this.getGene().getFoldChange(), ((ResultRecord) o).getGene().getFoldChange());
+        return 1;
+    }
+
 }

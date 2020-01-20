@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class Protein extends Feature{
     private List<Double> depletedSamplesScore;
     private List<Double> rinsedSamplesScore;
+    private List<Pathway> pathways;
 
     private static DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
@@ -29,6 +30,7 @@ public class Protein extends Feature{
         rinsedSamplesScore = new ArrayList<>(1);
         depletedSamplesScore.add(scoreD);
         rinsedSamplesScore.add(scoreR);
+        this.pathways = new ArrayList<>();
     }
 
     public Protein(String line) {
@@ -49,6 +51,7 @@ public class Protein extends Feature{
             if (!info[i].isEmpty() && !info[i].isBlank())
                 rinsedSamplesScore.add(Double.valueOf(info[i].replace(',', '.')));
         }
+        this.pathways = new ArrayList<>();
     }
 
     public Double depletedMeanScore() {
@@ -61,6 +64,14 @@ public class Protein extends Feature{
 
     public boolean isMoreExpressedInDepletedSamples(double fc) {
         return depletedMeanScore() > rinsedMeanScore() && (depletedMeanScore() / rinsedMeanScore()) >= fc;
+    }
+
+    public List<Pathway> getPathways() {
+        return pathways;
+    }
+
+    public void addPathway(Pathway pathway) {
+        this.pathways.add(pathway);
     }
 
     @Override

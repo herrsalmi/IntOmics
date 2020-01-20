@@ -75,6 +75,12 @@ public class NCBIQueryClient {
         return gene.getName();
     }
 
+    public String geneNameToEntrezID(String name) {
+        Gene gene = new Gene(name, "");
+        geneNameToEntrezID(gene);
+        return gene.getEntrezID();
+    }
+
     public String fetchDescription(String id) {
         int counter = 0;
         while (true) {

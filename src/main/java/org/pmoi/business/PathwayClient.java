@@ -8,16 +8,20 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.pmoi.MainEntry;
 import org.pmoi.handler.HttpConnector;
+import org.pmoi.models.Gene;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class PathwayClient {
     private static final Logger LOGGER = LogManager.getRootLogger();
@@ -52,13 +56,34 @@ public class PathwayClient {
     }
 
     public List<String> KEGGSearch(String geneId) {
+        URL url = null;
+        try {
+            url = new URL(String.format("http://rest.kegg.jp/get/hsa:%s/", geneId));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return getListResults(url, " +(hsa[0-9]+ .+)(?=\\n)");
+    }
+
+    public List<Gene> getPathwayGenes(String pathwayID) {
+        URL url = null;
+        try {
+            url = new URL(String.format("http://rest.kegg.jp/get/%s/", pathwayID));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return Objects.requireNonNull(getListResults(url, "[0-9]+ {2}(.+)(?=;)")).stream()
+                .map(e -> new Gene(e, ""))
+                .collect(Collectors.toList());
+    }
+
+    private List<String> getListResults(URL url, String expression) {
         int counter = 0;
         while (true) {
             try {
-                URL url = new URL(String.format("http://rest.kegg.jp/get/hsa:%s/", geneId));
                 HttpConnector httpConnector = new HttpConnector();
                 String result = httpConnector.getContent(url);
-                Pattern pattern = Pattern.compile(" +(hsa[0-9]+ .+)(?=\\n)");
+                Pattern pattern = Pattern.compile(expression);
                 Matcher matcher = pattern.matcher(result);
                 List<String> resultList = new ArrayList<>();
                 while (matcher.find()) {
@@ -67,13 +92,11 @@ public class PathwayClient {
                 return resultList;
             } catch (IOException e) {
                 if (++counter == MainEntry.MAX_TRIES) {
-                    LOGGER.error(String.format("Error getting KEGG entry for: [%s]. Aborting!", geneId));
+                    LOGGER.error(String.format("Error getting KEGG. URL: [%s]. Aborting!", url.getPath()));
                     return null;
                 }
             }
         }
     }
-
-
 
 }
