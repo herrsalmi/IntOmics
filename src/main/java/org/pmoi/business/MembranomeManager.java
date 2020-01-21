@@ -2,6 +2,7 @@ package org.pmoi.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.pmoi.ApplicationParameters;
 import org.pmoi.models.Gene;
 
 import java.io.IOException;
@@ -50,6 +51,7 @@ public class MembranomeManager {
         // if a gene has no EntrezID it will also get removed here
         return inputGenes.parallelStream()
                 .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
+                .filter(g -> Math.abs(g.getFoldChange()) >= ApplicationParameters.getInstance().getGeneFoldChange())
                 .filter(condition)
                 .collect(Collectors.toList());
     }

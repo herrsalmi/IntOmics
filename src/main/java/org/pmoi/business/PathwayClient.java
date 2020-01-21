@@ -6,12 +6,12 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
-import org.pmoi.MainEntry;
+import org.pmoi.ApplicationParameters;
 import org.pmoi.handler.HttpConnector;
 import org.pmoi.models.Gene;
 
 import javax.xml.bind.DatatypeConverter;
-import java.io.*;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class PathwayClient {
                 document = saxBuilder.build(url);
                 return DatatypeConverter.parseBase64Binary(document.getRootElement().getChildren().stream().findFirst().get().getText());
             } catch (IOException | JDOMException e) {
-                if (++counter == MainEntry.MAX_TRIES) {
+                if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
                     LOGGER.error(String.format("Error getting pathway for: [%s - %s]. Aborting!", protein, gene));
                     return null;
                 }
@@ -91,7 +91,7 @@ public class PathwayClient {
                 }
                 return resultList;
             } catch (IOException e) {
-                if (++counter == MainEntry.MAX_TRIES) {
+                if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
                     LOGGER.error(String.format("Error getting KEGG. URL: [%s]. Aborting!", url.getPath()));
                     return null;
                 }

@@ -1,5 +1,0 @@
-#node1	node2	interaction_score	gene_fdr	gene_fc
-IGF2	IGF1R	0.997	0,034	1,4806
-IGF2	VEGFA	0.98	0,0002	-2,2468
-ENG	ACVRL1	0.993	1,26E-08	2,4253
-LEP	JAK2	0.984	0,0003	1,7384

@@ -7,7 +7,7 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
-import org.pmoi.MainEntry;
+import org.pmoi.ApplicationParameters;
 import org.pmoi.handler.HttpConnector;
 
 import java.io.IOException;
@@ -51,7 +51,7 @@ public class StringdbQueryClient {
     public Map<String, String> getProteinNetwork(String symbol) {
         LOGGER.info("Searching StringDB for gene " + symbol);
         String url = String.format("https://string-db.org/api/xml/interaction_partners?species=9606&required_score=%s&identifiers=%s",
-                MainEntry.STRINGDB_SCORE, symbol);
+                ApplicationParameters.getInstance().getStringDBScore(), symbol);
         Map<String, String> map = new HashMap<>();
         // see if there is an entry in StringDB for the gene
         URLConnection connection = null;
@@ -78,8 +78,9 @@ public class StringdbQueryClient {
                 }
                 return map;
             } catch (JDOMException | IOException e) {
-                LOGGER.warn(String.format("Network I/O error while connecting to StringDB. GENE:%s. Retrying ... (%d/%d)", symbol, ++count, MainEntry.MAX_TRIES));
-                if (count == MainEntry.MAX_TRIES) {
+                LOGGER.warn(String.format("Network I/O error while connecting to StringDB. GENE:%s. Retrying ... (%d/%d)",
+                        symbol, ++count, ApplicationParameters.getInstance().getMaxTries()));
+                if (count == ApplicationParameters.getInstance().getMaxTries()) {
                     LOGGER.error(String.format("StringDB data not retrieved for GENE:%s", symbol));
                     return map;
                 }

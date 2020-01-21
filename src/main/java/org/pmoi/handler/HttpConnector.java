@@ -2,7 +2,7 @@ package org.pmoi.handler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.MainEntry;
+import org.pmoi.ApplicationParameters;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -58,7 +58,7 @@ public class HttpConnector {
                 return output;
             } catch (IOException e) {
                 //LOGGER.warn("HTTP Connection: Network I/O error while connecting to server. Retrying ... (" + ++count + "/" + MainEntry.MAX_TRIES + ")");
-                if (count == MainEntry.MAX_TRIES) throw e;
+                if (count == ApplicationParameters.getInstance().getMaxTries()) throw e;
             }
         }
     }

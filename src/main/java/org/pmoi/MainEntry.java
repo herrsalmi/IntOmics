@@ -19,21 +19,13 @@ import java.util.stream.Collectors;
 
 public class MainEntry {
 
-    private static final String VERSION = "0.1b";
-    public static final boolean USE_GENE_NAME = true;
-    private static final String PROG_NAME = "IntOmics";
-    public static final int MAX_TRIES = 100;
-    public static final int STRINGDB_SCORE = 900;
-    public static final double FC = 1.3;
-    public static final String NCBI_API_KEY = "40065544fb6667a5a723b649063fbe596e08";
-
     public static BiMap<String, String> internalDB;
 
     public MainEntry() {
-        loadInternalDB();
-        System.exit(0);
+//        loadInternalDB();
+//        System.exit(0);
         OperationDispatcher operationDispatcher = new OperationDispatcher();
-        operationDispatcher.run("interactionNetworkS2M_LCMS_GO_900.test.tsv", ProteomeType.LCMS, SecretomeMappingMode.GOTERM);
+        operationDispatcher.run("output/interactionNetworkS2M_LF_GO_900.tsv", ProteomeType.LABEL_FREE, SecretomeMappingMode.GOTERM);
     }
 
     private void loadInternalDB() {

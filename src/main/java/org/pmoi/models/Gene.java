@@ -1,8 +1,11 @@
 package org.pmoi.models;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
-public class Gene extends Feature{
+public class Gene extends Feature implements Comparable<Gene>{
 
     private Map<String, List<Gene>> interactors;
 
@@ -61,5 +64,10 @@ public class Gene extends Feature{
         } catch (CloneNotSupportedException e) {
             return new Gene(this.name, this.entrezID, this.fdr, this.foldChange);
         }
+    }
+
+    @Override
+    public int compareTo(Gene o) {
+        return Double.compare(this.getFoldChange(), o.getFoldChange());
     }
 }
