@@ -8,7 +8,6 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.pmoi.ApplicationParameters;
-import org.pmoi.handler.HttpConnector;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -29,32 +28,13 @@ public class StringdbQueryClient {
     public StringdbQueryClient() {
     }
 
-    public String search(List<String> geneId) {
-        StringBuilder url = new StringBuilder("https://string-db.org/api/svg/network?species=9606&identifiers=");
-        // add genes to url
-        geneId.forEach(e -> url.append(e).append("%0d"));
-        // delete the last %0d
-        url.delete(url.length() - 3, url.length());
-
-        url.append("&add_white_nodes=10&network_flavor=evidence");
-
-        HttpConnector connector = new HttpConnector();
-        String out = null;
-        try {
-            out = connector.getContent(new URL(url.toString()));
-        } catch (java.io.IOException e) {
-            LOGGER.error("An error occurred while connecting to StringDB");
-        }
-        return out;
-    }
-
     public Map<String, String> getProteinNetwork(String symbol) {
         LOGGER.info("Searching StringDB for gene " + symbol);
         String url = String.format("https://string-db.org/api/xml/interaction_partners?species=9606&required_score=%s&identifiers=%s",
                 ApplicationParameters.getInstance().getStringDBScore(), symbol);
         Map<String, String> map = new HashMap<>();
         // see if there is an entry in StringDB for the gene
-        URLConnection connection = null;
+        URLConnection connection;
         try {
             connection = new URL(url).openConnection();
             HttpURLConnection httpConnection = (HttpURLConnection) connection;

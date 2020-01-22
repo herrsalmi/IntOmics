@@ -25,7 +25,6 @@ public class SecretomeManager {
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Set<String> internalDB;
-    private final String dbFilePath = "metazSecKB.txt";
     private SecretomeMappingMode mode;
     private Predicate<Protein> secretomeMapper;
 
@@ -35,6 +34,7 @@ public class SecretomeManager {
 
     private void loadDB() {
         try {
+            String dbFilePath = "metazSecKB.txt";
             this.internalDB = Files.lines(Path.of(dbFilePath)).map(e -> {
                 if (e.split("\t").length != 5) {
                     LOGGER.error("Wrong number of fileds in line: " + e);
@@ -106,7 +106,6 @@ public class SecretomeManager {
     public List<Protein> getSecretomeFromLabelFreeFile(String filePath) {
         isMappingModeSet();
         try {
-            SecretomeManager secretomeDB = SecretomeManager.getInstance();
             var inputProteins =  Files.lines(Path.of(filePath))
                     .skip(1)
                     .filter(Predicate.not(String::isBlank))

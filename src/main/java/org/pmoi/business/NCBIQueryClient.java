@@ -26,7 +26,7 @@ public class NCBIQueryClient {
     public NCBIQueryClient() {
     }
 
-    public String geneNameToEntrezID(Feature feature) {
+    public void geneNameToEntrezID(Feature feature) {
         int counter = 0;
         while (true) {
             try {
@@ -38,20 +38,20 @@ public class NCBIQueryClient {
                 Element ncbiId = document.getRootElement().getChild("IdList");
                 Optional<Element> id = ncbiId.getChildren().stream().findFirst();
                 feature.setEntrezID(id.map(Element::getText).orElse(null));
-                return feature.getEntrezID();
+                return;
 
             } catch (JDOMException | IOException e) {
                 LOGGER.warn(String.format("Unknown error when getting ID. Feature: [%s]. Retrying (%d/%d)",
                         feature.getName(), counter + 1, ApplicationParameters.getInstance().getMaxTries()));
                 if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
                     LOGGER.error(String.format("Error getting ID for feature: [%s]. Aborting!", feature.getName()));
-                    return null;
+                    return;
                 }
             }
         }
     }
 
-    public String entrezIDToGeneName(Feature feature) {
+    public void entrezIDToGeneName(Feature feature) {
         int counter = 0;
         while (true) {
             try {
@@ -64,13 +64,13 @@ public class NCBIQueryClient {
                 //TODO replace this using regex
                 ncbiResultContent = ncbiResultContent.split("\n")[1];
                 feature.setName(ncbiResultContent.substring(3));
-                return feature.getName();
+                return;
             } catch (IOException e) {
                 LOGGER.warn(String.format("Unknown error when getting feature name. Feature: [%s]. Retrying (%d/%d)",
                         feature.getEntrezID(), counter + 1, ApplicationParameters.getInstance().getMaxTries()));
                 if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
                     LOGGER.error(String.format("\nError getting name for feature: [%s]. Aborting!", feature.getEntrezID()));
-                    return null;
+                    return;
                 }
             }
         }
@@ -96,7 +96,6 @@ public class NCBIQueryClient {
                         id, ApplicationParameters.getInstance().getNcbiAPIKey()));
                 HttpConnector httpConnector = new HttpConnector();
                 String ncbiResultContent = httpConnector.getContent(url);
-                //TODO replace this using regex
                 Pattern pattern = Pattern.compile("Name: (.*)(?= \\[)");
                 Matcher matcher = pattern.matcher(ncbiResultContent);
                 if (matcher.find()) {

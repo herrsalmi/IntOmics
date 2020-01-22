@@ -1,7 +1,5 @@
 package org.pmoi.business;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.pmoi.ApplicationParameters;
 import org.pmoi.models.Gene;
 
@@ -18,7 +16,6 @@ import java.util.stream.Collectors;
 
 public class MembranomeManager {
     private static MembranomeManager instance;
-    private static final Logger LOGGER = LogManager.getRootLogger();
 
     private MembranomeManager() {
 
@@ -38,7 +35,6 @@ public class MembranomeManager {
 
     private List<Gene> getDEGenesWithCondition(Predicate<Gene> condition, String filename) {
         EntrezIDMapper mapper = EntrezIDMapper.getInstance();
-        GeneOntologyMapper goMapper = new GeneOntologyMapper();
         List<Gene> inputGenes = Objects.requireNonNull(readDEGeneFile(filename)).stream().distinct().collect(Collectors.toList());
         ExecutorService executor = Executors.newFixedThreadPool(4);
         inputGenes.forEach(g -> executor.submit(() -> mapper.nameToId(g)));

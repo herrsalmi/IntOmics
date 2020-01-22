@@ -50,19 +50,21 @@ public class OperationDispatcher {
         LOGGER.info("Loading 9h transcriptome");
         List<Gene> membranome = membranomeManager.getMembranomeFromDEGenes("input/Gene_DE_9h.csv");
 
-        LOGGER.info("Loading 48h transcriptome");
-        //List<Gene> transcriptome = membranomeManager.getDEGenesExceptMembranome("input/Gene_DE_48h.csv");
+        List<Gene> transcriptome = null;
+        if (ApplicationParameters.getInstance().use48H()) {
+            LOGGER.info("Loading 48h transcriptome");
+            transcriptome = membranomeManager.getDEGenesExceptMembranome("input/Gene_DE_48h.csv");
+        }
 
         LOGGER.info("Number of secreted proteins: " + allSecretome.size());
         LOGGER.info("Number of secreted proteins more expressed in depleted samples: " + secretome.size());
 
-        //writeInteractions(secretome, membranome, transcriptome, output);
-        writeInteractions(secretome, membranome, null, output);
+        writeInteractions(secretome, membranome, transcriptome, output);
 
     }
 
     private void writeInteractions(List<Protein> secretome, List<Gene> membranome, List<Gene> transcriptome, String outputFileName) {
-        List<ResultRecord> resultSet = Collections.synchronizedList(new ArrayList<ResultRecord>());
+        List<ResultRecord> resultSet = Collections.synchronizedList(new ArrayList<>());
         ExecutorService executorService = Executors.newFixedThreadPool(3);
 
         secretome.forEach(e -> executorService.submit(() -> {
@@ -87,74 +89,71 @@ public class OperationDispatcher {
             e.printStackTrace();
         }
 
-//        LOGGER.info("Looking for pathway interactions ...");
-//
-//        // TODO This code will highly likely throw an error
-//        var resultMap = resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein));
-//        PathwayClient pathwayClient = new PathwayClient();
-//        resultMap.forEach((key, value) -> {
-//            var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
-//            pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
-//            key.getPathways().forEach(e -> e.setGenes(pathwayClient.getPathwayGenes(e.getPathwayID())));
-//            value.forEach(resultRecord -> {
-//                resultRecord.getProtein().getPathways().forEach(p -> {
-//                    if (p.getGenes().contains(resultRecord.getGene()))
-//                        resultRecord.getGene().setInteractors(p.getName(), p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
-//                });
-//            });
-//        });
+        if (ApplicationParameters.getInstance().use48H()) {
+            LOGGER.info("Looking for pathway interactions ...");
+
+            var resultMap = resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein));
+            PathwayClient pathwayClient = new PathwayClient();
+            resultMap.forEach((key, value) -> {
+                var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
+                pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
+                key.getPathways().forEach(e -> e.setGenes(pathwayClient.getPathwayGenes(e.getPathwayID())));
+                value.forEach(resultRecord -> resultRecord.getProtein().getPathways().forEach(p -> {
+                    if (p.getGenes().contains(resultRecord.getGene()))
+                        resultRecord.getGene().setInteractors(p.getName(), p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
+                }));
+            });
+        }
 
         LOGGER.info("Writing results ...");
-
-//        NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
-//        StringBuffer outputBuffer = new StringBuffer(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
-//                "#protein", "name", "score D", "score R", "gene", "name", "I score", "gene_fdr", "gene_fc"));
-//        List<ResultsFX> fxList = new ArrayList<>();
-//        resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
-//                .forEach((k, v) -> {
-//                    k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
-//                    v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
-//                    v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
-//                    outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s %s\n",
-//                            k.getName(), k.getDescription(), k.depletedMeanScore(), k.rinsedMeanScore(),
-//                            v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
-//                            v.get(0).getInteractionScore(), v.get(0).getGene().getFdr(), v.get(0).getGene().getFoldChange(),
-//                            v.get(0).getGene().getInteractors().entrySet().stream()
-//                                    .map(e -> e.getKey() + ": " + e.getValue().stream().sorted(Collections.reverseOrder())
-//                                            .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
-//                                    .collect(Collectors.joining("; "))));
-//                    v.stream().skip(1).forEach(e -> {
-//                        e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
-//                        outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s %s\n",
-//                                "", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
-//                                e.getGene().getFdr(), e.getGene().getFoldChange(),
-//                                e.getGene().getInteractors().entrySet().stream()
-//                                        .map(en -> en.getKey() + ": " + en.getValue().stream().sorted(Collections.reverseOrder())
-//                                                .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
-//                                        .collect(Collectors.joining("; "))));
-//                    });
-//                });
 
         NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
         StringBuffer outputBuffer = new StringBuffer(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
                 "#protein", "name", "score D", "score R", "gene", "name", "I score", "gene_fdr", "gene_fc"));
-        List<ResultsFX> fxList = new ArrayList<>();
-        resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
-                .forEach((k, v) -> {
-                    k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
-                    v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
-                    v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
-                    outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
-                            k.getName(), k.getDescription(), k.depletedMeanScore(), k.rinsedMeanScore(),
-                            v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
-                            v.get(0).getInteractionScore(), v.get(0).getGene().getFdr(), v.get(0).getGene().getFoldChange()));
-                    v.stream().skip(1).forEach(e -> {
-                        e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
-                        outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
-                                "", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
-                                e.getGene().getFdr(), e.getGene().getFoldChange()));
+        //List<ResultsFX> fxList = new ArrayList<>();
+        if (ApplicationParameters.getInstance().use48H()) {
+            resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
+                    .forEach((k, v) -> {
+                        k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
+                        v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
+                        v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
+                        outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s %s\n",
+                                k.getName(), k.getDescription(), k.depletedMeanScore(), k.rinsedMeanScore(),
+                                v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
+                                v.get(0).getInteractionScore(), v.get(0).getGene().getFdr(), v.get(0).getGene().getFoldChange(),
+                                v.get(0).getGene().getInteractors().entrySet().stream()
+                                        .map(e -> e.getKey() + ": " + e.getValue().stream().sorted(Collections.reverseOrder())
+                                                .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
+                                        .collect(Collectors.joining("; "))));
+                        v.stream().skip(1).forEach(e -> {
+                            e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
+                            outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s %s\n",
+                                    "", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
+                                    e.getGene().getFdr(), e.getGene().getFoldChange(),
+                                    e.getGene().getInteractors().entrySet().stream()
+                                            .map(en -> en.getKey() + ": " + en.getValue().stream().sorted(Collections.reverseOrder())
+                                                    .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
+                                            .collect(Collectors.joining("; "))));
+                        });
                     });
-                });
+        } else {
+            resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
+                    .forEach((k, v) -> {
+                        k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
+                        v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
+                        v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
+                        outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
+                                k.getName(), k.getDescription(), k.depletedMeanScore(), k.rinsedMeanScore(),
+                                v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
+                                v.get(0).getInteractionScore(), v.get(0).getGene().getFdr(), v.get(0).getGene().getFoldChange()));
+                        v.stream().skip(1).forEach(e -> {
+                            e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
+                            outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
+                                    "", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
+                                    e.getGene().getFdr(), e.getGene().getFoldChange()));
+                        });
+                    });
+        }
 
 //        resultSet.forEach(e -> {
 //            e.getProtein().setDescription(ncbiQueryClient.fetchDescription(e.getProtein().getEntrezID()));

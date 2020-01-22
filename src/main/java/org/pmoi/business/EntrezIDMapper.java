@@ -1,6 +1,8 @@
 package org.pmoi.business;
 
 import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+import com.google.common.collect.Maps;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.models.Feature;
@@ -8,10 +10,11 @@ import org.pmoi.models.Feature;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class EntrezIDMapper {
 
-    private static EntrezIDMapper instance;
+    private static volatile EntrezIDMapper instance;
 
     private static final Logger LOGGER = LogManager.getRootLogger();
 
@@ -25,7 +28,8 @@ public class EntrezIDMapper {
 
     private void loadInternalDB() {
         if (Files.notExists(Paths.get("internalDB.obj"))) {
-            throw new UnsupportedOperationException();
+            //throw new UnsupportedOperationException();
+            createInternalDB();
         } else {
             try {
                 ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("internalDB.obj")));
@@ -77,10 +81,32 @@ public class EntrezIDMapper {
     public synchronized void close() {
         if (internalDB.size() > this.intialSize) {
             try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("internalDB.obj")))) {
+                LOGGER.info("Updating internal database ...");
                 oos.writeObject(internalDB);
             } catch (IOException e) {
                 LOGGER.error("Unable to save EntrezMapper internal database!");
             }
+        }
+    }
+
+    private void createInternalDB() {
+        try {
+            BiMap<String, String> map = Maps.synchronizedBiMap(HashBiMap.create(30000));
+            AtomicInteger counter = new AtomicInteger(0);
+            Files.lines(Paths.get("genes.txt"))
+                    .skip(1)
+                    .map(e -> e.split("\t"))
+                    .filter(e -> e[0].equals("9606"))
+                    .forEach(e -> {
+                        System.out.println(String.format("%d - {%s : %s}",counter.incrementAndGet(), e[2], e[5]));
+                        map.put(e[2], e[5]);
+                    });
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("internalDB.obj")));
+            oos.writeObject(map);
+            oos.close();
+            internalDB = map;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

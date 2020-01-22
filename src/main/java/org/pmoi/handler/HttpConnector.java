@@ -1,22 +1,18 @@
 package org.pmoi.handler;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.pmoi.ApplicationParameters;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
 /**
  * project IntOmics
  * Created by ayyoub on 11/10/19.
  */
 public class HttpConnector {
-
-    private static final Logger LOGGER = LogManager.getLogger(HttpConnector.class.getName());
-
 
     public HttpConnector() {
     }
@@ -40,7 +36,7 @@ public class HttpConnector {
 
                 Reader reader = null;
                 try {
-                    reader = new BufferedReader(new InputStreamReader(response, "UTF-8"));
+                    reader = new BufferedReader(new InputStreamReader(response, StandardCharsets.UTF_8));
                     StringBuilder builder = new StringBuilder();
                     char[] buffer = new char[8192];
                     int read;
