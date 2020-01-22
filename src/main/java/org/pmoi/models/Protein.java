@@ -22,7 +22,7 @@ public class Protein extends Feature{
     }
 
     public Protein(String description, Double scoreD, Double scoreR) {
-        Pattern patter = Pattern.compile("GN=([A-Z0-9]+)");
+        Pattern patter = Pattern.compile("GN=([A-Za-z0-9]+)");
         Matcher matcher = patter.matcher(description);
         if (matcher.find())
             this.name = matcher.group(1).trim();

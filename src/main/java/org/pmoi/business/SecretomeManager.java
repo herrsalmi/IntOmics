@@ -72,9 +72,9 @@ public class SecretomeManager {
                 .stream()
                 .filter(e -> e.getEntrezID() != null)
                 .collect(Collectors.toList());
-        NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
+        EntrezIDMapper mapper = EntrezIDMapper.getInstance();
         ExecutorService executor = Executors.newFixedThreadPool(4);
-        inputProtein.forEach(g -> executor.submit(() -> ncbiQueryClient.entrezIDToGeneName(g)));
+        inputProtein.forEach(g -> executor.submit(() -> mapper.idToName(g)));
         executor.shutdown();
         try {
             executor.awaitTermination(10, TimeUnit.DAYS);
@@ -119,8 +119,8 @@ public class SecretomeManager {
                     .collect(Collectors.toList());
             if (mode.equals(SecretomeMappingMode.GOTERM)) {
                 ExecutorService executor = Executors.newFixedThreadPool(4);
-                NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
-                inputProteins.forEach(g -> executor.submit(() -> ncbiQueryClient.geneNameToEntrezID(g)));
+                EntrezIDMapper mapper = EntrezIDMapper.getInstance();
+                inputProteins.forEach(g -> executor.submit(() -> mapper.nameToId(g)));
                 executor.shutdown();
                 try {
                     executor.awaitTermination(10, TimeUnit.DAYS);

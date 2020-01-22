@@ -4,18 +4,13 @@ package org.pmoi;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Maps;
-import org.pmoi.business.NCBIQueryClient;
 import org.pmoi.models.ProteomeType;
 import org.pmoi.models.SecretomeMappingMode;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class MainEntry {
 
@@ -25,7 +20,7 @@ public class MainEntry {
 //        loadInternalDB();
 //        System.exit(0);
         OperationDispatcher operationDispatcher = new OperationDispatcher();
-        operationDispatcher.run("output/interactionNetworkS2M_LF_GO_900.tsv", ProteomeType.LABEL_FREE, SecretomeMappingMode.GOTERM);
+        operationDispatcher.run("output/S2M", ProteomeType.LABEL_FREE, SecretomeMappingMode.GOTERM);
     }
 
     private void loadInternalDB() {
@@ -44,31 +39,37 @@ public class MainEntry {
 
     private void createInternalDB() {
         try {
-            var geneNames = Files.lines(Paths.get("genes.txt"))
+            BiMap<String, String> map = Maps.synchronizedBiMap(HashBiMap.create(30000));
+            AtomicInteger counter = new AtomicInteger(0);
+            Files.lines(Paths.get("genes.txt"))
                     .skip(1)
-                    .map(e -> e.split("\\.")[0])
-                    .collect(Collectors.toSet());
-            BiMap<String, String> map = Maps.synchronizedBiMap(HashBiMap.create(200000));
+                    .map(e -> e.split("\t"))
+                    .filter(e -> e[0].equals("9606"))
+                    .forEach(e -> {
+                        System.out.println(String.format("%d - {%s : %s}",counter.incrementAndGet(), e[2], e[5]));
+                        map.put(e[2], e[5]);
+                    });
 
-            NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
-            ExecutorService executorService = Executors.newFixedThreadPool(4);
-            AtomicInteger counter = new AtomicInteger(1);
-            geneNames.forEach(e -> executorService.submit(() -> {
-                System.out.print(String.format("\rProcessing %d out of %d ", counter.getAndIncrement(), geneNames.size()));
-                try {
-                    map.put(ncbiQueryClient.geneNameToEntrezID(e), e);
-                } catch (IllegalArgumentException ex) {
-                    System.out.println(String.format("\nERROR! unable to insert gene name for [%s], value already present ", e));
-                }
 
-            }));
-            executorService.shutdown();
-            executorService.awaitTermination(10, TimeUnit.DAYS);
+//            NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
+//            ExecutorService executorService = Executors.newFixedThreadPool(4);
+//            AtomicInteger counter = new AtomicInteger(1);
+//            geneNames.forEach(e -> executorService.submit(() -> {
+//                System.out.print(String.format("\rProcessing %d out of %d ", counter.getAndIncrement(), geneNames.size()));
+//                try {
+//                    map.put(ncbiQueryClient.geneNameToEntrezID(e), e);
+//                } catch (IllegalArgumentException ex) {
+//                    System.out.println(String.format("\nERROR! unable to insert gene name for [%s], value already present ", e));
+//                }
+//
+//            }));
+//            executorService.shutdown();
+//            executorService.awaitTermination(10, TimeUnit.DAYS);
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("internalDB.obj")));
             oos.writeObject(map);
             oos.close();
             internalDB = map;
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

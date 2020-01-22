@@ -2,10 +2,7 @@ package org.pmoi;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.business.MembranomeManager;
-import org.pmoi.business.NCBIQueryClient;
-import org.pmoi.business.SecretomeManager;
-import org.pmoi.business.StringdbQueryClient;
+import org.pmoi.business.*;
 import org.pmoi.models.*;
 
 import java.io.BufferedWriter;
@@ -26,7 +23,10 @@ public class OperationDispatcher {
         stringdbQueryClient = new StringdbQueryClient();
     }
 
-    public void run(String output, ProteomeType proteomeType, SecretomeMappingMode mappingMode) {
+    public void run(String prefix, ProteomeType proteomeType, SecretomeMappingMode mappingMode) {
+        String output = String.format("%s_%s_%s_%s_fc%1.1f.tsv",
+                prefix, proteomeType.label, mappingMode.label, ApplicationParameters.getInstance().getStringDBScore(),
+                ApplicationParameters.getInstance().getGeneFoldChange());
         MembranomeManager membranomeManager = MembranomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
         secretomeManager.setMappingMode(mappingMode);
@@ -44,7 +44,7 @@ public class OperationDispatcher {
         }
         assert allSecretome != null;
         List<Protein> secretome = allSecretome.stream()
-                .filter(e -> e.isMoreExpressedInDepletedSamples(ApplicationParameters.getInstance().getFoldChange()))
+                .filter(e -> e.isMoreExpressedInDepletedSamples(ApplicationParameters.getInstance().getProteinFoldChange()))
                 .collect(Collectors.toList());
 
         LOGGER.info("Loading 9h transcriptome");
@@ -175,6 +175,7 @@ public class OperationDispatcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        EntrezIDMapper.getInstance().close();
 
 //        MainFX.main(fxList);
     }

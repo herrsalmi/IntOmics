@@ -37,11 +37,11 @@ public class MembranomeManager {
     }
 
     private List<Gene> getDEGenesWithCondition(Predicate<Gene> condition, String filename) {
-        NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
+        EntrezIDMapper mapper = EntrezIDMapper.getInstance();
         GeneOntologyMapper goMapper = new GeneOntologyMapper();
         List<Gene> inputGenes = Objects.requireNonNull(readDEGeneFile(filename)).stream().distinct().collect(Collectors.toList());
         ExecutorService executor = Executors.newFixedThreadPool(4);
-        inputGenes.forEach(g -> executor.submit(() -> ncbiQueryClient.geneNameToEntrezID(g)));
+        inputGenes.forEach(g -> executor.submit(() -> mapper.nameToId(g)));
         executor.shutdown();
         try {
             executor.awaitTermination(10, TimeUnit.DAYS);
@@ -61,6 +61,7 @@ public class MembranomeManager {
             return Files.lines(Path.of(filePath))
                     .skip(1)
                     .filter(Predicate.not(String::isBlank))
+                    .filter(l -> !l.trim().startsWith(";"))
                     .distinct()
                     .map(Gene::new)
                     .collect(Collectors.toList());
