@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Oxysterols derived from cholesterol" Version="20190306" Organism="Homo sapiens"><Comment Source="WikiPathways-description">The Oxysterol group of compounds are oxygenated derivatives of cholesterol or its sterol precursors, e.g. 7-dehydrocholesterol (7-DHC) or desmosterol. There are three mechanisms leading to the formation of oxysterols: 
+
+1. Enzymatically (first steps of sterol metabolism, being intermediates for the formation of steroid hormones, bile acids and 1,25-dihydroxyvitamin D3). 
+2. Non-enzymatically by encountering reactive oxygen species (ROS), providing a second pool of metabolites (this pool also includes oxidized cholesterol molecules taken in from diet). 
+3. Generation by the gut microflora and uptake through the enterohepatic circulation.
+
+
+Previously oxysterols where though to be inactive metabolic intermediates, however recent findings have established that these metabolites are involved in cholesterol homoeostasis, can be ligands to nuclear and G protein-coupled receptors and biomarkers of diseases (for example Niemann-Pick disease).
+
+This pathway drawing was inspired by Figure 3 of the review article by Griffiths et al. (2016) [https://www.ncbi.nlm.nih.gov/pubmed/27068984], and has been extended with immune system, receptor agonists, steroidal alkaloid and biomarker information from the same paper.</Comment>
+  <BiopaxRef>b35</BiopaxRef>
+  <Graphics BoardWidth="1190.4082259054635" BoardHeight="708.3082889119408"/>
+  <DataNode TextLabel="IL-17A" GraphId="a48f4" Type="Protein" GroupRef="c643f">
+    <Comment>"IL-17 familiy is essential in host defense and may play key pathogenic roles in autoimmune diseases." [PMID: 25092323]</Comment>
+    <Graphics CenterX="264.6860883668832" CenterY="58.48386357919182" Width="90.0" Height="25.0" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q16552"/>
+  </DataNode>
+  <DataNode TextLabel="Cyp7B1" GraphId="a88fa" Type="Protein">
+    <Graphics CenterX="453.7317492515778" CenterY="589.0" Width="90.0" Height="25.0" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="O75881"/>
+  </DataNode>
+  <DataNode TextLabel="7-beta, (25R)26-diHC" GraphId="b1803" Type="Metabolite">
+    <Comment>AKA  7β,26-dihydroxycholesterol (7β,26-diHC).</Comment>
+    <Graphics CenterX="305.5" CenterY="197.0" Width="173.75" Height="30.75" ZOrder="32768" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q27074030"/>
+  </DataNode>
+  <DataNode TextLabel="histamine" GraphId="b72b1" Type="Metabolite">
+    <Graphics CenterX="514.9171270718231" CenterY="264.0883977900553" Width="90.0" Height="25.0" ZOrder="32768" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q61233"/>
+  </DataNode>
+  <DataNode TextLabel="DHCR7" GraphId="ba5c1" Type="Protein">
+    <Comment>"ChEH is a dimer of 7-dehydrocholesterol reductase (DHCR7) and 3β-hydroxysteroid-Δ8-Δ7-isomerase (D8D7I)"</Comment>
+    <Graphics CenterX="772.3726480036713" CenterY="143.6438733363928" Width="90.0" Height="25.0" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UBM7"/>
+  </DataNode>
+  <DataNode TextLabel="LXR-alpha" GraphId="c4270" Type="Protein" GroupRef="abfca">
+    <Graphics CenterX="724.3373493975903" CenterY="635.6626506024096" Width="90.0" Height="25.0" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="P13133"/>
+  </DataNode>
+  <DataNode TextLabel="D8D7I" GraphId="c9cd0" Type="Protein">
+    <Comment>"ChEH is a dimer of 7-dehydrocholesterol reductase (DHCR7) and 3β-hydroxysteroid-Δ8-Δ7-isomerase (D8D7I)"</Comment>
+    <Graphics CenterX="896.7416245984396" CenterY="143.6438733363928" Width="90.0" Height="25.0" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="DDA" GraphId="ca463" Type="Metabolite">
+    <Comment>AKA Dendrogenin A</Comment>
+    <BiopaxRef>ae1</BiopaxRef>
+    <Graphics CenterX="608.3359806629829" CenterY="201.41988950276243" Width="74.1305248618784" Height="30.75" ZOrder="32768" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q61983671"/>
+  </DataNode>
+  <DataNode TextLabel="EBI2" GraphId="cd5fc" Type="Protein">
+    <Comment>AKA G protein-coupled receptor EBI2 (GPR183)</Comment>
+    <Graphics CenterX="1115.4082259054635" CenterY="540.0000000000001" Width="90.0" Height="25.0" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="P32249"/>
+  </DataNode>
+  <DataNode TextLabel="Cholesterol" GraphId="d1a28" Type="Metabolite">
+    <Graphics CenterX="608.25" CenterY="413.75" Width="173.75" Height="30.75" ZOrder="32768" FontSize="12" Valign="Middle" Color="ff0000"/>
+    <Xref Database="Wikidata" ID="Q43656"/>
+  </DataNode>
+  <DataNode TextLabel="Estrogen receptor alpha" GraphId="dad0c" Type="Protein" GroupRef="bddc8">
+    <Comment>Expressed in vascular cells.</Comment>
+    <Graphics CenterX="564.8527914474793" CenterY="636.7317155947726" Width="156.26760563380284" Height="25.0" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="P03372"/>
+  </DataNode>
+  <DataNode TextLabel="24S-diHC" GraphId="dbf16" Type="Metabolite">
+    <Comment>AKA (24S)-hydroxycholesterol</Comment>
+    <Graphics CenterX="893.0" CenterY="310.75" Width="173.75" Height="30.75" ZOrder="32768" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q27071873"/>
+  </DataNode>
+  <DataNode TextLabel="ROR-γt " GraphId="fb2a8" Type="Protein">
+    <Comment>AKA RAR-related orphan receptor gamma (RORγt); consists of 2 isoforms: RORγ and RORγt. This nuclear receptor is required for generating IL-17-producing CD4(+) Th17 T cells.</Comment>
+    <Comment>"RORγt (also known as RORγ2) – produced from an mRNA identical to that of RORγ, except that the two 5'-most exons are replaced by an alternative exon, located downstream in the gene. This causes a different, shorter N-terminus." [https://en.wikipedia.org/wiki/RAR-related_orphan_receptor_gamma]</Comment>
+    <BiopaxRef>dc7</BiopaxRef>
+    <Graphics CenterX="112.39696965812495" CenterY="197.00000000000003" Width="90.0" Height="25.0" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="F1D8P6"/>
+  </DataNode>
+  <DataNode TextLabel="5,6-alpha-Epoxycholesterol" GraphId="d7e48" Type="Metabolite">
+    <Comment>AKA  5,6α-epoxycholesterol </Comment>
+    <Graphics CenterX="608.25" CenterY="310.75" Width="173.75" Height="30.75" ZOrder="32769" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q27121609"/>
+  </DataNode>
+  <DataNode TextLabel="Cholestane-3-beta,&#10;5-alpha, 6-beta-triol" GraphId="a7cc6" Type="Metabolite">
+    <Comment>AKA cholestane-3β,5α,6β-triol</Comment>
+    <Comment>"Biomarker for NPC1; elevated levels of cholestane-3β,5α,6β-triol in plasma from NPC1 patients." [PMID: 21048217].</Comment>
+    <Graphics CenterX="893.0" CenterY="197.0" Width="173.75" Height="30.75" ZOrder="32770" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q27103493"/>
+  </DataNode>
+  <DataNode TextLabel="7-beta-HC" GraphId="a50c6" Type="Metabolite">
+    <Comment>AKA  7β-hydroxycholesterol (7β-HC)</Comment>
+    <Graphics CenterX="305.5" CenterY="310.75" Width="173.75" Height="30.75" ZOrder="32771" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q27074031"/>
+  </DataNode>
+  <DataNode TextLabel="7-alpha-HC" GraphId="ae68a" Type="Metabolite">
+    <Comment>AKA  7α-hydroxycholesterol (7α-HC)</Comment>
+    <Graphics CenterX="305.5" CenterY="413.75" Width="173.75" Height="30.75" ZOrder="32772" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q155744"/>
+  </DataNode>
+  <DataNode TextLabel="25-HC" GraphId="c2e4b" Type="Metabolite">
+    <Comment>AKA 25-Hydroxycholesterol</Comment>
+    <Comment>Produced by macrophages [PMID: 19805370, 19502589, 23273843], in vivo [PMID: 25104388].</Comment>
+    <BiopaxRef>ad6</BiopaxRef>
+    <BiopaxRef>c09</BiopaxRef>
+    <BiopaxRef>a56</BiopaxRef>
+    <BiopaxRef>b7e</BiopaxRef>
+    <Graphics CenterX="893.0" CenterY="413.75" Width="173.75" Height="30.75" ZOrder="32773" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q27071875"/>
+  </DataNode>
+  <DataNode TextLabel="7-alpha,25-diHC" GraphId="fb992" Type="Metabolite">
+    <Comment>AKA 7α,25-Dihydroxycholesterol</Comment>
+    <Comment>Involved in immune response (agonist of G-protein-coupled receptor EBI2 (AKA GPR183)) [PMID: 21796212, 21796211].</Comment>
+    <BiopaxRef>b56</BiopaxRef>
+    <BiopaxRef>e9d</BiopaxRef>
+    <Graphics CenterX="893.0" CenterY="540.0" Width="173.75" Height="30.75" ZOrder="32774" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q27074018"/>
+  </DataNode>
+  <DataNode TextLabel="(25R)26-HC" GraphId="b35c2" Type="Metabolite">
+    <Comment>"AKA (25R)26-hydroxycholesterol; Named with systematic nomenclature, where hydroxylation at the terminal side chain of cholesterol is on C-26 leading to 26-hydroxycholesterol (26-HC) which may have 25R or 25S stereochemistry [26]. Unless stated otherwise 25R stereochemistry is assumed. In much of the literature (25R)26-HC is referred to 27-hydroxycholesterol (27-HC), presumably the 25R isomer." </Comment>
+    <Graphics CenterX="608.25" CenterY="540.0" Width="173.75" Height="30.75" ZOrder="32775" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q15634124"/>
+  </DataNode>
+  <DataNode TextLabel="7-alpha, (25R)26-diHC" GraphId="b11db" Type="Metabolite">
+    <Comment>AKA  7α,26-dihydroxycholesterol (7α,26-diHC).</Comment>
+    <Graphics CenterX="304.22122762148337" CenterY="540.0" Width="173.75" Height="30.75" ZOrder="32776" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Wikidata" ID="Q28487682"/>
+  </DataNode>
+  <DataNode TextLabel="Cyp27A1" GraphId="b6262" Type="Protein">
+    <BiopaxRef>ebf</BiopaxRef>
+    <BiopaxRef>c8b</BiopaxRef>
+    <Graphics CenterX="216.0" CenterY="484.0" Width="90.0" Height="25.0" ZOrder="32788" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q02318"/>
+  </DataNode>
+  <DataNode TextLabel="Cyp27A1" GraphId="eaba3" Type="Protein">
+    <BiopaxRef>ebf</BiopaxRef>
+    <BiopaxRef>c8b</BiopaxRef>
+    <Graphics CenterX="216.0" CenterY="254.0" Width="90.0" Height="25.0" ZOrder="32789" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q02318"/>
+  </DataNode>
+  <DataNode TextLabel="Cyp7A1" GraphId="a4d45" Type="Protein">
+    <Comment>cholesterol 7 alpha-hydroxylase, the rate-limiting enzyme in bile acid biosynthesis.</Comment>
+    <Graphics CenterX="453.7317492515778" CenterY="444.7975830815712" Width="90.0" Height="25.0" ZOrder="32790" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="P22680"/>
+  </DataNode>
+  <DataNode TextLabel="Cyp27A1" GraphId="ae660" Type="Protein">
+    <BiopaxRef>ebf</BiopaxRef>
+    <BiopaxRef>c8b</BiopaxRef>
+    <Graphics CenterX="682.1976904596875" CenterY="485.2180267965895" Width="90.0" Height="25.0" ZOrder="32791" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q02318"/>
+  </DataNode>
+  <DataNode TextLabel="Cyp7B1" GraphId="d00d8" Type="Protein">
+    <Graphics CenterX="801.0" CenterY="484.0" Width="90.0" Height="25.0" ZOrder="32792" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="O75881"/>
+  </DataNode>
+  <DataNode TextLabel="CH25H" GraphId="edfdc" Type="Protein">
+    <Comment>AKA  cholesterol 25-hydroxylase</Comment>
+    <Graphics CenterX="714.1818013274498" CenterY="451.0" Width="90.0" Height="25.0" ZOrder="32793" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="O95992"/>
+  </DataNode>
+  <DataNode TextLabel="Cyp46A1" GraphId="c90a3" Type="Protein">
+    <Comment>Responsible for cholesterol homeostasis in brain.</Comment>
+    <Graphics CenterX="801.0" CenterY="364.0" Width="90.0" Height="25.0" ZOrder="32794" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y6A2"/>
+  </DataNode>
+  <DataNode TextLabel="ChEH" GraphId="e1321" Type="Protein">
+    <Comment>AKA cholesterol epoxide hydrolase (ChEH); EC: 3.3.2.11</Comment>
+    <Comment>"ChEH is a dimer of 7-dehydrocholesterol reductase (DHCR7) and 3β-hydroxysteroid-Δ8-Δ7-isomerase (D8D7I)"</Comment>
+    <BiopaxRef>ae1</BiopaxRef>
+    <Graphics CenterX="714.1818013274496" CenterY="214.11602209944766" Width="90.0" Height="25.0" ZOrder="32795" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="P34913"/>
+  </DataNode>
+  <DataNode TextLabel="IL-17B" GraphId="ac0b3" Type="Protein" GroupRef="c643f">
+    <Comment>"IL-17 familiy is essential in host defense and may play key pathogenic roles in autoimmune diseases." [PMID: 25092323]</Comment>
+    <Graphics CenterX="264.68608836688327" CenterY="83.48386357919176" Width="90.0" Height="25.0" ZOrder="32804" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UHF5"/>
+  </DataNode>
+  <DataNode TextLabel="IL-17C" GraphId="c5353" Type="Protein" GroupRef="c643f">
+    <Comment>"IL-17 familiy is essential in host defense and may play key pathogenic roles in autoimmune diseases." [PMID: 25092323]</Comment>
+    <Graphics CenterX="264.6860883668832" CenterY="108.48386357919175" Width="90.0" Height="25.0" ZOrder="32805" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q9P0M4"/>
+  </DataNode>
+  <DataNode TextLabel="IL-17D" GraphId="ed937" Type="Protein" GroupRef="c643f">
+    <Comment>"IL-17 familiy is essential in host defense and may play key pathogenic roles in autoimmune diseases." [PMID: 25092323]</Comment>
+    <Graphics CenterX="354.68608836688327" CenterY="58.48386357919182" Width="90.0" Height="25.0" ZOrder="32806" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q8TAD2"/>
+  </DataNode>
+  <DataNode TextLabel="IL-17E" GraphId="c218f" Type="Protein" GroupRef="c643f">
+    <Comment>"IL-17 familiy is essential in host defense and may play key pathogenic roles in autoimmune diseases." [PMID: 25092323]</Comment>
+    <Graphics CenterX="354.68608836688327" CenterY="83.48386357919176" Width="90.0" Height="25.0" ZOrder="32807" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q9H293"/>
+  </DataNode>
+  <DataNode TextLabel="IL-17F" GraphId="e0cc0" Type="Protein" GroupRef="c643f">
+    <Comment>"IL-17 familiy is essential in host defense and may play key pathogenic roles in autoimmune diseases." [PMID: 25092323]</Comment>
+    <Graphics CenterX="354.68608836688315" CenterY="108.48386357919175" Width="90.0" Height="25.0" ZOrder="32808" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q96PD4"/>
+  </DataNode>
+  <DataNode TextLabel="Estrogen receptor beta" GraphId="f5dea" Type="Protein" GroupRef="bddc8">
+    <Comment>Expressed in vascular cells.</Comment>
+    <Graphics CenterX="564.8527914474791" CenterY="661.7317155947726" Width="156.26760563380284" Height="25.0" ZOrder="32811" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="Q92731"/>
+  </DataNode>
+  <DataNode TextLabel="LXR-beta" GraphId="aa873" Type="Protein" GroupRef="abfca">
+    <Graphics CenterX="724.3373493975903" CenterY="660.6626506024096" Width="90.0" Height="25.0" ZOrder="32812" FontSize="12" Valign="Middle"/>
+    <Xref Database="Uniprot-TrEMBL" ID="P55055"/>
+  </DataNode>
+  <Interaction GraphId="id22ef7178">
+    <Comment>Dimer formation</Comment>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="817.3726480036713" Y="143.6438733363928" GraphRef="ba5c1" RelX="1.0" RelY="0.0"/>
+      <Point X="851.7416245984396" Y="143.6438733363928" GraphRef="c9cd0" RelX="-1.0" RelY="0.0"/>
+      <Anchor Position="0.4" Shape="None" GraphId="f31f0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id37074943">
+    <Comment>Research findings in Mouse (Mus musculus.</Comment>
+    <BiopaxRef>b3c</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="196.99978267476698" Y="197.0" GraphRef="f738a" RelX="0.0" RelY="0.0"/>
+      <Point X="196.45695292805328" Y="114.0982328273567" GraphRef="e673a" RelX="0.0" RelY="0.0" ArrowHead="mim-stimulation"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3d183a8b">
+    <Comment>"ChEH is a dimer of 7-dehydrocholesterol reductase (DHCR7) and 3β-hydroxysteroid-Δ8-Δ7-isomerase (D8D7I)"</Comment>
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="831.1202386415786" Y="143.6438733363928" GraphRef="f31f0" RelX="0.0" RelY="0.0"/>
+      <Point X="736.6818013274496" Y="201.61602209944766" GraphRef="e1321" RelX="0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id501e9d">
+    <Comment>"(25R)26-HC is a selective oestrogen receptor (ER), expressed in vascular cells, modulator."  [PMID: 17873880]</Comment>
+    <BiopaxRef>da0</BiopaxRef>
+    <BiopaxRef>f43</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="564.8125" Y="555.375" GraphRef="b35c2" RelX="-0.5" RelY="1.0"/>
+      <Point X="564.8527914474791" Y="616.2317155947726" GraphRef="ce189" RelX="0.0" RelY="-1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id5992f7b6">
+    <BiopaxRef>f43</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="651.6875" Y="555.375" GraphRef="b35c2" RelX="0.5" RelY="1.0"/>
+      <Point X="697.8373493975903" Y="615.1626506024096" GraphRef="efd4f" RelX="-0.5" RelY="-1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id89fc60dd">
+    <BiopaxRef>ae1</BiopaxRef>
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="626.8686118784524" Y="186.04488950276243" GraphRef="ca463" RelX="0.5" RelY="-1.0"/>
+      <Point X="714.1818013274496" Y="201.61602209944766" GraphRef="e1321" RelX="0.0" RelY="-1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8ad3a41">
+    <Comment>Research findings in Mouse (Mus musculus).</Comment>
+    <BiopaxRef>b3c</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="136.7149393264773" Y="144.94918011053232" GraphRef="ce946" RelX="0.5" RelY="-1.0"/>
+      <Point X="211.68608836688324" Y="106.23386357919178" GraphRef="cef66" RelX="-1.0" RelY="0.5" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.7968667196147394" Shape="None" GraphId="e673a"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida7605920">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="608.25" Y="398.375" GraphRef="d1a28" RelX="0.0" RelY="-1.0"/>
+      <Point X="608.25" Y="326.125" GraphRef="d7e48" RelX="0.0" RelY="1.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida84d51c6">
+    <BiopaxRef>ae1</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="559.9171270718231" Y="264.0883977900553" GraphRef="b72b1" RelX="1.0" RelY="0.0"/>
+      <Point X="608.29843530608" Y="251.10863158994147" GraphRef="cc1a9" RelX="0.0" RelY="0.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd8716343">
+    <BiopaxRef>ae1</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="714.1818013274496" Y="226.61602209944766" GraphRef="e1321" RelX="0.0" RelY="1.0"/>
+      <Point X="714.6153317801167" Y="255.2906587527707" GraphRef="ad1fc" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idedfba556">
+    <Comment>"7α,25-diHC is a potent agonist of the G protein-coupled receptor EBI2 (GPR183). 7α,25-diHC acts as a chemoattractant for immune cells expressing EBI2 by directing cell migration." Research findings in Mouse (Mus musculus) . [PMID:  PubMed 21796212., 21796211].</Comment>
+    <BiopaxRef>b56</BiopaxRef>
+    <BiopaxRef>e9d</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="979.875" Y="540.0" GraphRef="fb992" RelX="1.0" RelY="0.0"/>
+      <Point X="1070.4082259054635" Y="540.0000000000001" GraphRef="cd5fc" RelX="-1.0" RelY="0.0" ArrowHead="mim-binding"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf20512bd">
+    <Comment>"7β,26-dihydroxycholesterol (7β,26-diHC), presumably the 25R-epimer, as a potent agonist for RORγt" Research findings in Mouse (Mus musculus) .</Comment>
+    <BiopaxRef>b3c</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="218.625" Y="197.0" GraphRef="b1803" RelX="-1.0" RelY="0.0"/>
+      <Point X="157.39696965812493" Y="197.00000000000003" GraphRef="fb2a8" RelX="1.0" RelY="0.0" ArrowHead="mim-binding"/>
+      <Anchor Position="0.3531914582991756" Shape="None" GraphId="f738a"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c0430">
+    <Comment>aminolysis reaction</Comment>
+    <BiopaxRef>ae1</BiopaxRef>
+    <Graphics ZOrder="32777" LineThickness="1.0">
+      <Point X="608.25" Y="295.375" GraphRef="d7e48" RelX="0.0" RelY="-1.0"/>
+      <Point X="608.3359806629828" Y="216.79488950276243" GraphRef="ca463" RelX="0.0" RelY="1.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.5633278972242562" Shape="None" GraphId="cc1a9"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d6a41">
+    <BiopaxRef>ae1</BiopaxRef>
+    <Graphics ZOrder="32778" LineThickness="1.0">
+      <Point X="651.6875" Y="295.375" GraphRef="d7e48" RelX="0.5" RelY="-1.0"/>
+      <Point X="806.125" Y="197.0" GraphRef="a7cc6" RelX="-1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.4074647140760285" Shape="None" GraphId="ad1fc"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f9f65">
+    <BiopaxRef>eae</BiopaxRef>
+    <BiopaxRef>d21</BiopaxRef>
+    <BiopaxRef>d74</BiopaxRef>
+    <BiopaxRef>da7</BiopaxRef>
+    <Graphics ZOrder="32779" LineThickness="1.0">
+      <Point X="651.6875" Y="398.375" GraphRef="d1a28" RelX="0.5" RelY="-1.0"/>
+      <Point X="806.125" Y="310.75" GraphRef="dbf16" RelX="-1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.3777245586137303" Shape="None" GraphId="a4889"/>
+    </Graphics>
+    <Xref Database="Rhea" ID="22717"/>
+  </Interaction>
+  <Interaction GraphId="e4223">
+    <BiopaxRef>eae</BiopaxRef>
+    <BiopaxRef>b5f</BiopaxRef>
+    <Graphics ZOrder="32780" LineThickness="1.0">
+      <Point X="695.125" Y="413.75" GraphRef="d1a28" RelX="1.0" RelY="0.0"/>
+      <Point X="806.125" Y="413.75" GraphRef="c2e4b" RelX="-1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.4" Shape="None" GraphId="b3d5d"/>
+    </Graphics>
+    <Xref Database="Rhea" ID="21105"/>
+  </Interaction>
+  <Interaction GraphId="c4f5a">
+    <BiopaxRef>cf0</BiopaxRef>
+    <BiopaxRef>eae</BiopaxRef>
+    <BiopaxRef>d70</BiopaxRef>
+    <BiopaxRef>a51</BiopaxRef>
+    <BiopaxRef>c74</BiopaxRef>
+    <Graphics ZOrder="32781" LineThickness="1.0">
+      <Point X="893.0" Y="429.125" GraphRef="c2e4b" RelX="0.0" RelY="1.0"/>
+      <Point X="893.0" Y="524.625" GraphRef="fb992" RelX="0.0" RelY="-1.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.5850785340314136" Shape="None" GraphId="c1b01"/>
+    </Graphics>
+    <Xref Database="Rhea" ID="24309"/>
+  </Interaction>
+  <Interaction GraphId="a7a96">
+    <Graphics ZOrder="32782" LineThickness="1.0">
+      <Point X="608.25" Y="429.125" GraphRef="d1a28" RelX="0.0" RelY="1.0"/>
+      <Point X="608.25" Y="524.625" GraphRef="b35c2" RelX="0.0" RelY="-1.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.5954732129761305" Shape="None" GraphId="e7e43"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ef9ed">
+    <Graphics ZOrder="32783" LineThickness="1.0">
+      <Point X="521.375" Y="540.0" GraphRef="b35c2" RelX="-1.0" RelY="0.0"/>
+      <Point X="391.09622762148337" Y="540.0" GraphRef="b11db" RelX="1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.48352713178294576" Shape="None" GraphId="bd7dd"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a7285">
+    <Graphics ZOrder="32784" LineThickness="1.0">
+      <Point X="305.5" Y="429.125" GraphRef="ae68a" RelX="0.0" RelY="1.0"/>
+      <Point X="304.22122762148337" Y="524.625" GraphRef="b11db" RelX="0.0" RelY="-1.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.5743759220155621" Shape="None" GraphId="fbe19"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a8e4b">
+    <Comment/>
+    <BiopaxRef>d33</BiopaxRef>
+    <BiopaxRef>ab4</BiopaxRef>
+    <BiopaxRef>d68</BiopaxRef>
+    <Graphics ZOrder="32785" LineThickness="1.0">
+      <Point X="521.375" Y="413.75" GraphRef="d1a28" RelX="-1.0" RelY="0.0"/>
+      <Point X="392.375" Y="413.75" GraphRef="ae68a" RelX="1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.4847917984027729" Shape="None" GraphId="e0611"/>
+    </Graphics>
+    <Xref Database="Rhea" ID="21813"/>
+  </Interaction>
+  <Interaction GraphId="b63fc">
+    <Graphics ZOrder="32786" LineThickness="1.0">
+      <Point X="564.8125" Y="398.375" GraphRef="d1a28" RelX="-0.5" RelY="-1.0"/>
+      <Point X="392.375" Y="310.75" GraphRef="a50c6" RelX="1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b25a0">
+    <Graphics ZOrder="32787" LineThickness="1.0">
+      <Point X="305.5" Y="295.375" GraphRef="a50c6" RelX="0.0" RelY="-1.0"/>
+      <Point X="305.5" Y="212.375" GraphRef="b1803" RelX="0.0" RelY="1.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.49849397590361444" Shape="None" GraphId="e833d"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e6ba4">
+    <Graphics ZOrder="32796" LineThickness="1.0">
+      <Point X="756.0" Y="364.0" GraphRef="c90a3" RelX="-1.0" RelY="0.0"/>
+      <Point X="710.022336520908" Y="365.2768855514719" GraphRef="a4889" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c1613">
+    <Graphics ZOrder="32797" LineThickness="1.0">
+      <Point X="846.0" Y="484.0" GraphRef="d00d8" RelX="1.0" RelY="0.0"/>
+      <Point X="893.0" Y="485.0" GraphRef="c1b01" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c090b">
+    <Graphics ZOrder="32798" LineThickness="1.0">
+      <Point X="714.1818013274498" Y="438.5" GraphRef="edfdc" RelX="0.0" RelY="-1.0"/>
+      <Point X="739.525" Y="413.75" GraphRef="b3d5d" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b6ca3">
+    <Graphics ZOrder="32799" LineThickness="1.0">
+      <Point X="637.1976904596875" Y="485.2180267965895" GraphRef="ae660" RelX="-1.0" RelY="0.0"/>
+      <Point X="608.25" Y="485.99269183922047" GraphRef="e7e43" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c41f5">
+    <Graphics ZOrder="32800" LineThickness="1.0">
+      <Point X="453.7317492515778" Y="432.2975830815712" GraphRef="a4d45" RelX="0.0" RelY="-1.0"/>
+      <Point X="458.8368580060423" Y="413.75" GraphRef="e0611" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f68fd">
+    <Graphics ZOrder="32801" LineThickness="1.0">
+      <Point X="261.0" Y="484.0" GraphRef="b6262" RelX="1.0" RelY="0.0"/>
+      <Point X="304.76550393604145" Y="483.9779005524862" GraphRef="fbe19" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="db360">
+    <Graphics ZOrder="32802" LineThickness="1.0">
+      <Point X="261.0" Y="254.0" GraphRef="eaba3" RelX="1.0" RelY="0.0"/>
+      <Point X="305.5" Y="254.0" GraphRef="e833d" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="eca7b">
+    <Graphics ZOrder="32803" LineThickness="1.0">
+      <Point X="453.7317492515778" Y="576.5" GraphRef="a88fa" RelX="0.0" RelY="-1.0"/>
+      <Point X="458.3816788596126" Y="540.0" GraphRef="bd7dd" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bc651">
+    <Comment>"7β,26-dihydroxycholesterol (7β,26-diHC), presumably the 25R-epimer, as a potent agonist for RORγt" Research findings in Mouse (Mus musculus) .</Comment>
+    <BiopaxRef>b3c</BiopaxRef>
+    <Graphics ConnectorType="Elbow" ZOrder="32809" LineThickness="1.0">
+      <Point X="217.34622762148337" Y="540.0" GraphRef="b11db" RelX="-1.0" RelY="0.0"/>
+      <Point X="112.39696965812493" Y="209.50000000000003" GraphRef="fb2a8" RelX="0.0" RelY="1.0" ArrowHead="mim-binding"/>
+      <Anchor Position="0.4" Shape="None" GraphId="edd8d"/>
+      <Anchor Position="0.888232453451299" Shape="None" GraphId="e672a"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c4b3e">
+    <Comment>Research findings in Mouse (Mus musculus.</Comment>
+    <BiopaxRef>b3c</BiopaxRef>
+    <Graphics ConnectorType="Elbow" ZOrder="32810" LineThickness="1.0">
+      <Point X="112.39696965812493" Y="258.169095209017" GraphRef="e672a" RelX="0.0" RelY="0.0"/>
+      <Point X="12.78772378516624" Y="165.6010230179028"/>
+      <Point X="104.62233835660976" Y="72.89002557544757"/>
+      <Point X="196.45695292805328" Y="114.0982328273567" GraphRef="e673a" RelX="0.0" RelY="0.0" ArrowHead="mim-stimulation"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <GraphicalLine GraphId="edaa2">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="893.0" Y="485.0" GraphRef="c1b01" RelX="0.0" RelY="0.0"/>
+      <Point X="951.6850828729284" Y="483.97790055248623" GraphRef="bd13f" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="fc0b3">
+    <Graphics ZOrder="32813" LineStyle="Broken" LineThickness="1.0">
+      <Point X="772.3726480036713" Y="131.1438733363928" GraphRef="ba5c1" RelX="0.0" RelY="-1.0"/>
+      <Point X="745.9396751740139" Y="94.86658932714617" GraphRef="a9569" RelX="0.0" RelY="1.0" ArrowHead="Arrow"/>
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="ae0f9">
+    <Graphics ZOrder="32815" LineStyle="Broken" LineThickness="1.0">
+      <Point X="304.76550393604145" Y="483.9779005524862" GraphRef="fbe19" RelX="0.0" RelY="0.0"/>
+      <Point X="408.7317492515778" Y="490.15664457576486" GraphRef="a7979" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="ba627">
+    <Graphics ZOrder="32816" LineStyle="Broken" LineThickness="1.0">
+      <Point X="608.25" Y="485.99269183922047" GraphRef="e7e43" RelX="0.0" RelY="0.0"/>
+      <Point X="498.7317492515778" Y="490.15664457576486" GraphRef="a7979" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="bcf52">
+    <Graphics ZOrder="32818" LineStyle="Broken" LineThickness="1.0">
+      <Point X="453.7317492515778" Y="601.5" GraphRef="a88fa" RelX="0.0" RelY="1.0"/>
+      <Point X="390.6501414562062" Y="653.3082889119408" GraphRef="f4904" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="aa650">
+    <Comment>Biomarker for</Comment>
+    <Graphics ZOrder="32819" LineStyle="Broken" LineThickness="1.0">
+      <Point X="936.4375" Y="212.375" GraphRef="a7cc6" RelX="0.5" RelY="1.0"/>
+      <Point X="1028.607795371498" Y="274.69549330085266" GraphRef="e96ad" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+  </GraphicalLine>
+  <Label TextLabel="SLOS" GraphId="a9569" Href="https://omim.org/entry/270400">
+    <Comment>AKA Smith–Lemli–Opitz syndrome</Comment>
+    <BiopaxRef>d91</BiopaxRef>
+    <BiopaxRef>da6</BiopaxRef>
+    <Graphics CenterX="745.9396751740139" CenterY="82.36658932714617" Width="90.0" Height="25.0" ZOrder="28672" FillColor="ffcccc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="HSDB" GraphId="bd13f" Href="https://omim.org/entry/201810">
+    <Comment>AKA 3-BETA-HSD DEFICIENCY</Comment>
+    <BiopaxRef>a71</BiopaxRef>
+    <BiopaxRef>a51</BiopaxRef>
+    <Graphics CenterX="996.6850828729284" CenterY="483.97790055248623" Width="90.0" Height="25.0" ZOrder="28672" FillColor="ffcccc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="NPC1" GraphId="c6702" Href="https://omim.org/entry/257220" GroupRef="a5eb3">
+    <Comment>NIEMANN-PICK DISEASE, TYPE C1</Comment>
+    <BiopaxRef>c4e</BiopaxRef>
+    <Graphics CenterX="1081.607795371498" CenterY="249.69549330085263" Width="90.0" Height="25.0" ZOrder="28672" FillColor="ffcccc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="CD4+ Th17 cells" GraphId="ce946">
+    <Comment>[https://en.wikipedia.org/wiki/T_helper_17_cell]</Comment>
+    <Graphics CenterX="96.38344761377012" CenterY="171.64116906080858" Width="161.3259668508287" Height="53.38397790055248" ZOrder="28672" FillColor="ffffff" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+  </Label>
+  <Label TextLabel="CTX" GraphId="a7979" Href="https://omim.org/entry/213700">
+    <Comment>AKA CEREBROTENDINOUS XANTHOMATOSIS</Comment>
+    <BiopaxRef>d91</BiopaxRef>
+    <Graphics CenterX="453.7317492515778" CenterY="490.15664457576486" Width="90.0" Height="25.0" ZOrder="32814" FillColor="ffcccc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="SPG5" GraphId="f4904" Href="https://omim.org/entry/270800">
+    <Comment>AKA  hereditary spastic paresis type 5</Comment>
+    <BiopaxRef>d91</BiopaxRef>
+    <BiopaxRef>da6</BiopaxRef>
+    <Graphics CenterX="390.6501414562062" CenterY="665.8082889119408" Width="90.0" Height="25.0" ZOrder="32817" FillColor="ffcccc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="NP Type B" GraphId="f0a31" Href="https://omim.org/entry/607616" GroupRef="a5eb3">
+    <Comment>NIEMANN-PICK DISEASE, TYPE B</Comment>
+    <BiopaxRef>bbd</BiopaxRef>
+    <Graphics CenterX="1081.607795371498" CenterY="274.69549330085266" Width="90.0" Height="25.0" ZOrder="32820" FillColor="ffcccc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="NP type A" GraphId="ab785" Href="https://omim.org/entry/257200" GroupRef="a5eb3">
+    <Comment>NIEMANN-PICK DISEASE, TYPE A</Comment>
+    <BiopaxRef>bbd</BiopaxRef>
+    <Graphics CenterX="1081.607795371498" CenterY="299.69549330085266" Width="90.0" Height="25.0" ZOrder="32821" FillColor="ffcccc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" Color="0000ff"/>
+  </Label>
+  <Group GroupId="bddc8" GraphId="ce189" Style="Group"/>
+  <Group GroupId="c643f" GraphId="cef66" Style="Group"/>
+  <Group GroupId="a5eb3" GraphId="e96ad" Style="Group"/>
+  <Group GroupId="abfca" GraphId="efd4f" Style="Group"/>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d70">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10748047</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expression cloning of an oxysterol 7alpha-hydroxylase selective for 24-hydroxycholesterol.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2000</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Li-Hawkins J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lund EG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bronson AD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Russell DW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c09">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19502589</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marked upregulation of cholesterol 25-hydroxylase expression by lipopolysaccharide.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Lipid Res</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Diczfalusy U</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Olofsson KE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Carlsson AM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gong M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Golenbock DT</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rooyackers O</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fläring U</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Björkbacka H</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f43">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">24288332</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">27-Hydroxycholesterol links hypercholesterolemia and breast cancer pathophysiology.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2013</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nelson ER</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wardell SE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jasper JS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Park S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Suchindran S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Howe MK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Carver NJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pillai RV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sullivan PM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sondhi V</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Umetani M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geradts J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McDonnell DP</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="da0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17873880</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">27-Hydroxycholesterol is an endogenous SERM that inhibits the cardiovascular effects of estrogen.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nat Med</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Umetani M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Domoto H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gormley AK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yuhanna IS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cummins CL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Javitt NB</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Korach KS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shaul PW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mangelsdorf DJ</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b35">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">27068984</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Current trends in oxysterol research.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochem Soc Trans</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2016</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Griffiths WJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abdel-Khalik J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hearn T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yutuc E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morgan AH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wang Y</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c4e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21048217</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cholesterol oxidation products are sensitive and specific blood-based biomarkers for Niemann-Pick C1 disease.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sci Transl Med</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Porter FD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Scherrer DE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lanier MH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Langmade SJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Molugu V</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gale SE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Olzeski D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sidhu R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dietzen DJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fu R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wassif CA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yanjanin NM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marso SP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">House J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vite C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schaffer JE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ory DS</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a71">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12679481</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Molecular genetics of 3beta-hydroxy-Delta5-C27-steroid oxidoreductase deficiency in 16 patients with loss of bile acid synthesis and liver disease.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Clin Endocrinol Metab</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cheng JB</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jacquemin E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gerhardt M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nazer H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cresteil D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heubi JE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Setchell KD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Russell DW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bbd">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">25819840</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LC-MS/MS based assay and reference intervals in children and adolescents for oxysterols elevated in Niemann-Pick diseases.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Clin Biochem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2015</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Klinke G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rohrbach M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Giugliani R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Burda P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Baumgartner MR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tran C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gautschi M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mathis D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hersberger M</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c74">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7925343</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7 alpha hydroxylation of 25-hydroxycholesterol in liver microsomes. Evidence that the enzyme involved is different from cholesterol 7 alpha-hydroxylase.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eur J Biochem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1994</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Toll A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wikvall K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sudjana-Sugiaman E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kondo KH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Björkhem I</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b56">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21796212</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oxysterols direct immune cell migration via EBI2.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2011</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hannedouche S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zhang J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yi T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shen W</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nguyen D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pereira JP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guerini D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Baumgarten BU</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roggo S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wen B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Knochenmuss R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Noël S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gessier F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kelly LM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vanek M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laurent S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Preuss I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Miault C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Christen I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Karuna R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Li W</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Koo DI</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Suply T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schmedt C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Peters EC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Falchetto R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Katopodis A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spanka C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roy MO</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Detheux M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chen YA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schultz PG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cho CY</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Seuwen K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cyster JG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sailer AW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ab4">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2335522</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cloning and regulation of cholesterol 7 alpha-hydroxylase, the rate-limiting enzyme in bile acid biosynthesis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1990</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jelinek DF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Andersson S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Slaughter CA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Russell DW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a51">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">24491228</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human steroid and oxysterol 7α-hydroxylase CYP7B1: substrate specificity, azole binding and misfolding of clinically relevant mutants.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FEBS J</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2014</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yantsevich AV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dichenko YV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mackenzie F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mukha DV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Baranovsky AV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gilep AA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Usanov SA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Strushkevich NV</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cf0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10588945</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structure and functions of human oxysterol 7alpha-hydroxylase cDNAs and gene CYP7B1.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Lipid Res</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1999</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wu Z</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Martin KO</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Javitt NB</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chiang JY</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ebf">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9660774</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Activities of recombinant human cytochrome P450c27 (CYP27) which produce intermediates of alternative bile acid biosynthetic pathways.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pikuleva IA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Babiker A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Waterman MR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Björkhem I</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b7e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23273843</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The transcription factor STAT-1 couples macrophage synthesis of 25-hydroxycholesterol to the interferon antiviral response.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Immunity</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2013</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blanc M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hsieh WY</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Robertson KA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kropp KA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Forster T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shui G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lacaze P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Watterson S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Griffiths SJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spann NJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meljon A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Talbot S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Krishnan K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Covey DF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wenk MR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Craigon M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ruzsics Z</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haas J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Angulo A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Griffiths WJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Glass CK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wang Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ghazal P</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b3c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">25092323</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oxysterols are agonist ligands of RORγt and drive Th17 cell differentiation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Natl Acad Sci U S A</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2014</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Soroosh P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wu J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Xue X</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Song J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sutton SW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sablad M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yu J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nelen MI</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu X</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Castro G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Luna R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crawford S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Banie H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dandridge RA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Deng X</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bittner A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kuei C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tootoonchi M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rozenkrants N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Herman K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gao J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yang XV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sachen K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ngo K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fung-Leung WP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nguyen S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">de Leon-Tabaldo A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blevitt J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zhang Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cummings MD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rao T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mani NS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McKinnon M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Milla ME</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fourie AM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sun S</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ad6">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19805370</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">25-Hydroxycholesterol secreted by macrophages in response to Toll-like receptor activation suppresses immunoglobulin A production.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Natl Acad Sci U S A</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bauman DR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bitmansour AD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McDonald JG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thompson BM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liang G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Russell DW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e9d">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21796211</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oxysterols direct B-cell migration through EBI2.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2011</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yang XV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wu J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kuei C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mani NS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zhang L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yu J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sutton SW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Qin N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Banie H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Karlsson L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sun S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lovenberg TW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d91">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21229319</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Disorders of bile acid synthesis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Inherit Metab Dis</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2011</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Clayton PT</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d68">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2384150</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Molecular cloning and sequence analysis of cDNA encoding human cholesterol 7 alpha-hydroxylase.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FEBS Lett</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1990</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Noshiro M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Okuda K</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c8b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12077124</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Metabolism of 4 beta -hydroxycholesterol in humans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bodin K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Andersson U</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rystedt E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ellis E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Norlin M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pikuleva I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eggertsen G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Björkhem I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Diczfalusy U</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ae1">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23673625</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dendrogenin A arises from cholesterol and histamine metabolism and shows cell differentiation and anti-tumour properties.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nat Commun</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2013</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">de Medina P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Paillasse MR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Segala G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Voisin M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mhamdi L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dalenc F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lacroix-Triki M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Filleron T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pont F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Saati TA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morisseau C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hammock BD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Silvente-Poirot S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Poirot M</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="eae">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12543708</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The enzymes, regulation, and genetics of bile acid synthesis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annu Rev Biochem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Russell DW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d33">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11013305</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">24-hydroxycholesterol is a substrate for hepatic cholesterol 7alpha-hydroxylase (CYP7A).</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Lipid Res</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2000</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Norlin M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Toll A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Björkhem I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wikvall K</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b5f">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9852097</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cDNA cloning of mouse and human cholesterol 25-hydroxylases, polytopic membrane proteins that synthesize a potent oxysterol regulator of lipid metabolism.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lund EG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kerr TA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sakai J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Li WP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Russell DW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a56">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">25104388</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">25104388</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Inflammation. 25-Hydroxycholesterol suppresses interleukin-1-driven inflammation downstream of type I interferon.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2014</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reboldi A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dang EV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McDonald JG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liang G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Russell DW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cyster JG</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="dc7">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10602018</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RORgammaT, a thymus-specific isoform of the orphan nuclear receptor RORgamma / TOR, is up-regulated by signaling through the pre-T cell receptor and binds to the TEA promoter.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eur J Immunol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1999</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Villey I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">de Chasseval R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">de Villartay JP</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="da6">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21874273</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Role of a disordered steroid metabolome in the elucidation of sterol and steroid biosynthesis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lipids</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shackleton CH</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d21">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14640697</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Broad substrate specificity of human cytochrome P450 46A1 which initiates cholesterol degradation in the brain.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochemistry</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mast N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Norcross R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Andersson U</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shou M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nakayama K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bjorkhem I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pikuleva IA</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d74">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10377398</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cDNA cloning of cholesterol 24-hydroxylase, a mediator of cholesterol homeostasis in the brain.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Natl Acad Sci U S A</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1999</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lund EG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guileyardo JM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Russell DW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="da7">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18621681</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crystal structures of substrate-bound and substrate-free cytochrome P450 46A1, the principal cholesterol hydroxylase in the brain.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Natl Acad Sci U S A</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mast N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">White MA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bjorkhem I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Johnson EF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stout CD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pikuleva IA</bp:AUTHORS>
+    </bp:PublicationXref>
+  <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>cholesterol metabolic pathway</bp:TERM><bp:ID>PW:0001304</bp:ID><bp:Ontology>Pathway Ontology</bp:Ontology></bp:openControlledVocabulary><bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>sterol regulatory element-binding protein signaling pathway</bp:TERM><bp:ID>PW:0000753</bp:ID><bp:Ontology>Pathway Ontology</bp:Ontology></bp:openControlledVocabulary><bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>Niemann-Pick disease type A</bp:TERM><bp:ID>DOID:0070111</bp:ID><bp:Ontology>Disease</bp:Ontology></bp:openControlledVocabulary><bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>Niemann-Pick disease</bp:TERM><bp:ID>DOID:14504</bp:ID><bp:Ontology>Disease</bp:Ontology></bp:openControlledVocabulary><bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>Niemann-Pick disease type B</bp:TERM><bp:ID>DOID:0070112</bp:ID><bp:Ontology>Disease</bp:Ontology></bp:openControlledVocabulary><bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>Niemann-Pick disease type C1</bp:TERM><bp:ID>DOID:0070113</bp:ID><bp:Ontology>Disease</bp:Ontology></bp:openControlledVocabulary><bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>cerebrotendinous xanthomatosis pathway</bp:TERM><bp:ID>PW:0001475</bp:ID><bp:Ontology>Pathway Ontology</bp:Ontology></bp:openControlledVocabulary></Biopax>
+</Pathway>
