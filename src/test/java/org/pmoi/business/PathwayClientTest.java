@@ -41,4 +41,11 @@ class PathwayClientTest {
         PathwayClient pathwayClient = new PathwayClient();
         assertEquals(295, pathwayClient.getPathwayGenes("hsa04010").size());
     }
+
+    @Test
+    void getIntercatorsFromPathway() {
+        PathwayClient pathwayClient = new PathwayClient();
+        var res = pathwayClient.getIntercatorsFromPathway("TGFBR3");
+        res.forEach(System.out::println);
+    }
 }

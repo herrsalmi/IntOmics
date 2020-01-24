@@ -99,3 +99,6 @@ logs/
 *.csv
 *.tsv
 *.txt
+
+gene2go
+wikipathways/

@@ -70,7 +70,7 @@ public class SecretomeManager {
         isMappingModeSet();
         List<Protein> inputProtein = Objects.requireNonNull(LoadSecretomeFile(filePath))
                 .stream()
-                .filter(e -> e.getEntrezID() != null)
+                .filter(e -> e.getEntrezID() != null && !e.getEntrezID().isEmpty())
                 .collect(Collectors.toList());
         EntrezIDMapper mapper = EntrezIDMapper.getInstance();
         ExecutorService executor = Executors.newFixedThreadPool(4);

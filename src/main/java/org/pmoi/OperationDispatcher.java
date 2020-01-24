@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -65,10 +66,15 @@ public class OperationDispatcher {
 
     private void writeInteractions(List<Protein> secretome, List<Gene> membranome, List<Gene> transcriptome, String outputFileName) {
         List<ResultRecord> resultSet = Collections.synchronizedList(new ArrayList<>());
+        ForkJoinPool customThreadPool = new ForkJoinPool(3);
         ExecutorService executorService = Executors.newFixedThreadPool(3);
-
+        PathwayClient pathwayClient = new PathwayClient();
         secretome.forEach(e -> executorService.submit(() -> {
             Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
+            // Add gene from the pathway to the map
+//            pathwayClient.getIntercatorsFromPathway(e.getName()).stream()
+//                    .filter(gene -> !gene.equals(e.getName()))
+//                    .forEach(gene -> interactors.putIfAbsent(gene, "NA"));
             List<String> interactorsNames = new ArrayList<>(interactors.keySet());
             interactorsNames.retainAll(membranome.stream().map(Feature::getName).collect(Collectors.toList()));
             if (!interactorsNames.isEmpty()) {
@@ -93,7 +99,7 @@ public class OperationDispatcher {
             LOGGER.info("Looking for pathway interactions ...");
 
             var resultMap = resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein));
-            PathwayClient pathwayClient = new PathwayClient();
+
             resultMap.forEach((key, value) -> {
                 var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
                 pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
@@ -112,7 +118,7 @@ public class OperationDispatcher {
                 "#protein", "name", "score D", "score R", "gene", "name", "I score", "gene_fdr", "gene_fc"));
         //List<ResultsFX> fxList = new ArrayList<>();
         if (ApplicationParameters.getInstance().use48H()) {
-            resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
+            customThreadPool.submit(() -> resultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> {
                         k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
                         v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
@@ -135,9 +141,9 @@ public class OperationDispatcher {
                                                     .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
                                             .collect(Collectors.joining("; "))));
                         });
-                    });
+                    }));
         } else {
-            resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
+            customThreadPool.submit(() -> resultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> {
                         k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
                         v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
@@ -152,12 +158,15 @@ public class OperationDispatcher {
                                     "", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
                                     e.getGene().getFdr(), e.getGene().getFoldChange()));
                         });
-                    });
+                    }));
         }
-
+        customThreadPool.shutdown();
+        try {
+            customThreadPool.awaitTermination(1, TimeUnit.DAYS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 //        resultSet.forEach(e -> {
-//            e.getProtein().setDescription(ncbiQueryClient.fetchDescription(e.getProtein().getEntrezID()));
-//            e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
 //            outputBuffer.append(String.format("%-10s %-6s %-50s %-10s %-10s %-10s %-6s %-50s %-10s %-10s %-10s\n",
 //                    e.getProtein().getName(), e.getProtein().getEntrezID(), e.getProtein().getDescription(),
 //                    e.getGene().getName(), e.getGene().getEntrezID(), e.getGene().getDescription(),
