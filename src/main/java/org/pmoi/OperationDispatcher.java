@@ -72,9 +72,9 @@ public class OperationDispatcher {
         secretome.forEach(e -> executorService.submit(() -> {
             Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
             // Add gene from the pathway to the map
-//            pathwayClient.getIntercatorsFromPathway(e.getName()).stream()
-//                    .filter(gene -> !gene.equals(e.getName()))
-//                    .forEach(gene -> interactors.putIfAbsent(gene, "NA"));
+            pathwayClient.getIntercatorsFromPathway(e.getName()).stream()
+                    .filter(gene -> !gene.equals(e.getName()))
+                    .forEach(gene -> interactors.putIfAbsent(gene, "NA"));
             List<String> interactorsNames = new ArrayList<>(interactors.keySet());
             interactorsNames.retainAll(membranome.stream().map(Feature::getName).collect(Collectors.toList()));
             if (!interactorsNames.isEmpty()) {
@@ -101,9 +101,10 @@ public class OperationDispatcher {
             var resultMap = resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein));
 
             resultMap.forEach((key, value) -> {
+                // get a list of pathways where the protein is involved
                 var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
                 pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
-                key.getPathways().forEach(e -> e.setGenes(pathwayClient.getPathwayGenes(e.getPathwayID())));
+                key.getPathways().forEach(e -> e.setGenes(pathwayClient.getKEGGPathwayGenes(e.getPathwayID())));
                 value.forEach(resultRecord -> resultRecord.getProtein().getPathways().forEach(p -> {
                     if (p.getGenes().contains(resultRecord.getGene()))
                         resultRecord.getGene().setInteractors(p.getName(), p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));

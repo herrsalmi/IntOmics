@@ -122,7 +122,7 @@ public class PathwayClient {
         return getListResults(url, " +(hsa[0-9]+ .+)(?=\\n)");
     }
 
-    public List<Gene> getPathwayGenes(String pathwayID) {
+    public List<Gene> getKEGGPathwayGenes(String pathwayID) {
         URL url = null;
         try {
             url = new URL(String.format("http://rest.kegg.jp/get/%s/", pathwayID));
@@ -162,6 +162,18 @@ public class PathwayClient {
                 .filter(e -> !e.isEmpty() && ! e.isBlank())
                 .map(String::trim)
                 .collect(Collectors.toSet());
+    }
+
+    public Set<String> getPathwaysForGene(String gene) {
+        return pathwayDB.entrySet().stream().filter(e -> e.getValue().contains(gene))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
+    }
+
+    public List<Gene> getWikipathwayGenes(String pathway) {
+        return pathwayDB.get(pathway).stream()
+                .map(e -> new Gene(e, ""))
+                .collect(Collectors.toList());
     }
 
 }

@@ -39,7 +39,7 @@ class PathwayClientTest {
     @Test
     void getPathwayGenes() {
         PathwayClient pathwayClient = new PathwayClient();
-        assertEquals(295, pathwayClient.getPathwayGenes("hsa04010").size());
+        assertEquals(295, pathwayClient.getKEGGPathwayGenes("hsa04010").size());
     }
 
     @Test
