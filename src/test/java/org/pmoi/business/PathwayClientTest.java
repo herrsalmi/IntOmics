@@ -2,26 +2,14 @@ package org.pmoi.business;
 
 import org.junit.jupiter.api.Test;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PathwayClientTest {
 
     @Test
     void getPathway() {
-        try {
-            BufferedImage image = ImageIO.read(new URL("http://rest.kegg.jp/get/hsa04010/image"));
-            ImageIO.write(image, "png", new File("kegg.png"));
-            System.exit(0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        PathwayClient pathwayClient = new PathwayClient();
+        pathwayClient.getPathways("IGF2").forEach(System.out::println);
     }
 
     @Test
@@ -47,5 +35,11 @@ class PathwayClientTest {
         PathwayClient pathwayClient = new PathwayClient();
         var res = pathwayClient.getIntercatorsFromPathway("TGFBR3");
         res.forEach(System.out::println);
+    }
+
+    @Test
+    void getPathwaysForGene() {
+        PathwayClient pathwayClient = new PathwayClient();
+        pathwayClient.getPathwaysForGene("IGF2").forEach(System.out::println);
     }
 }

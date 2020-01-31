@@ -6,6 +6,7 @@ module IntOmics {
     requires javafx.fxml;
     requires java.desktop;
     requires java.xml.bind;
+    requires commons.math3;
 
     exports org.pmoi.ui;
     opens org.pmoi.ui;

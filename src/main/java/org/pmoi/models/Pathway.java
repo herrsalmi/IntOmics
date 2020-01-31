@@ -15,6 +15,11 @@ public class Pathway {
         this.genes = new ArrayList<>();
     }
 
+    public Pathway(String name, List<Gene> genes) {
+        this.name = name;
+        this.genes = genes;
+    }
+
     public String getPathwayID() {
         return pathwayID;
     }
@@ -41,5 +46,13 @@ public class Pathway {
 
     public void addGene(Gene gene) {
         this.genes.add(gene);
+    }
+
+    @Override
+    public String toString() {
+        return "Pathway{" +
+                "name='" + name + '\'' +
+                ", genes=" + genes +
+                '}';
     }
 }
