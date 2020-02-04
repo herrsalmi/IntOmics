@@ -8,6 +8,7 @@ import org.jdom2.input.SAXBuilder;
 import org.pmoi.ApplicationParameters;
 import org.pmoi.handler.HttpConnector;
 import org.pmoi.handler.PathwayResponceHandler;
+import org.pmoi.models.Feature;
 import org.pmoi.models.Gene;
 import org.pmoi.models.Pathway;
 import org.pmoi.models.PathwayResponse;
@@ -23,33 +24,48 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class PathwayClient {
+    private static PathwayClient instance;
+
     private static final Logger LOGGER = LogManager.getRootLogger();
 
-    private static Map<String, Set<String>> pathwayDB;
+    private Map<String, Set<String>> pathwayDB;
+    private static AtomicBoolean changed;
     private static long numberOfGenes;
 
-    public PathwayClient() {
-        if (pathwayDB == null) {
+    private PathwayClient() {
+        pathwayDB = new HashMap<>();
+        try {
+            initDB();
+            updateGeneCount();
+            pathwayDB = Collections.synchronizedMap(pathwayDB);
+            changed = new AtomicBoolean(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static PathwayClient getInstance() {
+        if (instance == null) {
             synchronized (PathwayClient.class) {
-                if (pathwayDB == null) {
-                    pathwayDB = new HashMap<>();
-                    try {
-                        initDB();
-                        numberOfGenes = pathwayDB.values().stream()
-                                .flatMap(Collection::stream)
-                                .distinct()
-                                .count();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                if (instance == null) {
+                   instance = new PathwayClient();
                 }
             }
         }
+        return instance;
+    }
+
+    private void updateGeneCount() {
+        numberOfGenes = pathwayDB.values().stream()
+                .flatMap(Collection::stream)
+                .distinct()
+                .count();
     }
 
     private void initDB() throws IOException {
@@ -90,22 +106,37 @@ public class PathwayClient {
                 assert result != null;
                 if (result.isEmpty())
                     return null;
+                // compare the number of pathways to the ones on the local database
+                long pathwayCount = pathwayDB.values().stream().filter(l -> l.contains(gene))
+                        .count();
+                System.out.println(String.format("Gene: %s. Result size: %d; DB size:%d", gene, result.size(), pathwayCount));
+                if (result.size() > pathwayCount) {
+                    var pathways = result.stream()
+                            .map(e -> {
+                                try {
+                                    var urlP = new URL(String.format("http://webservice.wikipathways.org/getPathwayAs?fileType=gpml&pwId=%s&revision=0", e.getId()));
+                                    var saxBuilder = new SAXBuilder();
+                                    var document = saxBuilder.build(urlP);
+                                    // decode base64 gpml and get list of genes
+                                    var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream().findFirst().get().getText());
+                                    return new Pathway(e.getName(), genes);
+                                } catch (JDOMException | IOException ex) {
+                                    ex.printStackTrace();
+                                }
+                                return null;
+                            })
+                            .collect(Collectors.toList());
+                    //TODO this call is probably not thread safe
+                    pathways.forEach(p -> pathwayDB.put(p.getName(), p.getGenes().stream().map(Feature::getName).collect(Collectors.toSet())));
+                    changed.set(true);
+                    updateGeneCount();
+                    return pathways;
+                } else {
+                    return pathwayDB.entrySet().stream().filter(e -> e.getValue().contains(gene))
+                            .map(e -> new Pathway(e.getKey(), e.getValue().stream().map(g -> new Gene(g, "")).collect(Collectors.toList())))
+                            .collect(Collectors.toList());
+                }
 
-                return result.stream()
-                        .map(e -> {
-                            try {
-                                var urlP = new URL(String.format("http://webservice.wikipathways.org/getPathwayAs?fileType=gpml&pwId=%s&revision=0", e.getId()));
-                                var saxBuilder = new SAXBuilder();
-                                var document = saxBuilder.build(urlP);
-                                // decode base64 gpml and get list of genes
-                                var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream().findFirst().get().getText());
-                                return new Pathway(e.getName(), genes);
-                            } catch (JDOMException | IOException ex) {
-                                ex.printStackTrace();
-                            }
-                            return null;
-                        })
-                        .collect(Collectors.toList());
             } catch (IOException e) {
                 if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
                     LOGGER.error(String.format("Error getting pathway for: [%s]. Aborting!", gene));
@@ -119,14 +150,12 @@ public class PathwayClient {
 
     private List<Gene> gpmlBase64Decoder(String message) {
         try {
-            var file = Files.createTempFile(Paths.get("tmp/"), "Hs_", ".gpml");
-            BufferedWriter bw = Files.newBufferedWriter(file);
+            var file = File.createTempFile("Hs_", ".gpml", Paths.get("tmp/").toFile());
+            file.deleteOnExit();
+            BufferedWriter bw = Files.newBufferedWriter(file.toPath());
             bw.write(new String(Base64.getDecoder().decode(message)));
             bw.close();
-            //gpmlToGeneNames(Paths.get("tmp/WP2799_101385.gpml")).forEach(System.out::println);
-            gpmlToGeneNames(file).forEach(System.out::println);
-            System.exit(0);
-            return gpmlToGeneNames(file).stream()
+            return gpmlToGeneNames(file.toPath()).stream()
                     .map(e -> new Gene(e, ""))
                     .collect(Collectors.toList());
         } catch (JDOMException | IOException e) {
@@ -229,5 +258,21 @@ public class PathwayClient {
 
     public long getNumberOfGenes() {
         return numberOfGenes;
+    }
+
+    public int getNumberOfGenesByPathway(String pathway) {
+        return pathwayDB.get(pathway).size();
+    }
+
+    public synchronized void close() {
+        //System.out.println(String.format("%d - %d", initialSize, pathwayDB.size()));
+        if (changed.get()) {
+            try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("pathwayDB.obj")))) {
+                LOGGER.info("Updating pathways database ...");
+                oos.writeObject(pathwayDB);
+            } catch (IOException e) {
+                LOGGER.error("Unable to save pathways internal database!");
+            }
+        }
     }
 }

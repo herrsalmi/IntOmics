@@ -1,5 +1,6 @@
 package org.pmoi;
 
+import org.apache.commons.math3.distribution.HypergeometricDistribution;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.business.*;
@@ -68,13 +69,20 @@ public class OperationDispatcher {
         List<ResultRecord> resultSet = Collections.synchronizedList(new ArrayList<>());
         ForkJoinPool customThreadPool = new ForkJoinPool(3);
         ExecutorService executorService = Executors.newFixedThreadPool(3);
-        PathwayClient pathwayClient = new PathwayClient();
+        PathwayClient pathwayClient = PathwayClient.getInstance();
         secretome.forEach(e -> executorService.submit(() -> {
-            Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
+            // Adding StringDB interactors
+            //Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
+            Map<String, String> interactors = new HashMap<>();
             // Add gene from the pathway to the map
-            pathwayClient.getIntercatorsFromPathway(e.getName()).stream()
-                    .filter(gene -> !gene.equals(e.getName()))
-                    .forEach(gene -> interactors.putIfAbsent(gene, "NA"));
+//            pathwayClient.getIntercatorsFromPathway(e.getName()).stream()
+//                    .filter(gene -> !gene.equals(e.getName()))
+//                    .forEach(gene -> interactors.putIfAbsent(gene, "NA"));
+            pathwayClient.getPathways(e.getName()).stream()
+                    .flatMap(p -> p.getGenes().stream())
+                    .distinct()
+                    .filter(gene -> !gene.getName().equals(e.getName()))
+                    .forEach(gene -> interactors.putIfAbsent(gene.getName(), "NA"));
             List<String> interactorsNames = new ArrayList<>(interactors.keySet());
             interactorsNames.retainAll(membranome.stream().map(Feature::getName).collect(Collectors.toList()));
             if (!interactorsNames.isEmpty()) {
@@ -102,9 +110,11 @@ public class OperationDispatcher {
 
             resultMap.forEach((key, value) -> {
                 // get a list of pathways where the protein is involved
-                var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
-                pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
-                key.getPathways().forEach(e -> e.setGenes(pathwayClient.getKEGGPathwayGenes(e.getPathwayID())));
+//                var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
+//                pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
+//                key.getPathways().forEach(e -> e.setGenes(pathwayClient.getKEGGPathwayGenes(e.getPathwayID())));
+                var pathways = pathwayClient.getPathways(key.getName());
+                pathways.forEach(key::addPathway);
                 value.forEach(resultRecord -> resultRecord.getProtein().getPathways().forEach(p -> {
                     if (p.getGenes().contains(resultRecord.getGene()))
                         resultRecord.getGene().setInteractors(p.getName(), p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
@@ -118,6 +128,7 @@ public class OperationDispatcher {
         StringBuffer outputBuffer = new StringBuffer(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
                 "#protein", "name", "score D", "score R", "gene", "name", "I score", "gene_fdr", "gene_fc"));
         //List<ResultsFX> fxList = new ArrayList<>();
+
         if (ApplicationParameters.getInstance().use48H()) {
             customThreadPool.submit(() -> resultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> {
@@ -129,8 +140,13 @@ public class OperationDispatcher {
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
                                 v.get(0).getInteractionScore(), v.get(0).getGene().getFdr(), v.get(0).getGene().getFoldChange(),
                                 v.get(0).getGene().getInteractors().entrySet().stream()
-                                        .map(e -> e.getKey() + ": " + e.getValue().stream().sorted(Collections.reverseOrder())
-                                                .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
+                                        .map(e -> {
+                                            HypergeometricDistribution distribution = new HypergeometricDistribution((int)pathwayClient.getNumberOfGenes(),
+                                                    pathwayClient.getNumberOfGenesByPathway(e.getKey()), transcriptome.size());
+                                            return e.getKey() + ": {" + distribution.probability(e.getValue().size()) + "} "
+                                                    + e.getValue().stream().sorted(Collections.reverseOrder())
+                                                    .map(Gene::getName).collect(Collectors.joining(",", "[", "]"));
+                                        })
                                         .collect(Collectors.joining("; "))));
                         v.stream().skip(1).forEach(e -> {
                             e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
@@ -138,8 +154,13 @@ public class OperationDispatcher {
                                     "", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
                                     e.getGene().getFdr(), e.getGene().getFoldChange(),
                                     e.getGene().getInteractors().entrySet().stream()
-                                            .map(en -> en.getKey() + ": " + en.getValue().stream().sorted(Collections.reverseOrder())
-                                                    .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
+                                            .map(en -> {
+                                                HypergeometricDistribution distribution = new HypergeometricDistribution((int)pathwayClient.getNumberOfGenes(),
+                                                        pathwayClient.getNumberOfGenesByPathway(en.getKey()), transcriptome.size());
+                                                return en.getKey() + ": {" + distribution.probability(en.getValue().size()) + "} "
+                                                        + en.getValue().stream().sorted(Collections.reverseOrder())
+                                                        .map(Gene::getName).collect(Collectors.joining(",", "[", "]"));
+                                            })
                                             .collect(Collectors.joining("; "))));
                         });
                     }));
@@ -185,7 +206,7 @@ public class OperationDispatcher {
             e.printStackTrace();
         }
         EntrezIDMapper.getInstance().close();
-
+        pathwayClient.close();
 //        MainFX.main(fxList);
     }
 

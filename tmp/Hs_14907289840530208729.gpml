@@ -1,0 +1,2417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Transcriptional regulation of white adipocyte differentiation" Organism="Homo sapiens">
+  <Comment Source="WikiPathways-description">Adipogenesis is the process of cell differentiation by which preadipocytes become adipocytes. During this process the preadipocytes cease to proliferate, begin to accumulate lipid droplets and develop morphologic and biochemical characteristics of mature adipocytes such as hormone responsive lipogenenic and lipolytic programs. The most intensively studied model system for adipogenesis is differentiation of the mouse 3T3-L1 preadipocyte cell line by an induction cocktail of containing mitogens (insulin/IGF1), glucocorticoid (dexamethasone), an inducer of cAMP (IBMX), and fetal serum (Cao et al. 1991, reviewed in Farmer 2006). More recently additional cellular models have become available to study adipogenesis that involve almost all stages of development (reviewed in Rosen and MacDougald 2006). In vivo knockout mice lacking putative adipogenic factors have also been extensively studied. Human pathways are traditionally inferred from those discovered in mouse but are now beginning to be validated in cellular models derived from human adipose progenitors (Fischer-Posovszky et al. 2008, Wdziekonski et al. 2011).&lt;br&gt;Adipogenesis is controlled by a cascade of transcription factors (Yeh et al. 1995, reviewed in Farmer 2006, Gesta et al. 2007). One of the first observable events during adipocyte differentiation is a transient increase in expression of the CEBPB (CCAAT/Enhancer Binding Protein Beta, C/EBPB) and CEBPD (C/EBPD) transcription factors (Cao et al. 1991, reviewed in Lane et al. 1999). This occurs prior to the accumulation of lipid droplets. However, it is the subsequent inductions of CEBPA and PPARG that are critical for morphological, biochemical and functional adipocytes.&lt;br&gt;Ectopic expression of CEBPB alone is capable of inducing substantial adipocyte differentiation in fibroblasts while CEBPD has a minimal effect. CEBPB is upregulated in response to intracellular cAMP (possibly via pCREB) and serum mitogens (possibly via Krox20). CEBPD is upregulated in response to glucocorticoids. The exact mechanisms that upregulate the CEBPs are not fully known.&lt;br&gt;CEBPB and CEBPD act directly on the Peroxisome Proliferator-activated Receptor Gamma (PPARG) gene by binding its promoter and activating transcription. CEBPB and CEBPD also directly activate the EBF1 gene (and possibly other EBFs) and KLF5 (Jimenez et al. 2007, Oishi 2005). The EBF1 and KLF5 proteins, in turn bind, and activate the PPARG promoter. Other hormones, such as insulin, affect PPARG expression and other transcription factors, such as ADD1/SREBP1c, bind the PPARG promoter. This is an area of ongoing research.&lt;br&gt;During adipogenesis the PPARG gene is transcribed to yield 2 variants. The adipogenic variant 2 mRNA encodes 30 additional amino acids at the N-terminus compared to the widely expressed variant 1 mRNA.&lt;br&gt;PPARG encodes a type II nuclear hormone receptor (remains in the nucleus in the absence of ligand) that forms a heterodimer with the Retinoid X Receptor Alpha (RXRA). The heterodimer was initially identified as a complex regulating the aP2/FABP4 gene and named ARF6 (Tontonoz et al. 1994).&lt;br&gt;The PPARG:RXRA heterodimer binds a recognition sequence that consists of two hexanucleotide motifs (DR1 motifs) separated by 1 nucleotide. Binding occurs even in the absence of ligands, such as fatty acids, that activate PPARG. In the absence of activating ligands, the PPARG:RXRA complex recruits repressors of transcription such as SMRT/NCoR2, NCoR1, and HDAC3 (Tontonoz and Spiegelman 2008).&lt;br&gt;Each molecule of PPARG can bind 2 molecules of activating ligands. Although, the identity of the endogenous ligands of PPARG is unknown, exogenous activators include fatty acids and the thiazolidinedione class of antidiabetic drugs (reviewed in Berger et al. 2005, Heikkinen et al. 2007, Lemberger et al. 1996). The most potent activators of PPARG in vitro are oxidized derivatives of unsaturated fatty acids.. Upon binding activating ligands PPARG causes a rearrangement of adjacent factors: Corepressors such as SMRT/NCoR2 are lost and coactivators such as TIF2, PRIP, CBP, and p300 are recruited (Tontonoz and Spiegelman). PPARG also binds directly to the TRAP220 subunit of the TRAP/Mediator complex that recruits RNA polymerase II. Thus binding of activating ligand by PPARG causes transcription of PPARG target genes.&lt;br&gt;Targets of PPARG include genes involved in differentiation (PGAR/HFARP, Perilipin, aP2/FABP4, CEBPA), fatty acid transport (LPL, FAT/CD36), carbohydrate metabolism (PEPCK-C, AQP7, GK, GLUT4 (SLC2A4)), and energy homeostasis (LEPTIN and ADIPONECTIN) (Perera et al. 2006).&lt;br&gt;Within 10 days of differentiation CEBPB and CEBPD are no longer located at the PPARG promoter. Instead CEBPA is present. EBF1 and PPARG bind the CEBPA promoter and activate transcription of CEBPA, one of the key transcription factors in adipogenesis. A current hypothesis posits a self-reinforcing loop that maintains PPARG expression and the differentiated state: PPARG activates CEBPA and CEBPA activates PPARG. Additionally EBF1 (and possibly other EBFs) activates CEBPA, CEBPA activates EBF1, and EBF1 activates PPARG.
+ View original pathway at:[http://www.reactome.org/PathwayBrowser/#DIAGRAM=381340 Reactome].</Comment>
+  <Comment Source="Reactome-Converter">Pathway is converted from Reactome ID: 381340</Comment>
+  <Comment Source="Reactome-version">Reactome version: 66</Comment>
+  <Comment Source="Reactome Author">Reactome Author: May, Bruce</Comment>
+  <BiopaxRef>f9e</BiopaxRef>
+  <BiopaxRef>cd3</BiopaxRef>
+  <BiopaxRef>d8b</BiopaxRef>
+  <BiopaxRef>d7b</BiopaxRef>
+  <BiopaxRef>bfe</BiopaxRef>
+  <BiopaxRef>d65</BiopaxRef>
+  <BiopaxRef>a17</BiopaxRef>
+  <BiopaxRef>bcd</BiopaxRef>
+  <BiopaxRef>c1a</BiopaxRef>
+  <BiopaxRef>cfa</BiopaxRef>
+  <BiopaxRef>f37</BiopaxRef>
+  <BiopaxRef>dff</BiopaxRef>
+  <BiopaxRef>ab7</BiopaxRef>
+  <BiopaxRef>d44</BiopaxRef>
+  <BiopaxRef>b3b</BiopaxRef>
+  <BiopaxRef>a0f</BiopaxRef>
+  <Attribute Key="reactome_id" Value="381340" />
+  <Graphics BoardWidth="1464.0" BoardHeight="2565.0" />
+  <DataNode TextLabel="MED12 " GraphId="a131f" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1525.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q93074" />
+  </DataNode>
+  <DataNode TextLabel="LEP gene" GraphId="a15c8" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="904.5" CenterY="649.5" Width="67.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000174697" />
+  </DataNode>
+  <DataNode TextLabel="MED11 " GraphId="a2410" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2105.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9P086" />
+  </DataNode>
+  <DataNode TextLabel="ZNF638" GraphId="a26c1" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="606.5" CenterY="374.0" Width="69.0" Height="26.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q14966" />
+  </DataNode>
+  <DataNode TextLabel="Actos " GraphId="a2ad6" Type="Metabolite" GroupRef="ad77f">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-2026090" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1725.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:8228" />
+  </DataNode>
+  <DataNode TextLabel="MED7 " GraphId="a308c" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2085.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O43513" />
+  </DataNode>
+  <DataNode TextLabel="CDK19 " GraphId="a3bde" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1765.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BWU1" />
+  </DataNode>
+  <DataNode TextLabel="PPARG gene" GraphId="a3d8c" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="298.0" CenterY="385.5" Width="86.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000132170" />
+  </DataNode>
+  <DataNode TextLabel="FABP4 " GraphId="a514d" Type="Protein" GroupRef="ad77f">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-2026090" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1645.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P15090" />
+  </DataNode>
+  <DataNode TextLabel="ANGPTL4" GraphId="a536f" Type="Protein">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="1364.0" CenterY="1220.5" Width="76.0" Height="31.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BY76" />
+  </DataNode>
+  <DataNode TextLabel="PPARA " GraphId="a5739" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="2165.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q07869" />
+  </DataNode>
+  <DataNode TextLabel="RELA " GraphId="a6ee0" Type="Protein" GroupRef="bba13">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-194047" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1525.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q04206" />
+  </DataNode>
+  <DataNode TextLabel="PPARA:RXRA&#xA;Coactivator complex" GraphId="a81c8" Type="Complex">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="857.5" CenterY="1156.0" Width="141.0" Height="34.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-400154" />
+  </DataNode>
+  <DataNode TextLabel="HDAC3" GraphId="a8495" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="490.5" CenterY="680.5" Width="81.0" Height="25.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O15379" />
+  </DataNode>
+  <DataNode TextLabel="Peroxisome Proliferator Receptor Element (PPRE) " GraphId="a8705" GroupRef="e7453">
+    <Comment Source="Reactome">Peroxisome proliferator receptor elements bind heterodimers containing a peroxisome proliferator receptor and a retinoic acid receptor. The consensus sequence is TGAMCTTTGNCCTAGWTYYG.</Comment>
+    <BiopaxRef>b6d</BiopaxRef>
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="2045.0" Width="100.0" Height="40.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-ALL-422139" />
+  </DataNode>
+  <DataNode TextLabel="CEBPA gene" GraphId="a8c16" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="645.5" CenterY="425.5" Width="85.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000245848" />
+  </DataNode>
+  <DataNode TextLabel="CEBPD gene" GraphId="a9f20" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="201.0" CenterY="231.5" Width="86.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000221869" />
+  </DataNode>
+  <DataNode TextLabel="CDK19 " GraphId="aa78e" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1445.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BWU1" />
+  </DataNode>
+  <DataNode TextLabel="EPA " GraphId="aa9d4" Type="Metabolite" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="2105.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28364" />
+  </DataNode>
+  <DataNode TextLabel="MED13L " GraphId="ab4a3" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2125.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q71F56" />
+  </DataNode>
+  <DataNode TextLabel="NR2F2" GraphId="aba8c" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="170.0" CenterY="425.0" Width="64.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P24468" />
+  </DataNode>
+  <DataNode TextLabel="RXRA " GraphId="abe6a" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="2185.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P19793" />
+  </DataNode>
+  <DataNode TextLabel="PPARG" GraphId="ac071" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="356.0" CenterY="538.5" Width="78.0" Height="27.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P37231" />
+  </DataNode>
+  <DataNode TextLabel="CEBPD" GraphId="ac7c8" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="311.5" CenterY="268.5" Width="73.0" Height="29.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P49716" />
+  </DataNode>
+  <DataNode TextLabel="NCOR1 " GraphId="ad16f" Type="Protein" GroupRef="dfc2b">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381226" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1525.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O75376" />
+  </DataNode>
+  <DataNode TextLabel="NCOR2 " GraphId="adc5a" Type="Protein" GroupRef="dfc2b">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381226" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1545.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y618" />
+  </DataNode>
+  <DataNode TextLabel="MED25 " GraphId="adcb6" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1665.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q71SY5" />
+  </DataNode>
+  <DataNode TextLabel="MED17 " GraphId="adfee" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1585.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NVC6" />
+  </DataNode>
+  <DataNode TextLabel="MED27 " GraphId="ae246" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1965.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q6P2C8" />
+  </DataNode>
+  <DataNode TextLabel="ANGPTL gene" GraphId="ae901" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="867.0" CenterY="1207.5" Width="92.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000167772" />
+  </DataNode>
+  <DataNode TextLabel="CCND3" GraphId="af124" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="892.5" CenterY="785.0" Width="57.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P30281" />
+  </DataNode>
+  <DataNode TextLabel="MED29 " GraphId="af3a2" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1985.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NX70" />
+  </DataNode>
+  <DataNode TextLabel="FAM120B" GraphId="b0b0e" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="270.5" CenterY="974.5" Width="71.0" Height="23.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96EK7" />
+  </DataNode>
+  <DataNode TextLabel="MED10 " GraphId="b0d24" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1505.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BTT4" />
+  </DataNode>
+  <DataNode TextLabel="LEP" GraphId="b2f2e" Type="Protein">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="1307.0" CenterY="653.5" Width="44.0" Height="21.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P41159" />
+  </DataNode>
+  <DataNode TextLabel="TGFB1" GraphId="b33f1" Type="Protein">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="1339.0" CenterY="201.5" Width="86.0" Height="23.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01137" />
+  </DataNode>
+  <DataNode TextLabel="ADIPOQ gene" GraphId="b48c0" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="916.5" CenterY="423.5" Width="91.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000181092" />
+  </DataNode>
+  <DataNode TextLabel="Palm " GraphId="b56c6" Type="Metabolite" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="2145.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15756" />
+  </DataNode>
+  <DataNode TextLabel="MED9 " GraphId="b5fb3" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="2025.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NWA0" />
+  </DataNode>
+  <DataNode TextLabel="RXRA" GraphId="b6098" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="266.0" CenterY="549.5" Width="82.0" Height="29.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P19793" />
+  </DataNode>
+  <DataNode TextLabel="NCOR1" GraphId="b6336" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="487.0" CenterY="626.0" Width="82.0" Height="24.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O75376" />
+  </DataNode>
+  <DataNode TextLabel="NCOA2" GraphId="b89fb" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="117.5" CenterY="1048.5" Width="81.0" Height="25.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15596" />
+  </DataNode>
+  <DataNode TextLabel="MED12 " GraphId="b8caf" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1845.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q93074" />
+  </DataNode>
+  <DataNode TextLabel="PPARG:Fatty&#xA;Acid:RXRA:Mediator:Coactivator Complex" GraphId="b921c" Type="Complex">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="660.0" CenterY="1161.5" Width="210.0" Height="35.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-381367" />
+  </DataNode>
+  <DataNode TextLabel="MED6 " GraphId="b93ce" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2065.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O75586" />
+  </DataNode>
+  <DataNode TextLabel="Actos " GraphId="b9b85" Type="Metabolite" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="5" />
+    <Graphics CenterX="100.0" CenterY="2445.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:8228" />
+  </DataNode>
+  <DataNode TextLabel="TBL1XR1 " GraphId="babe9" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="2005.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BZK7" />
+  </DataNode>
+  <DataNode TextLabel="ADIPOQ" GraphId="bac79" Type="Protein">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="1394.0" CenterY="731.5" Width="80.0" Height="21.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15848" />
+  </DataNode>
+  <DataNode TextLabel="MED8 " GraphId="bad7c" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="2005.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96G25" />
+  </DataNode>
+  <DataNode TextLabel="PCK1" GraphId="bb42d" Type="Protein">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="1135.0" CenterY="942.0" Width="66.0" Height="28.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P35558" />
+  </DataNode>
+  <DataNode TextLabel="NCOA1" GraphId="bbccb" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="158.0" CenterY="1228.0" Width="76.0" Height="28.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15788" />
+  </DataNode>
+  <DataNode TextLabel="HELZ2 " GraphId="bc22e" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1685.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BYK8" />
+  </DataNode>
+  <DataNode TextLabel="MED30 " GraphId="bc6d8" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1685.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96HR3" />
+  </DataNode>
+  <DataNode TextLabel="FABP4:Ligands of&#xA;PPARG" GraphId="bc9b1" Type="Complex">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="189.5" CenterY="939.0" Width="173.0" Height="24.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-2026090" />
+  </DataNode>
+  <DataNode TextLabel="4xPalmC-CD36" GraphId="bd456" Type="Protein">
+    <BiopaxRef>dfe</BiopaxRef>
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Graphics CenterX="1258.0" CenterY="1123.5" Width="102.0" Height="35.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P16671" />
+  </DataNode>
+  <DataNode TextLabel="HDAC3 " GraphId="be03e" Type="Protein" GroupRef="dfc2b">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381226" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1505.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O15379" />
+  </DataNode>
+  <DataNode TextLabel="HELZ2 " GraphId="be239" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1905.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BYK8" />
+  </DataNode>
+  <DataNode TextLabel="CREBBP " GraphId="be42f" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1605.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q92793" />
+  </DataNode>
+  <DataNode TextLabel="PPARG:RXRA:Corepressor Complex" GraphId="bec51" Type="Complex">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="351.0" CenterY="846.0" Width="234.0" Height="26.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-381226" />
+  </DataNode>
+  <DataNode TextLabel="MED21 " GraphId="becfa" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1945.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q13503" />
+  </DataNode>
+  <DataNode TextLabel="AA " GraphId="bf003" Type="Metabolite" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="2085.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15843" />
+  </DataNode>
+  <DataNode TextLabel="NCOA2 " GraphId="bf6b0" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1865.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15596" />
+  </DataNode>
+  <DataNode TextLabel="SLC2A4 gene (GLUT4&#xA;gene)" GraphId="bf6d7" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="925.5" CenterY="512.5" Width="95.0" Height="65.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000181856" />
+  </DataNode>
+  <DataNode TextLabel="CREBBP " GraphId="bfe82" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1785.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q92793" />
+  </DataNode>
+  <DataNode TextLabel="MED26 " GraphId="c021f" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1945.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O95402" />
+  </DataNode>
+  <DataNode TextLabel="NCOA1 " GraphId="c051f" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1645.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15788" />
+  </DataNode>
+  <DataNode TextLabel="MED1 " GraphId="c110d" Type="Protein" GroupRef="e2120">
+    <Comment Source="Reactome">MED1 is a component of each of the various Mediator complexes, that function as transcription co-activators.  The MED1-containing compolexes include the DRIP, ARC, TRIP and CRSP compllexes.</Comment>
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1485.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15648" />
+  </DataNode>
+  <DataNode TextLabel="RXRA " GraphId="c15d2" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="5" />
+    <Graphics CenterX="100.0" CenterY="2485.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P19793" />
+  </DataNode>
+  <DataNode TextLabel="MED27 " GraphId="c19af" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2285.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q6P2C8" />
+  </DataNode>
+  <DataNode TextLabel="MED28 " GraphId="c2594" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="2045.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9H204" />
+  </DataNode>
+  <DataNode TextLabel="MED13 " GraphId="c282b" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1865.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UHV7" />
+  </DataNode>
+  <DataNode TextLabel="MED7 " GraphId="c3551" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1765.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O43513" />
+  </DataNode>
+  <DataNode TextLabel="TNF(77-233)" GraphId="c3813" Type="Protein">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="1348.0" CenterY="296.0" Width="98.0" Height="28.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01375" />
+  </DataNode>
+  <DataNode TextLabel="RXRA " GraphId="c4beb" Type="Protein" GroupRef="d7c33">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381281" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1385.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P19793" />
+  </DataNode>
+  <DataNode TextLabel="CCNC " GraphId="c566e" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1465.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P24863" />
+  </DataNode>
+  <DataNode TextLabel="PPARG:RXRA&#xA;Heterodimer" GraphId="c6a54" Type="Complex">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="300.5" CenterY="683.0" Width="193.0" Height="28.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-381281" />
+  </DataNode>
+  <DataNode TextLabel="EGR2" GraphId="c6fb3" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="765.0" CenterY="137.5" Width="58.0" Height="21.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P11161" />
+  </DataNode>
+  <DataNode TextLabel="MED22 " GraphId="c7486" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1905.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15528" />
+  </DataNode>
+  <DataNode TextLabel="MED17 " GraphId="c7f0e" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1905.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NVC6" />
+  </DataNode>
+  <DataNode TextLabel="LPL gene" GraphId="c7fc0" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="862.5" CenterY="1286.5" Width="65.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000175445" />
+  </DataNode>
+  <DataNode TextLabel="EP300 " GraphId="c8388" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1625.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q09472" />
+  </DataNode>
+  <DataNode TextLabel="WNT1,WNT10B" GraphId="c84ea" Type="Complex">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="1347.0" CenterY="253.5" Width="122.0" Height="25.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-976184" />
+  </DataNode>
+  <DataNode TextLabel="SREBF2(1-484) " GraphId="c8f6a" Type="Protein" GroupRef="a51b4">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-1655734" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1445.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q12772" />
+  </DataNode>
+  <DataNode TextLabel="Mediator Complex&#xA;(consensus)" GraphId="ca473" Type="Complex">
+    <Comment Source="Reactome">The Mediator Complex bridges transcription factors and the basal RNA polymerase II complex. Multiple analyses of immunoprecipitated complexes from human cells (HeLa cells) detects 31 subunits. Other complexes with fewer subunits may also exist.</Comment>
+    <BiopaxRef>d73</BiopaxRef>
+    <BiopaxRef>e68</BiopaxRef>
+    <BiopaxRef>a2c</BiopaxRef>
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="310.0" CenterY="1260.0" Width="224.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-556786" />
+  </DataNode>
+  <DataNode TextLabel="THRAP3 " GraphId="cadee" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="5" />
+    <Graphics CenterX="100.0" CenterY="2505.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y2W1" />
+  </DataNode>
+  <DataNode TextLabel="MED11 " GraphId="cbb93" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1785.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9P086" />
+  </DataNode>
+  <DataNode TextLabel="GLUT4 / SLC2A4&#xA;tetramer" GraphId="cbd01" Type="Complex">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Graphics CenterX="1259.0" CenterY="608.5" Width="106.0" Height="29.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-70384" />
+  </DataNode>
+  <DataNode TextLabel="MED13 " GraphId="cbd56" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1545.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UHV7" />
+  </DataNode>
+  <DataNode TextLabel="MED14 " GraphId="cd977" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1885.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O60244" />
+  </DataNode>
+  <DataNode TextLabel="PPARGC1A " GraphId="ce54c" Type="Protein" GroupRef="bf6f1">
+    <BiopaxRef>c94</BiopaxRef>
+    <BiopaxRef>edf</BiopaxRef>
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1725.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UBK2" />
+  </DataNode>
+  <DataNode TextLabel="NCOA1 " GraphId="cfebb" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1845.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15788" />
+  </DataNode>
+  <DataNode TextLabel="NCOA6 " GraphId="cffb0" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1885.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q14686" />
+  </DataNode>
+  <DataNode TextLabel="LPL" GraphId="d0dfb" Type="Protein">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="1366.0" CenterY="1273.5" Width="70.0" Height="31.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P06858" />
+  </DataNode>
+  <DataNode TextLabel="SREBF1-1(1-490) " GraphId="d168f" Type="Protein" GroupRef="a51b4">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-1655734" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1425.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P36956-1" />
+  </DataNode>
+  <DataNode TextLabel="THRAP3" GraphId="d171c" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="161.5" CenterY="981.0" Width="67.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y2W1" />
+  </DataNode>
+  <DataNode TextLabel="FABP4" GraphId="d1bba" Type="Protein">
+    <Attribute Key="cellular_location" Value="lipid droplet" />
+    <Graphics CenterX="1151.5" CenterY="812.0" Width="69.0" Height="24.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P15090" />
+  </DataNode>
+  <DataNode TextLabel="MED18 " GraphId="d1e0b" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1865.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BUE0" />
+  </DataNode>
+  <DataNode TextLabel="CDK8 " GraphId="d1ee3" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1425.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P49336" />
+  </DataNode>
+  <DataNode TextLabel="EP300" GraphId="d1f76" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="130.0" CenterY="1012.0" Width="82.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q09472" />
+  </DataNode>
+  <DataNode TextLabel="NFKB1(1-433) " GraphId="d2c26" Type="Protein" GroupRef="bba13">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-194047" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1505.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P19838" />
+  </DataNode>
+  <DataNode TextLabel="MED16 " GraphId="d3b0c" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1845.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y2X0" />
+  </DataNode>
+  <DataNode TextLabel="ADIRF" GraphId="d3db4" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="456.5" CenterY="375.5" Width="57.0" Height="25.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15847" />
+  </DataNode>
+  <DataNode TextLabel="MED4 " GraphId="d49c9" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2045.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NPJ6" />
+  </DataNode>
+  <DataNode TextLabel="ZNF467" GraphId="d60bb" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="522.5" CenterY="464.5" Width="71.0" Height="23.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q7Z7K2" />
+  </DataNode>
+  <DataNode TextLabel="CREBBP" GraphId="d61f7" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="249.0" CenterY="1222.0" Width="86.0" Height="26.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q92793" />
+  </DataNode>
+  <DataNode TextLabel="ALA " GraphId="d6a90" Type="Metabolite" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="2065.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:27432" />
+  </DataNode>
+  <DataNode TextLabel="PPARG " GraphId="d6b03" Type="Protein" GroupRef="dfc2b">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381226" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1485.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P37231" />
+  </DataNode>
+  <DataNode TextLabel="PLIN1" GraphId="d8365" Type="Protein">
+    <Attribute Key="cellular_location" Value="lipid droplet" />
+    <Graphics CenterX="1146.0" CenterY="860.5" Width="60.0" Height="21.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O60240" />
+  </DataNode>
+  <DataNode TextLabel="NCOA3 " GraphId="d92cb" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1705.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y6Q9" />
+  </DataNode>
+  <DataNode TextLabel="MED30 " GraphId="d956c" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2005.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96HR3" />
+  </DataNode>
+  <DataNode TextLabel="WNT10B " GraphId="d963b" Type="Protein" GroupRef="fdf01">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-976184" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1445.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O00744" />
+  </DataNode>
+  <DataNode TextLabel="MED22 " GraphId="d965b" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2225.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15528" />
+  </DataNode>
+  <DataNode TextLabel="PLIN1 gene" GraphId="da4cc" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="915.5" CenterY="843.5" Width="79.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000166819" />
+  </DataNode>
+  <DataNode TextLabel="EBF1" GraphId="da88f" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="618.5" CenterY="307.0" Width="73.0" Height="26.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UH73" />
+  </DataNode>
+  <DataNode TextLabel="WNT1 " GraphId="dadc8" Type="Protein" GroupRef="fdf01">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-976184" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1425.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P04628" />
+  </DataNode>
+  <DataNode TextLabel="MED19 " GraphId="db402" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2205.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="A0JLT2" />
+  </DataNode>
+  <DataNode TextLabel="HELZ2" GraphId="dbb18" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="107.5" CenterY="1091.5" Width="77.0" Height="25.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BYK8" />
+  </DataNode>
+  <DataNode TextLabel="CEBPB" GraphId="dbce7" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="572.0" CenterY="171.0" Width="78.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P17676" />
+  </DataNode>
+  <DataNode TextLabel="TGS1 " GraphId="dc9ca" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1945.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96RS0" />
+  </DataNode>
+  <DataNode TextLabel="CD36 gene" GraphId="dd409" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="890.0" CenterY="1098.5" Width="78.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000135218" />
+  </DataNode>
+  <DataNode TextLabel="MED31 " GraphId="dd628" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1705.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y3C7" />
+  </DataNode>
+  <DataNode TextLabel="NCOA2 " GraphId="dda94" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1665.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15596" />
+  </DataNode>
+  <DataNode TextLabel="CEBPB gene" GraphId="ddbce" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="460.0" CenterY="125.5" Width="102.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000172216" />
+  </DataNode>
+  <DataNode TextLabel="NFKB1(1-433):RELA" GraphId="ddc79" Type="Complex">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="146.0" CenterY="455.0" Width="132.0" Height="24.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-194047" />
+  </DataNode>
+  <DataNode TextLabel="MED29 " GraphId="de176" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2305.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NX70" />
+  </DataNode>
+  <DataNode TextLabel="MED9 " GraphId="deb07" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2345.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NWA0" />
+  </DataNode>
+  <DataNode TextLabel="13(S')-HODE " GraphId="def96" Type="Metabolite" GroupRef="ad77f">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-2026090" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1665.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:34154" />
+  </DataNode>
+  <DataNode TextLabel="CARM1 " GraphId="dfff8" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1805.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86X55" />
+  </DataNode>
+  <DataNode TextLabel="TBL1X " GraphId="e02a1" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1985.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O60907" />
+  </DataNode>
+  <DataNode TextLabel="RXRA " GraphId="e0ca0" Type="Protein" GroupRef="dfc2b">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381226" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1465.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P19793" />
+  </DataNode>
+  <DataNode TextLabel="MED23 " GraphId="e0cf2" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1925.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9ULK4" />
+  </DataNode>
+  <DataNode TextLabel="PCK1 gene" GraphId="e0dd1" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="913.0" CenterY="908.5" Width="76.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000124253" />
+  </DataNode>
+  <DataNode TextLabel="MED19 " GraphId="e318d" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1885.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="A0JLT2" />
+  </DataNode>
+  <DataNode TextLabel="MED15 " GraphId="e33e4" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2145.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96RN5" />
+  </DataNode>
+  <DataNode TextLabel="CDK8 " GraphId="e3ee1" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1745.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P49336" />
+  </DataNode>
+  <DataNode TextLabel="SLC2A4 " GraphId="e50ea" Type="Protein" GroupRef="fe106">
+    <BiopaxRef>ace</BiopaxRef>
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-70384" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1585.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P14672" />
+  </DataNode>
+  <DataNode TextLabel="FAM120B " GraphId="e569d" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="5" />
+    <Graphics CenterX="100.0" CenterY="2525.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96EK7" />
+  </DataNode>
+  <DataNode TextLabel="MED15 " GraphId="e5ba8" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1825.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96RN5" />
+  </DataNode>
+  <DataNode TextLabel="NCOR2" GraphId="e65b0" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="495.0" CenterY="719.0" Width="74.0" Height="26.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y618" />
+  </DataNode>
+  <DataNode TextLabel="KLF5 gene" GraphId="e6af0" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="329.5" CenterY="312.5" Width="73.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000102554" />
+  </DataNode>
+  <DataNode TextLabel="MED6 " GraphId="e7fc3" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1745.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O75586" />
+  </DataNode>
+  <DataNode TextLabel="SMARCD3 " GraphId="e8943" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1925.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q6STE5" />
+  </DataNode>
+  <DataNode TextLabel="LINA " GraphId="e8ae0" Type="Metabolite" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="2125.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:17351" />
+  </DataNode>
+  <DataNode TextLabel="9S-HODE " GraphId="e9ff4" Type="Metabolite" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="3" />
+    <Graphics CenterX="100.0" CenterY="2405.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:34496" />
+  </DataNode>
+  <DataNode TextLabel="MED24 " GraphId="ea61b" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1645.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O75448" />
+  </DataNode>
+  <DataNode TextLabel="MED8 " GraphId="eabd6" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2325.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96G25" />
+  </DataNode>
+  <DataNode TextLabel="MED10 " GraphId="eb36c" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1825.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BTT4" />
+  </DataNode>
+  <DataNode TextLabel="MED1 " GraphId="eb555" Type="Protein" GroupRef="e7453">
+    <Comment Source="Reactome">MED1 is a component of each of the various Mediator complexes, that function as transcription co-activators.  The MED1-containing compolexes include the DRIP, ARC, TRIP and CRSP compllexes.</Comment>
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1825.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15648" />
+  </DataNode>
+  <DataNode TextLabel="MED4 " GraphId="ebb52" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1725.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NPJ6" />
+  </DataNode>
+  <DataNode TextLabel="MED25 " GraphId="ebd9d" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1985.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q71SY5" />
+  </DataNode>
+  <DataNode TextLabel="MED18 " GraphId="ed089" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2185.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BUE0" />
+  </DataNode>
+  <DataNode TextLabel="RGZ " GraphId="ed0e2" Type="Metabolite" GroupRef="ad77f">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-2026090" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1705.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:50122" />
+  </DataNode>
+  <DataNode TextLabel="13(S')-HODE " GraphId="ed82f" Type="Metabolite" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="2" />
+    <Graphics CenterX="100.0" CenterY="2385.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:34154" />
+  </DataNode>
+  <DataNode TextLabel="MED20 " GraphId="eea0f" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1605.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9H944" />
+  </DataNode>
+  <DataNode TextLabel="NCOA3" GraphId="eebce" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="112.0" CenterY="1139.0" Width="84.0" Height="24.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y6Q9" />
+  </DataNode>
+  <DataNode TextLabel="SREBF1A,2" GraphId="f116f" Type="Complex">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="159.5" CenterY="487.5" Width="89.0" Height="25.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-1655734" />
+  </DataNode>
+  <DataNode TextLabel="MED13L " GraphId="f154c" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1805.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q71F56" />
+  </DataNode>
+  <DataNode TextLabel="PPARG " GraphId="f19ea" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="5" />
+    <Graphics CenterX="100.0" CenterY="2465.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P37231" />
+  </DataNode>
+  <DataNode TextLabel="MED16 " GraphId="f1c06" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2165.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y2X0" />
+  </DataNode>
+  <DataNode TextLabel="KLF5" GraphId="f1e7f" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="438.0" CenterY="334.5" Width="92.0" Height="29.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q13887" />
+  </DataNode>
+  <DataNode TextLabel="MED26 " GraphId="f2531" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2265.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O95402" />
+  </DataNode>
+  <DataNode TextLabel="FABP4" GraphId="f28ab" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="610.5" CenterY="1058.0" Width="53.0" Height="26.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P15090" />
+  </DataNode>
+  <DataNode TextLabel="MED20 " GraphId="f33d8" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1925.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9H944" />
+  </DataNode>
+  <DataNode TextLabel="9S-HODE " GraphId="f3cc4" Type="Metabolite" GroupRef="ad77f">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-2026090" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1685.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:34496" />
+  </DataNode>
+  <DataNode TextLabel="MED23 " GraphId="f49ad" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2245.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9ULK4" />
+  </DataNode>
+  <DataNode TextLabel="PPARG " GraphId="f626d" Type="Protein" GroupRef="d7c33">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381281" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1405.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P37231" />
+  </DataNode>
+  <DataNode TextLabel="MED31 " GraphId="f64e8" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2025.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y3C7" />
+  </DataNode>
+  <DataNode TextLabel="KLF4" GraphId="f76a3" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="701.5" CenterY="112.0" Width="63.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O43474" />
+  </DataNode>
+  <DataNode TextLabel="CEBPA" GraphId="f7fae" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="779.0" CenterY="516.5" Width="80.0" Height="29.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P49715" />
+  </DataNode>
+  <DataNode TextLabel="RGZ " GraphId="f8a86" Type="Metabolite" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="100.0" CenterY="2425.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:50122" />
+  </DataNode>
+  <DataNode TextLabel="MED21 " GraphId="f8e7b" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1625.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q13503" />
+  </DataNode>
+  <DataNode TextLabel="FABP4 gene" GraphId="f9233" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="919.0" CenterY="733.5" Width="84.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000170323" />
+  </DataNode>
+  <DataNode TextLabel="MED24 " GraphId="f96c2" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1965.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O75448" />
+  </DataNode>
+  <DataNode TextLabel="PPARGC1A" GraphId="fa70c" Type="Protein">
+    <BiopaxRef>c94</BiopaxRef>
+    <BiopaxRef>edf</BiopaxRef>
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="119.5" CenterY="1192.5" Width="89.0" Height="25.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UBK2" />
+  </DataNode>
+  <DataNode TextLabel="MED28 " GraphId="fb139" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="2365.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9H204" />
+  </DataNode>
+  <DataNode TextLabel="CDK4" GraphId="fbec3" Type="Protein">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="949.5" CenterY="772.0" Width="53.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P11802" />
+  </DataNode>
+  <DataNode TextLabel="CCNC " GraphId="fd262" Type="Protein" GroupRef="bf6f1">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1785.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P24863" />
+  </DataNode>
+  <DataNode TextLabel="CHD9 " GraphId="fdcbe" Type="Protein" GroupRef="e7453">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1965.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q3L8U1" />
+  </DataNode>
+  <DataNode TextLabel="MED1 " GraphId="fe4e3" Type="Protein" GroupRef="bf6f1">
+    <Comment Source="Reactome">MED1 is a component of each of the various Mediator complexes, that function as transcription co-activators.  The MED1-containing compolexes include the DRIP, ARC, TRIP and CRSP compllexes.</Comment>
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1805.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15648" />
+  </DataNode>
+  <DataNode TextLabel="EBF1 gene" GraphId="fe85c" Type="GeneProduct">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Graphics CenterX="365.0" CenterY="216.5" Width="76.0" Height="51.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSG00000164330" />
+  </DataNode>
+  <DataNode TextLabel="MED14 " GraphId="ff6d1" Type="Protein" GroupRef="e2120">
+    <Attribute Key="cellular_location" Value="nucleoplasm" />
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="1565.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O60244" />
+  </DataNode>
+  <Interaction GraphId="a131c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="937.0" Y="649.0" GraphRef="a15c8" RelX="0.9701492537313433" RelY="-0.0196078431372549" />
+      <Point X="947.0" Y="626.0" GraphRef="cb903" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183003" />
+  </Interaction>
+  <Interaction GraphId="a21a5">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="458.0" Y="719.0" GraphRef="e65b0" RelX="-1.0" RelY="0.0" />
+      <Point X="343.0" Y="756.0" GraphRef="f7d3e" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381290" />
+  </Interaction>
+  <Interaction GraphId="a2253">
+    <Comment Source="Reactome">The Ob gene encoding leptin is transcribed to yield mRNA and translated to yield protein. Expression of leptin is positively regulated by C/EBPalpha (CEBPA, Miller et al. 1996, Melzner et al. 2002) and negatively regulated by PPARG in adipocytes (De Vos et al. 1996).</Comment>
+    <BiopaxRef>e2d</BiopaxRef>
+    <BiopaxRef>eb0</BiopaxRef>
+    <BiopaxRef>f5c</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="947.0" Y="626.0" />
+      <Point X="1282.0" Y="651.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="cb903" />
+      <Anchor Position="0.99" Shape="None" GraphId="c4d45" />
+      <Anchor Position="0.5" Shape="None" GraphId="b36bf" />
+      <Anchor Position="0.5" Shape="None" GraphId="a10f0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183003" />
+  </Interaction>
+  <Interaction GraphId="a24d3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="b921c" RelX="1.0" RelY="-0.02857142857142857" />
+      <Point X="1139.0" Y="1125.0" GraphRef="aad73" RelX="68.0" RelY="26.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560517" />
+  </Interaction>
+  <Interaction GraphId="a2588">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="302.0" Y="251.0" GraphRef="c74d4" RelX="0.4900000000000091" RelY="0.4300000000000068" />
+      <Point X="311.0" Y="254.0" GraphRef="ac7c8" RelX="-0.0136986301369863" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-977392" />
+  </Interaction>
+  <Interaction GraphId="a3731">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="347.0" Y="268.0" GraphRef="dbce7" RelX="-5.769230769230769" RelY="6.466666666666667" />
+      <Point X="431.0" Y="289.0" GraphRef="b8121" RelX="26.0" RelY="-14.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381377" />
+  </Interaction>
+  <Interaction GraphId="a55d3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="546.0" Y="1127.0" GraphRef="d3e68" RelX="1.5799999999999272" RelY="-0.5299999999999727" />
+      <Point X="495.0" Y="732.0" GraphRef="e65b0" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="a5c21">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="954.0" Y="843.0" GraphRef="da4cc" RelX="0.9746835443037974" RelY="-0.0196078431372549" />
+      <Point X="964.0" Y="820.0" GraphRef="e1431" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560493" />
+  </Interaction>
+  <Interaction GraphId="a5d8f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="392.0" Y="334.0" GraphRef="ac7c8" RelX="2.2054794520547945" RelY="4.517241379310345" />
+      <Point X="354.0" Y="483.0" GraphRef="e24c4" RelX="1.5" RelY="41.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="a6162">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="571.0" Y="153.0" GraphRef="f113d" RelX="0.5099999999999909" RelY="0.5099999999999909" />
+      <Point X="572.0" Y="156.0" GraphRef="dbce7" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381337" />
+  </Interaction>
+  <Interaction GraphId="a95c0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="435.0" Y="317.0" GraphRef="d5428" RelX="0.6000000000000227" RelY="0.2799999999999727" />
+      <Point X="438.0" Y="320.0" GraphRef="f1e7f" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381377" />
+  </Interaction>
+  <Interaction GraphId="a9924">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1113.0" Y="858.0" GraphRef="a386b" RelX="1.490000000000009" RelY="0.37999999999999545" />
+      <Point X="1116.0" Y="860.0" GraphRef="d8365" RelX="-1.0" RelY="-0.047619047619047616" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560493" />
+  </Interaction>
+  <Interaction GraphId="aa614">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="499.0" GraphRef="be91b" RelX="0.6800000000000637" RelY="0.9700000000000273" />
+      <Point X="779.0" Y="502.0" GraphRef="f7fae" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560491" />
+  </Interaction>
+  <Interaction GraphId="aa739">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1282.0" Y="651.0" GraphRef="c4d45" RelX="3.349999999999909" RelY="0.25" />
+      <Point X="1285.0" Y="653.0" GraphRef="b2f2e" RelX="-1.0" RelY="-0.047619047619047616" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183003" />
+  </Interaction>
+  <Interaction GraphId="ab02e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="af124" RelX="-4.473684210526316" RelY="34.18181818181818" />
+      <Point X="1088.0" Y="809.0" GraphRef="c4928" RelX="46.0" RelY="49.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560510" />
+  </Interaction>
+  <Interaction GraphId="ab6ae">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1296.0" Y="201.0" GraphRef="b33f1" RelX="-1.0" RelY="-0.043478260869565216" />
+      <Point X="718.0" Y="448.0" GraphRef="bb899" RelX="-13.0" RelY="-2.5" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560491" />
+  </Interaction>
+  <Interaction GraphId="ac444">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="894.0" Y="1286.0" GraphRef="c7fc0" RelX="0.9692307692307692" RelY="-0.0196078431372549" />
+      <Point X="904.0" Y="1263.0" GraphRef="d6a1c" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560498" />
+  </Interaction>
+  <Interaction GraphId="ac490">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="446.0" Y="626.0" GraphRef="b6336" RelX="-1.0" RelY="0.0" />
+      <Point X="343.0" Y="756.0" GraphRef="f7d3e" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381290" />
+  </Interaction>
+  <Interaction GraphId="acd2d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="533.0" Y="171.0" GraphRef="dbce7" RelX="-1.0" RelY="0.0" />
+      <Point X="469.0" Y="241.0" GraphRef="eb92b" RelX="-31.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-977271" />
+  </Interaction>
+  <Interaction GraphId="ace5a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="305.0" Y="974.0" GraphRef="b0b0e" RelX="0.971830985915493" RelY="-0.043478260869565216" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="aeddc">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="292.0" Y="1222.0" GraphRef="d61f7" RelX="1.0" RelY="0.0" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="afd60">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1114.0" Y="810.0" GraphRef="abedb" RelX="1.4400000000000546" RelY="1.0" />
+      <Point X="1117.0" Y="812.0" GraphRef="d1bba" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560510" />
+  </Interaction>
+  <Interaction GraphId="b0aac">
+    <Comment Source="Reactome">Expression of the CEBPB and CEBPD transcription factors is induced by at least three factors:&lt;br&gt;1) Mitogens such as those present in fetal serum act via the Krox20 transcription factor to activate expression of CEBPB.&lt;br&gt;2) Glucocorticoids activate expression of CEBPD.&lt;br&gt;3) Hormones or drugs that increase intracellular cAMP act via pCREB to activate expression of CEBPB.&lt;br&gt; The detailed mechanisms of activation are not yet known.</Comment>
+    <BiopaxRef>cd3</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="253.0" Y="208.0" />
+      <Point X="302.0" Y="251.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="f7893" />
+      <Anchor Position="0.99" Shape="None" GraphId="c74d4" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-977392" />
+  </Interaction>
+  <Interaction GraphId="b17a7">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="546.0" Y="1127.0" GraphRef="d3e68" RelX="1.5799999999999272" RelY="-0.5299999999999727" />
+      <Point X="584.0" Y="1058.0" GraphRef="f28ab" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="b2328">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="819.0" Y="516.0" GraphRef="f7fae" RelX="1.0" RelY="-0.034482758620689655" />
+      <Point X="1117.0" Y="603.0" GraphRef="b746c" RelX="24.5" RelY="59.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183032" />
+  </Interaction>
+  <Interaction GraphId="b259e">
+    <Comment Source="Reactome">The CEBPA gene is transcribed to yield mRNA and the mRNA is translated to yield protein.</Comment>
+    <BiopaxRef>bcd</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="697.0" Y="402.0" />
+      <Point X="765.0" Y="499.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="c8b19" />
+      <Anchor Position="0.99" Shape="None" GraphId="be91b" />
+      <Anchor Position="0.5" Shape="None" GraphId="bb899" />
+      <Anchor Position="0.5" Shape="None" GraphId="e7d37" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560491" />
+  </Interaction>
+  <Interaction GraphId="b2774">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="b921c" RelX="1.0" RelY="-0.02857142857142857" />
+      <Point X="1268.0" Y="1245.0" GraphRef="adec1" RelX="145.5" RelY="38.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560473" />
+  </Interaction>
+  <Interaction GraphId="b2da2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="546.0" Y="1127.0" GraphRef="d3e68" RelX="1.5799999999999272" RelY="-0.5299999999999727" />
+      <Point X="555.0" Y="1161.0" GraphRef="b921c" RelX="-1.0" RelY="-0.02857142857142857" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="b2f1d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="b921c" RelX="1.0" RelY="-0.02857142857142857" />
+      <Point X="1272.0" Y="1270.0" GraphRef="ce762" RelX="156.0" RelY="3.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560498" />
+  </Interaction>
+  <Interaction GraphId="b3c96">
+    <Comment Source="Reactome">The  LPL gene is transcribed to yield mRNA and the mRNA is translated to yield protein.</Comment>
+    <BiopaxRef>bcd</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="904.0" Y="1263.0" />
+      <Point X="1328.0" Y="1271.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="d6a1c" />
+      <Anchor Position="0.99" Shape="None" GraphId="e8f83" />
+      <Anchor Position="0.5" Shape="None" GraphId="ce762" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560498" />
+  </Interaction>
+  <Interaction GraphId="b5349">
+    <Comment Source="Reactome">Increased expression of KLF5 occurs after activation of the transcription factors CEBPB and CEBPD during differentiation and activation of KLF5 depends on CEBPB and CEBPD. Both CEBPB and CEBPD bind the promoter of the KLF5 gene upstream of the site of transcription initiation and activate transcription of KLF5.</Comment>
+    <BiopaxRef>cd3</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="375.0" Y="289.0" />
+      <Point X="435.0" Y="317.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="ac96a" />
+      <Anchor Position="0.99" Shape="None" GraphId="d5428" />
+      <Anchor Position="0.5" Shape="None" GraphId="b8121" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381377" />
+  </Interaction>
+  <Interaction GraphId="b5c41">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="fbec3" RelX="-6.962264150943396" RelY="38.9" />
+      <Point X="1088.0" Y="809.0" GraphRef="c4928" RelX="46.0" RelY="49.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560510" />
+  </Interaction>
+  <Interaction GraphId="b61fd">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="687.0" Y="425.0" GraphRef="a8c16" RelX="0.9764705882352941" RelY="-0.0196078431372549" />
+      <Point X="697.0" Y="402.0" GraphRef="c8b19" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560491" />
+  </Interaction>
+  <Interaction GraphId="b658d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1296.0" Y="201.0" GraphRef="c84ea" RelX="-0.8360655737704918" RelY="-4.2" />
+      <Point X="718.0" Y="448.0" GraphRef="bb899" RelX="-13.0" RelY="-2.5" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560491" />
+  </Interaction>
+  <Interaction GraphId="b7f18">
+    <Comment Source="Reactome">The Perilipin (PLIN) gene is transcribed to yield mRNA and the mRNA is translated to yield protein. Expression of Perilipin is upregulated during adipogenesis.</Comment>
+    <BiopaxRef>bcd</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="964.0" Y="820.0" />
+      <Point X="1113.0" Y="858.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="e1431" />
+      <Anchor Position="0.99" Shape="None" GraphId="a386b" />
+      <Anchor Position="0.5" Shape="None" GraphId="f356a" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560493" />
+  </Interaction>
+  <Interaction GraphId="b815e">
+    <Comment Source="Reactome">The gene encoding transcription factor EBF1 is transcribed to yield mRNA and the mRNA is translated to yield protein in pre-adipocytes and adipocytes. Transcription of EBF1 is enhanced by CEBPB and CEBPD, which bind the EBF1 promoter.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="412.0" Y="193.0" />
+      <Point X="588.0" Y="291.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="e5323" />
+      <Anchor Position="0.99" Shape="None" GraphId="ce595" />
+      <Anchor Position="0.5" Shape="None" GraphId="eb92b" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-977271" />
+  </Interaction>
+  <Interaction GraphId="b8363">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="929.0" Y="1098.0" GraphRef="dd409" RelX="1.0" RelY="-0.0196078431372549" />
+      <Point X="938.0" Y="1075.0" GraphRef="ad69b" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560517" />
+  </Interaction>
+  <Interaction GraphId="b89d6">
+    <Comment Source="Reactome">The Adiponectin gene is transcribed to yield mRNA and the mRNA is translated to yield protein. Expression of Adiponectin is upregulated during adipogenesis by C/EBPalpha (CEBPA), PPARG, and CEBPB (Segawa et al. 2009, Qiao et al. 2005, Iwaki et al. 2003, Kita et al. 2005).</Comment>
+    <BiopaxRef>bed</BiopaxRef>
+    <BiopaxRef>bcf</BiopaxRef>
+    <BiopaxRef>b9a</BiopaxRef>
+    <BiopaxRef>f1f</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="971.0" Y="400.0" />
+      <Point X="1394.0" Y="718.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="c998e" />
+      <Anchor Position="0.99" Shape="None" GraphId="c335c" />
+      <Anchor Position="0.5" Shape="None" GraphId="d68d5" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183058" />
+  </Interaction>
+  <Interaction GraphId="b8bbf">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="351.0" Y="859.0" GraphRef="bec51" RelX="0.0" RelY="1.0" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="b94ed">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="154.0" Y="1139.0" GraphRef="eebce" RelX="1.0" RelY="0.0" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="bb038">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="300.0" Y="666.0" GraphRef="dd0cc" RelX="0.0" RelY="0.7400000000000091" />
+      <Point X="300.0" Y="669.0" GraphRef="c6a54" RelX="-0.0051813471502590676" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381262" />
+  </Interaction>
+  <Interaction GraphId="bb5e1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1296.0" Y="201.0" />
+      <Point X="354.0" Y="483.0" GraphRef="c30bd" RelX="1.5" RelY="41.0" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="bd58c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="392.0" Y="334.0" GraphRef="f7fae" RelX="-9.675" RelY="-12.586206896551724" />
+      <Point X="354.0" Y="483.0" GraphRef="e24c4" RelX="1.5" RelY="41.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="bdd3d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="a81c8" RelX="-1.3120567375886525" RelY="0.29411764705882354" />
+      <Point X="1139.0" Y="1125.0" GraphRef="aad73" RelX="68.0" RelY="26.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560517" />
+  </Interaction>
+  <Interaction GraphId="bde87">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1296.0" Y="201.0" GraphRef="c3813" RelX="-1.0612244897959184" RelY="-6.785714285714286" />
+      <Point X="718.0" Y="448.0" GraphRef="bb899" RelX="-13.0" RelY="-2.5" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560491" />
+  </Interaction>
+  <Interaction GraphId="bdebd">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="670.0" Y="112.0" GraphRef="f76a3" RelX="-1.0" RelY="0.0" />
+      <Point X="570.0" Y="123.0" GraphRef="f6b2c" RelX="24.5" RelY="-4.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381337" />
+  </Interaction>
+  <Interaction GraphId="bded6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="819.0" Y="516.0" />
+      <Point X="1394.0" Y="551.0" GraphRef="d68d5" RelX="211.5" RelY="-8.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183058" />
+  </Interaction>
+  <Interaction GraphId="be85a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="347.0" Y="268.0" GraphRef="ac7c8" RelX="0.9726027397260274" RelY="-0.034482758620689655" />
+      <Point X="431.0" Y="289.0" GraphRef="b8121" RelX="26.0" RelY="-14.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381377" />
+  </Interaction>
+  <Interaction GraphId="bed03">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="660.0" Y="1144.0" />
+      <Point X="718.0" Y="448.0" GraphRef="e7d37" RelX="-13.0" RelY="-2.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560491" />
+  </Interaction>
+  <Interaction GraphId="c0718">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="392.0" Y="334.0" GraphRef="dbce7" RelX="-4.615384615384615" RelY="10.866666666666667" />
+      <Point X="354.0" Y="483.0" GraphRef="e24c4" RelX="1.5" RelY="41.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="c0995">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="341.0" Y="385.0" GraphRef="a3d8c" RelX="1.0" RelY="-0.0196078431372549" />
+      <Point X="350.0" Y="362.0" GraphRef="af8d0" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="c1052">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="961.0" Y="423.0" GraphRef="b48c0" RelX="0.978021978021978" RelY="-0.0196078431372549" />
+      <Point X="971.0" Y="400.0" GraphRef="c998e" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183058" />
+  </Interaction>
+  <Interaction GraphId="c1085">
+    <Comment Source="Reactome">The Platelet glycoprotein IV gene (CD36, PAS IV, GPIV) is transcribed to yield mRNA and the mRNA is translated to yield proteind.</Comment>
+    <BiopaxRef>bcd</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="938.0" Y="1075.0" />
+      <Point X="1204.0" Y="1123.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="ad69b" />
+      <Anchor Position="0.99" Shape="None" GraphId="d0b11" />
+      <Anchor Position="0.5" Shape="None" GraphId="aad73" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560517" />
+  </Interaction>
+  <Interaction GraphId="c2000">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="355.0" Y="522.0" GraphRef="a1d9d" RelX="0.05000000000001137" RelY="1.6000000000000227" />
+      <Point X="356.0" Y="525.0" GraphRef="ac071" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="c25fd">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="972.0" Y="512.0" GraphRef="bf6d7" RelX="0.9789473684210527" RelY="-0.015384615384615385" />
+      <Point X="982.0" Y="482.0" GraphRef="e827d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183032" />
+  </Interaction>
+  <Interaction GraphId="c3221">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1099.0" Y="940.0" GraphRef="e0208" RelX="1.3900000000001" RelY="0.5499999999999545" />
+      <Point X="1102.0" Y="942.0" GraphRef="bb42d" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560472" />
+  </Interaction>
+  <Interaction GraphId="c40d4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="546.0" Y="1127.0" GraphRef="d3e68" RelX="1.5799999999999272" RelY="-0.5299999999999727" />
+      <Point X="490.0" Y="692.0" GraphRef="a8495" RelX="-0.012345679012345678" RelY="0.92" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="c4c70">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="392.0" Y="334.0" GraphRef="da88f" RelX="-6.205479452054795" RelY="2.076923076923077" />
+      <Point X="354.0" Y="483.0" GraphRef="e24c4" RelX="1.5" RelY="41.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="c5d6f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="b921c" RelX="1.0" RelY="-0.02857142857142857" />
+      <Point X="1079.0" Y="857.0" GraphRef="f356a" RelX="40.5" RelY="18.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560493" />
+  </Interaction>
+  <Interaction GraphId="c66ad">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="163.0" Y="1192.0" GraphRef="fa70c" RelX="0.9775280898876404" RelY="-0.04" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="c7cf0">
+    <Comment Source="Reactome">PPARG can be activated in cell cultures by adding ligands such as polyunsaturated fatty acids and certain prostanoids (prostaglandins). Endogenous fatty acids are relatively poor activators. Which ligands are most responsible for PPARG activation in the body has not yet been established. Generally, oxidized fatty acids such as 9(S')-hydroxyoctadeca-10,12-dienoic acid (9(S')-HODE) and 13(S')-HODE are more effective activators than are endogenous fatty acids. The thiazolidinedione (TZD) class of antidiabetic drugs are agonist ligands for PPARG (Lambe and Tugwood 1996).&lt;br&gt;FABP4 delivers ligands to PPARG directly. Binding of activator ligands to PPARG causes loss of corepressors such as SMRT/NCoR2, NCoR1, and HDAC3 and gain of interactions with the basal transcription machinery (Yoo et al. 2006). The TRAP220/MED1/DRIP205 subunit of the TRAP/Mediator (DRIP) complex binds directly to the LXXLL motif of PPARG and TRAP/Mediator is necessary for full transcriptional activation of target genes (Ge et al. 2008). PPARG also interacts with the MED14 subunit of the Mediator complex (Grontved et al. 2010).&lt;br&gt;Other coactivators, including NCOA1/SRC-1, NCOA2/TIF2/GRIP1, CBP, HAT/p300, and PRIP,  interact with PPARG in a ligand-dependent way and enhance transcription (Gellman et al. 1999, Wallberg et al. 2003, Yang et al. 2000, Ge et al. 2002, Puigserver et al. 1999, Bugge et al. 2009, Steger et al. 2010).&lt;br&gt;The target genes of PPARG encode proteins involved in adipocyte differentiation (PGAR/ANGPTL4, PLIN, and aP2/FABP4), carbohydrate metabolism (PEPCK-C), and fatty acid transport (FAT/CD36, LPL).</Comment>
+    <BiopaxRef>c85</BiopaxRef>
+    <BiopaxRef>da0</BiopaxRef>
+    <BiopaxRef>d87</BiopaxRef>
+    <BiopaxRef>cd3</BiopaxRef>
+    <BiopaxRef>d65</BiopaxRef>
+    <BiopaxRef>e6b</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="388.0" Y="1180.0" />
+      <Point X="546.0" Y="1127.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="b43a7" />
+      <Anchor Position="0.99" Shape="None" GraphId="d3e68" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="c9463">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="450.0" Y="680.0" GraphRef="a8495" RelX="-1.0" RelY="-0.04" />
+      <Point X="343.0" Y="756.0" GraphRef="f7d3e" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381290" />
+  </Interaction>
+  <Interaction GraphId="ca386">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="b921c" RelX="1.0" RelY="-0.02857142857142857" />
+      <Point X="1041.0" Y="937.0" GraphRef="d47ac" RelX="11.5" RelY="24.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560472" />
+  </Interaction>
+  <Interaction GraphId="cd8b2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="196.0" Y="1228.0" GraphRef="bbccb" RelX="1.0" RelY="0.0" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="cf099">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1204.0" Y="1123.0" GraphRef="d0b11" RelX="2.6599999999998545" RelY="0.4800000000000182" />
+      <Point X="1207.0" Y="1123.0" GraphRef="bd456" RelX="-1.0" RelY="-0.02857142857142857" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560517" />
+  </Interaction>
+  <Interaction GraphId="cfb1a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="660.0" Y="1144.0" GraphRef="b921c" RelX="0.0" RelY="-1.0" />
+      <Point X="718.0" Y="448.0" GraphRef="e7d37" RelX="-13.0" RelY="-2.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560491" />
+  </Interaction>
+  <Interaction GraphId="d2263">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1394.0" Y="718.0" GraphRef="c335c" RelX="4.230000000000018" RelY="3.1800000000000637" />
+      <Point X="1394.0" Y="721.0" GraphRef="bac79" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183058" />
+  </Interaction>
+  <Interaction GraphId="d3ec6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1296.0" Y="201.0" />
+      <Point X="354.0" Y="483.0" GraphRef="c30bd" RelX="1.5" RelY="41.0" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="d48ae">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="b921c" RelX="1.0" RelY="-0.02857142857142857" />
+      <Point X="1164.0" Y="644.0" GraphRef="b36bf" RelX="49.5" RelY="5.5" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183003" />
+  </Interaction>
+  <Interaction GraphId="d5b18">
+    <Comment Source="Reactome">Expression of the CEBPB and CEBPD transcription factors is induced by at least three factors:&lt;br&gt;1) Mitogens such as those present in fetal serum act via the Krox20 transcription factor to activate expression of CEBPB.&lt;br&gt;2) Glucocorticoids activate expression of CEBPD.&lt;br&gt;3) Hormones or drugs that increase intracellular cAMP act via pCREB to activate expression of CEBPB.&lt;br&gt; The detailed mechanisms of activation are not yet known.</Comment>
+    <BiopaxRef>cd3</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="520.0" Y="102.0" />
+      <Point X="571.0" Y="153.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="bdb92" />
+      <Anchor Position="0.99" Shape="None" GraphId="f113d" />
+      <Anchor Position="0.5" Shape="None" GraphId="f6b2c" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381337" />
+  </Interaction>
+  <Interaction GraphId="d5e01">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="275.0" Y="939.0" GraphRef="bc9b1" RelX="0.9884393063583815" RelY="0.0" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="d7084">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="392.0" Y="334.0" GraphRef="f1e7f" RelX="-1.0" RelY="-0.034482758620689655" />
+      <Point X="354.0" Y="483.0" GraphRef="e24c4" RelX="1.5" RelY="41.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="d76ef">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="819.0" Y="516.0" GraphRef="f7fae" RelX="1.0" RelY="-0.034482758620689655" />
+      <Point X="1394.0" Y="551.0" GraphRef="d68d5" RelX="211.5" RelY="-8.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183058" />
+  </Interaction>
+  <Interaction GraphId="d79d9">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="951.0" Y="908.0" GraphRef="e0dd1" RelX="1.0" RelY="-0.0196078431372549" />
+      <Point X="960.0" Y="885.0" GraphRef="e3912" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560472" />
+  </Interaction>
+  <Interaction GraphId="d8018">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="546.0" Y="1127.0" GraphRef="d3e68" RelX="1.5799999999999272" RelY="-0.5299999999999727" />
+      <Point X="487.0" Y="638.0" GraphRef="b6336" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="d8be3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="317.0" Y="538.0" GraphRef="ac071" RelX="-1.0" RelY="-0.037037037037037035" />
+      <Point X="300.0" Y="592.0" GraphRef="aab2d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381262" />
+  </Interaction>
+  <Interaction GraphId="d9bf8">
+    <Comment Source="Reactome">PPARG binds the Retinoic acid X Receptor RXRA to form a heterodimer that has transcriptional acivation activity. The complex was initially called ARF6 when discovered. PPARG binds RXRA via the C-terminus and AF-2 regions of PPARG.</Comment>
+    <BiopaxRef>c9f</BiopaxRef>
+    <BiopaxRef>ed3</BiopaxRef>
+    <BiopaxRef>cd3</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="300.0" Y="592.0" />
+      <Point X="300.0" Y="666.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="aab2d" />
+      <Anchor Position="0.99" Shape="None" GraphId="dd0cc" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381262" />
+  </Interaction>
+  <Interaction GraphId="da007">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="403.0" Y="216.0" GraphRef="fe85c" RelX="1.0" RelY="-0.0196078431372549" />
+      <Point X="412.0" Y="193.0" GraphRef="e5323" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-977271" />
+  </Interaction>
+  <Interaction GraphId="dad40">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="365.0" Y="312.0" GraphRef="e6af0" RelX="0.9726027397260274" RelY="-0.0196078431372549" />
+      <Point X="375.0" Y="289.0" GraphRef="ac96a" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381377" />
+  </Interaction>
+  <Interaction GraphId="dbff4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="307.0" Y="549.0" GraphRef="b6098" RelX="1.0" RelY="-0.034482758620689655" />
+      <Point X="300.0" Y="592.0" GraphRef="aab2d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381262" />
+  </Interaction>
+  <Interaction GraphId="dc5a7">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1323.0" Y="1229.0" GraphRef="bfa64" RelX="4.009999999999991" RelY="0.4500000000000455" />
+      <Point X="1326.0" Y="1220.0" GraphRef="a536f" RelX="-1.0" RelY="-0.03225806451612903" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560473" />
+  </Interaction>
+  <Interaction GraphId="dece3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="913.0" Y="1207.0" GraphRef="ae901" RelX="1.0" RelY="-0.0196078431372549" />
+      <Point X="922.0" Y="1184.0" GraphRef="f5ffb" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560473" />
+  </Interaction>
+  <Interaction GraphId="e0143">
+    <Comment Source="Reactome">The FABP4 gene is transcribed to yield mRNA and the mRNA is translated to yield protein. Expression of FABP4 is activated during adipogenesis.</Comment>
+    <BiopaxRef>b39</BiopaxRef>
+    <BiopaxRef>a9d</BiopaxRef>
+    <BiopaxRef>c6c</BiopaxRef>
+    <BiopaxRef>db4</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="970.0" Y="710.0" />
+      <Point X="1114.0" Y="810.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="c2f34" />
+      <Anchor Position="0.99" Shape="None" GraphId="abedb" />
+      <Anchor Position="0.5" Shape="None" GraphId="c4928" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560510" />
+  </Interaction>
+  <Interaction GraphId="e2f39">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="392.0" Y="334.0" GraphRef="d3db4" RelX="-2.263157894736842" RelY="-3.32" />
+      <Point X="354.0" Y="483.0" GraphRef="e24c4" RelX="1.5" RelY="41.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="e5360">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="422.0" Y="1260.0" GraphRef="ca473" RelX="1.0" RelY="0.0" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="e541e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="468.0" Y="846.0" GraphRef="bec51" RelX="1.0" RelY="0.0" />
+      <Point X="1117.0" Y="603.0" GraphRef="b3338" RelX="24.5" RelY="59.0" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183032" />
+  </Interaction>
+  <Interaction GraphId="ea8f2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="a81c8" RelX="-1.3120567375886525" RelY="0.29411764705882354" />
+      <Point X="1268.0" Y="1245.0" GraphRef="adec1" RelX="145.5" RelY="38.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560473" />
+  </Interaction>
+  <Interaction GraphId="ebff0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1203.0" Y="606.0" GraphRef="acb3d" RelX="2.2100000000000364" RelY="1.240000000000009" />
+      <Point X="1206.0" Y="608.0" GraphRef="cbd01" RelX="-1.0" RelY="-0.034482758620689655" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183032" />
+  </Interaction>
+  <Interaction GraphId="ed6b1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="392.0" Y="334.0" GraphRef="d60bb" RelX="-3.676056338028169" RelY="-11.347826086956522" />
+      <Point X="354.0" Y="483.0" GraphRef="e24c4" RelX="1.5" RelY="41.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="eed0c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="392.0" Y="334.0" GraphRef="a26c1" RelX="-6.217391304347826" RelY="-3.076923076923077" />
+      <Point X="354.0" Y="483.0" GraphRef="e24c4" RelX="1.5" RelY="41.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="f0f40">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="244.0" Y="231.0" GraphRef="a9f20" RelX="1.0" RelY="-0.0196078431372549" />
+      <Point X="253.0" Y="208.0" GraphRef="f7893" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-977392" />
+  </Interaction>
+  <Interaction GraphId="f180e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1296.0" Y="201.0" GraphRef="b33f1" RelX="-1.0" RelY="-0.043478260869565216" />
+      <Point X="354.0" Y="483.0" GraphRef="c30bd" RelX="1.5" RelY="41.0" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="f2514">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1328.0" Y="1271.0" GraphRef="e8f83" RelX="4.240000000000009" RelY="0.07999999999992724" />
+      <Point X="1331.0" Y="1273.0" GraphRef="d0dfb" RelX="-1.0" RelY="-0.03225806451612903" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560498" />
+  </Interaction>
+  <Interaction GraphId="f2d16">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="588.0" Y="291.0" GraphRef="ce595" RelX="1.759999999999991" RelY="0.9800000000000182" />
+      <Point X="582.0" Y="307.0" GraphRef="da88f" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-977271" />
+  </Interaction>
+  <Interaction GraphId="f2e4d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="145.0" Y="1091.0" GraphRef="dbb18" RelX="0.974025974025974" RelY="-0.04" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="f3805">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="765.0" Y="1161.0" GraphRef="b921c" RelX="1.0" RelY="-0.02857142857142857" />
+      <Point X="1088.0" Y="809.0" GraphRef="c4928" RelX="46.0" RelY="49.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560510" />
+  </Interaction>
+  <Interaction GraphId="f381d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="961.0" Y="733.0" GraphRef="f9233" RelX="1.0" RelY="-0.0196078431372549" />
+      <Point X="970.0" Y="710.0" GraphRef="c2f34" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560510" />
+  </Interaction>
+  <Interaction GraphId="f383d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="392.0" Y="334.0" GraphRef="f116f" RelX="5.224719101123595" RelY="-12.28" />
+      <Point X="354.0" Y="483.0" GraphRef="e24c4" RelX="1.5" RelY="41.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="f3c9e">
+    <Comment Source="Reactome">The transcription factors CEBPB, CEBPD, and KLF5 simultaneously bind the PPARG promoter and synergistically activate transcription of the PPARG gene. These three factors activate transcription after initial stimulation of adipocyte differentiation but then are replaced by CEBPA within 10 days. CEBPA and other factors may be responsible for long term maintenance of PPARG expression and the differentiated state.&lt;br&gt;Pre-adipose tissue contains both the widely expressed PPARG isoform 1 mRNA and  the more tissue-specific PPARG isoform 2. The PPARG isoform 2 mRNA is translated to yield PPARG isoform 2 protein, which has 505 amino acid residues (57 KDa) and is the longest of the 4 observed variants. Isoform 2 is specific to preadipose and adipose tissue (Mukherjee et al. 1997). Confusingly, the longest variant is called isoform 1 in some publications.&lt;br&gt;In mouse, by 10 days after induction of adipocyte differentiation Cebpa, but neither Cebpb nor Cebpd, is detectable at the Pparg promoter. While adipocyte differentiation can proceed without Cebpa, adipocytes differentiated from Cebpa-knockout cells are insulin insensitive due to a defect in Glut4 (Slc2a4) vesicle trafficking.&lt;br&gt;The adipogenesis regulatory factor (ADIRF, aka AFRO, APM2, C10orf116) promotes adipogenic differentiation and stimulates transcription initiation of master adipogenesis factors like PPARG and CEBPA (Ni et al. 2013).</Comment>
+    <BiopaxRef>d87</BiopaxRef>
+    <BiopaxRef>ea6</BiopaxRef>
+    <BiopaxRef>cd3</BiopaxRef>
+    <BiopaxRef>a5b</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="350.0" Y="362.0" />
+      <Point X="355.0" Y="522.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="af8d0" />
+      <Anchor Position="0.99" Shape="None" GraphId="a1d9d" />
+      <Anchor Position="0.5" Shape="None" GraphId="c30bd" />
+      <Anchor Position="0.5" Shape="None" GraphId="e24c4" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381283" />
+  </Interaction>
+  <Interaction GraphId="f4de3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="819.0" Y="516.0" GraphRef="dbce7" RelX="6.333333333333333" RelY="23.0" />
+      <Point X="1394.0" Y="551.0" GraphRef="d68d5" RelX="211.5" RelY="-8.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183058" />
+  </Interaction>
+  <Interaction GraphId="f517b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="511.0" Y="125.0" GraphRef="ddbce" RelX="1.0" RelY="-0.0196078431372549" />
+      <Point X="520.0" Y="102.0" GraphRef="bdb92" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381337" />
+  </Interaction>
+  <Interaction GraphId="f6876">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="194.0" Y="981.0" GraphRef="d171c" RelX="0.9701492537313433" RelY="0.0" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="f6de9">
+    <Comment Source="Reactome">The ANGPTL4 gene is transcribed to yield mRNA and the mRNA is translated to yield protein.</Comment>
+    <BiopaxRef>c01</BiopaxRef>
+    <BiopaxRef>dc2</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="922.0" Y="1184.0" />
+      <Point X="1323.0" Y="1229.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="f5ffb" />
+      <Anchor Position="0.99" Shape="None" GraphId="bfa64" />
+      <Anchor Position="0.5" Shape="None" GraphId="adec1" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560473" />
+  </Interaction>
+  <Interaction GraphId="f8466">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="670.0" Y="112.0" GraphRef="c6fb3" RelX="-3.2758620689655173" RelY="-2.4285714285714284" />
+      <Point X="570.0" Y="123.0" GraphRef="f6b2c" RelX="24.5" RelY="-4.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381337" />
+  </Interaction>
+  <Interaction GraphId="f84f2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="349.0" Y="830.0" GraphRef="de910" RelX="0.060000000000002274" RelY="0.7400000000000091" />
+      <Point X="351.0" Y="833.0" GraphRef="bec51" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381290" />
+  </Interaction>
+  <Interaction GraphId="f8b13">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="171.0" Y="1012.0" GraphRef="d1f76" RelX="1.0" RelY="0.0" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Interaction GraphId="f9ed4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="533.0" Y="171.0" GraphRef="ac7c8" RelX="6.068493150684931" RelY="-6.724137931034483" />
+      <Point X="469.0" Y="241.0" GraphRef="eb92b" RelX="-31.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-977271" />
+  </Interaction>
+  <Interaction GraphId="f9f18">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="819.0" Y="516.0" GraphRef="f7fae" RelX="1.0" RelY="-0.034482758620689655" />
+      <Point X="1164.0" Y="644.0" GraphRef="a10f0" RelX="49.5" RelY="5.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183003" />
+  </Interaction>
+  <Interaction GraphId="fb1db">
+    <Comment Source="Reactome">The PEPCK-C gene is transcribed to yield mRNA and the mRNA is translated to yield protein.</Comment>
+    <BiopaxRef>bcd</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="960.0" Y="885.0" />
+      <Point X="1099.0" Y="940.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="e3912" />
+      <Anchor Position="0.99" Shape="None" GraphId="e0208" />
+      <Anchor Position="0.5" Shape="None" GraphId="d47ac" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-560472" />
+  </Interaction>
+  <Interaction GraphId="fcd88">
+    <Comment Source="Reactome">The PPARG:RXRA heterodimer binds specific the PPRE element, two 6-bp DR-1 motifs separated by 1 nucleotide, in the promoters of target genes such as aP2/FABP4 even in the absence of fatty acid ligands that activate PPARG. When activating ligands of PPARG are absent PPARG:RXRA recruits corepressors such as NCoR2(SMRT), NCoR, and HDAC3 to maintain the target gene in an inactive state.</Comment>
+    <BiopaxRef>d65</BiopaxRef>
+    <BiopaxRef>cd3</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="343.0" Y="756.0" />
+      <Point X="349.0" Y="830.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="f7d3e" />
+      <Anchor Position="0.99" Shape="None" GraphId="de910" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381290" />
+  </Interaction>
+  <Interaction GraphId="fd15f">
+    <Comment Source="Reactome">The GLUT4 (SLC2A4) gene is transcribed to yield mRNA and the mRNA is translated to yield protein.</Comment>
+    <BiopaxRef>e0d</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="982.0" Y="482.0" />
+      <Point X="1203.0" Y="606.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="e827d" />
+      <Anchor Position="0.99" Shape="None" GraphId="acb3d" />
+      <Anchor Position="0.5" Shape="None" GraphId="b3338" />
+      <Anchor Position="0.5" Shape="None" GraphId="b746c" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-1183032" />
+  </Interaction>
+  <Interaction GraphId="ffcb9">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="300.0" Y="697.0" GraphRef="c6a54" RelX="-0.0051813471502590676" RelY="1.0" />
+      <Point X="343.0" Y="756.0" GraphRef="f7d3e" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381290" />
+  </Interaction>
+  <Interaction GraphId="ffee5">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="157.0" Y="1048.0" GraphRef="b89fb" RelX="0.9753086419753086" RelY="-0.04" />
+      <Point X="388.0" Y="1180.0" GraphRef="b43a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-381309" />
+  </Interaction>
+  <Label TextLabel="cytosol" GraphId="bcf60" GroupRef="e9f04">
+    <Graphics CenterX="68.5" CenterY="1325.5" Width="59.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="lipid droplet" GraphId="e8a90" GroupRef="d0550">
+    <Graphics CenterX="1108.5" CenterY="891.5" Width="91.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="nucleoplasm" GraphId="fccec" GroupRef="a9319">
+    <Graphics CenterX="114.0" CenterY="1277.5" Width="92.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="a6360" GroupRef="d0550">
+    <Graphics CenterX="1130.0" CenterY="821.5" Width="160.0" Height="201.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="aefe5" GroupRef="e9f04">
+    <Graphics CenterX="645.0" CenterY="689.0" Width="1242.0" Height="1336.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="afd93" GroupRef="a9319">
+    <Graphics CenterX="520.5" CenterY="702.5" Width="937.0" Height="1249.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="e7453" GraphId="ae1da" Style="Complex">
+    <Attribute Key="complex_id" Value="R-HSA-400154" />
+  </Group>
+  <Group GroupId="e2120" GraphId="b73f7" Style="Complex">
+    <Attribute Key="complex_id" Value="R-HSA-556786" />
+  </Group>
+  <Group GroupId="fdf01" GraphId="bcc41">
+    <Attribute Key="complex_id" Value="R-HSA-976184" />
+  </Group>
+  <Group GroupId="e9f04" GraphId="c0b0f" Style="Group" />
+  <Group GroupId="d7c33" GraphId="c1c2d" Style="Complex">
+    <Attribute Key="complex_id" Value="R-HSA-381281" />
+  </Group>
+  <Group GroupId="d0550" GraphId="c9049" Style="Group" />
+  <Group GroupId="ad77f" GraphId="ca94a" Style="Complex">
+    <Attribute Key="complex_id" Value="R-HSA-2026090" />
+  </Group>
+  <Group GroupId="fe106" GraphId="d1c86" Style="Complex">
+    <Attribute Key="complex_id" Value="R-HSA-70384" />
+  </Group>
+  <Group GroupId="a51b4" GraphId="e8df9">
+    <Attribute Key="complex_id" Value="R-HSA-1655734" />
+  </Group>
+  <Group GroupId="bf6f1" GraphId="e9261" Style="Complex">
+    <Attribute Key="complex_id" Value="R-HSA-381367" />
+  </Group>
+  <Group GroupId="a9319" GraphId="f0d1a" Style="Group" />
+  <Group GroupId="bba13" GraphId="f3cdb" Style="Complex">
+    <Attribute Key="complex_id" Value="R-HSA-194047" />
+  </Group>
+  <Group GroupId="dfc2b" GraphId="fd57a" Style="Complex">
+    <Attribute Key="complex_id" Value="R-HSA-381226" />
+  </Group>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d44">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17139329</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Adipocyte differentiation from the inside out.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rosen ED, MacDougald OA.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ea6">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11872672</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional differences in the response of human pre-adipocytes to PPARgamma and RXRalpha agonists.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sewter CP, Blows F, Vidal-Puig A, O'Rahilly S.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ed3">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17980149</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Effect of heterodimer partner RXRalpha on PPARgamma activation function-2 helix in solution.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lu J, Chen M, Stanley SE, Li E.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b9a">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12829629</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Induction of adiponectin, a fat-derived antidiabetic and antiatherogenic factor, by nuclear receptors.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Iwaki M, Matsuda M, Maeda N, Funahashi T, Matsuzawa Y, Makishima M, Shimomura I.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b3b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20054179</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human SGBS cells - a unique tool for studies of human fat cell biology.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fischer-Posovszky P, Newell FS, Wabitsch M, Tornqvist HE.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cfa">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1840554</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regulated expression of three C/EBP isoforms during adipose conversion of 3T3-L1 cells.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cao Z, Umek RM, McKnight SL.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ace">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1562197</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mammalian facilitative glucose transporter family: structure and molecular regulation.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pessin JE, Bell GI.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bcf">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15919796</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C/EBPalpha regulates human adiponectin gene transcription through an intronic enhancer.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Qiao L, Maclean PS, Schaack J, Orlicky DJ, Darimont C, Pagliassotti M, Friedman JE, Shao J.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="dff">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17060461</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Critical role for Ebf1 and Ebf2 in the adipogenic transcriptional cascade.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jimenez MA, Akerblad P, Sigvardsson M, Rosen ED.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c9f">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19043829</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structure of the intact PPAR-gamma-RXR- nuclear receptor complex on DNA.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chandra V, Huang P, Hamuro Y, Raghuram S, Wang Y, Burris TP, Rastinejad F.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bed">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18931025</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identification of a novel distal enhancer in human adiponectin gene.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Segawa K, Matsuda M, Fukuhara A, Morita K, Okuno Y, Komuro R, Shimomura I.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bfe">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17475546</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PPARgamma in human and mouse physiology.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heikkinen S, Auwerx J, Argmann CA.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d65">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8970730</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Peroxisome proliferator-activated receptors: a nuclear receptor signaling pathway in lipid physiology.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lemberger T, Desvergne B, Wahli W.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a9d">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15273253</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human adipocyte fatty acid-binding protein (aP2) gene promoter-driven reporter assay discriminates nonlipogenic peroxisome proliferator-activated receptor gamma ligands.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rival Y, Stennevin A, Puech L, Rouquette A, Cathala C, Lestienne F, Dupont-Passelaigue E, Patoiseau JF, Wurch T, Junquéro D.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ab7">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16054042</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Krüppel-like transcription factor KLF5 is a key regulator of adipocyte differentiation.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oishi Y, Manabe I, Tobe K, Tsushima K, Shindo T, Fujiu K, Nishimura G, Maemura K, Yamauchi T, Kubota N, Suzuki R, Kitamura T, Akira S, Kadowaki T, Nagai R.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="edf">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9529258</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A cold-inducible coactivator of nuclear receptors linked to adaptive thermogenesis.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Puigserver P, Wu Z, Park CW, Graves R, Wright M, Spiegelman BM.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e2d">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8643605</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The adipocyte specific transcription factor C/EBPalpha modulates human ob gene expression.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Miller SG, De Vos P, Guerre-Millo M, Wong K, Hermann T, Staels B, Briggs MR, Auwerx J.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c6c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20101261</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human fetal mesenchymal stem cells differentiate into brown and white adipocytes: a role for ERRalpha in human UCP1 expression.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morganstein DL, Wu P, Mane MR, Fisk NM, White R, Parker MG.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cd3">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17011499</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transcriptional control of adipocyte formation.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Farmer SR.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f5c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8770873</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thiazolidinediones repress ob gene expression in rodents via activation of peroxisome proliferator-activated receptor gamma.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">De Vos P, Lefebvre AM, Miller SG, Guerre-Millo M, Wong K, Saladin R, Hamann LG, Staels B, Briggs MR, Auwerx J.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d8b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17956727</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developmental origin of fat: tracking obesity to its source.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gesta S, Tseng YH, Kahn CR.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="dfe">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8798390</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CD36 is palmitoylated on both N- and C-terminal cytoplasmic tails.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tao N, Wagner SJ, Lublin DM.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a0f">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21082419</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The generation and the manipulation of human multipotent adipose-derived stem cells.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wdziekonski B, Mohsen-Kanson T, Villageois P, Dani C.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c85">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10075656</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">p300 interacts with the N- and C-terminal part of PPARgamma2 in a ligand-independent and -dependent manner, respectively.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gelman L, Zhou G, Fajas L, Raspé E, Fruchart JC, Auwerx J.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e68">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">24882805</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subunit architecture and functional modular rearrangements of the transcriptional mediator complex.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tsai KL, Tomomori-Sato C, Sato S, Conaway RC, Conaway JW, Asturias FJ.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e6b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19172745</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structural basis for the activation of PPARgamma by oxidized fatty acids.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Itoh T, Fairall L, Amin K, Inaba Y, Szanto A, Balint BL, Nagy L, Yamamoto K, Schwabe JW.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="dc2">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19710929</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Comparative analysis of gene regulation by the transcription factor PPARalpha between mouse and human.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rakhshandehroo M, Hooiveld G, Müller M, Kersten S.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e0d">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8325954</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Insulin-responsive human adipocytes express two glucose transporter isoforms and target them to different vesicles.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pilch PF, Wilkinson W, Garvey WT, Ciaraldi TP, Hueckstaedt TP, Olefsky JM.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bcd">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16380219</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identification of novel PPARgamma target genes in primary human adipocytes.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Perera RJ, Marcusson EG, Koo S, Kang X, Kim Y, White N, Dean NM.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d87">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9065481</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identification, characterization, and tissue distribution of human peroxisome proliferator-activated receptor (PPAR) isoforms PPARgamma2 versus PPARgamma1 and activation with retinoid X receptor agonists and antagonists.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mukherjee R, Jow L, Croston GE, Paterniti JR.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b39">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19115207</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A-FABP, a candidate progression marker of human transitional cell carcinoma of the bladder, is differentially regulated by PPAR in urothelial cancer cells.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Boiteux G, Lascombe I, Roche E, Plissonnier ML, Clairotte A, Bittard H, Fauconnet S.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="eb0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12213831</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Leptin gene expression in human preadipocytes is switched on by maturation-induced demethylation of distinct CpGs in its proximal promoter.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Melzner I, Scott V, Dorsch K, Fischer P, Wabitsch M, Brüderlein S, Hasel C, Möller P.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f37">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7531665</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cascade regulation of terminal adipocyte differentiation by three members of the C/EBP family of leucine zipper proteins.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yeh WC, Cao Z, Classon M, McKnight SL.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d7b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15860371</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PPARs: therapeutic targets for metabolic disease.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Berger JP, Akiyama TE, Meinke PT.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a2c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17138671</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quantitative proteomic analysis of distinct mammalian Mediator complexes using normalized spectral abundance factors.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Paoletti AC, Parmely TJ, Tomomori-Sato C, Sato S, Zhu D, Conaway RC, Conaway JW, Florens L, Washburn MP.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="db4">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10425206</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PPARgamma activation induces the expression of the adipocyte fatty acid binding protein gene in human monocytes.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pelton PD, Zhou L, Demarest KT, Burris TP.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f1f">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15850785</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identification of the promoter region required for human adiponectin gene transcription: Association with CCAAT/enhancer binding protein-beta and tumor necrosis factor-alpha.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kita A, Yamasaki H, Kuwahara H, Moriuchi A, Fukushima K, Kobayashi M, Fukushima T, Takahashi R, Abiru N, Uotani S, Kawasaki E, Eguchi K.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d73">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15175163</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A set of consensus mammalian mediator subunits identified by multidimensional protein identification technology.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sato S, Tomomori-Sato C, Parmely TJ, Florens L, Zybailov B, Swanson SK, Banks CA, Jin J, Cai Y, Washburn MP, Conaway JW, Conaway RC.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c1a">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10603305</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Role of the CCAAT enhancer binding proteins (C/EBPs) in adipocyte differentiation.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lane MD, Tang QQ, Jiang MS.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="da0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8706692</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A human peroxisome-proliferator-activated receptor-gamma is activated by inducers of adipogenesis, including thiazolidinedione drugs.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lambe KG, Tugwood JD.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f9e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18518822</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fat and beyond: the diverse biology of PPARgamma.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tontonoz P, Spiegelman BM.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a17">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7838715</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Adipocyte-specific transcription factor ARF6 is a heterodimeric complex of two nuclear hormone receptors, PPAR gamma and RXR alpha.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tontonoz P, Graves RA, Budavari AI, Erdjument-Bromage H, Lui M, Hu E, Tempst P, Spiegelman BM.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c94">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10713165</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A tissue-specific coactivator of steroid receptors, identified in a functional genetic screen.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Knutti D, Kaul A, Kralli A.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a5b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23239344</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Novel pro-adipogenesis factor abundant in adipose tissues and over-expressed in obesity acts upstream of PPARγ and C/EBPα.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ni Y, Ji C, Wang B, Qiu J, Wang J, Guo X.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b6d">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9312141</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DNA binding properties of peroxisome proliferator-activated receptor subtypes on various natural peroxisome proliferator response elements. Importance of the 5'-flanking region.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Juge-Aubry C, Pernin A, Favez T, Burger AG, Wahli W, Meier CA, Desvergne B.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c01">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19934321</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Activating peroxisome proliferator-activated receptor gamma mutant promotes tumor growth in vivo by enhancing angiogenesis.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tian L, Zhou J, Casimiro MC, Liang B, Ojeifo JO, Wang M, Hyslop T, Wang C, Pestell RG.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">regulatory pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000004</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

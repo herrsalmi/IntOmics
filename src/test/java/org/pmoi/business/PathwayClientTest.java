@@ -8,13 +8,14 @@ class PathwayClientTest {
 
     @Test
     void getPathway() {
-        PathwayClient pathwayClient = new PathwayClient();
-        pathwayClient.getPathways("IGF2").forEach(System.out::println);
+        PathwayClient pathwayClient = PathwayClient.getInstance();
+        System.out.println(pathwayClient.getPathways("GC").size());
+        pathwayClient.close();
     }
 
     @Test
     void KEGGSearch() {
-        PathwayClient pathwayClient = new PathwayClient();
+        PathwayClient pathwayClient = PathwayClient.getInstance();
         assertEquals(2, pathwayClient.KEGGSearch("351").size());
         assertEquals("hsa04726  Serotonergic synapse", pathwayClient.KEGGSearch("351").get(0));
         assertEquals("hsa05010  Alzheimer disease", pathwayClient.KEGGSearch("351").get(1));
@@ -26,20 +27,20 @@ class PathwayClientTest {
 
     @Test
     void getPathwayGenes() {
-        PathwayClient pathwayClient = new PathwayClient();
+        PathwayClient pathwayClient = PathwayClient.getInstance();
         assertEquals(295, pathwayClient.getKEGGPathwayGenes("hsa04010").size());
     }
 
     @Test
     void getIntercatorsFromPathway() {
-        PathwayClient pathwayClient = new PathwayClient();
+        PathwayClient pathwayClient = PathwayClient.getInstance();
         var res = pathwayClient.getIntercatorsFromPathway("TGFBR3");
         res.forEach(System.out::println);
     }
 
     @Test
     void getPathwaysForGene() {
-        PathwayClient pathwayClient = new PathwayClient();
+        PathwayClient pathwayClient = PathwayClient.getInstance();
         pathwayClient.getPathwaysForGene("IGF2").forEach(System.out::println);
     }
 }

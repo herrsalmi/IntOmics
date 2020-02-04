@@ -20,7 +20,7 @@ public class EntrezIDMapper {
 
     private BiMap<String, String> internalDB;
     private NCBIQueryClient ncbiQueryClient;
-    private int intialSize;
+    private int initialSize;
 
     private EntrezIDMapper() {
         loadInternalDB();
@@ -38,7 +38,7 @@ public class EntrezIDMapper {
                 e.printStackTrace();
             }
             this.ncbiQueryClient = new NCBIQueryClient();
-            this.intialSize = internalDB.size();
+            this.initialSize = internalDB.size();
         }
     }
 
@@ -79,7 +79,7 @@ public class EntrezIDMapper {
     }
 
     public synchronized void close() {
-        if (internalDB.size() > this.intialSize) {
+        if (internalDB.size() > this.initialSize) {
             try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("internalDB.obj")))) {
                 LOGGER.info("Updating internal database ...");
                 oos.writeObject(internalDB);
