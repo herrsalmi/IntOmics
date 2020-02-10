@@ -1,20 +1,21 @@
 package org.pmoi.models;
 
-import java.util.HashMap;
+import com.google.common.math.DoubleMath;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class Gene extends Feature implements Comparable<Gene>{
 
-    private Map<String, List<Gene>> interactors;
+    private List<GeneSet> geneSets;
 
     public Gene(String line) {
         String[] info = line.split(";");
         this.name = info[0];
         this.fdr = Double.parseDouble(info[1].replace(",", "."));
         this.foldChange = Double.parseDouble(info[2].replace(",", "."));
-        interactors = new HashMap<>();
+        geneSets = new ArrayList<>();
     }
 
     public Gene(int entrezID) {
@@ -28,15 +29,19 @@ public class Gene extends Feature implements Comparable<Gene>{
 
     public Gene(String name, String entrezID, double fdr, double fc) {
         super(name, entrezID, fdr, fc);
-        this.interactors = new HashMap<>();
+        this.geneSets = new ArrayList<>();
     }
 
-    public Map<String, List<Gene>> getInteractors() {
-        return interactors;
+    public List<GeneSet> getGeneSets() {
+        return geneSets;
     }
 
     public void setInteractors(String name, List<Gene> interactors) {
-        this.interactors.put(name, interactors);
+        this.geneSets.add(new GeneSet(name, interactors));
+    }
+
+    public double significanceScore() {
+        return Math.signum(foldChange) * DoubleMath.log2(Math.abs(foldChange)) * (-Math.log10(fdr));
     }
 
     @Override

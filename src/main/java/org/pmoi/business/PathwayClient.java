@@ -6,12 +6,12 @@ import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.pmoi.ApplicationParameters;
-import org.pmoi.handler.HttpConnector;
-import org.pmoi.handler.PathwayResponceHandler;
 import org.pmoi.models.Feature;
 import org.pmoi.models.Gene;
 import org.pmoi.models.Pathway;
 import org.pmoi.models.PathwayResponse;
+import org.pmoi.utils.HttpConnector;
+import org.pmoi.utils.PathwayResponceHandler;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -109,7 +109,7 @@ public class PathwayClient {
                 // compare the number of pathways to the ones on the local database
                 long pathwayCount = pathwayDB.values().stream().filter(l -> l.contains(gene))
                         .count();
-                System.out.println(String.format("Gene: %s. Result size: %d; DB size:%d", gene, result.size(), pathwayCount));
+                //System.out.println(String.format("Gene: %s. Result size: %d; DB size:%d", gene, result.size(), pathwayCount));
                 if (result.size() > pathwayCount) {
                     var pathways = result.stream()
                             .map(e -> {
@@ -127,7 +127,16 @@ public class PathwayClient {
                             })
                             .collect(Collectors.toList());
                     //TODO this call is probably not thread safe
-                    pathways.forEach(p -> pathwayDB.put(p.getName(), p.getGenes().stream().map(Feature::getName).collect(Collectors.toSet())));
+                    // Check if the pathway isn't already present under another form or a subname
+                    pathways.forEach(p -> {
+                        if (!pathwayDB.containsKey(p.getName().replace('/', '-')) &&
+                                pathwayDB.keySet().stream().filter(e -> p.getName().contains(e)).findAny().isEmpty())
+                            pathwayDB.put(p.getName(), p.getGenes().stream().map(Feature::getName).collect(Collectors.toSet()));
+                        else if(pathwayDB.containsKey(p.getName().replace('/', '-')))
+                            p.setName(p.getName().replace('/', '-'));
+                        else
+                            p.setName(pathwayDB.keySet().stream().filter(e -> p.getName().contains(e)).findAny().orElse(p.getName()));
+                    });
                     changed.set(true);
                     updateGeneCount();
                     return pathways;
@@ -262,6 +271,15 @@ public class PathwayClient {
 
     public int getNumberOfGenesByPathway(String pathway) {
         return pathwayDB.get(pathway).size();
+    }
+
+    public List<Gene> getGenesFromPathway(String pathway) {
+        return pathwayDB.get(pathway).stream().map(e -> new Gene(e, "")).collect(Collectors.toList());
+    }
+
+    public boolean isInAnyPathway(String gene) {
+        return pathwayDB.values().stream()
+                .anyMatch(e -> e.contains(gene));
     }
 
     public synchronized void close() {

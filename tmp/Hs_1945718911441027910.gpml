@@ -1,0 +1,2705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Response to elevated platelet cytosolic Ca2+" Organism="Homo sapiens">
+  <Comment Source="WikiPathways-description">Activation of phospholipase C enzymes results in the generation of second messengers of the phosphatidylinositol pathway. The events resulting from this pathway are a rise in intracellular calcium and activation of Protein Kinase C (PKC). Phospholipase C cleaves the phosphodiester bond in PIP2 to form 1,2 Diacylglycerol (DAG) and 1,4,5-inositol trisphosphate (IP3). IP3 opens Ca2+ channels in the platelet dense tubular system, raising intracellular Ca2+ levels. DAG is a second messenger that regulates a family of Ser/Thr kinases consisting of PKC isozymes (Nishizuka 1995). DAG achieves activation of PKC isozymes by increasing their affinity for phospholipid. Most PKC enzymes are also calcium-dependent, so their activation is in synergy with the rise in intracellular Ca2+. Platelets contain several PKC isoforms that can be activated by DAG and/or Ca2+ (Chang 1997).
+ View original pathway at:[http://www.reactome.org/PathwayBrowser/#DIAGRAM=76005 Reactome].</Comment>
+  <Comment Source="Reactome-Converter">Pathway is converted from Reactome ID: 76005</Comment>
+  <Comment Source="Reactome-version">Reactome version: 66</Comment>
+  <Comment Source="Reactome Author">Reactome Author: de Bono, Bernard</Comment>
+  <BiopaxRef>f3a</BiopaxRef>
+  <Attribute Key="reactome_id" Value="76005" />
+  <Graphics BoardWidth="1020.0" BoardHeight="2352.0" />
+  <DataNode TextLabel="ISLR " GraphId="a026a" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="1952.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14498" />
+  </DataNode>
+  <DataNode TextLabel="CD109 " GraphId="a0640" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1532.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q6YHK3" />
+  </DataNode>
+  <DataNode TextLabel="MAGED2 " GraphId="a0703" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1972.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UNF1" />
+  </DataNode>
+  <DataNode TextLabel="TGF beta  " GraphId="a0bd2" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1412.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-HSA-114507" />
+  </DataNode>
+  <DataNode TextLabel="PPIA " GraphId="a1634" Type="Protein" GroupRef="b66ff">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482774" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="912.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P62937" />
+  </DataNode>
+  <DataNode TextLabel="CD36 " GraphId="a1ab7" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1332.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P16671" />
+  </DataNode>
+  <DataNode TextLabel="MMRN1(20-1228) " GraphId="a1b77" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1052.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q13201" />
+  </DataNode>
+  <DataNode TextLabel="VWF(23-763) " GraphId="a1f38" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1192.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P04275" />
+  </DataNode>
+  <DataNode TextLabel="ECM1 " GraphId="a2405" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1192.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16610" />
+  </DataNode>
+  <DataNode TextLabel="HGF(32-494) " GraphId="a27dc" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1592.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P14210" />
+  </DataNode>
+  <DataNode TextLabel="PCDH7 " GraphId="a2d2e" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1432.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O60245" />
+  </DataNode>
+  <DataNode TextLabel="Pro-EGF " GraphId="a2f68" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1652.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01133" />
+  </DataNode>
+  <DataNode TextLabel="PSAP,CHID1" GraphId="a35d1" Type="Complex">
+    <Attribute Key="cellular_location" Value="lysosomal lumen" />
+    <Graphics CenterX="575.5" CenterY="564.0" Width="75.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-8862963" />
+  </DataNode>
+  <DataNode TextLabel="Pro-EGF " GraphId="a3a88" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1372.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01133" />
+  </DataNode>
+  <DataNode TextLabel="CALM1 " GraphId="a4324" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1252.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P0DP23" />
+  </DataNode>
+  <DataNode TextLabel="PPIA " GraphId="a44c6" Type="Protein" GroupRef="f7188">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482764" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1032.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P62937" />
+  </DataNode>
+  <DataNode TextLabel="APOOL " GraphId="a484a" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2092.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q6UXV4" />
+  </DataNode>
+  <DataNode TextLabel="TGF beta  " GraphId="a4bf1" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1172.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-HSA-114657" />
+  </DataNode>
+  <DataNode TextLabel="PRKCG " GraphId="a4bf6" Type="Protein" GroupRef="cb281">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-114528" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="852.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05129" />
+  </DataNode>
+  <DataNode TextLabel="ITGB3(27-?) " GraphId="a4c3b" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1312.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05106" />
+  </DataNode>
+  <DataNode TextLabel="PF4(48-101) " GraphId="a4cfe" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1032.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02776" />
+  </DataNode>
+  <DataNode TextLabel="SYTL4 " GraphId="a4dd3" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1132.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96C24" />
+  </DataNode>
+  <DataNode TextLabel="Platelet dense&#xA;granule membrane&#xA;components" GraphId="a4ff4" Type="Complex">
+    <Attribute Key="cellular_location" Value="platelet dense granule membrane" />
+    <Graphics CenterX="335.5" CenterY="480.0" Width="123.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-481006" />
+  </DataNode>
+  <DataNode TextLabel="HGF(495-728) " GraphId="a52a1" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1312.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P14210" />
+  </DataNode>
+  <DataNode TextLabel="PRKCA " GraphId="a5892" Type="Protein" GroupRef="cb281">
+    <BiopaxRef>c57</BiopaxRef>
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-114528" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="812.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P17252" />
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="a59cd" Type="Metabolite">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="607.0" CenterY="412.0" Width="40.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16761" />
+  </DataNode>
+  <DataNode TextLabel="ORM1 " GraphId="a6992" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1792.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02763" />
+  </DataNode>
+  <DataNode TextLabel="Insulin-like growth factors " GraphId="a723f" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1672.0" Width="100.0" Height="40.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-HSA-3006323" />
+  </DataNode>
+  <DataNode TextLabel="CALU" GraphId="a77ba" Type="Protein">
+    <Attribute Key="cellular_location" Value="endoplasmic reticulum lumen" />
+    <Graphics CenterX="561.5" CenterY="660.0" Width="69.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O43852" />
+  </DataNode>
+  <DataNode TextLabel="PPBP(55-128) " GraphId="a7ae4" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1312.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02775" />
+  </DataNode>
+  <DataNode TextLabel="RARRES2 " GraphId="a7f84" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1292.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q99969" />
+  </DataNode>
+  <DataNode TextLabel="PRKCG " GraphId="a844e" Type="Protein" GroupRef="b7d35">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-139830" />
+    <Attribute Key="copies_num" Value="12" />
+    <Graphics CenterX="100.0" CenterY="1012.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05129" />
+  </DataNode>
+  <DataNode TextLabel="ITGB3 " GraphId="a8990" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="872.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05106" />
+  </DataNode>
+  <DataNode TextLabel="TTN " GraphId="a9b3f" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="992.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q8WZ42" />
+  </DataNode>
+  <DataNode TextLabel="CAP1 " GraphId="aa1c1" Type="Protein" GroupRef="b66ff">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482774" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="852.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q01518" />
+  </DataNode>
+  <DataNode TextLabel="5HT " GraphId="abc50" Type="Metabolite" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1012.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28790" />
+  </DataNode>
+  <DataNode TextLabel="11xCbxE-PROS1 " GraphId="abc6a" Type="Protein" GroupRef="b1765">
+    <BiopaxRef>bb1</BiopaxRef>
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1532.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P07225" />
+  </DataNode>
+  <DataNode TextLabel="PLEK " GraphId="ac346" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="892.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08567" />
+  </DataNode>
+  <DataNode TextLabel="HRG " GraphId="ac6cf" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1232.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P04196" />
+  </DataNode>
+  <DataNode TextLabel="TIMP1 " GraphId="ad252" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1792.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01033" />
+  </DataNode>
+  <DataNode TextLabel="PS " GraphId="ada2e" Type="Metabolite" GroupRef="b7d35">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-139830" />
+    <Attribute Key="copies_num" Value="12" />
+    <Graphics CenterX="100.0" CenterY="972.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18303" />
+  </DataNode>
+  <DataNode TextLabel="Factor VIII precursor " GraphId="adb69" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="932.0" Width="100.0" Height="40.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P00451" />
+  </DataNode>
+  <DataNode TextLabel="SELP " GraphId="adf2d" Type="Protein" GroupRef="fae23">
+    <Attribute Key="cellular_location" Value="platelet dense granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-481006" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="892.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P16109" />
+  </DataNode>
+  <DataNode TextLabel="ISLR " GraphId="ae0aa" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1732.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14498" />
+  </DataNode>
+  <DataNode TextLabel="SERPINF2 " GraphId="ae289" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1692.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08697" />
+  </DataNode>
+  <DataNode TextLabel="ITIH3 " GraphId="ae57e" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1372.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q06033" />
+  </DataNode>
+  <DataNode TextLabel="POTEKP " GraphId="aea1f" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1392.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BYX7" />
+  </DataNode>
+  <DataNode TextLabel="SCCPDH " GraphId="aea24" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="2092.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q8NBX0" />
+  </DataNode>
+  <DataNode TextLabel="FAM49B " GraphId="aee0c" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2232.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NUQ9" />
+  </DataNode>
+  <DataNode TextLabel="apoTF " GraphId="afa64" Type="Protein" GroupRef="db07b">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482769" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1192.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02787" />
+  </DataNode>
+  <DataNode TextLabel="Ca2+" GraphId="aff04" Type="Metabolite">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="361.0" CenterY="100.0" Width="50.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29108" />
+  </DataNode>
+  <DataNode TextLabel="FGB(31-491) " GraphId="b0411" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="3" />
+    <Graphics CenterX="240.0" CenterY="972.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02675" />
+  </DataNode>
+  <DataNode TextLabel="LHFPL2 " GraphId="b0435" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1552.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q6ZUX7" />
+  </DataNode>
+  <DataNode TextLabel="QSOX1 " GraphId="b0a45" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1852.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O00391" />
+  </DataNode>
+  <DataNode TextLabel="ABCC4" GraphId="b0f99" Type="Protein">
+    <Attribute Key="cellular_location" Value="platelet dense granule membrane" />
+    <Graphics CenterX="552.0" CenterY="361.0" Width="48.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O15439" />
+  </DataNode>
+  <DataNode TextLabel="RAB27B " GraphId="b1322" Type="Protein" GroupRef="c8cd6">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-481004" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1032.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O00194" />
+  </DataNode>
+  <DataNode TextLabel="TOR4A " GraphId="b15f7" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2292.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NXH8" />
+  </DataNode>
+  <DataNode TextLabel="GTP " GraphId="b26c1" Type="Metabolite" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1152.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15996" />
+  </DataNode>
+  <DataNode TextLabel="APOOL " GraphId="b26fc" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1872.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q6UXV4" />
+  </DataNode>
+  <DataNode TextLabel="LAMP2 " GraphId="b2e2a" Type="Protein" GroupRef="fae23">
+    <Attribute Key="cellular_location" Value="platelet dense granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-481006" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="852.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P13473" />
+  </DataNode>
+  <DataNode TextLabel="LAMP2 " GraphId="b33d7" Type="Protein" GroupRef="c8cd6">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-481004" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="972.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P13473" />
+  </DataNode>
+  <DataNode TextLabel="SRGN " GraphId="b3e59" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1732.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P10124" />
+  </DataNode>
+  <DataNode TextLabel="WDR1 " GraphId="b3eed" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1312.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O75083" />
+  </DataNode>
+  <DataNode TextLabel="ITIH4 " GraphId="b49dc" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1252.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q14624" />
+  </DataNode>
+  <DataNode TextLabel="Platelet releasate&#xA;(inferred)&#xA;cytosolic proteins" GraphId="b49df" Type="Complex">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="290.5" CenterY="601.0" Width="119.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-482774" />
+  </DataNode>
+  <DataNode TextLabel="GAS6(39-691) " GraphId="b4b48" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1592.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q14393" />
+  </DataNode>
+  <DataNode TextLabel="CFD " GraphId="b4b74" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1532.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P00746" />
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="b544a" Type="Metabolite">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="685.5" CenterY="212.0" Width="41.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16761" />
+  </DataNode>
+  <DataNode TextLabel="TMX3 " GraphId="b5706" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1032.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96JJ7" />
+  </DataNode>
+  <DataNode TextLabel="CFL1 " GraphId="b57d6" Type="Protein" GroupRef="f7188">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482764" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="992.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P23528" />
+  </DataNode>
+  <DataNode TextLabel="SPP2 " GraphId="b6068" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1352.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q13103" />
+  </DataNode>
+  <DataNode TextLabel="Activated&#xA;conventional&#xA;protein kinase C" GraphId="b6156" Type="Complex">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Graphics CenterX="644.5" CenterY="33.0" Width="129.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-139830" />
+  </DataNode>
+  <DataNode TextLabel="CALU" GraphId="b6331" Type="Protein">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="833.5" CenterY="660.0" Width="69.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O43852" />
+  </DataNode>
+  <DataNode TextLabel="Ca2+ " GraphId="b6bf9" Type="Metabolite" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1112.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29108" />
+  </DataNode>
+  <DataNode TextLabel="FN1(32-2386) " GraphId="b718f" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1252.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02751" />
+  </DataNode>
+  <DataNode TextLabel="PLG(20-810) " GraphId="b79a5" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1352.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P00747" />
+  </DataNode>
+  <DataNode TextLabel="FLNA " GraphId="b79f1" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1052.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21333" />
+  </DataNode>
+  <DataNode TextLabel="OLA1 " GraphId="b7cb3" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2212.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NTK5" />
+  </DataNode>
+  <DataNode TextLabel="PPBP(55-128) " GraphId="b8154" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1072.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02775" />
+  </DataNode>
+  <DataNode TextLabel="PF4(32-101) " GraphId="b84d7" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1152.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02776" />
+  </DataNode>
+  <DataNode TextLabel="LHFPL2 " GraphId="b85ab" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1112.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q6ZUX7" />
+  </DataNode>
+  <DataNode TextLabel="SERPINE1 " GraphId="b8818" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1372.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05121" />
+  </DataNode>
+  <DataNode TextLabel="CTSW " GraphId="b8c7f" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1472.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P56202" />
+  </DataNode>
+  <DataNode TextLabel="A2M " GraphId="b9085" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1272.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01023" />
+  </DataNode>
+  <DataNode TextLabel="TLN1 " GraphId="b9149" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1452.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y490" />
+  </DataNode>
+  <DataNode TextLabel="SELP " GraphId="b932d" Type="Protein" GroupRef="c8cd6">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-481004" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1012.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P16109" />
+  </DataNode>
+  <DataNode TextLabel="p-STXBP3" GraphId="b96c2" Type="Protein">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="680.0" CenterY="140.0" Width="80.0" Height="34.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O00186" />
+  </DataNode>
+  <DataNode TextLabel="BRPF3 " GraphId="b9cfe" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="972.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9ULD4" />
+  </DataNode>
+  <DataNode TextLabel="ORM2 " GraphId="b9ff1" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1812.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P19652" />
+  </DataNode>
+  <DataNode TextLabel="SERPINE1 " GraphId="baa34" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1132.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05121" />
+  </DataNode>
+  <DataNode TextLabel="SERPING1 " GraphId="bab2e" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1612.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05155" />
+  </DataNode>
+  <DataNode TextLabel="GTPBP2 " GraphId="bb09c" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1912.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BX10" />
+  </DataNode>
+  <DataNode TextLabel="TMSB4X " GraphId="bb2bd" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1552.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P62328" />
+  </DataNode>
+  <DataNode TextLabel="STXBP2 " GraphId="bb6c7" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1472.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15833" />
+  </DataNode>
+  <DataNode TextLabel="GDP " GraphId="bb75c" Type="Metabolite" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="912.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:17552" />
+  </DataNode>
+  <DataNode TextLabel="SELP " GraphId="bbdd6" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1392.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P16109" />
+  </DataNode>
+  <DataNode TextLabel="PCYOX1L " GraphId="bbde6" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1892.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q8NBM8" />
+  </DataNode>
+  <DataNode TextLabel="CD63 " GraphId="bc034" Type="Protein" GroupRef="fae23">
+    <Attribute Key="cellular_location" Value="platelet dense granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-481006" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="872.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08962" />
+  </DataNode>
+  <DataNode TextLabel="ALB(19-609) " GraphId="bc99e" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="852.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02768" />
+  </DataNode>
+  <DataNode TextLabel="GAS6(39-691) " GraphId="bc9ea" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1872.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q14393" />
+  </DataNode>
+  <DataNode TextLabel="Alpha actinins " GraphId="bce20" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1432.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-HSA-349778" />
+  </DataNode>
+  <DataNode TextLabel="p-STX4" GraphId="bcf2e" Type="Protein">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="683.0" CenterY="292.5" Width="74.0" Height="23.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q12846" />
+  </DataNode>
+  <DataNode TextLabel="PSAP(60-142) " GraphId="bd205" Type="Protein" GroupRef="bd271">
+    <BiopaxRef>bc0</BiopaxRef>
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-8862989" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1292.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P07602" />
+  </DataNode>
+  <DataNode TextLabel="SCG3 " GraphId="bd2d0" Type="Protein" GroupRef="cbf24">
+    <Attribute Key="cellular_location" Value="secretory granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-482765" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1132.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q8WXD2" />
+  </DataNode>
+  <DataNode TextLabel="NHLRC2 " GraphId="be269" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2152.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q8NBF2" />
+  </DataNode>
+  <DataNode TextLabel="Ca2+ " GraphId="be5fa" Type="Metabolite" GroupRef="b7d35">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-139830" />
+    <Attribute Key="copies_num" Value="10" />
+    <Graphics CenterX="100.0" CenterY="932.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29108" />
+  </DataNode>
+  <DataNode TextLabel="GTP " GraphId="bebd8" Type="Metabolite" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="932.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15996" />
+  </DataNode>
+  <DataNode TextLabel="Alpha actinins " GraphId="bedc8" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1712.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-HSA-349780" />
+  </DataNode>
+  <DataNode TextLabel="TIMP3 " GraphId="bf213" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1252.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P35625" />
+  </DataNode>
+  <DataNode TextLabel="APP(18-770) " GraphId="bf4c8" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1452.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05067" />
+  </DataNode>
+  <DataNode TextLabel="SERPINF2 " GraphId="bf62a" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1412.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08697" />
+  </DataNode>
+  <DataNode TextLabel="PPBP(35-128) " GraphId="bf768" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1112.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02775" />
+  </DataNode>
+  <DataNode TextLabel="PPi " GraphId="c1aae" Type="Metabolite" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="992.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29888" />
+  </DataNode>
+  <DataNode TextLabel="PF4(32-101) " GraphId="c1dcb" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1392.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02776" />
+  </DataNode>
+  <DataNode TextLabel="SERPINA4 " GraphId="c21e6" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1052.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P29622" />
+  </DataNode>
+  <DataNode TextLabel="CYB5R1 " GraphId="c28b3" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1492.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UHQ9" />
+  </DataNode>
+  <DataNode TextLabel="SCCPDH " GraphId="c29d8" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2172.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q8NBX0" />
+  </DataNode>
+  <DataNode TextLabel="CLU(23-449) " GraphId="c2e2c" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1752.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P10909" />
+  </DataNode>
+  <DataNode TextLabel="PRKCB " GraphId="c3639" Type="Protein" GroupRef="b7d35">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-139830" />
+    <Attribute Key="copies_num" Value="12" />
+    <Graphics CenterX="100.0" CenterY="992.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05771" />
+  </DataNode>
+  <DataNode TextLabel="Platelet dense&#xA;granule content" GraphId="c3749" Type="Complex">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Graphics CenterX="342.0" CenterY="402.0" Width="106.0" Height="44.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-481002" />
+  </DataNode>
+  <DataNode TextLabel="CYB5R1 " GraphId="c3c8c" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1052.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UHQ9" />
+  </DataNode>
+  <DataNode TextLabel="4xPalmC-CD36 " GraphId="c43b2" Type="Protein" GroupRef="e4acd">
+    <BiopaxRef>efe</BiopaxRef>
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="892.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P16671" />
+  </DataNode>
+  <DataNode TextLabel="HABP4 " GraphId="c532c" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1032.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q5JVS0" />
+  </DataNode>
+  <DataNode TextLabel="CHID1 " GraphId="c55cf" Type="Protein" GroupRef="ae26a">
+    <Attribute Key="cellular_location" Value="lysosomal lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-8862963" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1212.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BWS9" />
+  </DataNode>
+  <DataNode TextLabel="A1BG " GraphId="c5d09" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="1972.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P04217" />
+  </DataNode>
+  <DataNode TextLabel="APOH " GraphId="c61cb" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1412.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02749" />
+  </DataNode>
+  <DataNode TextLabel="FGG " GraphId="c6899" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1232.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02679" />
+  </DataNode>
+  <DataNode TextLabel="POTEKP " GraphId="c754e" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1012.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BYX7" />
+  </DataNode>
+  <DataNode TextLabel="TEX264 " GraphId="c7748" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1992.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y6I9" />
+  </DataNode>
+  <DataNode TextLabel="CLEC3B " GraphId="c8511" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1152.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05452" />
+  </DataNode>
+  <DataNode TextLabel="PECAM1 " GraphId="c86f3" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="932.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P16284" />
+  </DataNode>
+  <DataNode TextLabel="Platelet alpha&#xA;granule membrane&#xA;components that are&#xA;released on&#xA;degranulation" GraphId="c919d" Type="Complex">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Graphics CenterX="291.5" CenterY="205.5" Width="153.0" Height="69.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-964722" />
+  </DataNode>
+  <DataNode TextLabel="ITIH3 " GraphId="c94ca" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1232.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q06033" />
+  </DataNode>
+  <DataNode TextLabel="DAG" GraphId="c98a6" Type="Metabolite">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Graphics CenterX="491.5" CenterY="29.0" Width="35.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:17815" />
+  </DataNode>
+  <DataNode TextLabel="VWF(23-763) " GraphId="c9910" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1432.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P04275" />
+  </DataNode>
+  <DataNode TextLabel="BRPF3 " GraphId="c99ab" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1352.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9ULD4" />
+  </DataNode>
+  <DataNode TextLabel="TUBA4A " GraphId="c9b8c" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1232.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P68366" />
+  </DataNode>
+  <DataNode TextLabel="ANXA5 " GraphId="c9e2d" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1512.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08758" />
+  </DataNode>
+  <DataNode TextLabel="HRG " GraphId="ca034" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1472.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P04196" />
+  </DataNode>
+  <DataNode TextLabel="HSPA5" GraphId="ca46c" Type="Protein">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="825.5" CenterY="696.0" Width="53.0" Height="26.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P11021" />
+  </DataNode>
+  <DataNode TextLabel="PCYOX1L " GraphId="ca740" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2112.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q8NBM8" />
+  </DataNode>
+  <DataNode TextLabel="HGF(32-494) " GraphId="ca8a3" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1332.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P14210" />
+  </DataNode>
+  <DataNode TextLabel="THBS1 " GraphId="cae82" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1612.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P07996" />
+  </DataNode>
+  <DataNode TextLabel="A1BG " GraphId="cb1b6" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1752.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P04217" />
+  </DataNode>
+  <DataNode TextLabel="FERMT3 " GraphId="cbe47" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="2052.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UX7" />
+  </DataNode>
+  <DataNode TextLabel="PFN1 " GraphId="cc4d2" Type="Protein" GroupRef="b66ff">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482774" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="892.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P07737" />
+  </DataNode>
+  <DataNode TextLabel="LY6G6F " GraphId="cca36" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1072.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q5SQ64" />
+  </DataNode>
+  <DataNode TextLabel="factor V " GraphId="ccb34" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1132.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P12259" />
+  </DataNode>
+  <DataNode TextLabel="PF4(48-101) " GraphId="cef9a" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1272.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02776" />
+  </DataNode>
+  <DataNode TextLabel="FGB(31-491) " GraphId="cefe8" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="3" />
+    <Graphics CenterX="380.0" CenterY="1212.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02675" />
+  </DataNode>
+  <DataNode TextLabel="PS" GraphId="cf260" Type="Metabolite">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Graphics CenterX="227.5" CenterY="35.0" Width="117.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18303" />
+  </DataNode>
+  <DataNode TextLabel="11xCbxE-PROS1 " GraphId="cf36a" Type="Protein" GroupRef="dc0f7">
+    <BiopaxRef>bb1</BiopaxRef>
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1812.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P07225" />
+  </DataNode>
+  <DataNode TextLabel="VCL " GraphId="cf3ac" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1292.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P18206" />
+  </DataNode>
+  <DataNode TextLabel="Platelet releasate&#xA;cytosolic proteins" GraphId="cfbf8" Type="Complex">
+    <BiopaxRef>a8e</BiopaxRef>
+    <BiopaxRef>f36</BiopaxRef>
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="82.0" CenterY="533.0" Width="112.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-482768" />
+  </DataNode>
+  <DataNode TextLabel="PDGF dimer " GraphId="cfc77" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1632.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-HSA-184197" />
+  </DataNode>
+  <DataNode TextLabel="Platelet alpha&#xA;granule membrane&#xA;components that are&#xA;released on&#xA;degranulation" GraphId="d0dca" Type="Complex">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Graphics CenterX="80.0" CenterY="205.0" Width="132.0" Height="78.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-964721" />
+  </DataNode>
+  <DataNode TextLabel="PCDH7 " GraphId="d1922" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="992.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O60245" />
+  </DataNode>
+  <DataNode TextLabel="Protein Kinase C,&#xA;conventional" GraphId="d1983" Type="Complex">
+    <Comment Source="Reactome">These PKC isoforms are activated by PS in a Ca2+-dependent manner; they also bind DAG, which both increases the specificity of the enzyme for PS and also shifts the affinity for Ca2+ into the physiological range. They are targets of the tumour-promoting phorbol ester PMA, which activates these enzymes by eliminating the requirement for DAG and decreasing the concentration of Ca2+ needed for activation.</Comment>
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="357.5" CenterY="34.0" Width="111.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-114528" />
+  </DataNode>
+  <DataNode TextLabel="ATP " GraphId="d1a20" Type="Metabolite" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1092.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15422" />
+  </DataNode>
+  <DataNode TextLabel="PRKCA " GraphId="d2227" Type="Protein" GroupRef="b7d35">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-139830" />
+    <Attribute Key="copies_num" Value="10" />
+    <Graphics CenterX="100.0" CenterY="952.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P17252" />
+  </DataNode>
+  <DataNode TextLabel="CD9 " GraphId="d2a98" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1352.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21926" />
+  </DataNode>
+  <DataNode TextLabel="SELP " GraphId="d3ca2" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="952.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P16109" />
+  </DataNode>
+  <DataNode TextLabel="FGA(20-866) " GraphId="d3dca" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="2" />
+    <Graphics CenterX="240.0" CenterY="952.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02671" />
+  </DataNode>
+  <DataNode TextLabel="AHSG " GraphId="d4294" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1772.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02765" />
+  </DataNode>
+  <DataNode TextLabel="ADP " GraphId="d491e" Type="Metabolite" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1072.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16761" />
+  </DataNode>
+  <DataNode TextLabel="Platelet alpha&#xA;granule contents" GraphId="d53a5" Type="Complex">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="79.0" CenterY="274.0" Width="104.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-481033" />
+  </DataNode>
+  <DataNode TextLabel="FAM49B " GraphId="d5adb" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1952.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NUQ9" />
+  </DataNode>
+  <DataNode TextLabel="LEFTY2(22-366) " GraphId="d64dd" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1632.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O00292" />
+  </DataNode>
+  <DataNode TextLabel="FN1(32-2386) " GraphId="d6f6a" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1012.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02751" />
+  </DataNode>
+  <DataNode TextLabel="CD109 " GraphId="d7056" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1092.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q6YHK3" />
+  </DataNode>
+  <DataNode TextLabel="RAB27B " GraphId="d7187" Type="Protein" GroupRef="fae23">
+    <Attribute Key="cellular_location" Value="platelet dense granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-481006" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="912.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O00194" />
+  </DataNode>
+  <DataNode TextLabel="Mg2+ " GraphId="d78f8" Type="Metabolite" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="952.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18420" />
+  </DataNode>
+  <DataNode TextLabel="ATP " GraphId="d7f0c" Type="Metabolite" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="872.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15422" />
+  </DataNode>
+  <DataNode TextLabel="PPBP(35-128) " GraphId="d874c" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="872.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02775" />
+  </DataNode>
+  <DataNode TextLabel="FERMT3 " GraphId="d89af" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2132.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UX7" />
+  </DataNode>
+  <DataNode TextLabel="TTN " GraphId="d9a2e" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1372.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q8WZ42" />
+  </DataNode>
+  <DataNode TextLabel="ALDOA " GraphId="d9b92" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1852.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P04075" />
+  </DataNode>
+  <DataNode TextLabel="PDGF dimer " GraphId="da001" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1352.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-HSA-184202" />
+  </DataNode>
+  <DataNode TextLabel="CD9 " GraphId="da067" Type="Protein" GroupRef="e4acd">
+    <BiopaxRef>bcd</BiopaxRef>
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="912.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21926" />
+  </DataNode>
+  <DataNode TextLabel="SPARC " GraphId="da30a" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1092.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P09486" />
+  </DataNode>
+  <DataNode TextLabel="VEGFs " GraphId="da931" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1392.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-HSA-139884" />
+  </DataNode>
+  <DataNode TextLabel="SERPING1 " GraphId="daa0f" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1712.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05155" />
+  </DataNode>
+  <DataNode TextLabel="AHSG " GraphId="daa88" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="1992.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02765" />
+  </DataNode>
+  <DataNode TextLabel="STX4" GraphId="daab8" Type="Protein">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="552.0" CenterY="300.0" Width="68.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q12846" />
+  </DataNode>
+  <DataNode TextLabel="TOR4A " GraphId="db146" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="2012.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NXH8" />
+  </DataNode>
+  <DataNode TextLabel="Platelet releasate&#xA;secretory granule&#xA;proteins" GraphId="dc0f7" Type="Complex">
+    <Attribute Key="cellular_location" Value="secretory granule lumen" />
+    <Graphics CenterX="286.5" CenterY="716.0" Width="113.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-482765" />
+  </DataNode>
+  <DataNode TextLabel="SERPINA1 " GraphId="dc738" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1492.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01009" />
+  </DataNode>
+  <DataNode TextLabel="STXBP2 " GraphId="dcfa4" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1092.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q15833" />
+  </DataNode>
+  <DataNode TextLabel="SPP2 " GraphId="dd39d" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1072.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q13103" />
+  </DataNode>
+  <DataNode TextLabel="APLP2 " GraphId="dd5b6" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="972.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q06481" />
+  </DataNode>
+  <DataNode TextLabel="Ca2+ " GraphId="dddac" Type="Metabolite" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="892.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29108" />
+  </DataNode>
+  <DataNode TextLabel="KNG1(19-644) " GraphId="de333" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1692.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01042" />
+  </DataNode>
+  <DataNode TextLabel="ALDOA " GraphId="dec21" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1572.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P04075" />
+  </DataNode>
+  <DataNode TextLabel="WDR1 " GraphId="deda0" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="932.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O75083" />
+  </DataNode>
+  <DataNode TextLabel="KNG1(19-644) " GraphId="dedd6" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1552.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01042" />
+  </DataNode>
+  <DataNode TextLabel="PLG(1-810) " GraphId="df169" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1112.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P00747" />
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="dfc01" Type="Metabolite">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Graphics CenterX="487.0" CenterY="412.0" Width="40.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16761" />
+  </DataNode>
+  <DataNode TextLabel="Platelet releasate&#xA;(inferred)&#xA;cytosolic proteins" GraphId="e00eb" Type="Complex">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="81.5" CenterY="600.0" Width="119.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-482764" />
+  </DataNode>
+  <DataNode TextLabel="HSPA5" GraphId="e0184" Type="Protein">
+    <Attribute Key="cellular_location" Value="endoplasmic reticulum membrane" />
+    <Graphics CenterX="683.5" CenterY="696.0" Width="65.0" Height="26.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P11021" />
+  </DataNode>
+  <DataNode TextLabel="OLA1 " GraphId="e0ab7" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1932.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9NTK5" />
+  </DataNode>
+  <DataNode TextLabel="VTI1B " GraphId="e1b5f" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2312.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UEU0" />
+  </DataNode>
+  <DataNode TextLabel="TMSB4X " GraphId="e1d7f" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1832.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P62328" />
+  </DataNode>
+  <DataNode TextLabel="ORM1 " GraphId="e2613" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2012.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02763" />
+  </DataNode>
+  <DataNode TextLabel="QSOX1 " GraphId="e2991" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2072.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O00391" />
+  </DataNode>
+  <DataNode TextLabel="CFD " GraphId="e2fb5" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1292.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P00746" />
+  </DataNode>
+  <DataNode TextLabel="APOA1(25-266) " GraphId="e37e0" Type="Protein" GroupRef="cbf24">
+    <Attribute Key="cellular_location" Value="secretory granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-482765" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1112.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02647" />
+  </DataNode>
+  <DataNode TextLabel="CLEC3B " GraphId="e392e" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1452.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05452" />
+  </DataNode>
+  <DataNode TextLabel="ITGA2B(32-?) " GraphId="e3c20" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1292.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08514" />
+  </DataNode>
+  <DataNode TextLabel="TUBA4A " GraphId="e3fd2" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="852.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P68366" />
+  </DataNode>
+  <DataNode TextLabel="Platelet releasate&#xA;secretory granule&#xA;proteins" GraphId="e46c3" Type="Complex">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="83.5" CenterY="718.0" Width="113.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-482769" />
+  </DataNode>
+  <DataNode TextLabel="FLNA " GraphId="e4a36" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1432.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21333" />
+  </DataNode>
+  <DataNode TextLabel="HABP4 " GraphId="e4c51" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1412.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q5JVS0" />
+  </DataNode>
+  <DataNode TextLabel="PSAP,CHID1" GraphId="e5396" Type="Complex">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="836.5" CenterY="560.0" Width="75.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-8862989" />
+  </DataNode>
+  <DataNode TextLabel="Pi " GraphId="e53a8" Type="Metabolite" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1192.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18367" />
+  </DataNode>
+  <DataNode TextLabel="FAM3C " GraphId="e59fb" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1512.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q92520" />
+  </DataNode>
+  <DataNode TextLabel="DAG " GraphId="e5aa2" Type="Metabolite" GroupRef="b7d35">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-139830" />
+    <Attribute Key="copies_num" Value="3" />
+    <Graphics CenterX="100.0" CenterY="912.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:17815" />
+  </DataNode>
+  <DataNode TextLabel="PFN1 " GraphId="e5d62" Type="Protein" GroupRef="f7188">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482764" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1012.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P07737" />
+  </DataNode>
+  <DataNode TextLabel="FAM3C " GraphId="e5e8c" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1212.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q92520" />
+  </DataNode>
+  <DataNode TextLabel="ALB " GraphId="e64b5" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1092.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02768" />
+  </DataNode>
+  <DataNode TextLabel="THBS1 " GraphId="e68c5" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="1892.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P07996" />
+  </DataNode>
+  <DataNode TextLabel="TIMP1 " GraphId="e6c22" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1512.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01033" />
+  </DataNode>
+  <DataNode TextLabel="CDC37L1 " GraphId="e6f77" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1132.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q7L3B6" />
+  </DataNode>
+  <DataNode TextLabel="Platelet dense&#xA;granule content" GraphId="e728b" Type="Complex">
+    <BiopaxRef>ea2</BiopaxRef>
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Graphics CenterX="85.0" CenterY="402.0" Width="98.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-481030" />
+  </DataNode>
+  <DataNode TextLabel="TEX264 " GraphId="e739b" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2272.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y6I9" />
+  </DataNode>
+  <DataNode TextLabel="PPi " GraphId="e73e3" Type="Metabolite" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1212.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29888" />
+  </DataNode>
+  <DataNode TextLabel="PLEK " GraphId="e988b" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1272.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08567" />
+  </DataNode>
+  <DataNode TextLabel="SERPINA4 " GraphId="ea55c" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1332.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P29622" />
+  </DataNode>
+  <DataNode TextLabel="ECM1 " GraphId="ea975" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1492.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16610" />
+  </DataNode>
+  <DataNode TextLabel="VEGFs " GraphId="ea9ef" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1672.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-HSA-139882" />
+  </DataNode>
+  <DataNode TextLabel="SCG3 " GraphId="eaf74" Type="Protein" GroupRef="db07b">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482769" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1232.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q8WXD2" />
+  </DataNode>
+  <DataNode TextLabel="SOD1 " GraphId="eb3e4" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1332.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P00441" />
+  </DataNode>
+  <DataNode TextLabel="Pi " GraphId="eb90f" Type="Metabolite" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="972.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18367" />
+  </DataNode>
+  <DataNode TextLabel="SEPP1 " GraphId="ec67a" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1312.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P49908" />
+  </DataNode>
+  <DataNode TextLabel="ENDOD1 " GraphId="ec762" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1492.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O94919" />
+  </DataNode>
+  <DataNode TextLabel="SEPP1 " GraphId="ed4b1" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1032.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P49908" />
+  </DataNode>
+  <DataNode TextLabel="Platelet dense&#xA;granule membrane&#xA;components" GraphId="ed559" Type="Complex">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Graphics CenterX="157.5" CenterY="480.0" Width="123.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-481004" />
+  </DataNode>
+  <DataNode TextLabel="CDC37L1 " GraphId="ed8a8" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1432.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q7L3B6" />
+  </DataNode>
+  <DataNode TextLabel="Insulin-like growth factors " GraphId="eda9c" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="1932.0" Width="100.0" Height="40.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="R-HSA-3006324" />
+  </DataNode>
+  <DataNode TextLabel="factor XIII A chain " GraphId="ee013" Type="Protein" GroupRef="b1765">
+    <BiopaxRef>a8b</BiopaxRef>
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1492.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P00488" />
+  </DataNode>
+  <DataNode TextLabel="GDP " GraphId="ee4ac" Type="Metabolite" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1132.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:17552" />
+  </DataNode>
+  <DataNode TextLabel="Mg2+ " GraphId="eeaed" Type="Metabolite" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1172.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18420" />
+  </DataNode>
+  <DataNode TextLabel="APOH " GraphId="eeba9" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1112.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02749" />
+  </DataNode>
+  <DataNode TextLabel="ITIH4 " GraphId="eee5b" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1392.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q14624" />
+  </DataNode>
+  <DataNode TextLabel="factor V " GraphId="ef531" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="240.0" CenterY="892.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P12259" />
+  </DataNode>
+  <DataNode TextLabel="A2M " GraphId="ef6bd" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1512.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01023" />
+  </DataNode>
+  <DataNode TextLabel="CAP1 " GraphId="ef807" Type="Protein" GroupRef="f7188">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482764" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="972.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q01518" />
+  </DataNode>
+  <DataNode TextLabel="SPARC " GraphId="efcb9" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1332.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P09486" />
+  </DataNode>
+  <DataNode TextLabel="SERPINA3 " GraphId="f0254" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2052.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01011" />
+  </DataNode>
+  <DataNode TextLabel="TMX3 " GraphId="f06bf" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1472.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96JJ7" />
+  </DataNode>
+  <DataNode TextLabel="PECAM1 " GraphId="f0865" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1372.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P16284" />
+  </DataNode>
+  <DataNode TextLabel="SYTL4 " GraphId="f0f71" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1572.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96C24" />
+  </DataNode>
+  <DataNode TextLabel="RARRES2 " GraphId="f19ff" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1292.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q99969" />
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="f1a90" Type="Metabolite">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="555.0" CenterY="215.0" Width="40.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15422" />
+  </DataNode>
+  <DataNode TextLabel="CD63 " GraphId="f1bf1" Type="Protein" GroupRef="c8cd6">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-481004" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="992.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08962" />
+  </DataNode>
+  <DataNode TextLabel="TLN1 " GraphId="f1fef" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1072.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9Y490" />
+  </DataNode>
+  <DataNode TextLabel="TAGLN2 " GraphId="f232a" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1152.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P37802" />
+  </DataNode>
+  <DataNode TextLabel="PSAP(60-142) " GraphId="f2975" Type="Protein" GroupRef="ae26a">
+    <BiopaxRef>bc0</BiopaxRef>
+    <Attribute Key="cellular_location" Value="lysosomal lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-8862963" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1192.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P07602" />
+  </DataNode>
+  <DataNode TextLabel="MMRN1(20-1228) " GraphId="f2ce6" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1292.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q13201" />
+  </DataNode>
+  <DataNode TextLabel="STXBP3" GraphId="f31ae" Type="Protein">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="544.0" CenterY="136.0" Width="68.0" Height="24.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O00186" />
+  </DataNode>
+  <DataNode TextLabel="VTI1B " GraphId="f35d2" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="2032.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UEU0" />
+  </DataNode>
+  <DataNode TextLabel="ENDOD1 " GraphId="f3855" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1112.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O94919" />
+  </DataNode>
+  <DataNode TextLabel="GTPBP2 " GraphId="f39a9" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2192.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BX10" />
+  </DataNode>
+  <DataNode TextLabel="PHACTR2 " GraphId="f3c52" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1452.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O75167" />
+  </DataNode>
+  <DataNode TextLabel="APOA1(25-266) " GraphId="f48c0" Type="Protein" GroupRef="db07b">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482769" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1212.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02647" />
+  </DataNode>
+  <DataNode TextLabel="ANXA5 " GraphId="f4a59" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1132.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08758" />
+  </DataNode>
+  <DataNode TextLabel="CFL1 " GraphId="f4bc5" Type="Protein" GroupRef="b66ff">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482774" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="872.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P23528" />
+  </DataNode>
+  <DataNode TextLabel="CLU(23-449) " GraphId="f4d7b" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1472.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P10909" />
+  </DataNode>
+  <DataNode TextLabel="MANF " GraphId="f4f87" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1172.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P55145" />
+  </DataNode>
+  <DataNode TextLabel="LGALS3BP " GraphId="f5c5a" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1272.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q08380" />
+  </DataNode>
+  <DataNode TextLabel="Platelet releasate&#xA;cytosolic proteins" GraphId="f63d9" Type="Complex">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Graphics CenterX="288.0" CenterY="535.0" Width="112.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-482771" />
+  </DataNode>
+  <DataNode TextLabel="Platelet alpha&#xA;granule contents" GraphId="f6403" Type="Complex">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Graphics CenterX="350.0" CenterY="275.0" Width="104.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="a52a2a" />
+    <Xref Database="Reactome" ID="R-HSA-481003" />
+  </DataNode>
+  <DataNode TextLabel="Coagulation factor VIII precursor " GraphId="f6548" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="380.0" CenterY="1172.0" Width="100.0" Height="40.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P00451" />
+  </DataNode>
+  <DataNode TextLabel="ORM2 " GraphId="f6ed4" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2032.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P19652" />
+  </DataNode>
+  <DataNode TextLabel="SERPINA3 " GraphId="f7334" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="1832.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01011" />
+  </DataNode>
+  <DataNode TextLabel="MAGED2 " GraphId="f780e" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="380.0" CenterY="2252.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9UNF1" />
+  </DataNode>
+  <DataNode TextLabel="PRKCB " GraphId="f8008" Type="Protein" GroupRef="cb281">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-114528" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="832.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05771" />
+  </DataNode>
+  <DataNode TextLabel="F13A1(1-731) " GraphId="f8732" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1772.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P00488" />
+  </DataNode>
+  <DataNode TextLabel="TF " GraphId="f8b68" Type="Protein" GroupRef="cbf24">
+    <Attribute Key="cellular_location" Value="secretory granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-482765" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1092.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02787" />
+  </DataNode>
+  <DataNode TextLabel="SRGN " GraphId="f90d1" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1452.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P10124" />
+  </DataNode>
+  <DataNode TextLabel="PHACTR2 " GraphId="f9303" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1012.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O75167" />
+  </DataNode>
+  <DataNode TextLabel="TAGLN2 " GraphId="f9bb3" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1532.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P37802" />
+  </DataNode>
+  <DataNode TextLabel="HGF(495-728) " GraphId="f9f50" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="380.0" CenterY="1572.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P14210" />
+  </DataNode>
+  <DataNode TextLabel="5HT " GraphId="fa4d4" Type="Metabolite" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1232.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28790" />
+  </DataNode>
+  <DataNode TextLabel="NHLRC2 " GraphId="fa6fc" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="6" />
+    <Graphics CenterX="240.0" CenterY="2072.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q8NBF2" />
+  </DataNode>
+  <DataNode TextLabel="APLP2 " GraphId="faa1a" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1412.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q06481" />
+  </DataNode>
+  <DataNode TextLabel="VCL " GraphId="fb055" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="912.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P18206" />
+  </DataNode>
+  <DataNode TextLabel="MANF " GraphId="fb6b3" Type="Protein" GroupRef="b7fd6">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="1552.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P55145" />
+  </DataNode>
+  <DataNode TextLabel="ADP " GraphId="fb7ac" Type="Metabolite" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="852.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16761" />
+  </DataNode>
+  <DataNode TextLabel="LY6G6F " GraphId="fb867" Type="Protein" GroupRef="dadc7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="800.0" CenterY="1512.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q5SQ64" />
+  </DataNode>
+  <DataNode TextLabel="APP(18-770) " GraphId="fbec6" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1212.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05067" />
+  </DataNode>
+  <DataNode TextLabel="ITGA2B(32-1039) " GraphId="fc28d" Type="Protein" GroupRef="e4acd">
+    <Attribute Key="cellular_location" Value="plasma membrane" />
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="852.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08514" />
+  </DataNode>
+  <DataNode TextLabel="CTSW " GraphId="fc8e1" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1172.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P56202" />
+  </DataNode>
+  <DataNode TextLabel="LGALS3BP " GraphId="fca35" Type="Protein" GroupRef="b3944">
+    <Attribute Key="cellular_location" Value="platelet dense granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="100.0" CenterY="1272.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q08380" />
+  </DataNode>
+  <DataNode TextLabel="TIMP3 " GraphId="fd129" Type="Protein" GroupRef="db367">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="520.0" CenterY="1092.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P35625" />
+  </DataNode>
+  <DataNode TextLabel="CHID1 " GraphId="fd224" Type="Protein" GroupRef="bd271">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-8862989" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="940.0" CenterY="1272.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9BWS9" />
+  </DataNode>
+  <DataNode TextLabel="FGG " GraphId="fd4b8" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="992.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02679" />
+  </DataNode>
+  <DataNode TextLabel="SERPINA1 " GraphId="fe2dd" Type="Protein" GroupRef="b1765">
+    <Attribute Key="cellular_location" Value="extracellular region" />
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+    <Attribute Key="copies_num" Value="4" />
+    <Graphics CenterX="240.0" CenterY="1252.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P01009" />
+  </DataNode>
+  <DataNode TextLabel="FGA(20-866) " GraphId="feb45" Type="Protein" GroupRef="dc0f7">
+    <Attribute Key="cellular_location" Value="platelet alpha granule lumen" />
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+    <Attribute Key="copies_num" Value="2" />
+    <Graphics CenterX="380.0" CenterY="1192.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P02671" />
+  </DataNode>
+  <DataNode TextLabel="CALM1 " GraphId="feda3" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="872.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P0DP23" />
+  </DataNode>
+  <DataNode TextLabel="SOD1 " GraphId="ff32f" Type="Protein" GroupRef="d95b0">
+    <Attribute Key="cellular_location" Value="cytosol" />
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+    <Attribute Key="copies_num" Value="1" />
+    <Graphics CenterX="660.0" CenterY="952.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P00441" />
+  </DataNode>
+  <Interaction GraphId="a25d0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="146.0" Y="716.0" GraphRef="f7644" RelX="-0.7800000000000011" RelY="0.0" />
+      <Point X="139.0" Y="718.0" GraphRef="e46c3" RelX="0.9823008849557522" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-482770" />
+  </Interaction>
+  <Interaction GraphId="a7e7d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="578.0" Y="136.0" GraphRef="f31ae" RelX="1.0" RelY="0.0" />
+      <Point X="587.0" Y="183.0" GraphRef="a538b" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114683" />
+  </Interaction>
+  <Interaction GraphId="aa1d4">
+    <Comment Source="Reactome">Alpha granules contain mainly polypeptides such as fibrinogen, von Willebrand factor, growth factors and protease inhibitors that supplement thrombin generation at the site of injury. In addtion to their role in hemostasis, platelets also contain angiogenesis stimulators and inhibitors (Italiano et al. 2008).</Comment>
+    <BiopaxRef>f00</BiopaxRef>
+    <BiopaxRef>ab8</BiopaxRef>
+    <BiopaxRef>c29</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="292.0" Y="274.0" />
+      <Point X="137.0" Y="274.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="a497c" />
+      <Anchor Position="0.99" Shape="None" GraphId="cdc71" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481007" />
+  </Interaction>
+  <Interaction GraphId="aa20f">
+    <Comment Source="Reactome">Platelet releasate contains a range of proteins that do not originate in specialized storage granules. In some cases platelet lysis may  contribute to the presence of these proteins in the platelet relesate. </Comment>
+    <BiopaxRef>bc0</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="225.0" Y="600.0" />
+      <Point X="147.0" Y="600.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="c6d78" />
+      <Anchor Position="0.99" Shape="None" GraphId="c037f" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-482775" />
+  </Interaction>
+  <Interaction GraphId="ab9a8">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="640.0" Y="183.0" GraphRef="f0257" RelX="0.5299999999999727" RelY="0.0" />
+      <Point X="640.0" Y="140.0" GraphRef="b96c2" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114683" />
+  </Interaction>
+  <Interaction GraphId="ac05e">
+    <Comment Source="Reactome">At the beginning of this reaction, 1 molecule of 'ATP', and 1 molecule of 'Syntaxin 4' are present. At the end of this reaction, 1 molecule of 'Phosphorylated syntaxin 4', and 1 molecule of 'ADP' are present.&lt;br&gt;&lt;br&gt; This reaction is mediated by the 'calcium-dependent protein kinase C activity' of 'Activated Ca++ and DAG dependent PKC'.&lt;br&gt;</Comment>
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="575.0" Y="251.0" />
+      <Point X="649.0" Y="251.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="a3dff" />
+      <Anchor Position="0.99" Shape="None" GraphId="ec16f" />
+      <Anchor Position="0.5" Shape="None" GraphId="af125" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114684" />
+  </Interaction>
+  <Interaction GraphId="ad4a9">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="231.0" Y="601.0" GraphRef="b49df" RelX="-1.0" RelY="0.0" />
+      <Point X="225.0" Y="600.0" GraphRef="c6d78" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-482775" />
+  </Interaction>
+  <Interaction GraphId="af2ad">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="412.0" Y="34.0" GraphRef="d1983" RelX="0.9819819819819819" RelY="0.0" />
+      <Point X="488.0" Y="76.0" GraphRef="e7e2b" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114553" />
+  </Interaction>
+  <Interaction GraphId="af37a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="386.0" Y="100.0" GraphRef="aff04" RelX="1.0" RelY="0.0" />
+      <Point X="488.0" Y="76.0" GraphRef="e7e2b" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114553" />
+  </Interaction>
+  <Interaction GraphId="b3864">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="612.0" Y="564.0" GraphRef="a35d1" RelX="0.9733333333333334" RelY="0.0" />
+      <Point X="619.0" Y="563.0" GraphRef="dcbc5" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-351341" />
+  </Interaction>
+  <Interaction GraphId="b3abc">
+    <Comment Source="Reactome">At the beginning of this reaction, 1 molecule of 'ATP', and 1 molecule of 'Platelet SEC1 protein' are present. At the end of this reaction, 1 molecule of 'Phosphorylated platelet SEC1 protein', and 1 molecule of 'ADP' are present.&lt;br&gt;&lt;br&gt; This reaction is mediated by the 'calcium-dependent protein kinase C activity' of 'Activated Ca++ and DAG dependent PKC'.&lt;br&gt;</Comment>
+    <BiopaxRef>fd2</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="587.0" Y="183.0" />
+      <Point X="640.0" Y="183.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="a538b" />
+      <Anchor Position="0.99" Shape="None" GraphId="f0257" />
+      <Anchor Position="0.5" Shape="None" GraphId="ec85a" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114683" />
+  </Interaction>
+  <Interaction GraphId="b58e6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="225.0" Y="479.0" GraphRef="f64ea" RelX="-0.4300000000000068" RelY="0.0" />
+      <Point X="218.0" Y="480.0" GraphRef="ed559" RelX="0.983739837398374" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481010" />
+  </Interaction>
+  <Interaction GraphId="b5f29">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="147.0" Y="600.0" GraphRef="c037f" RelX="-0.7800000000000011" RelY="0.0" />
+      <Point X="140.0" Y="600.0" GraphRef="e00eb" RelX="0.9831932773109243" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-482775" />
+  </Interaction>
+  <Interaction GraphId="b723a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="298.0" Y="275.0" GraphRef="f6403" RelX="-1.0" RelY="0.0" />
+      <Point X="292.0" Y="274.0" GraphRef="a497c" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481007" />
+  </Interaction>
+  <Interaction GraphId="b99fd">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="274.0" Y="480.0" GraphRef="a4ff4" RelX="-1.0" RelY="0.0" />
+      <Point X="268.0" Y="479.0" GraphRef="a2820" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481010" />
+  </Interaction>
+  <Interaction GraphId="be204">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="552.0" Y="372.0" GraphRef="b0f99" RelX="0.0" RelY="1.0" />
+      <Point X="552.0" Y="411.0" GraphRef="d119d" RelX="5.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-429157" />
+  </Interaction>
+  <Interaction GraphId="c2f6c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="793.0" Y="560.0" GraphRef="e8913" RelX="1.740000000000009" RelY="-0.029999999999972715" />
+      <Point X="799.0" Y="560.0" GraphRef="e5396" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-351341" />
+  </Interaction>
+  <Interaction GraphId="c4d15">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="144.0" Y="533.0" GraphRef="e12f1" RelX="-0.8199999999999932" RelY="0.0" />
+      <Point X="138.0" Y="533.0" GraphRef="cfbf8" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-482772" />
+  </Interaction>
+  <Interaction GraphId="c4e57">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="289.0" Y="402.0" GraphRef="c3749" RelX="-1.0" RelY="0.0" />
+      <Point X="283.0" Y="402.0" GraphRef="c2e61" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481009" />
+  </Interaction>
+  <Interaction GraphId="c4fd9">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="644.0" Y="58.0" GraphRef="b6156" RelX="-0.007751937984496124" RelY="1.0" />
+      <Point X="612.0" Y="251.0" GraphRef="af125" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114684" />
+  </Interaction>
+  <Interaction GraphId="c5dff">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="715.0" Y="696.0" GraphRef="e0184" RelX="0.9692307692307692" RelY="0.0" />
+      <Point X="719.0" Y="695.0" GraphRef="a6ce7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-351323" />
+  </Interaction>
+  <Interaction GraphId="c752c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="595.0" Y="660.0" GraphRef="a77ba" RelX="0.9710144927536232" RelY="0.0" />
+      <Point X="599.0" Y="659.0" GraphRef="d7768" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-350745" />
+  </Interaction>
+  <Interaction GraphId="c79f8">
+    <Comment Source="Reactome">ADP is the most important constituent of dense granules, essential for recruiting platelets to the site of vascular injury. Other components include ATP, Ca++, GDP, GTP, Mg++, orthophospate, pyrophosphate, and serotonin.</Comment>
+    <BiopaxRef>bf8</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="283.0" Y="402.0" />
+      <Point X="140.0" Y="402.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="c2e61" />
+      <Anchor Position="0.99" Shape="None" GraphId="a991a" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481009" />
+  </Interaction>
+  <Interaction GraphId="c7b18">
+    <Comment Source="Reactome">Platelet releasate contains a range of proteins that do not originate in specialized storage granules. In some cases platelet lysis may  contribute to the presence of these proteins in the platelet relesate. </Comment>
+    <BiopaxRef>bc0</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="224.0" Y="716.0" />
+      <Point X="146.0" Y="716.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="d708c" />
+      <Anchor Position="0.99" Shape="None" GraphId="f7644" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-482770" />
+  </Interaction>
+  <Interaction GraphId="c9b6e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="580.0" Y="64.0" GraphRef="ecb3e" RelX="0.9199999999999591" RelY="-0.12000000000000455" />
+      <Point X="580.0" Y="33.0" GraphRef="b6156" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114553" />
+  </Interaction>
+  <Interaction GraphId="cba27">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="140.0" Y="402.0" GraphRef="a991a" RelX="-1.4300000000000068" RelY="0.0" />
+      <Point X="134.0" Y="402.0" GraphRef="e728b" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481009" />
+  </Interaction>
+  <Interaction GraphId="cbe1b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="796.0" Y="695.0" GraphRef="a2f1a" RelX="0.7699999999999818" RelY="0.0" />
+      <Point X="799.0" Y="696.0" GraphRef="ca46c" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-351323" />
+  </Interaction>
+  <Interaction GraphId="cde33">
+    <Comment Source="Reactome">ABCC4 (Multidrug resistance protein 4 /MOAT-B) is a member of the MRP/ABCC subfamily of ATP-binding cassette transporters, capable of pumping a wide variety of endogenous and xenobiotic anionic compounds out of the cell. ABCC4 also transports molecules involved in cellular signalling, including cyclic nucleotides, eicosanoids, urate and conjugated steroids. ABCC4 has a dual localisation in polarised cells that suggests a key function in cellular protection and extracellular signalling pathways. It is also highly expressed on platelet dense granule membranes where it is believed to contribute to the accumulation of dense granule content.</Comment>
+    <BiopaxRef>fea</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="584.0" Y="411.0" />
+      <Point X="510.0" Y="411.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="c00d4" />
+      <Anchor Position="0.99" Shape="None" GraphId="c0d7a" />
+      <Anchor Position="0.5" Shape="None" GraphId="d119d" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-429157" />
+  </Interaction>
+  <Interaction GraphId="cf512">
+    <Comment Source="Reactome">Constituents of the platelet dense granule membrane are incorporated into the platelet membrane following exocytosis of granule content.</Comment>
+    <BiopaxRef>bf8</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="268.0" Y="479.0" />
+      <Point X="225.0" Y="479.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="a2820" />
+      <Anchor Position="0.99" Shape="None" GraphId="f64ea" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481010" />
+  </Interaction>
+  <Interaction GraphId="cf772">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="230.0" Y="716.0" GraphRef="dc0f7" RelX="-1.0" RelY="0.0" />
+      <Point X="224.0" Y="716.0" GraphRef="d708c" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-482770" />
+  </Interaction>
+  <Interaction GraphId="d4e8f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="587.0" Y="412.0" GraphRef="a59cd" RelX="-1.0" RelY="0.0" />
+      <Point X="584.0" Y="411.0" GraphRef="c00d4" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-429157" />
+  </Interaction>
+  <Interaction GraphId="d6fad">
+    <Comment Source="Reactome">Constituents of the platelet alpha granule membrane are incorporated into the platelet membrane following exocytosis of granule content.</Comment>
+    <BiopaxRef>ab8</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="209.0" Y="206.0" />
+      <Point X="152.0" Y="206.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="a8984" />
+      <Anchor Position="0.99" Shape="None" GraphId="cf60d" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481044" />
+  </Interaction>
+  <Interaction GraphId="d8ddd">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="232.0" Y="535.0" GraphRef="f63d9" RelX="-1.0" RelY="0.0" />
+      <Point X="226.0" Y="533.0" GraphRef="b964e" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-482772" />
+  </Interaction>
+  <Interaction GraphId="d906c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="491.0" Y="40.0" GraphRef="c98a6" RelX="-0.02857142857142857" RelY="1.0" />
+      <Point X="488.0" Y="76.0" GraphRef="e7e2b" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114553" />
+  </Interaction>
+  <Interaction GraphId="d95f2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="796.0" Y="659.0" GraphRef="cd0e6" RelX="1.9700000000000273" RelY="0.0" />
+      <Point X="799.0" Y="660.0" GraphRef="b6331" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-350745" />
+  </Interaction>
+  <Interaction GraphId="dcffd">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="552.0" Y="289.0" GraphRef="daab8" RelX="0.0" RelY="-1.0" />
+      <Point X="575.0" Y="251.0" GraphRef="a3dff" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114684" />
+  </Interaction>
+  <Interaction GraphId="de0ca">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="491.0" Y="40.0" GraphRef="c98a6" RelX="-0.02857142857142857" RelY="1.0" />
+      <Point X="538.0" Y="75.0" GraphRef="a347b" RelX="4.0" RelY="5.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114553" />
+  </Interaction>
+  <Interaction GraphId="de6b8">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="510.0" Y="411.0" GraphRef="c0d7a" RelX="-0.7400000000000091" RelY="0.0" />
+      <Point X="507.0" Y="412.0" GraphRef="dfc01" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-429157" />
+  </Interaction>
+  <Interaction GraphId="dfdea">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="285.0" Y="35.0" GraphRef="cf260" RelX="0.9829059829059829" RelY="0.0" />
+      <Point X="488.0" Y="76.0" GraphRef="e7e2b" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114553" />
+  </Interaction>
+  <Interaction GraphId="e3056">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="575.0" Y="215.0" GraphRef="f1a90" RelX="1.0" RelY="0.0" />
+      <Point X="587.0" Y="183.0" GraphRef="a538b" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114683" />
+  </Interaction>
+  <Interaction GraphId="e4871">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="555.0" Y="230.0" GraphRef="f1a90" RelX="0.0" RelY="1.0" />
+      <Point X="575.0" Y="251.0" GraphRef="a3dff" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114684" />
+  </Interaction>
+  <Interaction GraphId="e8421">
+    <Comment Source="Reactome">After Platelet activation 'Proactivator polypeptide' from the lysosomal lumen is released in to the extracellular platelet releasate.</Comment>
+    <BiopaxRef>bc0</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="619.0" Y="563.0" />
+      <Point X="793.0" Y="560.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="dcbc5" />
+      <Anchor Position="0.99" Shape="None" GraphId="e8913" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-351341" />
+  </Interaction>
+  <Interaction GraphId="ebec5">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="644.0" Y="58.0" GraphRef="b6156" RelX="-0.007751937984496124" RelY="1.0" />
+      <Point X="614.0" Y="183.0" GraphRef="ec85a" RelX="0.5" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114683" />
+  </Interaction>
+  <Interaction GraphId="ec80a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="649.0" Y="251.0" GraphRef="ec16f" RelX="0.7400000000000091" RelY="0.0" />
+      <Point X="646.0" Y="292.0" GraphRef="bcf2e" RelX="-1.0" RelY="-0.043478260869565216" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114684" />
+  </Interaction>
+  <Interaction GraphId="ecea3">
+    <Comment Source="Reactome">The conventional Protein Kinase C (cPKC) isoforms have two membrane-targetting domains, a C1 domain which binds to the membrane lipid diacylglycerol (DAG) and a C2 domain which binds membrane phospholipids such as phosphatidylserine, in a calcium-dependent manner. Association of both domains with the plasma membrane produces a conformational change that releases an autoinhibitory pseudosubstrate segment from the substrate-binding cavity, allowing substrate binding and downstream signaling.</Comment>
+    <BiopaxRef>d17</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="488.0" Y="76.0" />
+      <Point X="580.0" Y="64.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="e7e2b" />
+      <Anchor Position="0.99" Shape="None" GraphId="ecb3e" />
+      <Anchor Position="0.5" Shape="None" GraphId="a347b" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114553" />
+  </Interaction>
+  <Interaction GraphId="f0bb8">
+    <Comment Source="Reactome">After Platelet activation 'Calumenin' from the endoplasmic reticulum lumen is released in to the extracellular platelet releasate.</Comment>
+    <BiopaxRef>f00</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="599.0" Y="659.0" />
+      <Point X="796.0" Y="659.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="d7768" />
+      <Anchor Position="0.99" Shape="None" GraphId="cd0e6" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-350745" />
+  </Interaction>
+  <Interaction GraphId="f1a5d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="152.0" Y="206.0" GraphRef="cf60d" RelX="-0.5699999999999932" RelY="0.0" />
+      <Point X="146.0" Y="205.0" GraphRef="d0dca" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481044" />
+  </Interaction>
+  <Interaction GraphId="f1ee7">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="137.0" Y="274.0" GraphRef="cdc71" RelX="-1.5500000000000114" RelY="0.0" />
+      <Point X="131.0" Y="274.0" GraphRef="d53a5" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481007" />
+  </Interaction>
+  <Interaction GraphId="f4b65">
+    <Comment Source="Reactome">After Platelet activation '78 kDa glucose-regulated protein' from the endoplasmic reticulum lumen is released in to the extracellular platelet releasate.</Comment>
+    <BiopaxRef>f00</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="719.0" Y="695.0" />
+      <Point X="796.0" Y="695.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="a6ce7" />
+      <Anchor Position="0.99" Shape="None" GraphId="a2f1a" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-351323" />
+  </Interaction>
+  <Interaction GraphId="f553d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="640.0" Y="183.0" GraphRef="f0257" RelX="0.5299999999999727" RelY="0.0" />
+      <Point X="665.0" Y="212.0" GraphRef="b544a" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114683" />
+  </Interaction>
+  <Interaction GraphId="f6166">
+    <Comment Source="Reactome">Platelet releasate contains a range of proteins that do not originate in specialized storage granules. In some cases platelet lysis may  contribute to the presence of these proteins in the platelet relesate. </Comment>
+    <BiopaxRef>bc0</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="226.0" Y="533.0" />
+      <Point X="144.0" Y="533.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="b964e" />
+      <Anchor Position="0.99" Shape="None" GraphId="e12f1" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-482772" />
+  </Interaction>
+  <Interaction GraphId="fd4de">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="215.0" Y="205.0" GraphRef="c919d" RelX="-1.0" RelY="-0.014492753623188406" />
+      <Point X="209.0" Y="206.0" GraphRef="a8984" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-481044" />
+  </Interaction>
+  <Interaction GraphId="fed43">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="649.0" Y="251.0" GraphRef="ec16f" RelX="0.7400000000000091" RelY="0.0" />
+      <Point X="665.0" Y="212.0" GraphRef="b544a" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="R-HSA-114684" />
+  </Interaction>
+  <Label TextLabel="endoplasmic reticulum lumen" GraphId="b74b5" GroupRef="da815">
+    <Graphics CenterX="592.5" CenterY="629.5" Width="189.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="platelet alpha granule lumen" GraphId="b8e05" GroupRef="e2791">
+    <Graphics CenterX="355.5" CenterY="153.5" Width="185.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="cytosol" GraphId="bdf8c" GroupRef="a064a">
+    <Graphics CenterX="200.5" CenterY="73.5" Width="59.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="secretory granule" GraphId="cddd3" GroupRef="f8a24">
+    <Graphics CenterX="277.0" CenterY="669.5" Width="120.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="platelet dense granule lumen" GraphId="cf6fb" GroupRef="cd03a">
+    <Graphics CenterX="357.0" CenterY="367.5" Width="188.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="lysosomal lumen" GraphId="e41b2" GroupRef="c5652">
+    <Graphics CenterX="560.5" CenterY="526.5" Width="115.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="ad0b9" GroupRef="e2791">
+    <Graphics CenterX="360.5" CenterY="224.0" Width="207.0" Height="200.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b26ee" GroupRef="da815">
+    <Graphics CenterX="588.0" CenterY="673.0" Width="194.0" Height="126.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b4605" GroupRef="c5652">
+    <Graphics CenterX="581.0" CenterY="551.5" Width="170.0" Height="89.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b802a" GroupRef="cd03a">
+    <Graphics CenterX="405.5" CenterY="418.5" Width="301.0" Height="141.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b9168" GroupRef="a064a">
+    <Graphics CenterX="469.0" CenterY="407.0" Width="616.0" Height="754.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c3c80" GroupRef="f8a24">
+    <Graphics CenterX="300.0" CenterY="702.5" Width="180.0" Height="123.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="dadc7" GraphId="a0f13">
+    <Attribute Key="complex_id" Value="R-HSA-964722" />
+  </Group>
+  <Group GroupId="db367" GraphId="a747a">
+    <Attribute Key="complex_id" Value="R-HSA-481030" />
+  </Group>
+  <Group GroupId="cd03a" GraphId="aa185" Style="Group" />
+  <Group GroupId="f7188" GraphId="b12e4">
+    <Attribute Key="complex_id" Value="R-HSA-482764" />
+  </Group>
+  <Group GroupId="ae26a" GraphId="b65d0">
+    <Attribute Key="complex_id" Value="R-HSA-8862963" />
+  </Group>
+  <Group GroupId="a064a" GraphId="bb17e" Style="Group" />
+  <Group GroupId="da815" GraphId="bd967" Style="Group" />
+  <Group GroupId="b7fd6" GraphId="bf89d">
+    <Attribute Key="complex_id" Value="R-HSA-482768" />
+  </Group>
+  <Group GroupId="fae23" GraphId="bfc0a">
+    <Attribute Key="complex_id" Value="R-HSA-481006" />
+  </Group>
+  <Group GroupId="e2791" GraphId="c6133" Style="Group" />
+  <Group GroupId="b3944" GraphId="c621b">
+    <Attribute Key="complex_id" Value="R-HSA-481002" />
+  </Group>
+  <Group GroupId="bd271" GraphId="cdcfc">
+    <Attribute Key="complex_id" Value="R-HSA-8862989" />
+  </Group>
+  <Group GroupId="b1765" GraphId="ce8ce">
+    <Attribute Key="complex_id" Value="R-HSA-481033" />
+  </Group>
+  <Group GroupId="d95b0" GraphId="d486a">
+    <Attribute Key="complex_id" Value="R-HSA-482771" />
+  </Group>
+  <Group GroupId="dc0f7" GraphId="d8bb9">
+    <Attribute Key="complex_id" Value="R-HSA-481003" />
+  </Group>
+  <Group GroupId="cb281" GraphId="e27fa">
+    <Attribute Key="complex_id" Value="R-HSA-114528" />
+  </Group>
+  <Group GroupId="b7d35" GraphId="e3136">
+    <Attribute Key="complex_id" Value="R-HSA-139830" />
+  </Group>
+  <Group GroupId="b66ff" GraphId="e6a20">
+    <Attribute Key="complex_id" Value="R-HSA-482774" />
+  </Group>
+  <Group GroupId="cbf24" GraphId="e705b">
+    <Attribute Key="complex_id" Value="R-HSA-482765" />
+  </Group>
+  <Group GroupId="c8cd6" GraphId="e8e88">
+    <Attribute Key="complex_id" Value="R-HSA-481004" />
+  </Group>
+  <Group GroupId="f8a24" GraphId="ec7f9" Style="Group" />
+  <Group GroupId="c5652" GraphId="f0b6d" Style="Group" />
+  <Group GroupId="db07b" GraphId="f28f3">
+    <Attribute Key="complex_id" Value="R-HSA-482769" />
+  </Group>
+  <Group GroupId="e4acd" GraphId="f3451">
+    <Attribute Key="complex_id" Value="R-HSA-964721" />
+  </Group>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bcd">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8194524</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heparin-binding EGF-like growth factor, which acts as the diphtheria toxin receptor, forms a complex with membrane protein DRAP27/CD9, which up-regulates functional receptors and diphtheria toxin sensitivity.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Iwamoto R, Higashiyama S, Mitamura T, Taniguchi N, Klagsbrun M, Mekada E.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a8b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3026437</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amino acid sequence of the a subunit of human factor XIII.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ichinose A, Hendrickson LE, Fujikawa K, Davie EW.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bb1">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">420821</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Characterization of protein S, a gamma-carboxyglutamic acid containing protein from bovine and human plasma.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DiScipio RG, Davie EW.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ab8">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8467233</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Platelet alpha-granules.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Harrison P, Cramer EM.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c29">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23640497</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High precision platelet releasate definition by quantitative reversed protein profiling--brief report.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wijten P, van Holten T, Woo LL, Bleijerveld OB, Roest M, Heck AJ, Scholten A.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d17">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9814702</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protein kinase C as a molecular machine for decoding calcium and diacylglycerol signals.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oancea E, Meyer T.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f02">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10856305</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protein kinase C phosphorylation of syntaxin 4 in thrombin-activated human platelets.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chung SH, Polgar J, Reed GL.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a8e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22791290</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Munc18b/STXBP2 is required for platelet secretion.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Al Hawas R, Ren Q, Ye S, Karim ZA, Filipovich AH, Whiteheart SW.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f3a">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8424766</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Synergy between Ca2+ and protein kinase C is the major factor in determining the level of secretion from human platelets.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Walker TR, Watson SP.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ea2">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17384153</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rab27b regulates number and secretion of platelet dense granules.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tolmachova T, Abrink M, Futter CE, Authi KS, Seabra MC.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f36">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12649283</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Munc18-syntaxin complexes and exocytosis in human platelets.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Houng A, Polgar J, Reed GL.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f00">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6457647</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Characterization of the proteins of isolated human platelet alpha-granules. Evidence for a separate alpha-granule-pool of the glycoproteins IIb and IIIa.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gogstad GO, Hagen I, Korsmo R, Solum NO.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="efe">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8798390</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CD36 is palmitoylated on both N- and C-terminal cytoplasmic tails.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tao N, Wagner SJ, Lublin DM.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bf8">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1435334</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Isolation of dense granules from human platelets.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fukami MH.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fd2">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10194441</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human platelets contain SNARE proteins and a Sec1p homologue that interacts with syntaxin 4 and is phosphorylated after thrombin activation: implications for platelet secretion.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reed GL, Houng AK, Fitzgerald ML.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fea">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15297306</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The nucleotide transporter MRP4 (ABCC4) is highly expressed in human platelets and present in dense granules, indicating a role in mediator storage.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jedlitschky G, Tirschmann K, Lubenow LE, Nieuwenhuis HK, Akkerman JW, Greinacher A, Kroemer HK.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c57">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9588823</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Resting distribution and stimulated translocation of protein kinase C isoforms alpha, epsilon and zeta in response to bradykinin and TNF in human endothelial cells.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ross D, Joyner WL.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bc0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14630798</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Characterization of the proteins released from activated platelets leads to localization of novel platelet proteins in human atherosclerotic lesions.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Coppinger JA, Cagney G, Toomey S, Kislinger T, Belton O, McRedmond JP, Cahill DJ, Emili A, Fitzgerald DJ, Maguire PB.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">platelet</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CL:0000233</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Type</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">phosphatidylinositol 3-kinase signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000595</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

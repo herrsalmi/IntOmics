@@ -7,9 +7,9 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.pmoi.ApplicationParameters;
-import org.pmoi.handler.HttpConnector;
 import org.pmoi.models.Feature;
 import org.pmoi.models.Gene;
+import org.pmoi.utils.HttpConnector;
 
 import java.io.IOException;
 import java.net.URL;

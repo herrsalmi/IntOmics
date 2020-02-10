@@ -1,10 +1,13 @@
 package org.pmoi;
 
-import org.apache.commons.math3.distribution.HypergeometricDistribution;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.business.*;
 import org.pmoi.models.*;
+import org.pmoi.ui.RandomWalkLineChart;
+import org.pmoi.utils.GSEA;
+import org.pmoi.utils.io.CsvFormater;
+import org.pmoi.utils.io.OutputFormater;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -20,30 +23,28 @@ import java.util.stream.Collectors;
 public class OperationDispatcher {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private StringdbQueryClient stringdbQueryClient;
+    private OutputFormater formater;
 
     public OperationDispatcher() {
         stringdbQueryClient = new StringdbQueryClient();
     }
 
-    public void run(String prefix, ProteomeType proteomeType, SecretomeMappingMode mappingMode) {
-        String output = String.format("%s_%s_%s_%s_fc%1.1f.tsv",
+    public void run(String prefix, ProteomeType proteomeType, SecretomeMappingMode mappingMode, OutputFormater formater) {
+        this.formater = formater;
+        String extension = formater instanceof CsvFormater ? "csv" : "txt";
+        String output = String.format("%s_%s_%s_%s_fc%1.1f.%s",
                 prefix, proteomeType.label, mappingMode.label, ApplicationParameters.getInstance().getStringDBScore(),
-                ApplicationParameters.getInstance().getGeneFoldChange());
+                ApplicationParameters.getInstance().getGeneFoldChange(), extension);
         MembranomeManager membranomeManager = MembranomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
         secretomeManager.setMappingMode(mappingMode);
         List<Protein> allSecretome;
         LOGGER.info("Loading secretome");
-        switch (proteomeType) {
-            case LABEL_FREE:
-                allSecretome = secretomeManager.getSecretomeFromLabelFreeFile("input/Secretome_label_free.csv");
-                break;
-            case LCMS:
-                allSecretome = secretomeManager.getSecretomeFromLCMSFile("input/Secretome.csv");
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + proteomeType);
-        }
+        allSecretome = switch (proteomeType) {
+            case LABEL_FREE -> secretomeManager.getSecretomeFromLabelFreeFile("input/Secretome_label_free.csv");
+            case LCMS -> secretomeManager.getSecretomeFromLCMSFile("input/Secretome.csv");
+            default -> throw new IllegalStateException("Unexpected value: " + proteomeType);
+        };
         assert allSecretome != null;
         List<Protein> secretome = allSecretome.stream()
                 .filter(e -> e.isMoreExpressedInDepletedSamples(ApplicationParameters.getInstance().getProteinFoldChange()))
@@ -70,6 +71,20 @@ public class OperationDispatcher {
         ForkJoinPool customThreadPool = new ForkJoinPool(3);
         ExecutorService executorService = Executors.newFixedThreadPool(3);
         PathwayClient pathwayClient = PathwayClient.getInstance();
+
+        var filteredTranscriptome = transcriptome.stream().filter(e -> pathwayClient.isInAnyPathway(e.getName())).collect(Collectors.toList());
+        //
+//        RandomWalk randomWalk = new RandomWalk();
+//        randomWalk.walk(pathwayClient.getGenesFromPathway("PI3K-Akt Signaling Pathway"), transcriptome);
+//        RandomWalkLineChart.main(randomWalk.getRunningSum());
+
+        LOGGER.info("Running GSEA");
+        GSEA gseaT = new GSEA();
+        var pvalue = gseaT.run(pathwayClient.getGenesFromPathway("Collagen degradation"),
+                filteredTranscriptome);
+        RandomWalkLineChart.main(gseaT.getPhit(), gseaT.getPmiss());
+        System.exit(0);
+
         secretome.forEach(e -> executorService.submit(() -> {
             // Adding StringDB interactors
             //Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
@@ -125,43 +140,69 @@ public class OperationDispatcher {
         LOGGER.info("Writing results ...");
 
         NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
-        StringBuffer outputBuffer = new StringBuffer(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
-                "#protein", "name", "score D", "score R", "gene", "name", "I score", "gene_fdr", "gene_fc"));
         //List<ResultsFX> fxList = new ArrayList<>();
-
         if (ApplicationParameters.getInstance().use48H()) {
-            customThreadPool.submit(() -> resultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
+
+            // Calculate pathway pvalue using hypergeometric test
+//            resultSet.parallelStream()
+//                    .collect(Collectors.groupingBy(ResultRecord::getProtein))
+//                    .forEach((k, v) -> {
+//                        v.stream().forEach(e -> {
+//                            e.getGene().getGeneSets()
+//                                    .forEach(en -> {
+//                                        HypergeometricDistribution distribution = new HypergeometricDistribution((int)pathwayClient.getNumberOfGenes(),
+//                                                pathwayClient.getNumberOfGenesByPathway(en.getName()), transcriptome.size());
+//                                        en.setPvalue(distribution.probability(en.getGenes().size()));
+//                                    });
+//                        });
+//                    });
+            // Calculate pathway pvalue using GSEA
+            ExecutorService service = Executors.newFixedThreadPool(8);
+            resultSet.parallelStream()
+                    .collect(Collectors.groupingBy(ResultRecord::getProtein))
+                    .forEach((k, v) -> v.forEach(e -> e.getGene().getGeneSets()
+                            .forEach(en -> {
+                                service.submit(() -> {
+                                    GSEA gsea = new GSEA();
+                                    en.setPvalue(gsea.run(en.getGenes(), filteredTranscriptome));
+                                    en.setScore(gsea.getNormalizedScore());
+                                });
+                            })));
+            service.shutdown();
+            try {
+                service.awaitTermination(1, TimeUnit.DAYS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            // Remove results with pathways having pvalue < 0.05
+            var finalResultSet = resultSet.parallelStream()
+                    .filter(e -> e.getGene().getGeneSets().get(0).getPvalue() < 0.05 )
+                    .collect(Collectors.toList());
+
+            customThreadPool.submit(() -> finalResultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> {
                         k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
                         v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
                         v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
-                        outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s %s\n",
-                                k.getName(), k.getDescription(), k.depletedMeanScore(), k.rinsedMeanScore(),
+                        formater.append(k.getName(), k.getDescription(), String.valueOf(k.depletedMeanScore()), String.valueOf(k.rinsedMeanScore()),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
-                                v.get(0).getInteractionScore(), v.get(0).getGene().getFdr(), v.get(0).getGene().getFoldChange(),
-                                v.get(0).getGene().getInteractors().entrySet().stream()
-                                        .map(e -> {
-                                            HypergeometricDistribution distribution = new HypergeometricDistribution((int)pathwayClient.getNumberOfGenes(),
-                                                    pathwayClient.getNumberOfGenesByPathway(e.getKey()), transcriptome.size());
-                                            return e.getKey() + ": {" + distribution.probability(e.getValue().size()) + "} "
-                                                    + e.getValue().stream().sorted(Collections.reverseOrder())
-                                                    .map(Gene::getName).collect(Collectors.joining(",", "[", "]"));
-                                        })
-                                        .collect(Collectors.joining("; "))));
+                                v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()),
+                                v.get(0).getGene().getGeneSets().stream()
+                                        .sorted(Comparator.comparingDouble(GeneSet::getPvalue))
+                                        .map(e -> e.getName() + ": {" + e.getScore() + "} "
+                                                + e.getGenes().stream().sorted(Collections.reverseOrder())
+                                                .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
+                                        .collect(Collectors.joining("; ")));
                         v.stream().skip(1).forEach(e -> {
                             e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
-                            outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s %s\n",
-                                    "", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
-                                    e.getGene().getFdr(), e.getGene().getFoldChange(),
-                                    e.getGene().getInteractors().entrySet().stream()
-                                            .map(en -> {
-                                                HypergeometricDistribution distribution = new HypergeometricDistribution((int)pathwayClient.getNumberOfGenes(),
-                                                        pathwayClient.getNumberOfGenesByPathway(en.getKey()), transcriptome.size());
-                                                return en.getKey() + ": {" + distribution.probability(en.getValue().size()) + "} "
-                                                        + en.getValue().stream().sorted(Collections.reverseOrder())
-                                                        .map(Gene::getName).collect(Collectors.joining(",", "[", "]"));
-                                            })
-                                            .collect(Collectors.joining("; "))));
+                            formater.append("", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
+                                    String.valueOf(e.getGene().getFdr()), String.valueOf(e.getGene().getFoldChange()),
+                                    e.getGene().getGeneSets().stream()
+                                            .sorted(Comparator.comparingDouble(GeneSet::getPvalue))
+                                            .map(en -> en.getName() + ": {" + en.getScore() + "} "
+                                                    + en.getGenes().stream().sorted(Collections.reverseOrder())
+                                                    .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
+                                            .collect(Collectors.joining("; ")));
                         });
                     }));
         } else {
@@ -170,15 +211,14 @@ public class OperationDispatcher {
                         k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
                         v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
                         v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
-                        outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
-                                k.getName(), k.getDescription(), k.depletedMeanScore(), k.rinsedMeanScore(),
+                        formater.append(k.getName(), k.getDescription(), String.valueOf(k.depletedMeanScore()), String.valueOf(k.rinsedMeanScore()),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
-                                v.get(0).getInteractionScore(), v.get(0).getGene().getFdr(), v.get(0).getGene().getFoldChange()));
+                                v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()));
+
                         v.stream().skip(1).forEach(e -> {
                             e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
-                            outputBuffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
-                                    "", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
-                                    e.getGene().getFdr(), e.getGene().getFoldChange()));
+                            formater.append("", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
+                                    String.valueOf(e.getGene().getFdr()), String.valueOf(e.getGene().getFoldChange()));
                         });
                     }));
         }
@@ -201,7 +241,7 @@ public class OperationDispatcher {
 //        });
 
         try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(outputFileName))) {
-            bw.write(outputBuffer.toString());
+            bw.write(formater.getText());
         } catch (IOException e) {
             e.printStackTrace();
         }

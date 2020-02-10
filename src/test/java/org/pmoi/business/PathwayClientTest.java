@@ -9,8 +9,8 @@ class PathwayClientTest {
     @Test
     void getPathway() {
         PathwayClient pathwayClient = PathwayClient.getInstance();
-        System.out.println(pathwayClient.getPathways("GC").size());
-        pathwayClient.close();
+        System.out.println(pathwayClient.getPathways("HLA").size());
+        //pathwayClient.close();
     }
 
     @Test
@@ -42,5 +42,11 @@ class PathwayClientTest {
     void getPathwaysForGene() {
         PathwayClient pathwayClient = PathwayClient.getInstance();
         pathwayClient.getPathwaysForGene("IGF2").forEach(System.out::println);
+    }
+
+    @Test
+    void getNumberOfGenesByPathway() {
+        PathwayClient pathwayClient = PathwayClient.getInstance();
+        System.out.println(pathwayClient.getNumberOfGenesByPathway("Neutrophil degranulation"));
     }
 }
