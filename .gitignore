@@ -95,10 +95,12 @@ fabric.properties
 # Log files
 logs/
 
-# Input files
+# Input and output files
 *.csv
 *.tsv
 *.txt
+/input
+/output
 
 gene2go
 wikipathways/

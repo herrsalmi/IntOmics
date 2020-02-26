@@ -18,7 +18,6 @@ class ProteinTest {
         protein = new Protein("4048;191,6;;;144,69;59,41;187,2");
         assertEquals(191.6, protein.depletedMeanScore());
         assertEquals(130.43, protein.rinsedMeanScore());
-        assertTrue(protein.isMoreExpressedInDepletedSamples(1.3));
 
         protein = new Protein("4048;;;;144,69;59,41;187,2");
         assertEquals(0, protein.depletedMeanScore());
@@ -30,13 +29,28 @@ class ProteinTest {
     }
 
     @Test
+    void comparaisonFilter() {
+        Protein protein = new Protein("4048;191,6;;;144,69;59,41;187,2");
+        assertFalse(protein.isMoreExpressedInDepletedSamples(1.3));
+
+        protein = new Protein("4048;191,6;60;;144,69;59,41;187,2");
+        assertFalse(protein.isMoreExpressedInDepletedSamples(1.3));
+
+        protein = new Protein("4048;119;;102;132;57;32");
+        assertFalse(protein.isMoreExpressedInDepletedSamples(1.3));
+
+        protein = new Protein("4048;62;;;;;");
+        assertTrue(protein.isMoreExpressedInDepletedSamples(1.3));
+    }
+
+    @Test
     void alternativeObjectConstruction() {
         Protein protein = new Protein("Mothers against decapentaplegic homolog 1 OS=Homo sapiens GN=SMAD1 PE=1 SV=1", 124.2, 62.4);
         StringdbQueryClient stringdbQueryClient = new StringdbQueryClient();
         Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(protein.getName());
         assertEquals("SMAD1", protein.getName());
         interactors.forEach((k, v) -> System.out.println(k + " : " + v));
-        assertEquals(4, interactors.size());
+        assertEquals(63, interactors.size());
     }
 
 }

@@ -21,7 +21,6 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -42,12 +41,12 @@ public class PathwayClient {
         pathwayDB = new HashMap<>();
         try {
             initDB();
-            updateGeneCount();
-            pathwayDB = Collections.synchronizedMap(pathwayDB);
-            changed = new AtomicBoolean(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        updateGeneCount();
+        pathwayDB = Collections.synchronizedMap(pathwayDB);
+        changed = new AtomicBoolean(false);
     }
 
     public static PathwayClient getInstance() {
@@ -69,6 +68,7 @@ public class PathwayClient {
     }
 
     private void initDB() throws IOException {
+
         if (!Files.exists(Paths.get("pathwayDB.obj"))) {
             Pattern pattern = Pattern.compile("Hs_(.+)(?=_WP)");
             Files.list(Paths.get("wikipathways/")).forEach(e -> {
@@ -76,7 +76,7 @@ public class PathwayClient {
                     Matcher matcher = pattern.matcher(e.toString());
                     if (matcher.find())
                         pathwayDB.put(matcher.group(1).replace("_", " "),
-                                gpmlToGeneNames(e));
+                                gpmlToGeneNames(Files.lines(e).collect(Collectors.joining())));
                 } catch (JDOMException | IOException ex) {
                     ex.printStackTrace();
                 }
@@ -126,7 +126,7 @@ public class PathwayClient {
                                 return null;
                             })
                             .collect(Collectors.toList());
-                    //TODO this call is probably not thread safe
+                    //this call is probably not thread safe. Hence the use of a synchronized map
                     // Check if the pathway isn't already present under another form or a subname
                     pathways.forEach(p -> {
                         if (!pathwayDB.containsKey(p.getName().replace('/', '-')) &&
@@ -159,12 +159,7 @@ public class PathwayClient {
 
     private List<Gene> gpmlBase64Decoder(String message) {
         try {
-            var file = File.createTempFile("Hs_", ".gpml", Paths.get("tmp/").toFile());
-            file.deleteOnExit();
-            BufferedWriter bw = Files.newBufferedWriter(file.toPath());
-            bw.write(new String(Base64.getDecoder().decode(message)));
-            bw.close();
-            return gpmlToGeneNames(file.toPath()).stream()
+            return gpmlToGeneNames(new String(Base64.getDecoder().decode(message))).stream()
                     .map(e -> new Gene(e, ""))
                     .collect(Collectors.toList());
         } catch (JDOMException | IOException e) {
@@ -173,11 +168,11 @@ public class PathwayClient {
         return null;
     }
 
-    private Set<String> gpmlToGeneNames(Path path) throws JDOMException, IOException {
+    private Set<String> gpmlToGeneNames(String gpml) throws JDOMException, IOException {
         Pattern enzymPatter = Pattern.compile("(?:\\d*\\.){3}\\d+");
         Pattern namePattern = Pattern.compile("(^[\\w-]+)");
         SAXBuilder saxBuilder = new SAXBuilder();
-        Document document = saxBuilder.build(path.toFile());
+        Document document = saxBuilder.build(new StringReader(gpml));
         var childrenList = document.getRootElement().getChildren().stream()
                 .filter(c -> c.getName().equals("DataNode")).collect(Collectors.toList());
         childrenList = childrenList.stream().filter(c -> c.getAttribute("Type") != null)
@@ -278,8 +273,29 @@ public class PathwayClient {
     }
 
     public boolean isInAnyPathway(String gene) {
-        return pathwayDB.values().stream()
-                .anyMatch(e -> e.contains(gene));
+        int count = 0;
+        while (true) {
+            try {
+                //LOGGER.info(String.format("Processing gene: [%s]", gene));
+                String url = String.format("http://webservice.wikipathways.org/findPathwaysByText?species=Homo sapiens&query=%s", gene);
+                SAXParserFactory factory = SAXParserFactory.newInstance();
+                SAXParser saxParser = factory.newSAXParser();
+                PathwayResponceHandler pathwayResponceHandler = new PathwayResponceHandler();
+                saxParser.parse(url, pathwayResponceHandler);
+                List<PathwayResponse> result = pathwayResponceHandler.getPathwayResponses();
+                if (result == null || result.isEmpty())
+                    return false;
+                else
+                    return true;
+            } catch (ParserConfigurationException | IOException | SAXException e) {
+                if (++count > 10) {
+                    LOGGER.error(String.format("Error getting pathway for: [%s]. Aborting!", gene));
+                    return false;
+                }
+            }
+        }
+//        return pathwayDB.values().stream()
+//                .anyMatch(e -> e.contains(gene));
     }
 
     public synchronized void close() {

@@ -44,26 +44,53 @@ public class Protein extends Feature{
         int DmaxLen = info.length > 3 ? 4 : info.length;
         for (int i = 1; i < DmaxLen; i++) {
             if (!info[i].isEmpty() && !info[i].isBlank())
-                depletedSamplesScore.add(Double.valueOf(info[i].replace(',', '.')));
+                depletedSamplesScore.add(Double.valueOf(decimalFormat.format(Double.valueOf(info[i].replace(',', '.'))).replace(',', '.')));
         }
         // the 3 following fields are scores for rinsed samples
         for (int i = 4; i < info.length; i++) {
             if (!info[i].isEmpty() && !info[i].isBlank())
-                rinsedSamplesScore.add(Double.valueOf(info[i].replace(',', '.')));
+                rinsedSamplesScore.add(Double.valueOf(decimalFormat.format(Double.valueOf(info[i].replace(',', '.'))).replace(',', '.')));
         }
+        // add zeros if the number of values is less than 3
+        while (depletedSamplesScore.size() < 3)
+            depletedSamplesScore.add(0d);
+        while (rinsedSamplesScore.size() < 3)
+            rinsedSamplesScore.add(0d);
         this.pathways = new ArrayList<>();
     }
 
     public Double depletedMeanScore() {
-        return Double.valueOf(decimalFormat.format(depletedSamplesScore.stream().collect(Collectors.summarizingDouble(Double::doubleValue)).getAverage()).replace(',', '.'));
+        return Double.valueOf(decimalFormat.format(depletedSamplesScore.stream()
+                .filter(e -> e != 0d)
+                .collect(Collectors.summarizingDouble(Double::doubleValue))
+                .getAverage()).replace(',', '.'));
     }
 
     public Double rinsedMeanScore() {
-        return  Double.valueOf(decimalFormat.format(rinsedSamplesScore.stream().collect(Collectors.summarizingDouble(Double::doubleValue)).getAverage()).replace(',', '.'));
+        return  Double.valueOf(decimalFormat.format(rinsedSamplesScore.stream()
+                .filter(e -> e != 0d)
+                .collect(Collectors.summarizingDouble(Double::doubleValue))
+                .getAverage()).replace(',', '.'));
     }
 
     public boolean isMoreExpressedInDepletedSamples(double fc) {
-        return depletedMeanScore() > rinsedMeanScore() && (depletedMeanScore() / rinsedMeanScore()) >= fc;
+        if (depletedSamplesScore.size() == 1 && rinsedSamplesScore.size() == 1)
+            return depletedMeanScore() > rinsedMeanScore() && (depletedMeanScore() / rinsedMeanScore()) >= fc;
+        int count = 0;
+        for (int i = 0; i < 3; i++) {
+            if (depletedSamplesScore.get(i) != 0d && rinsedSamplesScore.get(i) != 0d) {
+                if((depletedSamplesScore.get(i) / rinsedSamplesScore.get(i)) >= fc) count++;
+            }
+            else if (depletedSamplesScore.get(i) != 0d && rinsedSamplesScore.get(i) == 0d)
+                count++;
+        }
+        return switch (count) {
+            case 3 -> true;
+            case 2 -> depletedMeanScore() > rinsedMeanScore() && (depletedMeanScore() / rinsedMeanScore()) >= fc;
+            case 1 -> rinsedMeanScore() == 0d;
+            default -> false;
+        };
+        //return depletedMeanScore() > rinsedMeanScore() && (depletedMeanScore() / rinsedMeanScore()) >= fc;
     }
 
     public List<Pathway> getPathways() {

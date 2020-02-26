@@ -24,16 +24,23 @@ public class MembranomeManager {
     public List<Gene> getDEGenesExceptMembranome(String filename) {
         GeneOntologyMapper goMapper = new GeneOntologyMapper();
         Predicate<Gene> condition = e -> !goMapper.checkMembranomeGO(e.getEntrezID());
-        return getDEGenesWithCondition(condition, filename);
+        return getDEGenesWithCondition(condition, filename, true);
     }
 
     public List<Gene> getMembranomeFromDEGenes(String fileName) {
         GeneOntologyMapper goMapper = new GeneOntologyMapper();
-        Predicate<Gene> condition = e -> goMapper.checkMembranomeGO(e.getEntrezID());
-        return getDEGenesWithCondition(condition, fileName);
+        SurfaceomeMapper surfaceomeMapper = SurfaceomeMapper.getInstance();
+        //Predicate<Gene> condition = e -> goMapper.checkMembranomeGO(e.getEntrezID());
+        Predicate<Gene> condition = e -> surfaceomeMapper.isSurfaceProtein(e.getName());
+        return getDEGenesWithCondition(condition, fileName, false);
     }
 
-    private List<Gene> getDEGenesWithCondition(Predicate<Gene> condition, String filename) {
+    public List<Gene> getDEGenes(String fileName) {
+        Predicate<Gene> condition = e -> true;
+        return getDEGenesWithCondition(condition, fileName, true);
+    }
+
+    private List<Gene> getDEGenesWithCondition(Predicate<Gene> condition, String filename, boolean useFC) {
         EntrezIDMapper mapper = EntrezIDMapper.getInstance();
         List<Gene> inputGenes = Objects.requireNonNull(readDEGeneFile(filename)).stream().distinct().collect(Collectors.toList());
         ExecutorService executor = Executors.newFixedThreadPool(4);
@@ -47,7 +54,12 @@ public class MembranomeManager {
         // if a gene has no EntrezID it will also get removed here
         return inputGenes.parallelStream()
                 .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
-                .filter(g -> Math.abs(g.getFoldChange()) >= ApplicationParameters.getInstance().getGeneFoldChange())
+                .filter(g -> {
+                    if (useFC)
+                        return Math.abs(g.getFoldChange()) >= ApplicationParameters.getInstance().getGeneFoldChange();
+                    else
+                        return true;
+                })
                 .filter(condition)
                 .collect(Collectors.toList());
     }

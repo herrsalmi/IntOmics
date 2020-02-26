@@ -36,7 +36,6 @@ public class GSEA {
             nullDistribution[i] = enrichmentScore(geneSet, sortedList);
         }
 
-        //System.out.println(enrichmentScore);
         //System.out.println(Arrays.toString(nullDistribution));
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("d.txt"))) {
             for (double d : nullDistribution)
@@ -53,7 +52,7 @@ public class GSEA {
         Pmiss = PmissTmp;
         this.normalizedScore = enrichmentScore >= 0 ?
                 enrichmentScore / Arrays.stream(nullDistribution).filter(e -> e >= 0).average().getAsDouble() :
-                enrichmentScore / Arrays.stream(nullDistribution).filter(e -> e < 0).average().getAsDouble();;
+                enrichmentScore / Math.abs(Arrays.stream(nullDistribution).filter(e -> e < 0).average().getAsDouble());
         return pvalue;
     }
 
