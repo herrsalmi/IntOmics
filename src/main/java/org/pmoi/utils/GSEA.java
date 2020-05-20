@@ -2,9 +2,6 @@ package org.pmoi.utils;
 
 import org.pmoi.models.Gene;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
@@ -32,16 +29,15 @@ public class GSEA {
         List<Double> PmissTmp = Pmiss;
         double[] nullDistribution = new double[nbrPermutations];
         for (int i = 0; i < nbrPermutations; i++) {
-            Collections.shuffle(sortedList, new Random(i + 32));
+            Collections.shuffle(sortedList, new Random(i + System.currentTimeMillis()));
             nullDistribution[i] = enrichmentScore(geneSet, sortedList);
         }
 
-        //System.out.println(Arrays.toString(nullDistribution));
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("d.txt"))) {
-            for (double d : nullDistribution)
-                bw.write(Double.toString(d) + "\n");
-        } catch (IOException ignored) {
-        }
+//        try (BufferedWriter bw = new BufferedWriter(new FileWriter("d.txt"))) {
+//            for (double d : nullDistribution)
+//                bw.write(Double.toString(d) + "\n");
+//        } catch (IOException ignored) {
+//        }
         double Icount = 0;
         for (int i = 0; i < nbrPermutations; i++) {
             if (Math.abs(nullDistribution[i]) >= Math.abs(enrichmentScore))

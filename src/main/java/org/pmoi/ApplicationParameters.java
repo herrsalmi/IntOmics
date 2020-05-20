@@ -7,7 +7,7 @@ public class ApplicationParameters {
     private final String version = "0.1b";
     private final String progName = "IntOmics";
     private final int maxTries = 100;
-    private final int stringDBScore = 800;
+    private final int stringDBScore = 900;
     private final double proteinFoldChange = 1.3;
     private final double geneFoldChange = 1.5;
     private final boolean use48h = false;

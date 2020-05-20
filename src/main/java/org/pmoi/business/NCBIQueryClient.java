@@ -61,7 +61,7 @@ public class NCBIQueryClient {
                 HttpConnector httpConnector = new HttpConnector();
                 String ncbiResultContent = httpConnector.getContent(url);
                 // the first line always contains the gene name following the format: 1. NAME\n
-                //TODO replace this using regex
+                //TODO replace this with a regex
                 ncbiResultContent = ncbiResultContent.split("\n")[1];
                 feature.setName(ncbiResultContent.substring(3));
                 return;
