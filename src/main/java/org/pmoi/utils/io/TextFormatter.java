@@ -5,8 +5,8 @@ public class TextFormatter implements OutputFormatter {
 
     public TextFormatter() {
         this.buffer = new StringBuffer();
-        buffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s\n",
-                "#protein", "name", "score D", "score R", "gene", "name", "I score", "gene_fdr", "gene_fc"));
+        buffer.append(String.format("%-10s %-50s %-10s %-50s %-10s %-10s %-10s\n",
+                "#protein", "name", "gene", "name", "I score", "gene_fdr", "gene_fc"));
     }
 
     @Override

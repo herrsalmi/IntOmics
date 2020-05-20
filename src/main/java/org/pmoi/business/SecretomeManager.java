@@ -4,13 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.models.Protein;
 import org.pmoi.models.SecretomeMappingMode;
-import org.pmoi.utils.NumberParser;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -53,81 +51,45 @@ public class SecretomeManager {
     public void setMappingMode(SecretomeMappingMode mode) {
         this.mode = mode;
         switch (mode) {
-            case METAZSECKB:
+            case METAZSECKB -> {
                 SecretomeManager secretomeDB = SecretomeManager.getInstance();
                 secretomeMapper = protein -> secretomeDB.isSecreted(protein.getName());
-                break;
-            case GOTERM:
+            }
+            case GOTERM -> {
                 GeneOntologyMapper goMapper = new GeneOntologyMapper();
                 secretomeMapper = protein -> goMapper.checkSecretomeGO(protein.getEntrezID());
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + mode);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + mode);
         }
     }
 
-    public List<Protein> getSecretomeFromLCMSFile(String filePath) {
+    public List<Protein> LoadSecretomeFile(String filePath) {
         isMappingModeSet();
-        List<Protein> inputProtein = Objects.requireNonNull(LoadSecretomeFile(filePath))
-                .stream()
-                .filter(e -> e.getEntrezID() != null && !e.getEntrezID().isEmpty())
-                .collect(Collectors.toList());
-        EntrezIDMapper mapper = EntrezIDMapper.getInstance();
-        ExecutorService executor = Executors.newFixedThreadPool(4);
-        inputProtein.forEach(g -> executor.submit(() -> mapper.idToName(g)));
-        executor.shutdown();
         try {
-            executor.awaitTermination(10, TimeUnit.DAYS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // keep only proteins that match an entry in the DB
-        return inputProtein.stream()
-                .filter(e -> e.getName() != null)
-                .filter(secretomeMapper)
-                .collect(Collectors.toList());
-    }
-
-    private List<Protein> LoadSecretomeFile(String filePath) {
-        try {
-            return Files.lines(Path.of(filePath))
-                    .skip(1)
+            var data = Files.lines(Path.of(filePath))
+                    .filter(e -> !e.startsWith("#"))
                     .filter(Predicate.not(String::isBlank))
                     .distinct()
                     .map(Protein::new)
                     .collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
-    public List<Protein> getSecretomeFromLabelFreeFile(String filePath) {
-        isMappingModeSet();
-        try {
-            var inputProteins =  Files.lines(Path.of(filePath))
-                    .skip(1)
-                    .filter(Predicate.not(String::isBlank))
-                    .distinct()
-                    .map(e -> e.split(";"))
-                    .filter(e -> NumberParser.tryParseDouble(e[3]))
-                    .filter(e -> NumberParser.tryParseDouble(e[4]))
-                    .filter(e -> Double.parseDouble(e[3]) < 0.05 && Double.parseDouble(e[4]) > 1.3)
-                    .map(e -> new Protein(e[6], Double.parseDouble(e[7]), Double.parseDouble(e[8])))
-                    .collect(Collectors.toList());
-            if (mode.equals(SecretomeMappingMode.GOTERM)) {
-                ExecutorService executor = Executors.newFixedThreadPool(4);
-                EntrezIDMapper mapper = EntrezIDMapper.getInstance();
-                inputProteins.forEach(g -> executor.submit(() -> mapper.nameToId(g)));
+            // convert id <=> name in order to have them both
+            EntrezIDMapper mapper = EntrezIDMapper.getInstance();
+            ExecutorService executor = Executors.newFixedThreadPool(4);
+            if (data.get(0).getEntrezID() != null) {
+                data.forEach(e -> executor.submit(() -> mapper.idToName(e)));
                 executor.shutdown();
-                try {
-                    executor.awaitTermination(10, TimeUnit.DAYS);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            } else if (mode.equals(SecretomeMappingMode.GOTERM)){
+                data.forEach(e -> executor.submit(() -> mapper.nameToId(e)));
+                executor.shutdown();
             }
-            return inputProteins.stream()
+            try {
+                executor.awaitTermination(10, TimeUnit.DAYS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return data.stream()
+                    .filter(e -> e.getName() != null)
                     .filter(secretomeMapper)
                     .collect(Collectors.toList());
         } catch (IOException e) {

@@ -11,6 +11,7 @@ public class ApplicationParameters {
     private final double proteinFoldChange = 1.3;
     private final double geneFoldChange = 1.5;
     private final boolean use48h = false;
+    //TODO should be specified by the used
     private final String ncbiAPIKey = "40065544fb6667a5a723b649063fbe596e08";
     private final boolean addPathways = true;
 

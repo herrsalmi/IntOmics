@@ -21,32 +21,24 @@ import java.util.stream.Collectors;
 
 public class OperationDispatcher {
     private static final Logger LOGGER = LogManager.getRootLogger();
-    private StringdbQueryClient stringdbQueryClient;
+    private final StringdbQueryClient stringdbQueryClient;
     private OutputFormatter formater;
 
     public OperationDispatcher() {
         stringdbQueryClient = new StringdbQueryClient();
     }
 
-    public void run(String prefix, ProteomeType proteomeType, SecretomeMappingMode mappingMode, OutputFormatter formater) {
+    public void run(String prefix, SecretomeMappingMode mappingMode, OutputFormatter formater) {
         this.formater = formater;
         String extension = formater instanceof TSVFormatter ? "tsv" : "txt";
-        String output = String.format("%s_%s_%s_%s_fc%1.1f.%s",
-                prefix, proteomeType.label, mappingMode.label, ApplicationParameters.getInstance().getStringDBScore(),
+        String output = String.format("%s_%s_%s_fc%1.1f.%s",
+                prefix, mappingMode.label, ApplicationParameters.getInstance().getStringDBScore(),
                 ApplicationParameters.getInstance().getGeneFoldChange(), extension);
         MembranomeManager membranomeManager = MembranomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
         secretomeManager.setMappingMode(mappingMode);
-        List<Protein> allSecretome;
         LOGGER.info("Loading secretome");
-        allSecretome = switch (proteomeType) {
-            case LABEL_FREE -> secretomeManager.getSecretomeFromLabelFreeFile("input/Secretome_label_free.csv");
-            case LCMS -> secretomeManager.getSecretomeFromLCMSFile("input/Secretome.csv");
-        };
-        assert allSecretome != null;
-        List<Protein> secretome = allSecretome.stream()
-                .filter(e -> e.isMoreExpressedInDepletedSamples(ApplicationParameters.getInstance().getProteinFoldChange()))
-                .collect(Collectors.toList());
+        var secretome = secretomeManager.LoadSecretomeFile("input/Secretome_label_free.csv");
 
         LOGGER.info("Loading 9h membranome");
         List<Gene> membranome = membranomeManager.getMembranomeFromDEGenes("input/all_genes.csv");
@@ -65,7 +57,7 @@ public class OperationDispatcher {
         }
 
         LOGGER.info("Number of membranome genes: " + membranome.size());
-        LOGGER.info("Number of secreted proteins: " + allSecretome.size());
+        LOGGER.info("Number of secreted proteins: " + secretome.size());
         LOGGER.info("Number of secreted proteins more expressed in depleted samples: " + secretome.size());
 
         assert transcriptome != null;
@@ -81,17 +73,6 @@ public class OperationDispatcher {
 
         LOGGER.info("Filtering transcriptome");
         var filteredTranscriptome = transcriptome.parallelStream().filter(e -> pathwayClient.isInAnyPathway(e.getName())).collect(Collectors.toList());
-        //
-//        RandomWalk randomWalk = new RandomWalk();
-//        randomWalk.walk(pathwayClient.getGenesFromPathway("PI3K-Akt Signaling Pathway"), transcriptome);
-//        RandomWalkLineChart.main(randomWalk.getRunningSum());
-
-//        LOGGER.info("Running GSEA");
-//        GSEA gseaT = new GSEA();
-//        var pvalue = gseaT.run(pathwayClient.getGenesFromPathway("Degradation of the extracellular matrix"),
-//                filteredTranscriptome);
-//        RandomWalkLineChart.main(gseaT.getPhit(), gseaT.getPmiss());
-//        System.exit(0);
 
         secretome.forEach(e -> executorService.submit(() -> {
             // Adding StringDB interactors
@@ -152,22 +133,7 @@ public class OperationDispatcher {
         }
 
         NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
-        //List<ResultsFX> fxList = new ArrayList<>();
         if (ApplicationParameters.getInstance().addPathways()) {
-
-            // Calculate pathway pvalue using hypergeometric test
-//            resultSet.parallelStream()
-//                    .collect(Collectors.groupingBy(ResultRecord::getProtein))
-//                    .forEach((k, v) -> {
-//                        v.stream().forEach(e -> {
-//                            e.getGene().getGeneSets()
-//                                    .forEach(en -> {
-//                                        HypergeometricDistribution distribution = new HypergeometricDistribution((int)pathwayClient.getNumberOfGenes(),
-//                                                pathwayClient.getNumberOfGenesByPathway(en.getName()), transcriptome.size());
-//                                        en.setPvalue(distribution.probability(en.getGenes().size()));
-//                                    });
-//                        });
-//                    });
             LOGGER.info("Running GSEA ...");
             // Calculate pathway pvalue using GSEA
             ExecutorService service = Executors.newFixedThreadPool(8);
@@ -187,33 +153,17 @@ public class OperationDispatcher {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            // Remove results with pathways having pvalue < 0.05
-//            var finalResultSet = resultSet.parallelStream()
-//                    .filter(e -> e.getGene().getGeneSets() != null)
-//                    .filter(e -> !e.getGene().getGeneSets().isEmpty())
-//                    .filter(e -> e.getGene().getGeneSets().stream().sorted(Comparator.comparingDouble(GeneSet::getPvalue)).findFirst().get().getPvalue() < 0.05 )
-//                    .collect(Collectors.toList());
-            resultSet.parallelStream().forEach(e -> {
-                e.getGene().getGeneSets().removeIf(geneSet -> geneSet.getPvalue() >= 0.05);
-            });
+
+            resultSet.parallelStream().forEach(e -> e.getGene().getGeneSets().removeIf(geneSet -> geneSet.getPvalue() >= 0.05));
 
             LOGGER.info("Writing results ...");
-
-            try (BufferedWriter bw = Files.newBufferedWriter(Paths.get("cytoscapeVis.txt"))) {
-                bw.write("#node1\tnode2\n");
-                for (var e: resultSet){
-                    bw.write(String.format("%s\t%s\n", e.getProtein().getName(), e.getGene().getName()));
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
 
             customThreadPool.submit(() -> resultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> {
                         k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
                         v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
                         v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
-                        formater.append(k.getName(), k.getDescription(), String.valueOf(k.depletedMeanScore()), String.valueOf(k.rinsedMeanScore()),
+                        formater.append(k.getName(), k.getDescription(),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
                                 v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()),
                                 v.get(0).getGene().getGeneSets().stream()
@@ -240,7 +190,7 @@ public class OperationDispatcher {
                         k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
                         v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
                         v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
-                        formater.append(k.getName(), k.getDescription(), String.valueOf(k.depletedMeanScore()), String.valueOf(k.rinsedMeanScore()),
+                        formater.append(k.getName(), k.getDescription(),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
                                 v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()));
 
@@ -257,17 +207,6 @@ public class OperationDispatcher {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        resultSet.forEach(e -> {
-//            outputBuffer.append(String.format("%-10s %-6s %-50s %-10s %-10s %-10s %-6s %-50s %-10s %-10s %-10s\n",
-//                    e.getProtein().getName(), e.getProtein().getEntrezID(), e.getProtein().getDescription(),
-//                    e.getGene().getName(), e.getGene().getEntrezID(), e.getGene().getDescription(),
-//                    e.getInteractionScore(), e.getProtein().depletedMeanScore(), e.getProtein().rinsedMeanScore(),
-//                    e.getGene().getFdr(), e.getGene().getFoldChange()));
-//            fxList.add(new ResultsFX(e.getProtein().getName(), e.getProtein().getEntrezID(), e.getProtein().getDescription(),
-//                    e.getGene().getName(), e.getGene().getEntrezID(), e.getGene().getDescription(),
-//                    e.getInteractionScore(), String.valueOf(e.getProtein().depletedMeanScore()), String.valueOf(e.getProtein().rinsedMeanScore()),
-//                    e.getGene().getFdr(), e.getGene().getFoldChange(), ""));
-//        });
 
         try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(outputFileName))) {
             bw.write(formater.getText());
@@ -279,7 +218,6 @@ public class OperationDispatcher {
 
         EntrezIDMapper.getInstance().close();
         pathwayClient.close();
-//        MainFX.main(fxList);
     }
 
 }
