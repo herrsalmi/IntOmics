@@ -25,7 +25,7 @@ public class GeneOntologyMapper {
 
     private void load() throws IOException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(
-                Objects.requireNonNull(GeneOntologyMapper.class.getClassLoader().getResource("GODB.obj")).toURI())))){
+                Objects.requireNonNull(getClass().getClassLoader().getResource("GODB.obj")).toURI())))){
             this.internalDB = (Map<String, Set<String>>) ois.readObject();
         } catch (ClassNotFoundException | URISyntaxException e) {
             e.printStackTrace();

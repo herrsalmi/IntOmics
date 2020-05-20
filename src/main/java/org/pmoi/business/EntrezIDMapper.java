@@ -1,45 +1,35 @@
 package org.pmoi.business;
 
 import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
-import com.google.common.collect.Maps;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.pmoi.models.Feature;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.URISyntaxException;
+import java.util.Objects;
 
 public class EntrezIDMapper {
 
     private static volatile EntrezIDMapper instance;
 
-    private static final Logger LOGGER = LogManager.getRootLogger();
-
     private BiMap<String, String> internalDB;
     private NCBIQueryClient ncbiQueryClient;
-    private int initialSize;
 
     private EntrezIDMapper() {
         loadInternalDB();
     }
 
     private void loadInternalDB() {
-        if (Files.notExists(Paths.get("internalDB.obj"))) {
-            //throw new UnsupportedOperationException();
-            createInternalDB();
-        } else {
-            try {
-                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("internalDB.obj")));
-                this.internalDB = (BiMap<String, String>) ois.readObject();
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            this.ncbiQueryClient = new NCBIQueryClient();
-            this.initialSize = internalDB.size();
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(Objects.requireNonNull(getClass()
+                    .getClassLoader().getResource("internalDB.obj")).toURI())));
+            this.internalDB = (BiMap<String, String>) ois.readObject();
+        } catch (IOException | ClassNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
         }
+        this.ncbiQueryClient = new NCBIQueryClient();
     }
 
     public String idToName(String id) {
@@ -76,38 +66,6 @@ public class EntrezIDMapper {
 
     public void nameToId(Feature feature) {
         feature.setEntrezID(nameToId(feature.getName()));
-    }
-
-    public synchronized void close() {
-        if (internalDB.size() > this.initialSize) {
-            try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("internalDB.obj")))) {
-                LOGGER.info("Updating internal database ...");
-                oos.writeObject(internalDB);
-            } catch (IOException e) {
-                LOGGER.error("Unable to save EntrezMapper internal database!");
-            }
-        }
-    }
-
-    private void createInternalDB() {
-        try {
-            BiMap<String, String> map = Maps.synchronizedBiMap(HashBiMap.create(30000));
-            AtomicInteger counter = new AtomicInteger(0);
-            Files.lines(Paths.get("genes.txt"))
-                    .skip(1)
-                    .map(e -> e.split("\t"))
-                    .filter(e -> e[0].equals("9606"))
-                    .forEach(e -> {
-                        System.out.println(String.format("%d - {%s : %s}",counter.incrementAndGet(), e[2], e[5]));
-                        map.put(e[2], e[5]);
-                    });
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("internalDB.obj")));
-            oos.writeObject(map);
-            oos.close();
-            internalDB = map;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static EntrezIDMapper getInstance() {
