@@ -1,7 +1,7 @@
 package org.pmoi.business;
 
 import org.pmoi.ApplicationParameters;
-import org.pmoi.models.Gene;
+import org.pmoi.model.Gene;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,10 +14,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class MembranomeManager {
-    private static MembranomeManager instance;
+public class TranscriptomeManager {
+    private static TranscriptomeManager instance;
 
-    private MembranomeManager() {
+    private TranscriptomeManager() {
 
     }
 
@@ -79,9 +79,9 @@ public class MembranomeManager {
         return null;
     }
 
-    public static synchronized MembranomeManager getInstance() {
+    public static synchronized TranscriptomeManager getInstance() {
         if (instance == null)
-            instance = new MembranomeManager();
+            instance = new TranscriptomeManager();
         return instance;
     }
 }

@@ -5,5 +5,7 @@ module IntOmics {
     requires java.desktop;
     requires java.xml.bind;
     requires commons.math3;
+    requires jcommander;
 
+    opens org.pmoi;
 }

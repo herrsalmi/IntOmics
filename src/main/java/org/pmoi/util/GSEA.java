@@ -1,6 +1,6 @@
-package org.pmoi.utils;
+package org.pmoi.util;
 
-import org.pmoi.models.Gene;
+import org.pmoi.model.Gene;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -9,13 +9,10 @@ import java.util.stream.Collectors;
 
 public class GSEA {
 
-    private List<Double> Phit;
-    private List<Double> Pmiss;
+    private List<Double> lHits;
+    private List<Double> lMisses;
     private double normalizedScore;
-    private static final int nbrPermutations = 1000;
-
-    public GSEA() {
-    }
+    private static final int PERMUTATIONS = 1000;
 
     public double run(List<Gene> geneSet, List<Gene> geneList) {
         if (geneList.stream().filter(geneSet::contains).findAny().isEmpty())
@@ -25,27 +22,22 @@ public class GSEA {
                 .collect(Collectors.toList());
         double enrichmentScore = enrichmentScore(geneSet, sortedList);
         // keep the original hit/miss
-        List<Double> PhitTmp = Phit;
-        List<Double> PmissTmp = Pmiss;
-        double[] nullDistribution = new double[nbrPermutations];
-        for (int i = 0; i < nbrPermutations; i++) {
+        List<Double> pHitTmp = lHits;
+        List<Double> pMissTmp = lMisses;
+        double[] nullDistribution = new double[PERMUTATIONS];
+        for (int i = 0; i < PERMUTATIONS; i++) {
             Collections.shuffle(sortedList, new Random(i + System.currentTimeMillis()));
             nullDistribution[i] = enrichmentScore(geneSet, sortedList);
         }
 
-//        try (BufferedWriter bw = new BufferedWriter(new FileWriter("d.txt"))) {
-//            for (double d : nullDistribution)
-//                bw.write(Double.toString(d) + "\n");
-//        } catch (IOException ignored) {
-//        }
-        double Icount = 0;
-        for (int i = 0; i < nbrPermutations; i++) {
+        double icount = 0;
+        for (int i = 0; i < PERMUTATIONS; i++) {
             if (Math.abs(nullDistribution[i]) >= Math.abs(enrichmentScore))
-                Icount++;
+                icount++;
         }
-        double pvalue = Icount / nbrPermutations;
-        Phit = PhitTmp;
-        Pmiss = PmissTmp;
+        double pvalue = icount / PERMUTATIONS;
+        lHits = pHitTmp;
+        lMisses = pMissTmp;
         this.normalizedScore = enrichmentScore >= 0 ?
                 enrichmentScore / Arrays.stream(nullDistribution).filter(e -> e >= 0).average().getAsDouble() :
                 enrichmentScore / Math.abs(Arrays.stream(nullDistribution).filter(e -> e < 0).average().getAsDouble());
@@ -59,28 +51,28 @@ public class GSEA {
      * @param stepWeight options: 0, 1, 1.5, 2
      */
     public double enrichmentScore(List<Gene> geneSet, List<Gene> sortedList, double stepWeight) {
-        Phit = new ArrayList<>();
-        Pmiss = new ArrayList<>();
+        lHits = new ArrayList<>();
+        lMisses = new ArrayList<>();
         BigDecimal hitSum = new BigDecimal("0");
         BigDecimal missSum = new BigDecimal("0");
-        var Nr = sortedList.stream().filter(geneSet::contains)
+        var nr = sortedList.stream().filter(geneSet::contains)
                 .mapToDouble(e -> Math.pow(Math.abs(e.significanceScore()), stepWeight)).sum();
-        var Nh = sortedList.stream().filter(geneSet::contains).count();
+        var nh = sortedList.stream().filter(geneSet::contains).count();
         for (Gene g : sortedList) {
             if (geneSet.contains(g)) {
-                hitSum = hitSum.add(new BigDecimal(Double.toString(Math.pow(Math.abs(g.significanceScore()), stepWeight))).divide(BigDecimal.valueOf(Nr),30 , RoundingMode.HALF_UP));
-                Phit.add(hitSum.doubleValue());
-                Pmiss.add(missSum.doubleValue());
+                hitSum = hitSum.add(new BigDecimal(Double.toString(Math.pow(Math.abs(g.significanceScore()), stepWeight))).divide(BigDecimal.valueOf(nr),30 , RoundingMode.HALF_UP));
+                lHits.add(hitSum.doubleValue());
+                lMisses.add(missSum.doubleValue());
             } else {
-                missSum = missSum.add(new BigDecimal("1").divide(new BigDecimal(Double.toString(sortedList.size() - Nh)), 30, RoundingMode.HALF_EVEN));
-                Phit.add(hitSum.doubleValue());
-                Pmiss.add(missSum.doubleValue());
+                missSum = missSum.add(new BigDecimal("1").divide(new BigDecimal(Double.toString((double)sortedList.size() - nh)), 30, RoundingMode.HALF_EVEN));
+                lHits.add(hitSum.doubleValue());
+                lMisses.add(missSum.doubleValue());
             }
         }
 
         double es = 0;
-        for (int i = 0; i < Phit.size(); i++) {
-            es = Math.abs(es) > Math.abs(Phit.get(i) - Pmiss.get(i)) ? es : Phit.get(i) - Pmiss.get(i);
+        for (int i = 0; i < lHits.size(); i++) {
+            es = Math.abs(es) > Math.abs(lHits.get(i) - lMisses.get(i)) ? es : lHits.get(i) - lMisses.get(i);
         }
         BigDecimal res = new BigDecimal(Double.toString(es));
         res = res.setScale(5, RoundingMode.HALF_UP);
@@ -96,12 +88,12 @@ public class GSEA {
         return this.enrichmentScore(geneSet, geneList, 1);
     }
 
-    public List<Double> getPhit() {
-        return Phit;
+    public List<Double> getlHits() {
+        return lHits;
     }
 
-    public List<Double> getPmiss() {
-        return Pmiss;
+    public List<Double> getlMisses() {
+        return lMisses;
     }
 
     public double getNormalizedScore() {

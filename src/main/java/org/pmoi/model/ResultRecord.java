@@ -1,6 +1,4 @@
-package org.pmoi.models;
-
-import java.util.Comparator;
+package org.pmoi.model;
 
 public class ResultRecord implements Comparable<ResultRecord>{
     private Protein protein;

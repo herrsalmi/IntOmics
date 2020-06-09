@@ -1,9 +1,9 @@
 package org.pmoi.business;
 
 import org.junit.jupiter.api.Test;
-import org.pmoi.models.Gene;
+import org.pmoi.model.Gene;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NCBIQueryClientTest {
 

@@ -1,4 +1,4 @@
-package org.pmoi.utils.io;
+package org.pmoi.util.io;
 
 import java.util.StringJoiner;
 

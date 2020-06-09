@@ -1,4 +1,4 @@
-package org.pmoi.models;
+package org.pmoi.model;
 
 public enum ProteomeType {
     LABEL_FREE("LF"),

@@ -8,6 +8,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.pmoi.ApplicationParameters;
+import org.pmoi.Args;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -31,7 +32,7 @@ public class StringdbQueryClient {
     public Map<String, String> getProteinNetwork(String symbol) {
         LOGGER.info("Searching StringDB for gene " + symbol);
         String url = String.format("https://string-db.org/api/xml/interaction_partners?species=9606&required_score=%s&identifiers=%s",
-                ApplicationParameters.getInstance().getStringDBScore(), symbol);
+                Args.getInstance().getStringDBScore(), symbol);
         Map<String, String> map = new HashMap<>();
         // see if there is an entry in StringDB for the gene
         URLConnection connection;

@@ -1,4 +1,4 @@
-package org.pmoi.models;
+package org.pmoi.model;
 
 import com.google.common.math.DoubleMath;
 
@@ -9,6 +9,14 @@ import java.util.Objects;
 public class Gene extends Feature implements Comparable<Gene>{
 
     private List<GeneSet> geneSets;
+
+    public Gene(Gene gene) {
+        this.name = gene.name;
+        this.entrezID = gene.entrezID;
+        this.fdr = gene.fdr;
+        this.foldChange = gene.foldChange;
+        this.geneSets = new ArrayList<>();
+    }
 
     public Gene(String line) {
         String[] info = line.split(";");
@@ -60,15 +68,6 @@ public class Gene extends Feature implements Comparable<Gene>{
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    @Override
-    public Object clone() {
-        try {
-            return (Gene) super.clone();
-        } catch (CloneNotSupportedException e) {
-            return new Gene(this.name, this.entrezID, this.fdr, this.foldChange);
-        }
     }
 
     @Override

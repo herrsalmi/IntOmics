@@ -2,8 +2,8 @@ package org.pmoi.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.models.Protein;
-import org.pmoi.models.SecretomeMappingMode;
+import org.pmoi.model.Protein;
+import org.pmoi.model.SecretomeMappingMode;
 
 import java.io.IOException;
 import java.nio.file.Files;

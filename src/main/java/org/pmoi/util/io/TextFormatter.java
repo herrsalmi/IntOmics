@@ -1,4 +1,4 @@
-package org.pmoi.utils.io;
+package org.pmoi.util.io;
 
 public class TextFormatter implements OutputFormatter {
     private StringBuffer buffer;

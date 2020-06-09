@@ -1,7 +1,9 @@
 package org.pmoi.business;
 
 import com.google.common.collect.BiMap;
-import org.pmoi.models.Feature;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.pmoi.model.Feature;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,7 +14,8 @@ import java.util.Objects;
 
 public class EntrezIDMapper {
 
-    private static volatile EntrezIDMapper instance;
+    private static final Logger LOGGER = LogManager.getRootLogger();
+    private static EntrezIDMapper instance;
 
     private BiMap<String, String> internalDB;
     private NCBIQueryClient ncbiQueryClient;
@@ -27,7 +30,7 @@ public class EntrezIDMapper {
                     .getClassLoader().getResource("internalDB.obj")).toURI())));
             this.internalDB = (BiMap<String, String>) ois.readObject();
         } catch (IOException | ClassNotFoundException | URISyntaxException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         this.ncbiQueryClient = new NCBIQueryClient();
     }
@@ -38,7 +41,8 @@ public class EntrezIDMapper {
             name = ncbiQueryClient.entrezIDToGeneName(id);
             try {
                 internalDB.put(id, name);
-            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalArgumentException e) {
+                LOGGER.error(e);
             }
         } else {
             name = internalDB.get(id);
@@ -52,7 +56,8 @@ public class EntrezIDMapper {
             id = ncbiQueryClient.geneNameToEntrezID(name);
             try {
                 internalDB.put(id, name);
-            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalArgumentException e) {
+                LOGGER.error(e);
             }
         } else {
             id = internalDB.inverse().get(name);
@@ -69,12 +74,8 @@ public class EntrezIDMapper {
     }
 
     public static EntrezIDMapper getInstance() {
-        if (instance == null) {
-            synchronized (EntrezIDMapper.class) {
-                if (instance == null)
-                    instance = new EntrezIDMapper();
-            }
-        }
+        if (instance == null)
+            instance = new EntrezIDMapper();
         return instance;
     }
 }

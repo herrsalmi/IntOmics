@@ -1,4 +1,4 @@
-package org.pmoi.utils;
+package org.pmoi.util;
 
 import org.junit.jupiter.api.Test;
 

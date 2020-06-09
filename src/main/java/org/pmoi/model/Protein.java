@@ -1,6 +1,6 @@
-package org.pmoi.models;
+package org.pmoi.model;
 
-import org.pmoi.utils.NumberParser;
+import org.pmoi.util.NumberParser;
 
 import java.util.ArrayList;
 import java.util.List;

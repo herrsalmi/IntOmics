@@ -1,4 +1,4 @@
-package org.pmoi.utils;
+package org.pmoi.util;
 
 public class NumberParser {
 

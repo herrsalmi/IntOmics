@@ -1,5 +1,8 @@
 package org.pmoi.business;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,6 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class GeneOntologyMapper {
 
+    private static final Logger LOGGER = LogManager.getRootLogger();
     private Map<String, Set<String>> internalDB;
 
     public GeneOntologyMapper() {
@@ -19,7 +23,7 @@ public class GeneOntologyMapper {
         try {
             load();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
     }
 
@@ -28,7 +32,7 @@ public class GeneOntologyMapper {
                 Objects.requireNonNull(getClass().getClassLoader().getResource("GODB.obj")).toURI())))){
             this.internalDB = (Map<String, Set<String>>) ois.readObject();
         } catch (ClassNotFoundException | URISyntaxException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
 
     }

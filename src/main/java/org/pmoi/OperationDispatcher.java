@@ -3,10 +3,11 @@ package org.pmoi;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.business.*;
-import org.pmoi.models.*;
-import org.pmoi.utils.GSEA;
-import org.pmoi.utils.io.OutputFormatter;
-import org.pmoi.utils.io.TSVFormatter;
+import org.pmoi.model.*;
+import org.pmoi.util.CSVValidator;
+import org.pmoi.util.GSEA;
+import org.pmoi.util.io.OutputFormatter;
+import org.pmoi.util.io.TSVFormatter;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -28,44 +29,37 @@ public class OperationDispatcher {
         stringdbQueryClient = new StringdbQueryClient();
     }
 
-    public void run(String prefix, SecretomeMappingMode mappingMode, OutputFormatter formater) {
-        this.formater = formater;
-        String extension = formater instanceof TSVFormatter ? "tsv" : "txt";
+    public void run(String prefix, SecretomeMappingMode mappingMode, OutputFormatter formatter) throws InterruptedException {
+        this.formater = formatter;
+        String extension = formatter instanceof TSVFormatter ? "tsv" : "txt";
         String output = String.format("%s_%s_%s_fc%1.1f.%s",
-                prefix, mappingMode.label, ApplicationParameters.getInstance().getStringDBScore(),
+                prefix, mappingMode.label, Args.getInstance().getStringDBScore(),
                 ApplicationParameters.getInstance().getGeneFoldChange(), extension);
-        MembranomeManager membranomeManager = MembranomeManager.getInstance();
+        TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
         secretomeManager.setMappingMode(mappingMode);
+        CSVValidator validator = new CSVValidator();
+        if (!validator.isConform(Args.getInstance().getTranscriptome()))
+            System.exit(1);
         LOGGER.info("Loading secretome");
-        var secretome = secretomeManager.LoadSecretomeFile("input/Secretome_label_free.csv");
+        var secretome = secretomeManager.LoadSecretomeFile(Args.getInstance().getSecretome());
 
-        LOGGER.info("Loading 9h membranome");
-        List<Gene> membranome = membranomeManager.getMembranomeFromDEGenes("input/all_genes.csv");
+        LOGGER.info("Loading membranome");
+        List<Gene> membranome = transcriptomeManager.getMembranomeFromDEGenes(Args.getInstance().getAllGenes());
 
-        List<Gene> transcriptome;
-//        if (ApplicationParameters.getInstance().use48H()) {
-//            LOGGER.info("Loading 48h transcriptome");
-//            transcriptome = membranomeManager.getDEGenesExceptMembranome("input/Gene_DE_48h.csv");
-//        }
-        if (ApplicationParameters.getInstance().use48H()) {
-            LOGGER.info("Loading 48h transcriptome");
-            transcriptome = membranomeManager.getDEGenes("input/Gene_DE_48h.csv");
-        } else {
-            LOGGER.info("Loading 9h transcriptome");
-            transcriptome = membranomeManager.getDEGenes("input/Gene_DE_9h.csv");
-        }
+        LOGGER.info("Loading transcriptome");
+        List<Gene> transcriptome = transcriptomeManager.getDEGenes(Args.getInstance().getTranscriptome());
 
-        LOGGER.info("Number of membranome genes: " + membranome.size());
-        LOGGER.info("Number of secreted proteins: " + secretome.size());
-        LOGGER.info("Number of secreted proteins more expressed in depleted samples: " + secretome.size());
+        LOGGER.info(String.format("Number of membranome genes: %d", membranome.size()));
+        LOGGER.info(String.format("Number of secreted proteins: %d", secretome.size()));
+        LOGGER.info(String.format("Number of secreted proteins more expressed in depleted samples: %d", secretome.size()));
 
         assert transcriptome != null;
         writeInteractions(secretome, membranome, transcriptome, output);
 
     }
 
-    private void writeInteractions(List<Protein> secretome, List<Gene> membranome, List<Gene> transcriptome, String outputFileName) {
+    private void writeInteractions(List<Protein> secretome, List<Gene> membranome, List<Gene> transcriptome, String outputFileName) throws InterruptedException {
         List<ResultRecord> resultSet = Collections.synchronizedList(new ArrayList<>());
         ForkJoinPool customThreadPool = new ForkJoinPool(3);
         ExecutorService executorService = Executors.newFixedThreadPool(3);
@@ -95,17 +89,13 @@ public class OperationDispatcher {
                             .findFirst().orElse(null);
                     // make a deep copy of the gene otherwise you will get unexpected results with pathways
                     assert gene != null;
-                    resultSet.add(new ResultRecord(e, (Gene) gene.clone(), interactors.get(interactor)));
+                    resultSet.add(new ResultRecord(e, new Gene(gene), interactors.get(interactor)));
                 });
             }
         }));
 
         executorService.shutdown();
-        try {
-            executorService.awaitTermination(1, TimeUnit.DAYS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        executorService.awaitTermination(1, TimeUnit.DAYS);
 
         if (ApplicationParameters.getInstance().addPathways()) {
             LOGGER.info("Looking for pathway interactions ...");
@@ -140,19 +130,15 @@ public class OperationDispatcher {
             resultSet.parallelStream()
                     .collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> v.forEach(e -> e.getGene().getGeneSets()
-                            .forEach(en -> {
+                            .forEach(en ->
                                 service.submit(() -> {
                                     GSEA gsea = new GSEA();
                                     en.setPvalue(gsea.run(en.getGenes(), filteredTranscriptome));
                                     en.setScore(gsea.getNormalizedScore());
-                                });
-                            })));
+                                })
+                            )));
             service.shutdown();
-            try {
-                service.awaitTermination(1, TimeUnit.DAYS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            service.awaitTermination(1, TimeUnit.DAYS);
 
             resultSet.parallelStream().forEach(e -> e.getGene().getGeneSets().removeIf(geneSet -> geneSet.getPvalue() >= 0.05));
 
@@ -188,7 +174,10 @@ public class OperationDispatcher {
             customThreadPool.submit(() -> resultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> {
                         k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
-                        v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
+                        v = v.stream()
+                                .sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange()))
+                                .sorted(Collections.reverseOrder())
+                                .collect(Collectors.toList());
                         v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
                         formater.append(k.getName(), k.getDescription(),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
@@ -202,22 +191,14 @@ public class OperationDispatcher {
                     }));
         }
         customThreadPool.shutdown();
-        try {
-            customThreadPool.awaitTermination(1, TimeUnit.DAYS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        customThreadPool.awaitTermination(1, TimeUnit.DAYS);
 
         try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(outputFileName))) {
             bw.write(formater.getText());
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
 
-
-
-        EntrezIDMapper.getInstance().close();
-        pathwayClient.close();
     }
 
 }

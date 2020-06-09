@@ -1,6 +1,6 @@
-package org.pmoi.utils;
+package org.pmoi.util;
 
-import org.pmoi.models.PathwayResponse;
+import org.pmoi.model.PathwayResponse;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

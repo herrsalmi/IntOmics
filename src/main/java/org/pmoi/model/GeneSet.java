@@ -1,4 +1,4 @@
-package org.pmoi.models;
+package org.pmoi.model;
 
 import java.util.List;
 

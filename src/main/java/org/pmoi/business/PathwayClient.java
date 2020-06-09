@@ -6,12 +6,12 @@ import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.pmoi.ApplicationParameters;
-import org.pmoi.models.Feature;
-import org.pmoi.models.Gene;
-import org.pmoi.models.Pathway;
-import org.pmoi.models.PathwayResponse;
-import org.pmoi.utils.HttpConnector;
-import org.pmoi.utils.PathwayResponceHandler;
+import org.pmoi.model.Feature;
+import org.pmoi.model.Gene;
+import org.pmoi.model.Pathway;
+import org.pmoi.model.PathwayResponse;
+import org.pmoi.util.HttpConnector;
+import org.pmoi.util.PathwayResponceHandler;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -126,7 +126,7 @@ public class PathwayClient {
                                 return null;
                             })
                             .collect(Collectors.toList());
-                    //this call is probably not thread safe. Hence the use of a synchronized map
+                    // this call is probably not thread safe. Hence the use of a synchronized map
                     // Check if the pathway isn't already present under another form or a subname
                     pathways.forEach(p -> {
                         if (!pathwayDB.containsKey(p.getName().replace('/', '-')) &&
@@ -190,8 +190,8 @@ public class PathwayClient {
                     Matcher m = namePattern.matcher(c);
                     return m.find() ? m.group(1) : c;
                 })
-                .map(c -> c.startsWith("p-") ? c.substring(c.indexOf("-") + 1) : c)
-                .map(c -> c.startsWith("Y-") ? c.substring(c.indexOf("-") + 1) : c)
+                .map(c -> c.startsWith("p-") ? c.substring(c.indexOf('-') + 1) : c)
+                .map(c -> c.startsWith("Y-") ? c.substring(c.indexOf('-') + 1) : c)
                 .map(String::trim)
                 .collect(Collectors.toSet());
     }
@@ -276,17 +276,13 @@ public class PathwayClient {
         int count = 0;
         while (true) {
             try {
-                //LOGGER.info(String.format("Processing gene: [%s]", gene));
                 String url = String.format("http://webservice.wikipathways.org/findPathwaysByText?species=Homo sapiens&query=%s", gene);
                 SAXParserFactory factory = SAXParserFactory.newInstance();
                 SAXParser saxParser = factory.newSAXParser();
                 PathwayResponceHandler pathwayResponceHandler = new PathwayResponceHandler();
                 saxParser.parse(url, pathwayResponceHandler);
                 List<PathwayResponse> result = pathwayResponceHandler.getPathwayResponses();
-                if (result == null || result.isEmpty())
-                    return false;
-                else
-                    return true;
+                return !(result == null || result.isEmpty());
             } catch (ParserConfigurationException | IOException | SAXException e) {
                 if (++count > 10) {
                     LOGGER.error(String.format("Error getting pathway for: [%s]. Aborting!", gene));
@@ -294,19 +290,6 @@ public class PathwayClient {
                 }
             }
         }
-//        return pathwayDB.values().stream()
-//                .anyMatch(e -> e.contains(gene));
     }
 
-    public synchronized void close() {
-        //System.out.println(String.format("%d - %d", initialSize, pathwayDB.size()));
-        if (changed.get()) {
-            try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("pathwayDB.obj")))) {
-                LOGGER.info("Updating pathways database ...");
-                oos.writeObject(pathwayDB);
-            } catch (IOException e) {
-                LOGGER.error("Unable to save pathways internal database!");
-            }
-        }
-    }
 }

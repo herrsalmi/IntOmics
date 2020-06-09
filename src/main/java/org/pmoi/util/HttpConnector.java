@@ -1,5 +1,7 @@
-package org.pmoi.utils;
+package org.pmoi.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.pmoi.ApplicationParameters;
 
 import java.io.*;
@@ -14,12 +16,11 @@ import java.nio.charset.StandardCharsets;
  */
 public class HttpConnector {
 
-    public HttpConnector() {
-    }
-
+    private static final Logger LOGGER = LogManager.getRootLogger();
+    
     public String getContent(URL url) throws IOException {
         int count = 0;
-        String output;
+        String output = null;
         while (true) {
             try {
                 URLConnection connection = url.openConnection();
@@ -34,9 +35,7 @@ public class HttpConnector {
                     throw new RuntimeException("Response code was not 200. Detected response was " + responseCode);
                 }
 
-                Reader reader = null;
-                try {
-                    reader = new BufferedReader(new InputStreamReader(response, StandardCharsets.UTF_8));
+                try (Reader reader = new BufferedReader(new InputStreamReader(response, StandardCharsets.UTF_8))) {
                     StringBuilder builder = new StringBuilder();
                     char[] buffer = new char[8192];
                     int read;
@@ -44,16 +43,11 @@ public class HttpConnector {
                         builder.append(buffer, 0, read);
                     }
                     output = builder.toString();
-                } finally {
-                    if (reader != null) try {
-                        reader.close();
-                    } catch (IOException logOrIgnore) {
-                        logOrIgnore.printStackTrace();
-                    }
+                } catch (IOException e) {
+                        LOGGER.error(e);
                 }
                 return output;
             } catch (IOException e) {
-                //LOGGER.warn("HTTP Connection: Network I/O error while connecting to server. Retrying ... (" + ++count + "/" + MainEntry.MAX_TRIES + ")");
                 if (count == ApplicationParameters.getInstance().getMaxTries()) throw e;
             }
         }
