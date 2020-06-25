@@ -10,10 +10,6 @@ class NCBIQueryClientTest {
     NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
 
     @org.junit.jupiter.api.Test
-    void geneNameToEntrezID() {
-    }
-
-    @org.junit.jupiter.api.Test
     void entrezIDToGeneName() {
         // 1
         Gene gene = new Gene("", "1278");

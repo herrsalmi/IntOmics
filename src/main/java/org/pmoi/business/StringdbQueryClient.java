@@ -10,6 +10,7 @@ import org.jdom2.input.SAXBuilder;
 import org.pmoi.ApplicationParameters;
 import org.pmoi.Args;
 
+import javax.xml.XMLConstants;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -26,16 +27,13 @@ public class StringdbQueryClient {
 
     private static final Logger LOGGER = LogManager.getRootLogger();
 
-    public StringdbQueryClient() {
-    }
-
     /**
      * Returns a map representing the PPI network. Keys are gene names, values are interaction score
      * @param symbol gene name
      * @return map of [gene name : score]
      */
     public Map<String, String> getProteinNetwork(String symbol) {
-        LOGGER.info("Searching StringDB for gene " + symbol);
+        LOGGER.info("Searching StringDB for gene {}", symbol);
         String url = String.format("https://string-db.org/api/xml/interaction_partners?species=9606&required_score=%s&identifiers=%s",
                 Args.getInstance().getStringDBScore(), symbol);
         Map<String, String> map = new HashMap<>();
@@ -57,6 +55,8 @@ public class StringdbQueryClient {
         while (true) {
             try {
                 SAXBuilder saxBuilder = new SAXBuilder();
+                saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+                saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
                 Document document = saxBuilder.build(url);
                 List<Element> el = document.getRootElement().getChildren();
                 if (el != null && !el.isEmpty()) {

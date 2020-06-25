@@ -105,3 +105,5 @@ logs/
 gene2go
 wikipathways/
 /wikipathways/
+target/*
+tmp/

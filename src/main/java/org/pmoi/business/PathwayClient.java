@@ -14,6 +14,7 @@ import org.pmoi.util.HttpConnector;
 import org.pmoi.util.PathwayResponceHandler;
 import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -23,6 +24,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,28 +36,22 @@ public class PathwayClient {
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Map<String, Set<String>> pathwayDB;
-    private static AtomicBoolean changed;
-    private static long numberOfGenes;
+    private static AtomicBoolean changed = new AtomicBoolean(false);;
+    private long numberOfGenes;
 
     private PathwayClient() {
-        pathwayDB = new HashMap<>();
+        pathwayDB = new ConcurrentHashMap<>();
         try {
             initDB();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         updateGeneCount();
-        pathwayDB = Collections.synchronizedMap(pathwayDB);
-        changed = new AtomicBoolean(false);
     }
 
     public static PathwayClient getInstance() {
         if (instance == null) {
-            synchronized (PathwayClient.class) {
-                if (instance == null) {
-                   instance = new PathwayClient();
-                }
-            }
+            instance = new PathwayClient();
         }
         return instance;
     }
@@ -71,24 +67,32 @@ public class PathwayClient {
 
         if (!Files.exists(Paths.get("pathwayDB.obj"))) {
             Pattern pattern = Pattern.compile("Hs_(.+)(?=_WP)");
-            Files.list(Paths.get("wikipathways/")).forEach(e -> {
-                try {
-                    Matcher matcher = pattern.matcher(e.toString());
-                    if (matcher.find())
-                        pathwayDB.put(matcher.group(1).replace("_", " "),
-                                gpmlToGeneNames(Files.lines(e).collect(Collectors.joining())));
-                } catch (JDOMException | IOException ex) {
-                    ex.printStackTrace();
-                }
-            });
+            try (var stream = Files.list(Paths.get("wikipathways/"))){
+                stream.forEach(e -> {
+                    try {
+                        Matcher matcher = pattern.matcher(e.toString());
+                        if (matcher.find())
+                            pathwayDB.put(matcher.group(1).replace("_", " "),
+                                    gpmlToGeneNames(Files.lines(e).collect(Collectors.joining())));
+                    } catch (JDOMException | IOException ex) {
+                        LOGGER.error(ex);
+                    }
+                });
+            } catch (IOException e) {
+                LOGGER.error(e);
+            }
             try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("pathwayDB.obj")))){
                 oos.writeObject(pathwayDB);
+                oos.flush();
             }
         } else {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("pathwayDB.obj")))){
-                pathwayDB = (Map<String, Set<String>>) ois.readObject();
+                if (ois.readObject() instanceof Map)
+                    pathwayDB = (Map<String, Set<String>>) ois.readObject();
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                LOGGER.error(e);
+            } catch (EOFException e) {
+                // do nothing
             }
         }
     }
@@ -100,16 +104,17 @@ public class PathwayClient {
                 String url = String.format("http://webservice.wikipathways.org/findPathwaysByText?species=Homo sapiens&query=%s", gene);
                 SAXParserFactory factory = SAXParserFactory.newInstance();
                 SAXParser saxParser = factory.newSAXParser();
+                saxParser.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+                saxParser.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
                 PathwayResponceHandler pathwayResponceHandler = new PathwayResponceHandler();
                 saxParser.parse(url, pathwayResponceHandler);
                 List<PathwayResponse> result = pathwayResponceHandler.getPathwayResponses();
                 assert result != null;
                 if (result.isEmpty())
-                    return null;
+                    return Collections.emptyList();
                 // compare the number of pathways to the ones on the local database
                 long pathwayCount = pathwayDB.values().stream().filter(l -> l.contains(gene))
                         .count();
-                //System.out.println(String.format("Gene: %s. Result size: %d; DB size:%d", gene, result.size(), pathwayCount));
                 if (result.size() > pathwayCount) {
                     var pathways = result.stream()
                             .map(e -> {
@@ -126,7 +131,7 @@ public class PathwayClient {
                                 return null;
                             })
                             .collect(Collectors.toList());
-                    // this call is probably not thread safe. Hence the use of a synchronized map
+                    // this call is probably not thread safe. Hence the use of a concurrent map
                     // Check if the pathway isn't already present under another form or a subname
                     pathways.forEach(p -> {
                         if (!pathwayDB.containsKey(p.getName().replace('/', '-')) &&
@@ -149,10 +154,10 @@ public class PathwayClient {
             } catch (IOException e) {
                 if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
                     LOGGER.error(String.format("Error getting pathway for: [%s]. Aborting!", gene));
-                    return null;
+                    return Collections.emptyList();
                 }
             } catch (SAXException | ParserConfigurationException e) {
-                e.printStackTrace();
+                LOGGER.error(e);
             }
         }
     }
@@ -163,15 +168,17 @@ public class PathwayClient {
                     .map(e -> new Gene(e, ""))
                     .collect(Collectors.toList());
         } catch (JDOMException | IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
-        return null;
+        return Collections.emptyList();
     }
 
     private Set<String> gpmlToGeneNames(String gpml) throws JDOMException, IOException {
         Pattern enzymPatter = Pattern.compile("(?:\\d*\\.){3}\\d+");
         Pattern namePattern = Pattern.compile("(^[\\w-]+)");
         SAXBuilder saxBuilder = new SAXBuilder();
+        saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
         Document document = saxBuilder.build(new StringReader(gpml));
         var childrenList = document.getRootElement().getChildren().stream()
                 .filter(c -> c.getName().equals("DataNode")).collect(Collectors.toList());
@@ -206,7 +213,7 @@ public class PathwayClient {
         try {
             url = new URL(String.format("http://rest.kegg.jp/get/hsa:%s/", geneId));
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return getListResults(url, " +(hsa[0-9]+ .+)(?=\\n)");
     }
@@ -221,9 +228,9 @@ public class PathwayClient {
         try {
             url = new URL(String.format("http://rest.kegg.jp/get/%s/", pathwayID));
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
-        return Objects.requireNonNull(getListResults(url, "[0-9]+ {2}(.+)(?=;)")).stream()
+        return getListResults(url, "[0-9]+ {2}(.+)(?=;)").stream()
                 .map(e -> new Gene(e, ""))
                 .collect(Collectors.toList());
     }
@@ -243,19 +250,11 @@ public class PathwayClient {
                 return resultList;
             } catch (IOException e) {
                 if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
-                    LOGGER.error(String.format("Error getting KEGG. URL: [%s]. Aborting!", url.getPath()));
-                    return null;
+                    LOGGER.error(String.format("Error getting KEGG results. URL: [%s]. Aborting!", url));
+                    return Collections.emptyList();
                 }
             }
         }
-    }
-
-    public Set<String> getIntercatorsFromPathway(String gene) {
-        return pathwayDB.values().stream().filter(l -> l.contains(gene))
-                .flatMap(Collection::stream)
-                .filter(e -> !e.isEmpty() && ! e.isBlank())
-                .map(String::trim)
-                .collect(Collectors.toSet());
     }
 
     public Set<String> getPathwaysForGene(String gene) {
@@ -275,7 +274,7 @@ public class PathwayClient {
     }
 
     public int getNumberOfGenesByPathway(String pathway) {
-        return pathwayDB.get(pathway).size();
+        return pathwayDB.getOrDefault(pathway, Collections.emptySet()).size();
     }
 
     public List<Gene> getGenesFromPathway(String pathway) {
@@ -289,6 +288,8 @@ public class PathwayClient {
                 String url = String.format("http://webservice.wikipathways.org/findPathwaysByText?species=Homo sapiens&query=%s", gene);
                 SAXParserFactory factory = SAXParserFactory.newInstance();
                 SAXParser saxParser = factory.newSAXParser();
+                saxParser.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+                saxParser.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
                 PathwayResponceHandler pathwayResponceHandler = new PathwayResponceHandler();
                 saxParser.parse(url, pathwayResponceHandler);
                 List<PathwayResponse> result = pathwayResponceHandler.getPathwayResponses();

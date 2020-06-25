@@ -1,5 +1,8 @@
 package org.pmoi.business;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -7,10 +10,12 @@ import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class SurfaceomeMapper {
     private static SurfaceomeMapper instance;
 
+    private static final Logger LOGGER = LogManager.getRootLogger();
     private Set<String> internalDB;
 
     private SurfaceomeMapper() {
@@ -19,11 +24,11 @@ public class SurfaceomeMapper {
 
     private void init() {
         internalDB = new HashSet<>(3000);
-        try {
-            Files.lines(Path.of(Objects.requireNonNull(getClass().getClassLoader().getResource("surfaceome.txt"))
-                    .toURI())).forEach(l -> internalDB.add(l.trim()));
+        try (Stream<String> stream = Files.lines(Path.of(Objects.requireNonNull(getClass().getClassLoader().getResource("surfaceome.txt"))
+                .toURI()))){
+            stream.forEach(l -> internalDB.add(l.trim()));
         } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
     }
 

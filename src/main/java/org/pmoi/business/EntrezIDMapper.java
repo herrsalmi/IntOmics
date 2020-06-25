@@ -25,9 +25,8 @@ public class EntrezIDMapper {
     }
 
     private void loadInternalDB() {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(Objects.requireNonNull(getClass()
-                    .getClassLoader().getResource("internalDB.obj")).toURI())));
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(Objects.requireNonNull(getClass()
+                .getClassLoader().getResource("internalDB.obj")).toURI())))){
             this.internalDB = (BiMap<String, String>) ois.readObject();
         } catch (IOException | ClassNotFoundException | URISyntaxException e) {
             LOGGER.error(e);

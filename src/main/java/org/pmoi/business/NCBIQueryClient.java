@@ -11,6 +11,7 @@ import org.pmoi.model.Feature;
 import org.pmoi.model.Gene;
 import org.pmoi.util.HttpConnector;
 
+import javax.xml.XMLConstants;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -21,19 +22,20 @@ import java.util.regex.Pattern;
  * @author A Salmi
  */
 public class NCBIQueryClient {
-    private static final Logger LOGGER = LogManager.getRootLogger();
 
-    public NCBIQueryClient() {
-    }
+    private static final Logger LOGGER = LogManager.getRootLogger();
 
     public void geneNameToEntrezID(Feature feature) {
         int counter = 0;
         while (true) {
             try {
                 LOGGER.info(String.format("Processing feature: [%s]", feature.getName()));
-                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=%s AND Homo sapiens[Organism]&sort=relevance&api_key=%s",
+                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" +
+                                "db=gene&term=%s AND Homo sapiens[Organism]&sort=relevance&api_key=%s",
                         feature.getName(), ApplicationParameters.getInstance().getNcbiAPIKey()));
                 SAXBuilder saxBuilder = new SAXBuilder();
+                saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+                saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
                 Document document = saxBuilder.build(url);
                 Element ncbiId = document.getRootElement().getChild("IdList");
                 Optional<Element> id = ncbiId.getChildren().stream().findFirst();
@@ -56,7 +58,8 @@ public class NCBIQueryClient {
         while (true) {
             try {
                 LOGGER.info(String.format("Processing feature: [%s]", feature.getEntrezID()));
-                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=gene&id=%s&retmode=text&api_key=%s",
+                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?" +
+                                "db=gene&id=%s&retmode=text&api_key=%s",
                         feature.getEntrezID(), ApplicationParameters.getInstance().getNcbiAPIKey()));
                 HttpConnector httpConnector = new HttpConnector();
                 String ncbiResultContent = httpConnector.getContent(url);
@@ -69,7 +72,8 @@ public class NCBIQueryClient {
                 LOGGER.warn(String.format("Unknown error when getting feature name. Feature: [%s]. Retrying (%d/%d)",
                         feature.getEntrezID(), counter + 1, ApplicationParameters.getInstance().getMaxTries()));
                 if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
-                    LOGGER.error(String.format("\nError getting name for feature: [%s]. Aborting!", feature.getEntrezID()));
+                    LOGGER.error(String.format("%nError getting name for feature: [%s]. Aborting!",
+                            feature.getEntrezID()));
                     return;
                 }
             }
@@ -92,8 +96,9 @@ public class NCBIQueryClient {
         int counter = 0;
         while (true) {
             try {
-                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=gene&id=%s&retmode=text&api_key=%s",
-                        id, ApplicationParameters.getInstance().getNcbiAPIKey()));
+                URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?" +
+                                "db=gene&id=%s&retmode=text&api_key=%s", id,
+                        ApplicationParameters.getInstance().getNcbiAPIKey()));
                 HttpConnector httpConnector = new HttpConnector();
                 String ncbiResultContent = httpConnector.getContent(url);
                 Pattern pattern = Pattern.compile("Name: (.*)(?= \\[)");

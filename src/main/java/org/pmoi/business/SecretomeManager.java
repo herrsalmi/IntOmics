@@ -8,6 +8,7 @@ import org.pmoi.model.SecretomeMappingMode;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -15,6 +16,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SecretomeManager {
 
@@ -31,16 +33,16 @@ public class SecretomeManager {
     }
 
     private void loadDB() {
-        try {
-            String dbFilePath = "metazSecKB.txt";
-            this.internalDB = Files.lines(Path.of(dbFilePath)).map(e -> {
+        String dbFilePath = "metazSecKB.txt";
+        try (Stream<String> stream = Files.lines(Path.of(dbFilePath))){
+            this.internalDB = stream.map(e -> {
                 if (e.split("\t").length != 5) {
-                    LOGGER.error("Wrong number of fileds in line: " + e);
+                    LOGGER.error("Wrong number of fields in line: {}", e);
                 }
                 return e.split("\t")[4];
             }).collect(Collectors.toSet());
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
     }
 
@@ -63,10 +65,10 @@ public class SecretomeManager {
         }
     }
 
-    public List<Protein> LoadSecretomeFile(String filePath) {
+    public List<Protein> loadSecretomeFile(String filePath) {
         isMappingModeSet();
-        try {
-            var data = Files.lines(Path.of(filePath))
+        try (var stream = Files.lines(Path.of(filePath))){
+            var data = stream
                     .filter(e -> !e.startsWith("#"))
                     .filter(Predicate.not(String::isBlank))
                     .distinct()
@@ -86,16 +88,17 @@ public class SecretomeManager {
             try {
                 executor.awaitTermination(10, TimeUnit.DAYS);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                LOGGER.error(e);
+                Thread.currentThread().interrupt();
             }
             return data.stream()
                     .filter(e -> e.getName() != null)
                     .filter(secretomeMapper)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
-        return null;
+        return Collections.emptyList();
     }
 
     private void isMappingModeSet() {

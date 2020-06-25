@@ -42,7 +42,7 @@ public class OperationDispatcher {
         if (!validator.isConform(Args.getInstance().getTranscriptome()))
             System.exit(1);
         LOGGER.info("Loading secretome");
-        var secretome = secretomeManager.LoadSecretomeFile(Args.getInstance().getSecretome());
+        var secretome = secretomeManager.loadSecretomeFile(Args.getInstance().getSecretome());
 
         LOGGER.info("Loading membranome");
         List<Gene> membranome = transcriptomeManager.getMembranomeFromDEGenes(Args.getInstance().getAllGenes());

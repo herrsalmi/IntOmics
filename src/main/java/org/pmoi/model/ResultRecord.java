@@ -38,8 +38,10 @@ public class ResultRecord implements Comparable<ResultRecord>{
     @Override
     public int compareTo(ResultRecord o) {
         if (o != null)
-            return Double.compare(this.getGene().getFoldChange(), ((ResultRecord) o).getGene().getFoldChange());
+            return Double.compare(this.getGene().getFoldChange(), o.getGene().getFoldChange());
         return 1;
     }
+
+
 
 }

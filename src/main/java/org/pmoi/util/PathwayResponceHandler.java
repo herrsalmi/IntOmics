@@ -30,13 +30,10 @@ public class PathwayResponceHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        switch (qName) {
-            case "ns2:id":
-                pathwayResponses.getLast().setId(elementValue);
-                break;
-            case "ns2:name":
-                pathwayResponses.getLast().setName(elementValue);
-                break;
+        if ("ns2:id".equals(qName)) {
+            pathwayResponses.getLast().setId(elementValue);
+        } else if ("ns2:name".equals(qName)) {
+            pathwayResponses.getLast().setName(elementValue);
         }
     }
 

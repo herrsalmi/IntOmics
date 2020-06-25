@@ -4,6 +4,7 @@ import org.pmoi.model.Gene;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.security.SecureRandom;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public class GSEA {
         List<Double> pMissTmp = lMisses;
         double[] nullDistribution = new double[PERMUTATIONS];
         for (int i = 0; i < PERMUTATIONS; i++) {
-            Collections.shuffle(sortedList, new Random(i + System.currentTimeMillis()));
+            Collections.shuffle(sortedList, new SecureRandom());
             nullDistribution[i] = enrichmentScore(geneSet, sortedList);
         }
 

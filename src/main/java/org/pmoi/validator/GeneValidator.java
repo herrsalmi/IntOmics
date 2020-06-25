@@ -8,7 +8,7 @@ import java.nio.file.Path;
 
 public class GeneValidator implements IParameterValidator {
     @Override
-    public void validate(String name, String value) throws ParameterException {
+    public void validate(String name, String value) {
         if (Files.notExists(Path.of(value))){
             throw new ParameterException("File " + value + " not found");
         }

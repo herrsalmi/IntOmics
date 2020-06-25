@@ -9,7 +9,7 @@ class PathwayClientTest {
     @Test
     void getPathway() {
         PathwayClient pathwayClient = PathwayClient.getInstance();
-        System.out.println(pathwayClient.getPathways("HLA").size());
+        assertEquals(21, pathwayClient.getPathways("HLA").size());
         //pathwayClient.close();
     }
 
@@ -31,12 +31,6 @@ class PathwayClientTest {
         assertEquals(295, pathwayClient.getKEGGPathwayGenes("hsa04010").size());
     }
 
-    @Test
-    void getIntercatorsFromPathway() {
-        PathwayClient pathwayClient = PathwayClient.getInstance();
-        var res = pathwayClient.getIntercatorsFromPathway("TGFBR3");
-        res.forEach(System.out::println);
-    }
 
     @Test
     void getPathwaysForGene() {

@@ -1,11 +1,14 @@
 package org.pmoi.business;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.pmoi.ApplicationParameters;
 import org.pmoi.model.Gene;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
 
 public class TranscriptomeManager {
     private static TranscriptomeManager instance;
+    private static final Logger LOGGER = LogManager.getRootLogger();
 
     private TranscriptomeManager() {
 
@@ -49,7 +53,8 @@ public class TranscriptomeManager {
         try {
             executor.awaitTermination(10, TimeUnit.DAYS);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+            Thread.currentThread().interrupt();
         }
         // if a gene has no EntrezID it will also get removed here
         return inputGenes.parallelStream()
@@ -65,8 +70,8 @@ public class TranscriptomeManager {
     }
 
     private List<Gene> readDEGeneFile(String filePath) {
-        try {
-            return Files.lines(Path.of(filePath))
+        try (var stream = Files.lines(Path.of(filePath))){
+            return stream
                     .skip(1)
                     .filter(Predicate.not(String::isBlank))
                     .filter(l -> !l.trim().startsWith(";"))
@@ -76,7 +81,7 @@ public class TranscriptomeManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return Collections.emptyList();
     }
 
     public static synchronized TranscriptomeManager getInstance() {
