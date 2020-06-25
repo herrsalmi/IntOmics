@@ -73,6 +73,7 @@ public class OperationDispatcher {
             Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
             //Map<String, String> interactors = new HashMap<>();
             // Add gene from the pathway to the map
+            // PS: This code was used to include pathway genes as interactors instead of using StringDB
 //            pathwayClient.getIntercatorsFromPathway(e.getName()).stream()
 //                    .filter(gene -> !gene.equals(e.getName()))
 //                    .forEach(gene -> interactors.putIfAbsent(gene, "NA"));
@@ -104,6 +105,7 @@ public class OperationDispatcher {
 
             resultMap.forEach((key, value) -> {
                 // get a list of pathways where the protein is involved
+
 //                var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
 //                pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
 //                key.getPathways().forEach(e -> e.setGenes(pathwayClient.getKEGGPathwayGenes(e.getPathwayID())));

@@ -196,6 +196,11 @@ public class PathwayClient {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * KEGG pathway search using gene id
+     * @param geneId Ensembl gene ID
+     * @return a list of entries in string format representing {pathway ID; pathway name}
+     */
     public List<String> KEGGSearch(String geneId) {
         URL url = null;
         try {
@@ -206,6 +211,11 @@ public class PathwayClient {
         return getListResults(url, " +(hsa[0-9]+ .+)(?=\\n)");
     }
 
+    /**
+     * Returns a list of genes involved in a pathway
+     * @param pathwayID KEGG pathway ID
+     * @return list of genes
+     */
     public List<Gene> getKEGGPathwayGenes(String pathwayID) {
         URL url = null;
         try {

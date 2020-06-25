@@ -2,7 +2,7 @@ package org.pmoi;
 
 public class ApplicationParameters {
 
-    private static volatile ApplicationParameters instance;
+    private static ApplicationParameters instance;
 
     private final String version = "0.1b";
     private final int maxTries = 100;
@@ -31,18 +31,14 @@ public class ApplicationParameters {
         return geneFoldChange;
     }
 
-    public static ApplicationParameters getInstance() {
-        if (instance == null) {
-            synchronized (ApplicationParameters.class) {
-                if (instance == null) {
-                    instance = new ApplicationParameters();
-                }
-            }
-        }
-        return instance;
-    }
-
     public boolean addPathways() {
         return addPathways;
+    }
+
+    public static synchronized ApplicationParameters getInstance() {
+        if (instance == null) {
+            instance = new ApplicationParameters();
+        }
+        return instance;
     }
 }

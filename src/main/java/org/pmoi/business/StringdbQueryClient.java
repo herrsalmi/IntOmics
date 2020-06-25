@@ -29,6 +29,11 @@ public class StringdbQueryClient {
     public StringdbQueryClient() {
     }
 
+    /**
+     * Returns a map representing the PPI network. Keys are gene names, values are interaction score
+     * @param symbol gene name
+     * @return map of [gene name : score]
+     */
     public Map<String, String> getProteinNetwork(String symbol) {
         LOGGER.info("Searching StringDB for gene " + symbol);
         String url = String.format("https://string-db.org/api/xml/interaction_partners?species=9606&required_score=%s&identifiers=%s",

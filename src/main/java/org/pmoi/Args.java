@@ -28,6 +28,10 @@ public class Args {
             validateWith = FormatValidator.class)
     private String format = "TSV";
 
+    @Parameter(names = {"-db", "--pathway"}, description = "Pathway database: KEGG or WikiPathways",
+            validateWith = FormatValidator.class)
+    private String pathwayDB = "WikiPathways";
+
     @Parameter(names = {"-s", "--minscore"}, description = "Minimum StringDB interaction score",
             validateWith = FormatValidator.class)
     private int stringDBScore = 900;
@@ -60,6 +64,10 @@ public class Args {
 
     public char getSeparator() {
         return separator;
+    }
+
+    public String getPathwayDB() {
+        return pathwayDB;
     }
 
     public boolean isHelp() {
