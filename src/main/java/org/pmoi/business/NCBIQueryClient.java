@@ -11,7 +11,6 @@ import org.pmoi.model.Feature;
 import org.pmoi.model.Gene;
 import org.pmoi.util.HttpConnector;
 
-import javax.xml.XMLConstants;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -29,13 +28,11 @@ public class NCBIQueryClient {
         int counter = 0;
         while (true) {
             try {
-                LOGGER.info(String.format("Processing feature: [%s]", feature.getName()));
+                LOGGER.info("Processing feature: [{}]", feature.getName());
                 URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" +
                                 "db=gene&term=%s AND Homo sapiens[Organism]&sort=relevance&api_key=%s",
                         feature.getName(), ApplicationParameters.getInstance().getNcbiAPIKey()));
                 SAXBuilder saxBuilder = new SAXBuilder();
-                saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-                saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
                 Document document = saxBuilder.build(url);
                 Element ncbiId = document.getRootElement().getChild("IdList");
                 Optional<Element> id = ncbiId.getChildren().stream().findFirst();

@@ -50,9 +50,9 @@ public class OperationDispatcher {
         LOGGER.info("Loading transcriptome");
         List<Gene> transcriptome = transcriptomeManager.getDEGenes(Args.getInstance().getTranscriptome());
 
-        LOGGER.info(String.format("Number of membranome genes: %d", membranome.size()));
-        LOGGER.info(String.format("Number of secreted proteins: %d", secretome.size()));
-        LOGGER.info(String.format("Number of secreted proteins more expressed in depleted samples: %d", secretome.size()));
+        LOGGER.info("Number of membranome genes: {}", membranome.size());
+        LOGGER.info("Number of secreted proteins: {}", secretome.size());
+        LOGGER.info("Number of secreted proteins more expressed in depleted samples: {}", secretome.size());
 
         assert transcriptome != null;
         writeInteractions(secretome, membranome, transcriptome, output);

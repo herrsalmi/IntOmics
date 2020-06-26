@@ -3,7 +3,7 @@ package org.pmoi.util.io;
 import java.util.StringJoiner;
 
 public class TSVFormatter implements OutputFormatter {
-    private StringBuffer buffer;
+    private final StringBuffer buffer;
 
     public TSVFormatter() {
         this.buffer = new StringBuffer();

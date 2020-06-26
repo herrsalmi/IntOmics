@@ -8,4 +8,5 @@ module IntOmics {
     requires jcommander;
 
     opens org.pmoi;
+    exports org.pmoi.validator;
 }

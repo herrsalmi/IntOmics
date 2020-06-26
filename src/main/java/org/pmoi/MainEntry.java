@@ -14,7 +14,9 @@ import java.nio.file.Path;
 public class MainEntry {
 
     public MainEntry(String[] args) {
-        args = new String[]{"-h"};
+        args = new String[]{"-p", "test/secretome.csv",
+                            "-g", "test/Gene_DE_9h.csv",
+                            "-a", "test/all_genes.csv"};
         Args params = Args.getInstance();
         try {
             JCommander jc = JCommander.newBuilder()

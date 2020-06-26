@@ -1,7 +1,7 @@
 package org.pmoi.util.io;
 
 public class TextFormatter implements OutputFormatter {
-    private StringBuffer buffer;
+    private final StringBuffer buffer;
 
     public TextFormatter() {
         this.buffer = new StringBuffer();

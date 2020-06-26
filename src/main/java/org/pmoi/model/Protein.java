@@ -15,7 +15,7 @@ public class Protein extends Feature{
     }
 
     public Protein(String value) {
-        if (NumberParser.tryParseDouble(name))
+        if (NumberParser.tryParseInt(value))
             this.entrezID = value;
         else
             this.name = value;

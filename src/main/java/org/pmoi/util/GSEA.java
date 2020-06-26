@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
 
 public class GSEA {
 
-    private List<Double> lHits;
-    private List<Double> lMisses;
     private double normalizedScore;
     private static final int PERMUTATIONS = 1000;
 
@@ -22,9 +20,6 @@ public class GSEA {
                 .sorted(Comparator.comparingDouble(Gene::significanceScore).reversed())
                 .collect(Collectors.toList());
         double enrichmentScore = enrichmentScore(geneSet, sortedList);
-        // keep the original hit/miss
-        List<Double> pHitTmp = lHits;
-        List<Double> pMissTmp = lMisses;
         double[] nullDistribution = new double[PERMUTATIONS];
         for (int i = 0; i < PERMUTATIONS; i++) {
             Collections.shuffle(sortedList, new SecureRandom());
@@ -37,8 +32,6 @@ public class GSEA {
                 icount++;
         }
         double pvalue = icount / PERMUTATIONS;
-        lHits = pHitTmp;
-        lMisses = pMissTmp;
         this.normalizedScore = enrichmentScore >= 0 ?
                 enrichmentScore / Arrays.stream(nullDistribution).filter(e -> e >= 0).average().getAsDouble() :
                 enrichmentScore / Math.abs(Arrays.stream(nullDistribution).filter(e -> e < 0).average().getAsDouble());
@@ -52,8 +45,8 @@ public class GSEA {
      * @param stepWeight options: 0, 1, 1.5, 2
      */
     public double enrichmentScore(List<Gene> geneSet, List<Gene> sortedList, double stepWeight) {
-        lHits = new ArrayList<>();
-        lMisses = new ArrayList<>();
+        List<Double> lHits = new ArrayList<>();
+        List<Double> lMisses = new ArrayList<>();
         BigDecimal hitSum = new BigDecimal("0");
         BigDecimal missSum = new BigDecimal("0");
         var nr = sortedList.stream().filter(geneSet::contains)
@@ -87,14 +80,6 @@ public class GSEA {
      */
     public double enrichmentScore(List<Gene> geneSet, List<Gene> geneList) {
         return this.enrichmentScore(geneSet, geneList, 1);
-    }
-
-    public List<Double> getlHits() {
-        return lHits;
-    }
-
-    public List<Double> getlMisses() {
-        return lMisses;
     }
 
     public double getNormalizedScore() {
