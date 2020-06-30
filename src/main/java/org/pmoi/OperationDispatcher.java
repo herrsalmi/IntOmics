@@ -23,18 +23,25 @@ import java.util.stream.Collectors;
 public class OperationDispatcher {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private final StringdbQueryClient stringdbQueryClient;
-    private OutputFormatter formater;
+    private OutputFormatter formatter;
+    private int parallelismLevel;
 
     public OperationDispatcher() {
         stringdbQueryClient = new StringdbQueryClient();
     }
 
     public void run(String prefix, SecretomeMappingMode mappingMode, OutputFormatter formatter) throws InterruptedException {
-        this.formater = formatter;
+        this.formatter = formatter;
         String extension = formatter instanceof TSVFormatter ? "tsv" : "txt";
         String output = String.format("%s_%s_%s_fc%1.1f.%s",
                 prefix, mappingMode.label, Args.getInstance().getStringDBScore(),
                 ApplicationParameters.getInstance().getGeneFoldChange(), extension);
+        if (Args.getInstance().getNcbiAPIKey().isEmpty()) {
+            this.parallelismLevel = 1;
+            LOGGER.warn("NCBI API Key not supplied! the program may run slower due to network constraints.");
+        } else {
+            this.parallelismLevel = 3;
+        }
         TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
         secretomeManager.setMappingMode(mappingMode);
@@ -52,7 +59,6 @@ public class OperationDispatcher {
 
         LOGGER.info("Number of membranome genes: {}", membranome.size());
         LOGGER.info("Number of secreted proteins: {}", secretome.size());
-        LOGGER.info("Number of secreted proteins more expressed in depleted samples: {}", secretome.size());
 
         assert transcriptome != null;
         writeInteractions(secretome, membranome, transcriptome, output);
@@ -61,11 +67,16 @@ public class OperationDispatcher {
 
     private void writeInteractions(List<Protein> secretome, List<Gene> membranome, List<Gene> transcriptome, String outputFileName) throws InterruptedException {
         List<ResultRecord> resultSet = Collections.synchronizedList(new ArrayList<>());
-        ForkJoinPool customThreadPool = new ForkJoinPool(3);
-        ExecutorService executorService = Executors.newFixedThreadPool(3);
+        ForkJoinPool customThreadPool = new ForkJoinPool(parallelismLevel);
+        ExecutorService executorService = Executors.newFixedThreadPool(parallelismLevel);
         PathwayClient pathwayClient = PathwayClient.getInstance();
 
         LOGGER.info("Filtering transcriptome");
+//        Predicate<Gene> filter = switch (Args.getInstance().getPathwayDB()) {
+//            case "KEGG" -> e -> !pathwayClient.KEGGSearch(e.getEntrezID()).isEmpty();
+//            case "WikiPathways" -> e -> pathwayClient.isInAnyPathway(e.getName());
+//            default -> throw new UnsupportedOperationException();
+//        };
         var filteredTranscriptome = transcriptome.parallelStream().filter(e -> pathwayClient.isInAnyPathway(e.getName())).collect(Collectors.toList());
 
         secretome.forEach(e -> executorService.submit(() -> {
@@ -105,22 +116,28 @@ public class OperationDispatcher {
 
             resultMap.forEach((key, value) -> {
                 // get a list of pathways where the protein is involved
+                if (Args.getInstance().getPathwayDB().equals("KEGG")) {
+                    var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
+                    // TODO the next two lines should be simplified in order to return directly a list of pathways
+                    pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
+                    key.getPathways().forEach(e -> e.setGenes(pathwayClient.getKEGGPathwayGenes(e.getPathwayID())));
 
-//                var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
-//                pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
-//                key.getPathways().forEach(e -> e.setGenes(pathwayClient.getKEGGPathwayGenes(e.getPathwayID())));
+                } else if (Args.getInstance().getPathwayDB().equals("WikiPathways")){
+                    var pathways = pathwayClient.getPathways(key.getName());
+                    if (pathways == null || pathways.isEmpty())
+                        return;
+                    pathways.forEach(key::addPathway);
 
-                var pathways = pathwayClient.getPathways(key.getName());
-                if (pathways == null)
-                    return;
-                pathways.forEach(key::addPathway);
+                }
+
                 value.forEach(resultRecord -> {
-                    LOGGER.info(String.format("Processing [P: %s # G: %s]", key.getName(), resultRecord.getGene().getName()));
+                    LOGGER.debug(String.format("Processing [P: %s # G: %s]", key.getName(), resultRecord.getGene().getName()));
                     resultRecord.getProtein().getPathways().forEach(p -> {
                         if (p.getGenes().contains(resultRecord.getGene()))
                             resultRecord.getGene().setInteractors(p.getName(), p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
                     });
                 });
+
             });
         }
 
@@ -128,12 +145,14 @@ public class OperationDispatcher {
         if (ApplicationParameters.getInstance().addPathways()) {
             LOGGER.info("Running GSEA ...");
             // Calculate pathway pvalue using GSEA
+            //TODO use a parameter for number of threads
             ExecutorService service = Executors.newFixedThreadPool(8);
             resultSet.parallelStream()
                     .collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> v.forEach(e -> e.getGene().getGeneSets()
                             .forEach(en ->
                                 service.submit(() -> {
+
                                     GSEA gsea = new GSEA();
                                     en.setPvalue(gsea.run(en.getGenes(), filteredTranscriptome));
                                     en.setScore(gsea.getNormalizedScore());
@@ -151,7 +170,7 @@ public class OperationDispatcher {
                         k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
                         v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
                         v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
-                        formater.append(k.getName(), k.getDescription(),
+                        formatter.append(k.getName(), k.getDescription(),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
                                 v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()),
                                 v.get(0).getGene().getGeneSets().stream()
@@ -162,7 +181,7 @@ public class OperationDispatcher {
                                         .collect(Collectors.joining("; ")));
                         v.stream().skip(1).forEach(e -> {
                             e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
-                            formater.append("", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
+                            formatter.append("", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
                                     String.valueOf(e.getGene().getFdr()), String.valueOf(e.getGene().getFoldChange()),
                                     e.getGene().getGeneSets().stream()
                                             .sorted(Comparator.comparingDouble(GeneSet::getPvalue))
@@ -181,13 +200,13 @@ public class OperationDispatcher {
                                 .sorted(Collections.reverseOrder())
                                 .collect(Collectors.toList());
                         v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
-                        formater.append(k.getName(), k.getDescription(),
+                        formatter.append(k.getName(), k.getDescription(),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
                                 v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()));
 
                         v.stream().skip(1).forEach(e -> {
                             e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
-                            formater.append("", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
+                            formatter.append("", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
                                     String.valueOf(e.getGene().getFdr()), String.valueOf(e.getGene().getFoldChange()));
                         });
                     }));
@@ -196,7 +215,7 @@ public class OperationDispatcher {
         customThreadPool.awaitTermination(1, TimeUnit.DAYS);
 
         try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(outputFileName))) {
-            bw.write(formater.getText());
+            bw.write(formatter.getText());
         } catch (IOException e) {
             LOGGER.error(e);
         }

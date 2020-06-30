@@ -7,10 +7,12 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.pmoi.ApplicationParameters;
+import org.pmoi.Args;
 import org.pmoi.model.Feature;
 import org.pmoi.model.Gene;
 import org.pmoi.util.HttpConnector;
 
+import javax.xml.XMLConstants;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -28,11 +30,12 @@ public class NCBIQueryClient {
         int counter = 0;
         while (true) {
             try {
-                LOGGER.info("Processing feature: [{}]", feature.getName());
+                LOGGER.debug("Processing feature: [{}]", feature.getName());
                 URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" +
-                                "db=gene&term=%s AND Homo sapiens[Organism]&sort=relevance&api_key=%s",
-                        feature.getName(), ApplicationParameters.getInstance().getNcbiAPIKey()));
+                                "db=gene&term=%s AND Homo sapiens[Organism]&sort=relevance&%s",
+                        feature.getName(), Args.getInstance().getNcbiAPIKey()));
                 SAXBuilder saxBuilder = new SAXBuilder();
+                saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
                 Document document = saxBuilder.build(url);
                 Element ncbiId = document.getRootElement().getChild("IdList");
                 Optional<Element> id = ncbiId.getChildren().stream().findFirst();
@@ -40,7 +43,7 @@ public class NCBIQueryClient {
                 return;
 
             } catch (JDOMException | IOException e) {
-                LOGGER.warn(String.format("Unknown error when getting ID. Feature: [%s]. Retrying (%d/%d)",
+                LOGGER.debug(String.format("Error getting ID. %s. Feature: [%s]. Retrying (%d/%d)", e.getMessage(),
                         feature.getName(), counter + 1, ApplicationParameters.getInstance().getMaxTries()));
                 if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
                     LOGGER.error(String.format("Error getting ID for feature: [%s]. Aborting!", feature.getName()));
@@ -54,14 +57,13 @@ public class NCBIQueryClient {
         int counter = 0;
         while (true) {
             try {
-                LOGGER.info(String.format("Processing feature: [%s]", feature.getEntrezID()));
+                LOGGER.debug("Processing feature: [{}]", feature.getEntrezID());
                 URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?" +
-                                "db=gene&id=%s&retmode=text&api_key=%s",
-                        feature.getEntrezID(), ApplicationParameters.getInstance().getNcbiAPIKey()));
+                                "db=gene&id=%s&retmode=text&%s",
+                        feature.getEntrezID(), Args.getInstance().getNcbiAPIKey()));
                 HttpConnector httpConnector = new HttpConnector();
                 String ncbiResultContent = httpConnector.getContent(url);
                 // the first line always contains the gene name following the format: 1. NAME\n
-                //TODO replace this with a regex
                 ncbiResultContent = ncbiResultContent.split("\n")[1];
                 feature.setName(ncbiResultContent.substring(3));
                 return;
@@ -94,8 +96,7 @@ public class NCBIQueryClient {
         while (true) {
             try {
                 URL url = new URL(String.format("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?" +
-                                "db=gene&id=%s&retmode=text&api_key=%s", id,
-                        ApplicationParameters.getInstance().getNcbiAPIKey()));
+                                "db=gene&id=%s&retmode=text&%s", id, Args.getInstance().getNcbiAPIKey()));
                 HttpConnector httpConnector = new HttpConnector();
                 String ncbiResultContent = httpConnector.getContent(url);
                 Pattern pattern = Pattern.compile("Name: (.*)(?= \\[)");

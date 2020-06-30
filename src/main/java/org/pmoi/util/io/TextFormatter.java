@@ -11,12 +11,16 @@ public class TextFormatter implements OutputFormatter {
 
     @Override
     public void append(String ...item) {
-        if (item.length == 10)
-            buffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s %s%n",
-                item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9]));
-        else
-            buffer.append(String.format("%-10s %-50s %-10s %-10s %-10s %-50s %-10s %-10s %-10s%n",
-                    item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8]));
+        String n1 = item[1].length() > 49 ? item[1].substring(0, 46) + "..." : item[1];
+        String n2 = item[3].length() > 49 ? item[3].substring(0, 46) + "..." : item[3];
+        if (item.length == 8) {
+            buffer.append(String.format("%-10s %-50s %-10s %-50s %-10s %-10s %-10s %s%n",
+                item[0], n1, item[2], n2, item[4], item[5], item[6], item[7]));
+        }
+        else {
+            buffer.append(String.format("%-10s %-50s %-10s %-50s %-10s %-10s %-10s%n",
+                    item[0], n1, item[2], n2, item[4], item[5], item[6]));
+        }
     }
 
     @Override

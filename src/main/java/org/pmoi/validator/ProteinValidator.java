@@ -19,7 +19,7 @@ public class ProteinValidator implements IParameterValidator {
         // check if file contains one protein per line
         try (var stream = Files.lines(Path.of(value))){
             var prob = stream
-                    .skip(1)
+                    .filter(e -> !e.startsWith("#"))
                     .filter(l -> l.contains(",") || l.contains(";") || l.contains(" ") || l.contains("\t"))
                     .findAny();
             if (prob.isPresent())

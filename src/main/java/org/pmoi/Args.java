@@ -1,9 +1,7 @@
 package org.pmoi;
 
 import com.beust.jcommander.Parameter;
-import org.pmoi.validator.FormatValidator;
-import org.pmoi.validator.GeneValidator;
-import org.pmoi.validator.ProteinValidator;
+import org.pmoi.validator.*;
 
 public class Args {
 
@@ -29,12 +27,15 @@ public class Args {
     private String format = "TSV";
 
     @Parameter(names = {"-db", "--pathway"}, description = "Pathway database: KEGG or WikiPathways",
-            validateWith = FormatValidator.class)
+            validateWith = PathwayValidator.class)
     private String pathwayDB = "WikiPathways";
 
     @Parameter(names = {"-s", "--minscore"}, description = "Minimum StringDB interaction score",
-            validateWith = FormatValidator.class)
+            validateWith = InteractionScoreValidator.class)
     private int stringDBScore = 900;
+
+    @Parameter(names = {"-k", "--key"}, description = "NCBI API key", validateWith = APIKeyValidator.class)
+    private String ncbiAPIKey = "";
 
     @Parameter(names = {"-d"}, description = "Custom separator for CSV file")
     private char separator = ';';
@@ -68,6 +69,10 @@ public class Args {
 
     public String getPathwayDB() {
         return pathwayDB;
+    }
+
+    public String getNcbiAPIKey() {
+        return ncbiAPIKey.isEmpty() ? ncbiAPIKey : "api_key=" + ncbiAPIKey;
     }
 
     public boolean isHelp() {

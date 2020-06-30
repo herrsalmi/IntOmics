@@ -33,7 +33,7 @@ public class StringdbQueryClient {
      * @return map of [gene name : score]
      */
     public Map<String, String> getProteinNetwork(String symbol) {
-        LOGGER.info("Searching StringDB for gene {}", symbol);
+        LOGGER.debug("Searching StringDB for gene {}", symbol);
         String url = String.format("https://string-db.org/api/xml/interaction_partners?species=9606&required_score=%s&identifiers=%s",
                 Args.getInstance().getStringDBScore(), symbol);
         Map<String, String> map = new HashMap<>();
@@ -44,10 +44,11 @@ public class StringdbQueryClient {
             HttpURLConnection httpConnection = (HttpURLConnection) connection;
             int responseCode = httpConnection.getResponseCode();
             if (responseCode == 500) {
-                LOGGER.warn(String.format("No entry in StringDB for GENE:%s", symbol));
+                LOGGER.warn("No entry in StringDB for GENE:{}", symbol);
                 return map;
             }
         } catch (IOException ignored) {
+            // no need to handle the exception
         }
 
         int count = 0;

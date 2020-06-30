@@ -3,6 +3,7 @@ package org.pmoi.business;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.ApplicationParameters;
+import org.pmoi.Args;
 import org.pmoi.model.Gene;
 
 import java.io.IOException;
@@ -20,9 +21,10 @@ import java.util.stream.Collectors;
 public class TranscriptomeManager {
     private static TranscriptomeManager instance;
     private static final Logger LOGGER = LogManager.getRootLogger();
+    private int parallelismLevel;
 
     private TranscriptomeManager() {
-
+        this.parallelismLevel = Args.getInstance().getNcbiAPIKey().isEmpty() ? 1 : 3;
     }
 
     public List<Gene> getDEGenesExceptMembranome(String filename) {
@@ -32,7 +34,7 @@ public class TranscriptomeManager {
     }
 
     public List<Gene> getMembranomeFromDEGenes(String fileName) {
-        GeneOntologyMapper goMapper = new GeneOntologyMapper();
+        //GeneOntologyMapper goMapper = new GeneOntologyMapper();
         SurfaceomeMapper surfaceomeMapper = SurfaceomeMapper.getInstance();
         //Predicate<Gene> condition = e -> goMapper.checkMembranomeGO(e.getEntrezID());
         Predicate<Gene> condition = e -> surfaceomeMapper.isSurfaceProtein(e.getName());
@@ -47,7 +49,7 @@ public class TranscriptomeManager {
     private List<Gene> getDEGenesWithCondition(Predicate<Gene> condition, String filename, boolean useFC) {
         EntrezIDMapper mapper = EntrezIDMapper.getInstance();
         List<Gene> inputGenes = Objects.requireNonNull(readDEGeneFile(filename)).stream().distinct().collect(Collectors.toList());
-        ExecutorService executor = Executors.newFixedThreadPool(4);
+        ExecutorService executor = Executors.newFixedThreadPool(parallelismLevel);
         inputGenes.forEach(g -> executor.submit(() -> mapper.nameToId(g)));
         executor.shutdown();
         try {
@@ -79,7 +81,7 @@ public class TranscriptomeManager {
                     .map(Gene::new)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return Collections.emptyList();
     }

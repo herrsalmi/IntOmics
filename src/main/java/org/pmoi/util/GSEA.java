@@ -25,7 +25,6 @@ public class GSEA {
             Collections.shuffle(sortedList, new SecureRandom());
             nullDistribution[i] = enrichmentScore(geneSet, sortedList);
         }
-
         double icount = 0;
         for (int i = 0; i < PERMUTATIONS; i++) {
             if (Math.abs(nullDistribution[i]) >= Math.abs(enrichmentScore))
@@ -33,8 +32,8 @@ public class GSEA {
         }
         double pvalue = icount / PERMUTATIONS;
         this.normalizedScore = enrichmentScore >= 0 ?
-                enrichmentScore / Arrays.stream(nullDistribution).filter(e -> e >= 0).average().getAsDouble() :
-                enrichmentScore / Math.abs(Arrays.stream(nullDistribution).filter(e -> e < 0).average().getAsDouble());
+                enrichmentScore / Arrays.stream(nullDistribution).filter(e -> e >= 0).average().orElseThrow() :
+                enrichmentScore / Math.abs(Arrays.stream(nullDistribution).filter(e -> e < 0).average().orElseThrow());
         return pvalue;
     }
 
@@ -45,8 +44,8 @@ public class GSEA {
      * @param stepWeight options: 0, 1, 1.5, 2
      */
     public double enrichmentScore(List<Gene> geneSet, List<Gene> sortedList, double stepWeight) {
-        List<Double> lHits = new ArrayList<>();
-        List<Double> lMisses = new ArrayList<>();
+        List<BigDecimal> lHits = new ArrayList<>();
+        List<BigDecimal> lMisses = new ArrayList<>();
         BigDecimal hitSum = new BigDecimal("0");
         BigDecimal missSum = new BigDecimal("0");
         var nr = sortedList.stream().filter(geneSet::contains)
@@ -55,22 +54,19 @@ public class GSEA {
         for (Gene g : sortedList) {
             if (geneSet.contains(g)) {
                 hitSum = hitSum.add(new BigDecimal(Double.toString(Math.pow(Math.abs(g.significanceScore()), stepWeight))).divide(BigDecimal.valueOf(nr),30 , RoundingMode.HALF_UP));
-                lHits.add(hitSum.doubleValue());
-                lMisses.add(missSum.doubleValue());
+                lHits.add(hitSum);
+                lMisses.add(missSum);
             } else {
                 missSum = missSum.add(new BigDecimal("1").divide(new BigDecimal(Double.toString((double)sortedList.size() - nh)), 30, RoundingMode.HALF_EVEN));
-                lHits.add(hitSum.doubleValue());
-                lMisses.add(missSum.doubleValue());
+                lHits.add(hitSum);
+                lMisses.add(missSum);
             }
         }
-
-        double es = 0;
+        BigDecimal esBD = new BigDecimal("0");
         for (int i = 0; i < lHits.size(); i++) {
-            es = Math.abs(es) > Math.abs(lHits.get(i) - lMisses.get(i)) ? es : lHits.get(i) - lMisses.get(i);
+            esBD = esBD.abs().compareTo(lHits.get(i).subtract(lMisses.get(i)).abs()) > 0 ? esBD : lHits.get(i).subtract(lMisses.get(i));
         }
-        BigDecimal res = new BigDecimal(Double.toString(es));
-        res = res.setScale(5, RoundingMode.HALF_UP);
-        return res.doubleValue();
+        return esBD.setScale(5, RoundingMode.HALF_UP).doubleValue();
     }
 
     /**

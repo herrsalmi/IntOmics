@@ -36,7 +36,7 @@ public class PathwayClient {
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Map<String, Set<String>> pathwayDB;
-    private static AtomicBoolean changed = new AtomicBoolean(false);;
+    private static AtomicBoolean changed = new AtomicBoolean(false);
     private long numberOfGenes;
 
     private PathwayClient() {
@@ -126,7 +126,7 @@ public class PathwayClient {
                                     var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream().findFirst().get().getText());
                                     return new Pathway(e.getName(), genes);
                                 } catch (JDOMException | IOException ex) {
-                                    ex.printStackTrace();
+                                    LOGGER.error(ex);
                                 }
                                 return null;
                             })

@@ -13,10 +13,13 @@ import java.nio.file.Path;
 
 public class MainEntry {
 
+    // NCBI API Key 40065544fb6667a5a723b649063fbe596e08
     public MainEntry(String[] args) {
-        args = new String[]{"-p", "test/secretome.csv",
+        args = new String[]{"-p", "test/secretome_withID_test.csv",
                             "-g", "test/Gene_DE_9h.csv",
-                            "-a", "test/all_genes.csv"};
+                            "-a", "test/all_genes.csv",
+                            "-db", "KEGG",
+                            "-f", "FWF"};
         Args params = Args.getInstance();
         try {
             JCommander jc = JCommander.newBuilder()

@@ -13,7 +13,7 @@ public class PathwayResponceHandler extends DefaultHandler {
     private LinkedList<PathwayResponse> pathwayResponses;
 
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {
+    public void characters(char[] ch, int start, int length) {
         elementValue = new String(ch, start, length);
     }
 
@@ -23,13 +23,13 @@ public class PathwayResponceHandler extends DefaultHandler {
     }
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes) {
         if (qName.equals("ns1:result"))
             pathwayResponses.add(new PathwayResponse());
     }
 
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
+    public void endElement(String uri, String localName, String qName) {
         if ("ns2:id".equals(qName)) {
             pathwayResponses.getLast().setId(elementValue);
         } else if ("ns2:name".equals(qName)) {

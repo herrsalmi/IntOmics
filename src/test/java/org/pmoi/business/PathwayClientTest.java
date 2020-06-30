@@ -3,6 +3,7 @@ package org.pmoi.business;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PathwayClientTest {
 
@@ -28,19 +29,19 @@ class PathwayClientTest {
     @Test
     void getPathwayGenes() {
         PathwayClient pathwayClient = PathwayClient.getInstance();
-        assertEquals(295, pathwayClient.getKEGGPathwayGenes("hsa04010").size());
+        assertEquals(294, pathwayClient.getKEGGPathwayGenes("hsa04010").size());
     }
 
 
     @Test
     void getPathwaysForGene() {
         PathwayClient pathwayClient = PathwayClient.getInstance();
-        pathwayClient.getPathwaysForGene("IGF2").forEach(System.out::println);
+        assertTrue(pathwayClient.getPathwaysForGene("IGF2").size() != 0);
     }
 
     @Test
     void getNumberOfGenesByPathway() {
         PathwayClient pathwayClient = PathwayClient.getInstance();
-        System.out.println(pathwayClient.getNumberOfGenesByPathway("Neutrophil degranulation"));
+        assertTrue(pathwayClient.getNumberOfGenesByPathway("TGF-beta signaling pathway") != 0);
     }
 }

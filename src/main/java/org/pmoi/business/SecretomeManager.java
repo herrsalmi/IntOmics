@@ -2,6 +2,7 @@ package org.pmoi.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.pmoi.Args;
 import org.pmoi.model.Protein;
 import org.pmoi.model.SecretomeMappingMode;
 
@@ -21,6 +22,7 @@ import java.util.stream.Stream;
 public class SecretomeManager {
 
     private static SecretomeManager instance;
+    private int parallelismLevel;
 
     private static final Logger LOGGER = LogManager.getRootLogger();
 
@@ -30,6 +32,7 @@ public class SecretomeManager {
 
     private SecretomeManager() {
         loadDB();
+        this.parallelismLevel = Args.getInstance().getNcbiAPIKey().isEmpty() ? 1 : 3;
     }
 
     private void loadDB() {
@@ -77,7 +80,7 @@ public class SecretomeManager {
 
             // convert id <=> name in order to have them both
             EntrezIDMapper mapper = EntrezIDMapper.getInstance();
-            ExecutorService executor = Executors.newFixedThreadPool(4);
+            ExecutorService executor = Executors.newFixedThreadPool(parallelismLevel);
             if (data.get(0).getEntrezID() != null) {
                 data.forEach(e -> executor.submit(() -> mapper.idToName(e)));
                 executor.shutdown();
@@ -86,7 +89,7 @@ public class SecretomeManager {
                 executor.shutdown();
             }
             try {
-                executor.awaitTermination(10, TimeUnit.DAYS);
+                executor.awaitTermination(1, TimeUnit.DAYS);
             } catch (InterruptedException e) {
                 LOGGER.error(e);
                 Thread.currentThread().interrupt();
