@@ -99,7 +99,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>13</version>
+            <version>14.0.1</version>
         </dependency>
         <dependency>
             <groupId>javax.xml.bind</groupId>
