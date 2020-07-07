@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 
 public class PathwayClient {
     private static PathwayClient instance;
-
+    private static final String INTERNAL_DB_NAME = "pathwayDB.obj";
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Map<String, Set<String>> pathwayDB;
@@ -65,7 +65,7 @@ public class PathwayClient {
 
     private void initDB() throws IOException {
 
-        if (!Files.exists(Paths.get("pathwayDB.obj"))) {
+        if (!Files.exists(Paths.get(INTERNAL_DB_NAME))) {
             Pattern pattern = Pattern.compile("Hs_(.+)(?=_WP)");
             try (var stream = Files.list(Paths.get("wikipathways/"))){
                 stream.forEach(e -> {
@@ -81,12 +81,12 @@ public class PathwayClient {
             } catch (IOException e) {
                 LOGGER.error(e);
             }
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("pathwayDB.obj")))){
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(INTERNAL_DB_NAME)))){
                 oos.writeObject(pathwayDB);
                 oos.flush();
             }
         } else {
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("pathwayDB.obj")))){
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(INTERNAL_DB_NAME)))){
                 if (ois.readObject() instanceof Map)
                     pathwayDB = (Map<String, Set<String>>) ois.readObject();
             } catch (ClassNotFoundException e) {

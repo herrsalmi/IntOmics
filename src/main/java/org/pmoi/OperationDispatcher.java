@@ -2,7 +2,11 @@ package org.pmoi;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.business.*;
+import org.pmoi.business.PathwayClient;
+import org.pmoi.business.SecretomeManager;
+import org.pmoi.business.StringdbQueryClient;
+import org.pmoi.business.TranscriptomeManager;
+import org.pmoi.database.GeneMapper;
 import org.pmoi.model.*;
 import org.pmoi.util.CSVValidator;
 import org.pmoi.util.GSEA;
@@ -24,7 +28,7 @@ public class OperationDispatcher {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private final StringdbQueryClient stringdbQueryClient;
     private OutputFormatter formatter;
-    private int parallelismLevel;
+    private int parallelismLevel = 4;
 
     public OperationDispatcher() {
         stringdbQueryClient = new StringdbQueryClient();
@@ -36,12 +40,6 @@ public class OperationDispatcher {
         String output = String.format("%s_%s_%s_fc%1.1f.%s",
                 prefix, mappingMode.label, Args.getInstance().getStringDBScore(),
                 ApplicationParameters.getInstance().getGeneFoldChange(), extension);
-        if (Args.getInstance().getNcbiAPIKey().isEmpty()) {
-            this.parallelismLevel = 1;
-            LOGGER.warn("NCBI API Key not supplied! the program may run slower due to network constraints.");
-        } else {
-            this.parallelismLevel = 3;
-        }
         TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
         secretomeManager.setMappingMode(mappingMode);
@@ -58,7 +56,7 @@ public class OperationDispatcher {
         List<Gene> transcriptome = transcriptomeManager.getDEGenes(Args.getInstance().getTranscriptome());
 
         LOGGER.info("Number of membranome genes: {}", membranome.size());
-        LOGGER.info("Number of secreted proteins: {}", secretome.size());
+        LOGGER.info("Number of actively secreted proteins: {}", secretome.size());
 
         assert transcriptome != null;
         writeInteractions(secretome, membranome, transcriptome, output);
@@ -141,7 +139,7 @@ public class OperationDispatcher {
             });
         }
 
-        NCBIQueryClient ncbiQueryClient = new NCBIQueryClient();
+        var mapper = GeneMapper.getInstance();
         if (ApplicationParameters.getInstance().addPathways()) {
             LOGGER.info("Running GSEA ...");
             // Calculate pathway pvalue using GSEA
@@ -164,12 +162,11 @@ public class OperationDispatcher {
             resultSet.parallelStream().forEach(e -> e.getGene().getGeneSets().removeIf(geneSet -> geneSet.getPvalue() >= 0.05));
 
             LOGGER.info("Writing results ...");
-
             customThreadPool.submit(() -> resultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> {
-                        k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
+                        k.setDescription(mapper.getDescription(k.getEntrezID()).orElse("-"));
                         v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
-                        v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
+                        v.get(0).getGene().setDescription(mapper.getDescription(v.get(0).getGene().getEntrezID()).orElse("-"));
                         formatter.append(k.getName(), k.getDescription(),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
                                 v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()),
@@ -180,7 +177,7 @@ public class OperationDispatcher {
                                                 .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
                                         .collect(Collectors.joining("; ")));
                         v.stream().skip(1).forEach(e -> {
-                            e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
+                            e.getGene().setDescription(mapper.getDescription(e.getGene().getEntrezID()).orElse("-"));
                             formatter.append("", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
                                     String.valueOf(e.getGene().getFdr()), String.valueOf(e.getGene().getFoldChange()),
                                     e.getGene().getGeneSets().stream()
@@ -194,18 +191,18 @@ public class OperationDispatcher {
         } else {
             customThreadPool.submit(() -> resultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> {
-                        k.setDescription(ncbiQueryClient.fetchDescription(k.getEntrezID()));
+                        k.setDescription(mapper.getDescription(k.getEntrezID()).orElse("-"));
                         v = v.stream()
                                 .sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange()))
                                 .sorted(Collections.reverseOrder())
                                 .collect(Collectors.toList());
-                        v.get(0).getGene().setDescription(ncbiQueryClient.fetchDescription(v.get(0).getGene().getEntrezID()));
+                        v.get(0).getGene().setDescription(mapper.getDescription(v.get(0).getGene().getEntrezID()).orElse("-"));
                         formatter.append(k.getName(), k.getDescription(),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
                                 v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()));
 
                         v.stream().skip(1).forEach(e -> {
-                            e.getGene().setDescription(ncbiQueryClient.fetchDescription(e.getGene().getEntrezID()));
+                            e.getGene().setDescription(mapper.getDescription(e.getGene().getEntrezID()).orElse("-"));
                             formatter.append("", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
                                     String.valueOf(e.getGene().getFdr()), String.valueOf(e.getGene().getFoldChange()));
                         });

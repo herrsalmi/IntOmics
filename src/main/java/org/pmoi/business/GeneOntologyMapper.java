@@ -43,6 +43,11 @@ public class GeneOntologyMapper {
         return (internalDB.get(entrezID).contains("GO:0009986") || internalDB.get(entrezID).contains("GO:0005886"));
     }
 
+    /**
+     * Check for annotations: "extracellular matrix" (GO:0031012) or "extracellular space" (GO:0005615)
+     * @param entrezID gene ID
+     * @return true if the protein product is actively secreted
+     */
     public boolean checkSecretomeGO(String entrezID) {
         if (!internalDB.containsKey(entrezID))
             return false;

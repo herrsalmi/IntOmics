@@ -2,7 +2,7 @@ package org.pmoi.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.Args;
+import org.pmoi.database.GeneMapper;
 import org.pmoi.model.Protein;
 import org.pmoi.model.SecretomeMappingMode;
 
@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 public class SecretomeManager {
 
     private static SecretomeManager instance;
-    private int parallelismLevel;
+    private static final int parallelismLevel = 4;
 
     private static final Logger LOGGER = LogManager.getRootLogger();
 
@@ -32,7 +32,6 @@ public class SecretomeManager {
 
     private SecretomeManager() {
         loadDB();
-        this.parallelismLevel = Args.getInstance().getNcbiAPIKey().isEmpty() ? 1 : 3;
     }
 
     private void loadDB() {
@@ -79,13 +78,13 @@ public class SecretomeManager {
                     .collect(Collectors.toList());
 
             // convert id <=> name in order to have them both
-            EntrezIDMapper mapper = EntrezIDMapper.getInstance();
+            var mapper = GeneMapper.getInstance();
             ExecutorService executor = Executors.newFixedThreadPool(parallelismLevel);
             if (data.get(0).getEntrezID() != null) {
-                data.forEach(e -> executor.submit(() -> mapper.idToName(e)));
+                data.forEach(e -> executor.submit(() -> e.setName(mapper.getSymbol(e.getEntrezID()).orElse(""))));
                 executor.shutdown();
             } else if (mode.equals(SecretomeMappingMode.GOTERM)){
-                data.forEach(e -> executor.submit(() -> mapper.nameToId(e)));
+                data.forEach(e -> executor.submit(() -> e.setEntrezID(mapper.getId(e.getName()).orElse(""))));
                 executor.shutdown();
             }
             try {

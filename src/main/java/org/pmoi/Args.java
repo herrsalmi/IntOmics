@@ -34,9 +34,6 @@ public class Args {
             validateWith = InteractionScoreValidator.class)
     private int stringDBScore = 900;
 
-    @Parameter(names = {"-k", "--key"}, description = "NCBI API key", validateWith = APIKeyValidator.class)
-    private String ncbiAPIKey = "";
-
     @Parameter(names = {"-d"}, description = "Custom separator for CSV file")
     private char separator = ';';
 
@@ -69,10 +66,6 @@ public class Args {
 
     public String getPathwayDB() {
         return pathwayDB;
-    }
-
-    public String getNcbiAPIKey() {
-        return ncbiAPIKey.isEmpty() ? ncbiAPIKey : "api_key=" + ncbiAPIKey;
     }
 
     public boolean isHelp() {

@@ -3,7 +3,7 @@ package org.pmoi.business;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.ApplicationParameters;
-import org.pmoi.Args;
+import org.pmoi.database.GeneMapper;
 import org.pmoi.model.Gene;
 
 import java.io.IOException;
@@ -21,10 +21,9 @@ import java.util.stream.Collectors;
 public class TranscriptomeManager {
     private static TranscriptomeManager instance;
     private static final Logger LOGGER = LogManager.getRootLogger();
-    private int parallelismLevel;
+    private static final int parallelismLevel = 4;
 
     private TranscriptomeManager() {
-        this.parallelismLevel = Args.getInstance().getNcbiAPIKey().isEmpty() ? 1 : 3;
     }
 
     public List<Gene> getDEGenesExceptMembranome(String filename) {
@@ -47,10 +46,10 @@ public class TranscriptomeManager {
     }
 
     private List<Gene> getDEGenesWithCondition(Predicate<Gene> condition, String filename, boolean useFC) {
-        EntrezIDMapper mapper = EntrezIDMapper.getInstance();
+        var mapper = GeneMapper.getInstance();
         List<Gene> inputGenes = Objects.requireNonNull(readDEGeneFile(filename)).stream().distinct().collect(Collectors.toList());
         ExecutorService executor = Executors.newFixedThreadPool(parallelismLevel);
-        inputGenes.forEach(g -> executor.submit(() -> mapper.nameToId(g)));
+        inputGenes.forEach(g -> executor.submit(() -> g.setEntrezID(mapper.getId(g.getName()).orElse(""))));
         executor.shutdown();
         try {
             executor.awaitTermination(10, TimeUnit.DAYS);
