@@ -20,7 +20,6 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -28,21 +27,19 @@ public class OperationDispatcher {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private final StringdbQueryClient stringdbQueryClient;
     private OutputFormatter formatter;
-    private int parallelismLevel = 4;
 
     public OperationDispatcher() {
         stringdbQueryClient = new StringdbQueryClient();
     }
 
-    public void run(String prefix, SecretomeMappingMode mappingMode, OutputFormatter formatter) throws InterruptedException {
+    public void run(String prefix, OutputFormatter formatter) throws InterruptedException {
         this.formatter = formatter;
         String extension = formatter instanceof TSVFormatter ? "tsv" : "txt";
-        String output = String.format("%s_%s_%s_fc%1.1f.%s",
-                prefix, mappingMode.label, Args.getInstance().getStringDBScore(),
+        String output = String.format("%s_%s_fc%1.1f.%s",
+                prefix, Args.getInstance().getStringDBScore(),
                 ApplicationParameters.getInstance().getGeneFoldChange(), extension);
         TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
-        secretomeManager.setMappingMode(mappingMode);
         CSVValidator validator = new CSVValidator();
         if (!validator.isConform(Args.getInstance().getTranscriptome()))
             System.exit(1);
@@ -65,8 +62,7 @@ public class OperationDispatcher {
 
     private void writeInteractions(List<Protein> secretome, List<Gene> membranome, List<Gene> transcriptome, String outputFileName) throws InterruptedException {
         List<ResultRecord> resultSet = Collections.synchronizedList(new ArrayList<>());
-        ForkJoinPool customThreadPool = new ForkJoinPool(parallelismLevel);
-        ExecutorService executorService = Executors.newFixedThreadPool(parallelismLevel);
+        ExecutorService executorService = Executors.newFixedThreadPool(Args.getInstance().getThreads());
         PathwayClient pathwayClient = PathwayClient.getInstance();
 
         LOGGER.info("Filtering transcriptome");
@@ -107,110 +103,84 @@ public class OperationDispatcher {
         executorService.shutdown();
         executorService.awaitTermination(1, TimeUnit.DAYS);
 
-        if (ApplicationParameters.getInstance().addPathways()) {
-            LOGGER.info("Looking for pathway interactions ...");
+        LOGGER.info("Looking for pathway interactions ...");
 
-            var resultMap = resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein));
+        var resultMap = resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein));
 
-            resultMap.forEach((key, value) -> {
-                // get a list of pathways where the protein is involved
-                if (Args.getInstance().getPathwayDB().equals("KEGG")) {
-                    var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
-                    // TODO the next two lines should be simplified in order to return directly a list of pathways
-                    pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
-                    key.getPathways().forEach(e -> e.setGenes(pathwayClient.getKEGGPathwayGenes(e.getPathwayID())));
+        resultMap.forEach((key, value) -> {
+            // get a list of pathways where the protein is involved
+            if (Args.getInstance().getPathwayDB().equals("KEGG")) {
+                var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
+                // TODO the next two lines should be simplified in order to return directly a list of pathways
+                pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
+                key.getPathways().forEach(e -> e.setGenes(pathwayClient.getKEGGPathwayGenes(e.getPathwayID())));
 
-                } else if (Args.getInstance().getPathwayDB().equals("WikiPathways")){
-                    var pathways = pathwayClient.getPathways(key.getName());
-                    if (pathways == null || pathways.isEmpty())
-                        return;
-                    pathways.forEach(key::addPathway);
+            } else if (Args.getInstance().getPathwayDB().equals("WikiPathways")) {
+                var pathways = pathwayClient.getPathways(key.getName());
+                if (pathways == null || pathways.isEmpty())
+                    return;
+                pathways.forEach(key::addPathway);
 
-                }
+            }
 
-                value.forEach(resultRecord -> {
-                    LOGGER.debug(String.format("Processing [P: %s # G: %s]", key.getName(), resultRecord.getGene().getName()));
-                    resultRecord.getProtein().getPathways().forEach(p -> {
-                        if (p.getGenes().contains(resultRecord.getGene()))
-                            resultRecord.getGene().setInteractors(p.getName(), p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
-                    });
+            value.forEach(resultRecord -> {
+                LOGGER.debug(String.format("Processing [P: %s # G: %s]", key.getName(), resultRecord.getGene().getName()));
+                resultRecord.getProtein().getPathways().forEach(p -> {
+                    if (p.getGenes().contains(resultRecord.getGene()))
+                        resultRecord.getGene().setInteractors(p.getName(), p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
                 });
-
             });
-        }
+
+        });
 
         var mapper = GeneMapper.getInstance();
-        if (ApplicationParameters.getInstance().addPathways()) {
-            LOGGER.info("Running GSEA ...");
-            // Calculate pathway pvalue using GSEA
-            //TODO use a parameter for number of threads
-            ExecutorService service = Executors.newFixedThreadPool(8);
-            resultSet.parallelStream()
-                    .collect(Collectors.groupingBy(ResultRecord::getProtein))
-                    .forEach((k, v) -> v.forEach(e -> e.getGene().getGeneSets()
-                            .forEach(en ->
+
+        LOGGER.info("Running GSEA ...");
+        // Calculate pathway pvalue using GSEA
+        ExecutorService service = Executors.newFixedThreadPool(Args.getInstance().getThreads());
+        resultSet.parallelStream()
+                .collect(Collectors.groupingBy(ResultRecord::getProtein))
+                .forEach((k, v) -> v.forEach(e -> e.getGene().getGeneSets()
+                        .forEach(en ->
                                 service.submit(() -> {
 
                                     GSEA gsea = new GSEA();
                                     en.setPvalue(gsea.run(en.getGenes(), filteredTranscriptome));
                                     en.setScore(gsea.getNormalizedScore());
                                 })
-                            )));
-            service.shutdown();
-            service.awaitTermination(1, TimeUnit.DAYS);
+                        )));
+        service.shutdown();
+        service.awaitTermination(1, TimeUnit.DAYS);
 
-            resultSet.parallelStream().forEach(e -> e.getGene().getGeneSets().removeIf(geneSet -> geneSet.getPvalue() >= 0.05));
+        resultSet.parallelStream().forEach(e -> e.getGene().getGeneSets().removeIf(geneSet -> geneSet.getPvalue() >= 0.05));
 
-            LOGGER.info("Writing results ...");
-            customThreadPool.submit(() -> resultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
-                    .forEach((k, v) -> {
-                        k.setDescription(mapper.getDescription(k.getEntrezID()).orElse("-"));
-                        v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
-                        v.get(0).getGene().setDescription(mapper.getDescription(v.get(0).getGene().getEntrezID()).orElse("-"));
-                        formatter.append(k.getName(), k.getDescription(),
-                                v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
-                                v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()),
-                                v.get(0).getGene().getGeneSets().stream()
+        LOGGER.info("Writing results ...");
+        resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
+                .forEach((k, v) -> {
+                    k.setDescription(mapper.getDescription(k.getEntrezID()).orElse("-"));
+                    v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
+                    v.get(0).getGene().setDescription(mapper.getDescription(v.get(0).getGene().getEntrezID()).orElse("-"));
+                    formatter.append(k.getName(), k.getDescription(),
+                            v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
+                            v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()),
+                            v.get(0).getGene().getGeneSets().stream()
+                                    .sorted(Comparator.comparingDouble(GeneSet::getPvalue))
+                                    .map(e -> e.getName() + ": {" + e.getScore() + " | " + e.getPvalue() + "} "
+                                            + e.getGenes().stream().sorted(Collections.reverseOrder())
+                                            .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
+                                    .collect(Collectors.joining("; ")));
+                    v.stream().skip(1).forEach(e -> {
+                        e.getGene().setDescription(mapper.getDescription(e.getGene().getEntrezID()).orElse("-"));
+                        formatter.append("", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
+                                String.valueOf(e.getGene().getFdr()), String.valueOf(e.getGene().getFoldChange()),
+                                e.getGene().getGeneSets().stream()
                                         .sorted(Comparator.comparingDouble(GeneSet::getPvalue))
-                                        .map(e -> e.getName() + ": {" + e.getScore() + " | " + e.getPvalue() + "} "
-                                                + e.getGenes().stream().sorted(Collections.reverseOrder())
+                                        .map(en -> en.getName() + ": {" + en.getScore() + " | " + en.getPvalue() + "} "
+                                                + en.getGenes().stream().sorted(Collections.reverseOrder())
                                                 .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
                                         .collect(Collectors.joining("; ")));
-                        v.stream().skip(1).forEach(e -> {
-                            e.getGene().setDescription(mapper.getDescription(e.getGene().getEntrezID()).orElse("-"));
-                            formatter.append("", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
-                                    String.valueOf(e.getGene().getFdr()), String.valueOf(e.getGene().getFoldChange()),
-                                    e.getGene().getGeneSets().stream()
-                                            .sorted(Comparator.comparingDouble(GeneSet::getPvalue))
-                                            .map(en -> en.getName() + ": {" + en.getScore()  + " | " + en.getPvalue() + "} "
-                                                    + en.getGenes().stream().sorted(Collections.reverseOrder())
-                                                    .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
-                                            .collect(Collectors.joining("; ")));
-                        });
-                    }));
-        } else {
-            customThreadPool.submit(() -> resultSet.parallelStream().collect(Collectors.groupingBy(ResultRecord::getProtein))
-                    .forEach((k, v) -> {
-                        k.setDescription(mapper.getDescription(k.getEntrezID()).orElse("-"));
-                        v = v.stream()
-                                .sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange()))
-                                .sorted(Collections.reverseOrder())
-                                .collect(Collectors.toList());
-                        v.get(0).getGene().setDescription(mapper.getDescription(v.get(0).getGene().getEntrezID()).orElse("-"));
-                        formatter.append(k.getName(), k.getDescription(),
-                                v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
-                                v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()));
-
-                        v.stream().skip(1).forEach(e -> {
-                            e.getGene().setDescription(mapper.getDescription(e.getGene().getEntrezID()).orElse("-"));
-                            formatter.append("", "", "", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
-                                    String.valueOf(e.getGene().getFdr()), String.valueOf(e.getGene().getFoldChange()));
-                        });
-                    }));
-        }
-        customThreadPool.shutdown();
-        customThreadPool.awaitTermination(1, TimeUnit.DAYS);
-
+                    });
+                });
         try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(outputFileName))) {
             bw.write(formatter.getText());
         } catch (IOException e) {

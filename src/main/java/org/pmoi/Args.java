@@ -34,6 +34,10 @@ public class Args {
             validateWith = InteractionScoreValidator.class)
     private int stringDBScore = 900;
 
+    @Parameter(names = {"-t", "--threads"}, description = "Number of threads to use",
+            validateWith = ThreadsValidator.class)
+    private int threads = 4;
+
     @Parameter(names = {"-d"}, description = "Custom separator for CSV file")
     private char separator = ';';
 
@@ -66,6 +70,10 @@ public class Args {
 
     public String getPathwayDB() {
         return pathwayDB;
+    }
+
+    public int getThreads() {
+        return threads;
     }
 
     public boolean isHelp() {

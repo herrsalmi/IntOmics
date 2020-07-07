@@ -2,9 +2,9 @@ package org.pmoi.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.pmoi.Args;
 import org.pmoi.database.GeneMapper;
 import org.pmoi.model.Protein;
-import org.pmoi.model.SecretomeMappingMode;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,58 +17,26 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class SecretomeManager {
 
     private static SecretomeManager instance;
-    private static final int parallelismLevel = 4;
 
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Set<String> internalDB;
-    private SecretomeMappingMode mode;
     private Predicate<Protein> secretomeMapper;
 
     private SecretomeManager() {
-        loadDB();
-    }
-
-    private void loadDB() {
-        String dbFilePath = "metazSecKB.txt";
-        try (Stream<String> stream = Files.lines(Path.of(dbFilePath))){
-            this.internalDB = stream.map(e -> {
-                if (e.split("\t").length != 5) {
-                    LOGGER.error("Wrong number of fields in line: {}", e);
-                }
-                return e.split("\t")[4];
-            }).collect(Collectors.toSet());
-        } catch (IOException e) {
-            LOGGER.error(e);
-        }
+        GeneOntologyMapper goMapper = new GeneOntologyMapper();
+        secretomeMapper = protein -> goMapper.checkSecretomeGO(protein.getEntrezID());
     }
 
     public boolean isSecreted(String gene) {
         return internalDB.contains(gene.toUpperCase());
     }
 
-    public void setMappingMode(SecretomeMappingMode mode) {
-        this.mode = mode;
-        switch (mode) {
-            case METAZSECKB -> {
-                SecretomeManager secretomeDB = SecretomeManager.getInstance();
-                secretomeMapper = protein -> secretomeDB.isSecreted(protein.getName());
-            }
-            case GOTERM -> {
-                GeneOntologyMapper goMapper = new GeneOntologyMapper();
-                secretomeMapper = protein -> goMapper.checkSecretomeGO(protein.getEntrezID());
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + mode);
-        }
-    }
-
     public List<Protein> loadSecretomeFile(String filePath) {
-        isMappingModeSet();
         try (var stream = Files.lines(Path.of(filePath))){
             var data = stream
                     .filter(e -> !e.startsWith("#"))
@@ -79,14 +47,13 @@ public class SecretomeManager {
 
             // convert id <=> name in order to have them both
             var mapper = GeneMapper.getInstance();
-            ExecutorService executor = Executors.newFixedThreadPool(parallelismLevel);
+            ExecutorService executor = Executors.newFixedThreadPool(Args.getInstance().getThreads());
             if (data.get(0).getEntrezID() != null) {
                 data.forEach(e -> executor.submit(() -> e.setName(mapper.getSymbol(e.getEntrezID()).orElse(""))));
-                executor.shutdown();
-            } else if (mode.equals(SecretomeMappingMode.GOTERM)){
+            } else {
                 data.forEach(e -> executor.submit(() -> e.setEntrezID(mapper.getId(e.getName()).orElse(""))));
-                executor.shutdown();
             }
+            executor.shutdown();
             try {
                 executor.awaitTermination(1, TimeUnit.DAYS);
             } catch (InterruptedException e) {
@@ -102,12 +69,6 @@ public class SecretomeManager {
         }
         return Collections.emptyList();
     }
-
-    private void isMappingModeSet() {
-        if (mode == null)
-            throw new IllegalStateException("Mapping mode not set!");
-    }
-
 
     public static synchronized SecretomeManager getInstance() {
         if (instance == null)
