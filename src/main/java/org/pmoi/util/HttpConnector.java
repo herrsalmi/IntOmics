@@ -2,7 +2,6 @@ package org.pmoi.util;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.ApplicationParameters;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -17,6 +16,8 @@ import java.nio.charset.StandardCharsets;
 public class HttpConnector {
 
     private static final Logger LOGGER = LogManager.getRootLogger();
+
+    public static final int MAX_TRIES = 100;
     
     public String getContent(URL url) throws IOException {
         int count = 0;
@@ -48,7 +49,7 @@ public class HttpConnector {
                 }
                 return output;
             } catch (IOException e) {
-                if (count == ApplicationParameters.getInstance().getMaxTries()) throw e;
+                if (++count == MAX_TRIES) throw e;
             }
         }
     }

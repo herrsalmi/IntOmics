@@ -7,8 +7,8 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
-import org.pmoi.ApplicationParameters;
 import org.pmoi.Args;
+import org.pmoi.util.HttpConnector;
 
 import javax.xml.XMLConstants;
 import java.io.IOException;
@@ -66,8 +66,8 @@ public class StringdbQueryClient {
                 return map;
             } catch (JDOMException | IOException e) {
                 LOGGER.warn(String.format("Network I/O error while connecting to StringDB. GENE:%s. Retrying ... (%d/%d)",
-                        symbol, ++count, ApplicationParameters.getInstance().getMaxTries()));
-                if (count == ApplicationParameters.getInstance().getMaxTries()) {
+                        symbol, ++count, HttpConnector.MAX_TRIES));
+                if (count == HttpConnector.MAX_TRIES) {
                     LOGGER.error(String.format("StringDB data not retrieved for GENE:%s", symbol));
                     return map;
                 }

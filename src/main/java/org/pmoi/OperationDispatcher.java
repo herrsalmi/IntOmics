@@ -35,9 +35,8 @@ public class OperationDispatcher {
     public void run(String prefix, OutputFormatter formatter) throws InterruptedException {
         this.formatter = formatter;
         String extension = formatter instanceof TSVFormatter ? "tsv" : "txt";
-        String output = String.format("%s_%s_fc%1.1f.%s",
-                prefix, Args.getInstance().getStringDBScore(),
-                ApplicationParameters.getInstance().getGeneFoldChange(), extension);
+        String output = String.format("%s_%s_fc%1.1f.%s", prefix, Args.getInstance().getStringDBScore(),
+                Args.getInstance().getFoldChange(), extension);
         TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
         CSVValidator validator = new CSVValidator();

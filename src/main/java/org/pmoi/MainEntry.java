@@ -18,6 +18,7 @@ public class MainEntry {
                             "-a", "test/all_genes.csv",
                             "-db", "KEGG",
                             "-f", "FWF",
+                            "-fc", "1.5",
                             "-t", "8"};
         Args params = Args.getInstance();
         try {

@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
-import org.pmoi.ApplicationParameters;
 import org.pmoi.model.Feature;
 import org.pmoi.model.Gene;
 import org.pmoi.model.Pathway;
@@ -152,7 +151,7 @@ public class PathwayClient {
                 }
 
             } catch (IOException e) {
-                if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
+                if (++counter == HttpConnector.MAX_TRIES) {
                     LOGGER.error(String.format("Error getting pathway for: [%s]. Aborting!", gene));
                     return Collections.emptyList();
                 }
@@ -249,7 +248,7 @@ public class PathwayClient {
                 }
                 return resultList;
             } catch (IOException e) {
-                if (++counter == ApplicationParameters.getInstance().getMaxTries()) {
+                if (++counter == HttpConnector.MAX_TRIES) {
                     LOGGER.error(String.format("Error getting KEGG results. URL: [%s]. Aborting!", url));
                     return Collections.emptyList();
                 }

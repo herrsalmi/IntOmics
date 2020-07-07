@@ -2,7 +2,6 @@ package org.pmoi.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.ApplicationParameters;
 import org.pmoi.Args;
 import org.pmoi.database.GeneMapper;
 import org.pmoi.model.Gene;
@@ -62,7 +61,7 @@ public class TranscriptomeManager {
                 .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
                 .filter(g -> {
                     if (useFC)
-                        return Math.abs(g.getFoldChange()) >= ApplicationParameters.getInstance().getGeneFoldChange();
+                        return Math.abs(g.getFoldChange()) >= Args.getInstance().getFoldChange();
                     else
                         return true;
                 })

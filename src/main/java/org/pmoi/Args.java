@@ -34,6 +34,10 @@ public class Args {
             validateWith = InteractionScoreValidator.class)
     private int stringDBScore = 900;
 
+    @Parameter(names = {"-fc"}, description = "Fold change cutoff",
+            validateWith = FoldChangeValidator.class)
+    private double foldChange = 1.5;
+
     @Parameter(names = {"-t", "--threads"}, description = "Number of threads to use",
             validateWith = ThreadsValidator.class)
     private int threads = 4;
@@ -74,6 +78,10 @@ public class Args {
 
     public int getThreads() {
         return threads;
+    }
+
+    public double getFoldChange() {
+        return foldChange;
     }
 
     public boolean isHelp() {
