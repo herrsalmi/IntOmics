@@ -24,7 +24,7 @@ public class PathwayResponceHandler extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) {
-        if (qName.equals("ns1:result"))
+        if (qName.equals("ns1:result") || qName.equals("ns1:pathways"))
             pathwayResponses.add(new PathwayResponse());
     }
 

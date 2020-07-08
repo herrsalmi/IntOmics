@@ -65,27 +65,13 @@ public class OperationDispatcher {
         PathwayClient pathwayClient = PathwayClient.getInstance();
 
         LOGGER.info("Filtering transcriptome");
-//        Predicate<Gene> filter = switch (Args.getInstance().getPathwayDB()) {
-//            case "KEGG" -> e -> !pathwayClient.KEGGSearch(e.getEntrezID()).isEmpty();
-//            case "WikiPathways" -> e -> pathwayClient.isInAnyPathway(e.getName());
-//            default -> throw new UnsupportedOperationException();
-//        };
+
         var filteredTranscriptome = transcriptome.parallelStream().filter(e -> pathwayClient.isInAnyPathway(e.getName())).collect(Collectors.toList());
 
         secretome.forEach(e -> executorService.submit(() -> {
             // Adding StringDB interactors
             Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
-            //Map<String, String> interactors = new HashMap<>();
             // Add gene from the pathway to the map
-            // PS: This code was used to include pathway genes as interactors instead of using StringDB
-//            pathwayClient.getIntercatorsFromPathway(e.getName()).stream()
-//                    .filter(gene -> !gene.equals(e.getName()))
-//                    .forEach(gene -> interactors.putIfAbsent(gene, "NA"));
-//            pathwayClient.getPathways(e.getName()).stream()
-//                    .flatMap(p -> p.getGenes().stream())
-//                    .distinct()
-//                    .filter(gene -> !gene.getName().equals(e.getName()))
-//                    .forEach(gene -> interactors.putIfAbsent(gene.getName(), "NA"));
             List<String> interactorsNames = new ArrayList<>(interactors.keySet());
             interactorsNames.retainAll(membranome.stream().map(Feature::getName).collect(Collectors.toList()));
             if (!interactorsNames.isEmpty()) {
@@ -108,13 +94,12 @@ public class OperationDispatcher {
 
         resultMap.forEach((key, value) -> {
             // get a list of pathways where the protein is involved
-            if (Args.getInstance().getPathwayDB().equals("KEGG")) {
+            if (Args.getInstance().getPathwayDB().equals(PathwayMode.KEGG)) {
                 var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
-                // TODO the next two lines should be simplified in order to return directly a list of pathways
                 pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
                 key.getPathways().forEach(e -> e.setGenes(pathwayClient.getKEGGPathwayGenes(e.getPathwayID())));
 
-            } else if (Args.getInstance().getPathwayDB().equals("WikiPathways")) {
+            } else if (Args.getInstance().getPathwayDB().equals(PathwayMode.WIKIPATHWAYS)) {
                 var pathways = pathwayClient.getPathways(key.getName());
                 if (pathways == null || pathways.isEmpty())
                     return;

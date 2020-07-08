@@ -19,12 +19,14 @@ public class GeneOntologyMapper {
     private Map<String, Set<String>> internalDB;
 
     public GeneOntologyMapper() {
+        LOGGER.debug("Loading GO database");
         this.internalDB = new ConcurrentHashMap<>(100000);
         try {
             load();
         } catch (IOException e) {
             LOGGER.error(e);
         }
+        LOGGER.debug("GO database loaded");
     }
 
     private void load() throws IOException {

@@ -1,6 +1,7 @@
 package org.pmoi;
 
 import com.beust.jcommander.Parameter;
+import org.pmoi.model.PathwayMode;
 import org.pmoi.validator.*;
 
 public class Args {
@@ -28,7 +29,7 @@ public class Args {
 
     @Parameter(names = {"-db", "--pathway"}, description = "Pathway database: KEGG or WikiPathways",
             validateWith = PathwayValidator.class)
-    private String pathwayDB = "WikiPathways";
+    private PathwayMode pathwayDB = PathwayMode.WIKIPATHWAYS;
 
     @Parameter(names = {"-s", "--minscore"}, description = "Minimum StringDB interaction score",
             validateWith = InteractionScoreValidator.class)
@@ -72,7 +73,7 @@ public class Args {
         return separator;
     }
 
-    public String getPathwayDB() {
+    public PathwayMode getPathwayDB() {
         return pathwayDB;
     }
 
