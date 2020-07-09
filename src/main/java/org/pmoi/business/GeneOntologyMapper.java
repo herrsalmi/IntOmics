@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URISyntaxException;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -31,7 +30,7 @@ public class GeneOntologyMapper {
 
     private void load() throws IOException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(
-                Objects.requireNonNull(getClass().getClassLoader().getResource("GODB.obj")).toURI())))){
+                getClass().getClassLoader().getResource("GODB.obj").toURI())))){
             this.internalDB = (Map<String, Set<String>>) ois.readObject();
         } catch (ClassNotFoundException | URISyntaxException e) {
             LOGGER.error(e);

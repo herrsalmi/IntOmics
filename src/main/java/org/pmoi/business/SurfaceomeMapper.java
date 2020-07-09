@@ -8,7 +8,6 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -24,7 +23,7 @@ public class SurfaceomeMapper {
 
     private void init() {
         internalDB = new HashSet<>(3000);
-        try (Stream<String> stream = Files.lines(Path.of(Objects.requireNonNull(getClass().getClassLoader().getResource("surfaceome.txt"))
+        try (Stream<String> stream = Files.lines(Path.of(getClass().getClassLoader().getResource("surfaceome.txt")
                 .toURI()))){
             stream.forEach(l -> internalDB.add(l.trim()));
         } catch (IOException | URISyntaxException e) {

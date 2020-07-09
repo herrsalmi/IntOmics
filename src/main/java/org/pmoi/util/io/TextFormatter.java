@@ -1,10 +1,10 @@
 package org.pmoi.util.io;
 
 public class TextFormatter implements OutputFormatter {
-    private final StringBuffer buffer;
+    private final StringBuilder buffer;
 
     public TextFormatter() {
-        this.buffer = new StringBuffer();
+        this.buffer = new StringBuilder();
         buffer.append(String.format("%-10s %-50s %-10s %-50s %-10s %-10s %-10s%n",
                 "#protein", "name", "gene", "name", "I score", "gene_fdr", "gene_fc"));
     }

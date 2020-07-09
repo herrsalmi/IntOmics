@@ -11,7 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -46,7 +45,7 @@ public class TranscriptomeManager {
 
     private List<Gene> getDEGenesWithCondition(Predicate<Gene> condition, String filename, boolean useFC) {
         var mapper = GeneMapper.getInstance();
-        List<Gene> inputGenes = Objects.requireNonNull(readDEGeneFile(filename)).stream().distinct().collect(Collectors.toList());
+        List<Gene> inputGenes = readDEGeneFile(filename).stream().distinct().collect(Collectors.toList());
         ExecutorService executor = Executors.newFixedThreadPool(Args.getInstance().getThreads());
         inputGenes.forEach(g -> executor.submit(() -> g.setEntrezID(mapper.getId(g.getName()).orElse(""))));
         executor.shutdown();

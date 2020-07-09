@@ -27,6 +27,7 @@ public class OperationDispatcher {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private final StringdbQueryClient stringdbQueryClient;
     private OutputFormatter formatter;
+    private PathwayClient pathwayClient;
 
     public OperationDispatcher() {
         stringdbQueryClient = new StringdbQueryClient();
@@ -39,6 +40,7 @@ public class OperationDispatcher {
                 Args.getInstance().getFoldChange(), extension);
         TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
+        pathwayClient = PathwayClient.getInstance();
         CSVValidator validator = new CSVValidator();
         if (!validator.isConform(Args.getInstance().getTranscriptome()))
             System.exit(1);
@@ -62,7 +64,6 @@ public class OperationDispatcher {
     private void writeInteractions(List<Protein> secretome, List<Gene> membranome, List<Gene> transcriptome, String outputFileName) throws InterruptedException {
         List<ResultRecord> resultSet = Collections.synchronizedList(new ArrayList<>());
         ExecutorService executorService = Executors.newFixedThreadPool(Args.getInstance().getThreads());
-        PathwayClient pathwayClient = PathwayClient.getInstance();
 
         LOGGER.info("Filtering transcriptome");
 

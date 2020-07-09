@@ -20,14 +20,14 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -38,14 +38,19 @@ public class PathwayClient {
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Map<String, Set<String>> pathwayDB;
+    private int initialSize = 0;
 
     private PathwayClient() {
         LOGGER.debug("Loadling pathways DB");
         pathwayDB = new ConcurrentHashMap<>();
         try {
             initDB();
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException | NullPointerException e) {
             LOGGER.error(e);
+            switch (Args.getInstance().getPathwayDB()) {
+                case KEGG -> initKEGGPathways();
+                case WIKIPATHWAYS -> initWikiPathways();
+            }
         }
         LOGGER.debug("Pathways DB loaded");
     }
@@ -61,34 +66,45 @@ public class PathwayClient {
         return instance;
     }
 
-    private void initDB() throws IOException {
-
-        if (!Files.exists(Paths.get(INTERNAL_DB_NAME))) {
+    private void initDB() throws IOException, URISyntaxException, NullPointerException {
+        //TODO remove this block for production
+        if (false) {
             switch (Args.getInstance().getPathwayDB()) {
                 case KEGG -> initKEGGPathways();
                 case WIKIPATHWAYS -> initWikiPathways();
             }
             try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(INTERNAL_DB_NAME)))) {
                 oos.writeObject(pathwayDB);
+                oos.writeInt(initialSize);
             }
-        } else {
-            LOGGER.debug("Reading file {}", INTERNAL_DB_NAME);
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(INTERNAL_DB_NAME)))) {
-                pathwayDB = (Map<String, Set<String>>) ois.readObject();
-                LOGGER.debug("Object loaded into memory");
-            } catch (ClassNotFoundException e) {
-                LOGGER.error(e);
-            } catch (EOFException e) {
-                // do nothing
+            return;
+        }
+        LOGGER.debug("Reading file {}", INTERNAL_DB_NAME);
+        var file = new FileInputStream(new File(getClass().getClassLoader()
+                .getResource(INTERNAL_DB_NAME).toURI()));
+        try (ObjectInputStream ois = new ObjectInputStream(file)) {
+            pathwayDB = (Map<String, Set<String>>) ois.readObject();
+            initialSize = ois.readInt();
+            LOGGER.debug("Object loaded into memory. Number of pathways: {}. Initial size = {}", pathwayDB.size(), initialSize);
+        } catch (ClassNotFoundException e) {
+            LOGGER.error(e);
+        } catch (EOFException e) {
+            // do nothing
+        }
+        if (Args.getInstance().useOnlineDB()) {
+            switch (Args.getInstance().getPathwayDB()) {
+                case KEGG -> initKEGGPathways();
+                case WIKIPATHWAYS -> initWikiPathways();
             }
         }
+
     }
 
     /**
      * Load pathways from WikiPathways into internal DB
      */
     public void initWikiPathways() {
-        LOGGER.debug("Fetching KEGG pathways");
+        LOGGER.debug("Fetching WikiPathways entries");
         int counter = 0;
         try {
             String url = "http://webservice.wikipathways.org/listPathways?organism=Homo%20sapiens";
@@ -99,18 +115,53 @@ public class PathwayClient {
             PathwayResponceHandler pathwayResponceHandler = new PathwayResponceHandler();
             saxParser.parse(url, pathwayResponceHandler);
             List<PathwayResponse> result = pathwayResponceHandler.getPathwayResponses();
-            assert result != null;
             if (result.isEmpty()) {
                 LOGGER.error("Unable to get WikiPathways results");
                 System.exit(1);
             }
-            var pathways = result.stream()
+            // in case the user used -i option, check if there are new pathways (only comparing the number)
+            if (this.initialSize == result.size()) {
+                LOGGER.warn("No new pathways found. Using cached database" );
+                return;
+            }
+            pathwayDB.clear();
+            AtomicInteger count = new AtomicInteger(1);
+//            ExecutorService executor = Executors.newFixedThreadPool(1);
+//            var tasks = result.stream().map(e -> executor.submit(() -> {
+//                System.out.print("\rGetting pathway " + count.getAndIncrement());
+//                try {
+//                    var urlP = new URL(String.format("http://webservice.wikipathways.org/getPathwayAs?" +
+//                            "fileType=gpml&pwId=%s&revision=0", e.getId()));
+//                    var saxBuilder = new SAXBuilder();
+//                    var document = saxBuilder.build(urlP);
+//                    var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream().findFirst()
+//                            .get().getText());
+//                    return new Pathway(e.getName(), genes);
+//                } catch (JDOMException | IOException ex) {
+//                    LOGGER.error(ex);
+//                }
+//                return null;
+//            })).collect(Collectors.toList());
+//            executor.shutdown();
+//
+//            var pathways = tasks.stream().map(e -> {
+//                try {
+//                    return e.get();
+//                } catch (InterruptedException | ExecutionException ex) {
+//                    ex.printStackTrace();
+//                }
+//                return null;
+//            }).collect(Collectors.toList());
+            this.initialSize = result.size();
+            var pathways = result.parallelStream()
                     .map(e -> {
                         try {
-                            var urlP = new URL(String.format("http://webservice.wikipathways.org/getPathwayAs?fileType=gpml&pwId=%s&revision=0", e.getId()));
+                            var urlP = new URL(String.format("http://webservice.wikipathways.org/getPathwayAs?" +
+                                    "fileType=gpml&pwId=%s&revision=0", e.getId()));
                             var saxBuilder = new SAXBuilder();
                             var document = saxBuilder.build(urlP);
-                            var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream().findFirst().get().getText());
+                            var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream().findFirst()
+                                    .get().getText());
                             return new Pathway(e.getName(), genes);
                         } catch (JDOMException | IOException ex) {
                             LOGGER.error(ex);
@@ -140,7 +191,8 @@ public class PathwayClient {
 
     public List<Pathway> getPathways(String gene) {
         return pathwayDB.entrySet().parallelStream().filter(e -> e.getValue().contains(gene))
-                .map(e -> new Pathway(e.getKey(), e.getValue().stream().map(g -> new Gene(g, "")).collect(Collectors.toList())))
+                .map(e -> new Pathway(e.getKey(), e.getValue().stream().map(g -> new Gene(g, ""))
+                        .collect(Collectors.toList())))
                 .collect(Collectors.toList());
     }
 
@@ -158,6 +210,7 @@ public class PathwayClient {
     private Set<String> gpmlToGeneNames(String gpml) throws JDOMException, IOException {
         Pattern enzymPatter = Pattern.compile("(?:\\d*\\.){3}\\d+");
         Pattern namePattern = Pattern.compile("(^[\\w-]+)");
+        String attribute = "TextLabel";
         SAXBuilder saxBuilder = new SAXBuilder();
         saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
         saxBuilder.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
@@ -167,13 +220,13 @@ public class PathwayClient {
         childrenList = childrenList.stream().filter(c -> c.getAttribute("Type") != null)
                 .filter(c -> c.getAttribute("Type").getValue().equals("Protein") ||
                         c.getAttribute("Type").getValue().equals("GeneProduct"))
-                .filter(c -> !c.getAttribute("TextLabel").getValue().equals(" "))
+                .filter(c -> !c.getAttribute(attribute).getValue().equals(" "))
                 .filter(c -> {
-                    var matcher = enzymPatter.matcher(c.getAttribute("TextLabel").getValue());
+                    var matcher = enzymPatter.matcher(c.getAttribute(attribute).getValue());
                     return !matcher.find();
                 })
                 .collect(Collectors.toList());
-        return childrenList.stream().map(c -> c.getAttribute("TextLabel").getValue())
+        return childrenList.stream().map(c -> c.getAttribute(attribute).getValue())
                 .map(c -> c.contains("_") ? c.split("_")[0] : c)
                 .map(c -> {
                     Matcher m = namePattern.matcher(c);
@@ -245,16 +298,23 @@ public class PathwayClient {
     /**
      * Loads all KEGG pathways into internal DB
      */
-    public void initKEGGPathways() {
+    private void initKEGGPathways() {
         LOGGER.debug("Fetching KEGG pathways");
         var pathways = listKEGG();
+        // in case the user used -i option, check if there are new pathways (only comparing the number)
+        if (initialSize == pathways.size()) {
+            LOGGER.warn("No new pathways found. Using cached database" );
+            return;
+        }
+        pathwayDB.clear();
+        this.initialSize = pathways.size();
         ExecutorService executor = Executors.newFixedThreadPool(4);
         pathways.forEach((k, v) -> executor.submit(() -> {
             URL url = null;
             try {
                 url = new URL("http://rest.kegg.jp/get/" + k + "/");
             } catch (MalformedURLException e) {
-                e.printStackTrace();
+                LOGGER.error(e);
             }
             pathwayDB.put(v, new HashSet<>(getListResults(url, "[0-9]+ {2}(.+)(?=;)")));
         }));

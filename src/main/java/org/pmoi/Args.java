@@ -20,7 +20,7 @@ public class Args {
     private String transcriptome;
 
     @Parameter(names = {"-a", "--allgenes"}, description = "File containing all expressed genes", required = true,
-            validateWith = GeneValidator.class, order = 1)
+            validateWith = GeneValidator.class, order = 2)
     private String allGenes;
 
     @Parameter(names = {"-f", "--format"}, description = "Output format: TSV or FWF (Fixed Width Format)",
@@ -46,8 +46,11 @@ public class Args {
     @Parameter(names = {"-d"}, description = "Custom separator for CSV file")
     private char separator = ';';
 
-    @Parameter(names = {"-h", "--help"}, help = true)
+    @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true)
     private boolean help;
+
+    @Parameter(names = {"-i"}, description = "Pull an up to date list of pathways")
+    private boolean useOnlineDB = false;
 
     public String getSecretome() {
         return secretome;
@@ -87,6 +90,10 @@ public class Args {
 
     public boolean isHelp() {
         return help;
+    }
+
+    public boolean useOnlineDB() {
+        return useOnlineDB;
     }
 
     public static synchronized Args getInstance() {

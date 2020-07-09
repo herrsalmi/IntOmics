@@ -13,13 +13,6 @@ import java.nio.file.Path;
 public class MainEntry {
 
     public MainEntry(String[] args) {
-        args = new String[]{"-p", "test/secretome_withID_full.csv",
-                            "-g", "test/Gene_DE_9h.csv",
-                            "-a", "test/all_genes.csv",
-                            "-db", "KEGG",
-                            "-f", "FWF",
-                            "-fc", "1.5",
-                            "-t", "8"};
         Args params = Args.getInstance();
         try {
             JCommander jc = JCommander.newBuilder()

@@ -3,10 +3,10 @@ package org.pmoi.util.io;
 import java.util.StringJoiner;
 
 public class TSVFormatter implements OutputFormatter {
-    private final StringBuffer buffer;
+    private final StringBuilder buffer;
 
     public TSVFormatter() {
-        this.buffer = new StringBuffer();
+        this.buffer = new StringBuilder();
         this.buffer.append(String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s%n",
                 "#protein", "name", "gene", "name", "I score", "gene_fdr", "gene_fc"));
     }

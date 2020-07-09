@@ -17,7 +17,7 @@ public class CSVValidator {
             var prob = stream.filter(l -> countOccurrences(l) != 2)
                     .findAny();
             if (prob.isPresent()) {
-                LOGGER.error("incorrect number of column in CSV file. line [%s]", prob.get());
+                LOGGER.error("incorrect number of column in CSV file. line [{}]", prob.get());
                 return false;
             }
         } catch (IOException e) {
