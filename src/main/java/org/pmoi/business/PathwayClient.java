@@ -27,7 +27,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -66,6 +65,12 @@ public class PathwayClient {
         return instance;
     }
 
+    /**
+     * Initializes the internal database (i.e. the local ConcurrentHashMap storing pathways)
+     * @throws IOException something wrong happened, I dunno what
+     * @throws URISyntaxException something wrong happened, same reason
+     * @throws NullPointerException if the obj file is not present in resources folder
+     */
     private void initDB() throws IOException, URISyntaxException, NullPointerException {
         //TODO remove this block for production
         if (false) {
@@ -125,33 +130,6 @@ public class PathwayClient {
                 return;
             }
             pathwayDB.clear();
-            AtomicInteger count = new AtomicInteger(1);
-//            ExecutorService executor = Executors.newFixedThreadPool(1);
-//            var tasks = result.stream().map(e -> executor.submit(() -> {
-//                System.out.print("\rGetting pathway " + count.getAndIncrement());
-//                try {
-//                    var urlP = new URL(String.format("http://webservice.wikipathways.org/getPathwayAs?" +
-//                            "fileType=gpml&pwId=%s&revision=0", e.getId()));
-//                    var saxBuilder = new SAXBuilder();
-//                    var document = saxBuilder.build(urlP);
-//                    var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream().findFirst()
-//                            .get().getText());
-//                    return new Pathway(e.getName(), genes);
-//                } catch (JDOMException | IOException ex) {
-//                    LOGGER.error(ex);
-//                }
-//                return null;
-//            })).collect(Collectors.toList());
-//            executor.shutdown();
-//
-//            var pathways = tasks.stream().map(e -> {
-//                try {
-//                    return e.get();
-//                } catch (InterruptedException | ExecutionException ex) {
-//                    ex.printStackTrace();
-//                }
-//                return null;
-//            }).collect(Collectors.toList());
             this.initialSize = result.size();
             var pathways = result.parallelStream()
                     .map(e -> {
@@ -189,6 +167,11 @@ public class PathwayClient {
         LOGGER.debug("Internal DB initialized with {} pathways", pathwayDB.size());
     }
 
+    /**
+     * Find pathways containing a given gene
+     * @param gene gene symbol
+     * @return list of pathways
+     */
     public List<Pathway> getPathways(String gene) {
         return pathwayDB.entrySet().parallelStream().filter(e -> e.getValue().contains(gene))
                 .map(e -> new Pathway(e.getKey(), e.getValue().stream().map(g -> new Gene(g, ""))
@@ -196,6 +179,11 @@ public class PathwayClient {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Decodes a base64 text to a gpml document and extracts a list of genes
+     * @param message base64 encoded text
+     * @return list of genes
+     */
     private List<Gene> gpmlBase64Decoder(String message) {
         try {
             return gpmlToGeneNames(new String(Base64.getDecoder().decode(message))).stream()
@@ -207,6 +195,13 @@ public class PathwayClient {
         return Collections.emptyList();
     }
 
+    /**
+     * Extracts gene names from a gpml file
+     * @param gpml gpml document
+     * @return set containing gene names
+     * @throws JDOMException something wrong happened
+     * @throws IOException definitely something wrong happened
+     */
     private Set<String> gpmlToGeneNames(String gpml) throws JDOMException, IOException {
         Pattern enzymPatter = Pattern.compile("(?:\\d*\\.){3}\\d+");
         Pattern namePattern = Pattern.compile("(^[\\w-]+)");
@@ -327,6 +322,12 @@ public class PathwayClient {
         LOGGER.debug("Internal DB initialized with {} pathways", pathwayDB.size());
     }
 
+    /**
+     * KEGG helper function that returns a list of results matching a regex
+     * @param url request
+     * @param expression regex matching the desired result
+     * @return list of matching results
+     */
     private List<String> getListResults(URL url, String expression) {
         int counter = 0;
         while (true) {
@@ -349,16 +350,11 @@ public class PathwayClient {
         }
     }
 
-    public Set<String> getPathwaysForGene(String gene) {
-        return pathwayDB.entrySet().stream().filter(e -> e.getValue().contains(gene))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toSet());
-    }
-
-    public int getNumberOfGenesByPathway(String pathway) {
-        return pathwayDB.getOrDefault(pathway, Collections.emptySet()).size();
-    }
-
+    /**
+     * Checks if a gene is present in a pathway
+     * @param gene gene symbol
+     * @return true if the gene is in a pathway
+     */
     public boolean isInAnyPathway(String gene) {
         return pathwayDB.values().parallelStream().anyMatch(e -> e.contains(gene));
     }

@@ -28,6 +28,10 @@ public class GeneOntologyMapper {
         LOGGER.debug("GO database loaded");
     }
 
+    /**
+     * Loads obj file from resources folder into memory
+     * @throws IOException something wrong happened, I don't care
+     */
     private void load() throws IOException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(
                 getClass().getClassLoader().getResource("GODB.obj").toURI())))){
@@ -38,6 +42,11 @@ public class GeneOntologyMapper {
 
     }
 
+    /**
+     * Check for annotations: "cell surface" (GO:0009986) or "plasma membrane" (GO:0005886)
+     * @param entrezID gene ID
+     * @return true if the protein product is a membrane protein
+     */
     public boolean checkMembranomeGO(String entrezID) {
         if (!internalDB.containsKey(entrezID))
             return false;

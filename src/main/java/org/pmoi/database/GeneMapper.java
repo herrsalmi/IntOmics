@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Utility class used to convert between gene symbol and gene ID
+ */
 public class GeneMapper {
 
     private static final Logger LOGGER = LogManager.getRootLogger();
@@ -43,10 +46,20 @@ public class GeneMapper {
         }
     }
 
+    /**
+     * Convert from gene ID to gene symbol
+     * @param id gene ID
+     * @return gene symbol
+     */
     public Optional<String> getSymbol(String id) {
         return internalDB.parallelStream().filter(e -> e.id.equals(id)).findAny().map(e -> e.symbol);
     }
 
+    /**
+     * Convert from gene symbol (or alias) to gene ID
+     * @param symbol gene symbol
+     * @return gene ID
+     */
     public Optional<String> getId(String symbol) {
         var result = internalDB.parallelStream().filter(e -> e.symbol.equalsIgnoreCase(symbol)).findAny().map(e -> e.id);
         if (result.isPresent())
@@ -54,6 +67,11 @@ public class GeneMapper {
         return internalDB.parallelStream().filter(e -> e.synonyms.contains(symbol.toUpperCase())).findAny().map(e -> e.id);
     }
 
+    /**
+     * Get gene description (i.e long name)
+     * @param id gene ID
+     * @return gene description
+     */
     public Optional<String> getDescription(String id) {
         return internalDB.parallelStream().filter(e -> e.id.equals(id)).findAny().map(e -> e.description);
     }

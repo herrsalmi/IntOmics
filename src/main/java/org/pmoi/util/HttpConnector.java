@@ -18,7 +18,13 @@ public class HttpConnector {
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     public static final int MAX_TRIES = 100;
-    
+
+    /**
+     * Get content from URL
+     * @param url URL request
+     * @return response as a text
+     * @throws IOException something wrong happened. Probably internet connection issues
+     */
     public String getContent(URL url) throws IOException {
         int count = 0;
         String output = null;

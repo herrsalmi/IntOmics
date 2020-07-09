@@ -15,8 +15,7 @@ class MainEntryTest {
                 "-f", "FWF",
                 "-fc", "1.5",
                 "-s", "900",
-                "-t", "8",
-                "-i"};
+                "-t", "8"};
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 }

@@ -24,13 +24,12 @@ public class TranscriptomeManager {
     private TranscriptomeManager() {
     }
 
-    public List<Gene> getDEGenesExceptMembranome(String filename) {
-        GeneOntologyMapper goMapper = new GeneOntologyMapper();
-        Predicate<Gene> condition = e -> !goMapper.checkMembranomeGO(e.getEntrezID());
-        return getDEGenesWithCondition(condition, filename, true);
-    }
-
-    public List<Gene> getMembranomeFromDEGenes(String fileName) {
+    /**
+     * Extracts genes for which protein product are part of the membrane
+     * @param fileName file name
+     * @return list of gene (membranome)
+     */
+    public List<Gene> getMembranomeFromGenes(String fileName) {
         //GeneOntologyMapper goMapper = new GeneOntologyMapper();
         SurfaceomeMapper surfaceomeMapper = SurfaceomeMapper.getInstance();
         //Predicate<Gene> condition = e -> goMapper.checkMembranomeGO(e.getEntrezID());
@@ -38,11 +37,23 @@ public class TranscriptomeManager {
         return getDEGenesWithCondition(condition, fileName, false);
     }
 
+    /**
+     * Loads DE genes from file
+     * @param fileName file name
+     * @return list of DE genes
+     */
     public List<Gene> getDEGenes(String fileName) {
         Predicate<Gene> condition = e -> true;
         return getDEGenesWithCondition(condition, fileName, true);
     }
 
+    /**
+     * Helper function to load genes from a file using a predicate as a filter
+     * @param condition predicate for filtering genes
+     * @param filename file name
+     * @param useFC filter genes also based on FC
+     * @return list of genes
+     */
     private List<Gene> getDEGenesWithCondition(Predicate<Gene> condition, String filename, boolean useFC) {
         var mapper = GeneMapper.getInstance();
         List<Gene> inputGenes = readDEGeneFile(filename).stream().distinct().collect(Collectors.toList());
@@ -68,6 +79,11 @@ public class TranscriptomeManager {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Helper function to load genes from a file and map them to Gene objects
+     * @param filePath file path
+     * @return list of genes
+     */
     private List<Gene> readDEGeneFile(String filePath) {
         try (var stream = Files.lines(Path.of(filePath))){
             return stream

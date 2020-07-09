@@ -13,6 +13,12 @@ public class GSEA {
     private double normalizedScore;
     private static final int PERMUTATIONS = 1000;
 
+    /**
+     * Run the GSEA method
+     * @param geneSet genes from a defined set. eg: Pathway
+     * @param geneList list of significant genes
+     * @return p value
+     */
     public double run(List<Gene> geneSet, List<Gene> geneList) {
         if (geneList.stream().filter(geneSet::contains).findAny().isEmpty())
             return 1;
@@ -53,11 +59,13 @@ public class GSEA {
         var nh = sortedList.stream().filter(geneSet::contains).count();
         for (Gene g : sortedList) {
             if (geneSet.contains(g)) {
-                hitSum = hitSum.add(new BigDecimal(Double.toString(Math.pow(Math.abs(g.significanceScore()), stepWeight))).divide(BigDecimal.valueOf(nr),30 , RoundingMode.HALF_UP));
+                hitSum = hitSum.add(new BigDecimal(Double.toString(Math.pow(Math.abs(g.significanceScore()), stepWeight)))
+                        .divide(BigDecimal.valueOf(nr),30 , RoundingMode.HALF_UP));
                 lHits.add(hitSum);
                 lMisses.add(missSum);
             } else {
-                missSum = missSum.add(new BigDecimal("1").divide(new BigDecimal(Double.toString((double)sortedList.size() - nh)), 30, RoundingMode.HALF_EVEN));
+                missSum = missSum.add(new BigDecimal("1")
+                        .divide(new BigDecimal(Double.toString((double)sortedList.size() - nh)), 30, RoundingMode.HALF_EVEN));
                 lHits.add(hitSum);
                 lMisses.add(missSum);
             }
@@ -78,6 +86,10 @@ public class GSEA {
         return this.enrichmentScore(geneSet, geneList, 1);
     }
 
+    /**
+     * Does exactly as the name suggests
+     * @return normalized enrichment score
+     */
     public double getNormalizedScore() {
         BigDecimal res = new BigDecimal(Double.toString(normalizedScore));
         res = res.setScale(4, RoundingMode.HALF_UP);

@@ -10,6 +10,11 @@ public class NumberParser {
     private NumberParser(){
     }
 
+    /**
+     * Check if a text can be parsed into a double
+     * @param value number in text format
+     * @return true if the text is a valid double
+     */
     public static boolean tryParseDouble(String value) {
         try {
             Double.parseDouble(value);
@@ -20,6 +25,11 @@ public class NumberParser {
         }
     }
 
+    /**
+     * Check if a text can be parsed into an int
+     * @param value number in text format
+     * @return true if the text is a valid double
+     */
     public static boolean tryParseInt(String value) {
         try {
             Integer.parseInt(value);

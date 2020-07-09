@@ -21,6 +21,9 @@ public class SurfaceomeMapper {
         init();
     }
 
+    /**
+     * Load surface proteins from file into local object
+     */
     private void init() {
         internalDB = new HashSet<>(3000);
         try (Stream<String> stream = Files.lines(Path.of(getClass().getClassLoader().getResource("surfaceome.txt")
@@ -31,6 +34,11 @@ public class SurfaceomeMapper {
         }
     }
 
+    /**
+     * Check if the gene product is a surface protein
+     * @param geneName gene symbol
+     * @return true if the gene product is a surface protein
+     */
     public boolean isSurfaceProtein(String geneName) {
         return internalDB.contains(geneName);
     }

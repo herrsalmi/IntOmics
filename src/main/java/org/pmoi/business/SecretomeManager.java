@@ -26,8 +26,10 @@ public class SecretomeManager {
 
     private Set<String> internalDB;
     private Predicate<Protein> secretomeMapper;
+    private GeneMapper mapper;
 
     private SecretomeManager() {
+        mapper = GeneMapper.getInstance();
         GeneOntologyMapper goMapper = new GeneOntologyMapper();
         secretomeMapper = protein -> goMapper.checkSecretomeGO(protein.getEntrezID());
     }
@@ -36,6 +38,11 @@ public class SecretomeManager {
         return internalDB.contains(gene.toUpperCase());
     }
 
+    /**
+     * Load protein names/IDs from a file
+     * @param filePath file path
+     * @return list of proteins
+     */
     public List<Protein> loadSecretomeFile(String filePath) {
         try (var stream = Files.lines(Path.of(filePath))){
             var data = stream
@@ -46,7 +53,6 @@ public class SecretomeManager {
                     .collect(Collectors.toList());
 
             // convert id <=> name in order to have them both
-            var mapper = GeneMapper.getInstance();
             ExecutorService executor = Executors.newFixedThreadPool(Args.getInstance().getThreads());
             if (data.get(0).getEntrezID() != null) {
                 data.forEach(e -> executor.submit(() -> e.setName(mapper.getSymbol(e.getEntrezID()).orElse(""))));

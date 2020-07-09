@@ -24,10 +24,6 @@ public class Pathway {
         return pathwayID;
     }
 
-    public void setPathwayID(String pathwayID) {
-        this.pathwayID = pathwayID;
-    }
-
     public String getName() {
         return name;
     }

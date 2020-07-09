@@ -48,7 +48,7 @@ public class OperationDispatcher {
         var secretome = secretomeManager.loadSecretomeFile(Args.getInstance().getSecretome());
 
         LOGGER.info("Loading membranome");
-        List<Gene> membranome = transcriptomeManager.getMembranomeFromDEGenes(Args.getInstance().getAllGenes());
+        List<Gene> membranome = transcriptomeManager.getMembranomeFromGenes(Args.getInstance().getAllGenes());
 
         LOGGER.info("Loading transcriptome");
         List<Gene> transcriptome = transcriptomeManager.getDEGenes(Args.getInstance().getTranscriptome());
@@ -69,6 +69,7 @@ public class OperationDispatcher {
 
         var filteredTranscriptome = transcriptome.parallelStream().filter(e -> pathwayClient.isInAnyPathway(e.getName())).collect(Collectors.toList());
 
+        LOGGER.info("Getting PPI network ...");
         secretome.forEach(e -> executorService.submit(() -> {
             // Adding StringDB interactors
             Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
