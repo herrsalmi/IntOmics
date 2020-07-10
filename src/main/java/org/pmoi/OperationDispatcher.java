@@ -2,12 +2,12 @@ package org.pmoi;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.business.PathwayClient;
-import org.pmoi.business.SecretomeManager;
-import org.pmoi.business.StringdbQueryClient;
-import org.pmoi.business.TranscriptomeManager;
+import org.pmoi.business.*;
 import org.pmoi.database.GeneMapper;
 import org.pmoi.model.*;
+import org.pmoi.model.vis.VisEdge;
+import org.pmoi.model.vis.VisGraph;
+import org.pmoi.model.vis.VisNode;
 import org.pmoi.util.CSVValidator;
 import org.pmoi.util.GSEA;
 import org.pmoi.util.io.OutputFormatter;
@@ -173,6 +173,20 @@ public class OperationDispatcher {
             LOGGER.error(e);
         }
 
+        // making html graph
+        VisGraph graph = new VisGraph();
+        Map<String, VisNode> map = new HashMap<>();
+        List<VisEdge> edges = new ArrayList<>();
+        for (var e: resultSet){
+            map.putIfAbsent(e.getProtein().getName(), new VisNode(e.getProtein().getName().hashCode(),
+                    e.getProtein().getName(), 1, "#3AC290"));
+            map.putIfAbsent(e.getGene().getName(), new VisNode(e.getGene().getName().hashCode(),
+                    e.getGene().getName(), 2, "#44AAC2"));
+            edges.add(new VisEdge(map.get(e.getProtein().getName()), map.get(e.getGene().getName()), "to", ""));
+        }
+        graph.addNodes(map.values());
+        graph.addEdges(edges);
+        GraphVisualizer.makeHTML(graph);
     }
 
 }
