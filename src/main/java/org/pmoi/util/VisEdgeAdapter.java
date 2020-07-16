@@ -11,7 +11,6 @@ public class VisEdgeAdapter implements JsonSerializer<VisEdge>{
     @Override
     public JsonElement serialize(VisEdge visEdge, Type type, JsonSerializationContext jsonSerializationContext) {
         return getAsJsonObject(visEdge);
-
     }
 
     public static JsonArray getAsJsonArray(List<VisEdge> edges){

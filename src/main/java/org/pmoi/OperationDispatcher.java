@@ -110,7 +110,7 @@ public class OperationDispatcher {
             }
 
             value.forEach(resultRecord -> {
-                LOGGER.debug(String.format("Processing [P: %s # G: %s]", key.getName(), resultRecord.getGene().getName()));
+                LOGGER.debug("Processing [P: {} # G: {}]", key.getName(), resultRecord.getGene().getName());
                 resultRecord.getProtein().getPathways().forEach(p -> {
                     if (p.getGenes().contains(resultRecord.getGene()))
                         resultRecord.getGene().setInteractors(p.getName(), p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
@@ -179,9 +179,9 @@ public class OperationDispatcher {
         List<VisEdge> edges = new ArrayList<>();
         for (var e: resultSet){
             map.putIfAbsent(e.getProtein().getName(), new VisNode(e.getProtein().getName().hashCode(),
-                    e.getProtein().getName(), 1, "#3AC290"));
+                    e.getProtein().getName(), e.getProtein().getDescription(), 1, "#3AC290"));
             map.putIfAbsent(e.getGene().getName(), new VisNode(e.getGene().getName().hashCode(),
-                    e.getGene().getName(), 2, "#44AAC2"));
+                    e.getGene().getName(), e.getGene().getDescription(), 2, "#44AAC2"));
             edges.add(new VisEdge(map.get(e.getProtein().getName()), map.get(e.getGene().getName()), "to", ""));
         }
         graph.addNodes(map.values());

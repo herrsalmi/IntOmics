@@ -30,7 +30,7 @@ public class GeneMapper {
         LOGGER.debug("initializing gene mapper DB done. size: {}", internalDB.size());
     }
 
-    public static GeneMapper getInstance() {
+    public static synchronized GeneMapper getInstance() {
         if (instance == null) {
             instance = new GeneMapper();
         }
@@ -53,6 +53,23 @@ public class GeneMapper {
      */
     public Optional<String> getSymbol(String id) {
         return internalDB.parallelStream().filter(e -> e.id.equals(id)).findAny().map(e -> e.symbol);
+    }
+
+    public Optional<String> getSymbolFromAlias(String alias) {
+        var result = internalDB.parallelStream().filter(e -> e.symbol.equalsIgnoreCase(alias)).findAny();
+        if (result.isPresent())
+            return result.map(gene -> gene.symbol);
+        return internalDB.parallelStream()
+                .filter(e -> e.synonyms.contains(alias.toUpperCase())).findAny().map(e -> e.symbol);
+    }
+
+    public Optional<String> getSymbolFromAlias(String alias, String displayName) {
+        var result = internalDB.parallelStream().filter(e -> e.symbol.equalsIgnoreCase(alias)).findAny();
+        if (result.isPresent())
+            return result.map(gene -> gene.symbol);
+        return internalDB.parallelStream()
+                .filter(e -> e.synonyms.contains(alias.toUpperCase()) && displayName.contains(e.symbol))
+                .findAny().map(e -> e.symbol);
     }
 
     /**
@@ -89,6 +106,8 @@ public class GeneMapper {
             pos = end + 1;
             end = line.indexOf('\t', pos);
             this.symbol = line.substring(pos, end);
+            pos = end + 1;
+            end = line.indexOf('\t', pos);
             pos = end + 1;
             end = line.indexOf('\t', pos);
             this.synonyms = line.substring(pos, end).equals("-") ? Collections.emptyList() : Arrays.asList(line.substring(pos, end).split("\\|"));

@@ -55,7 +55,7 @@ public class HttpConnector {
                 }
                 return output;
             } catch (IOException e) {
-                if (++count == MAX_TRIES) throw e;
+                if (++count == 10) throw e;
             }
         }
     }
