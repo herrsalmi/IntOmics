@@ -3,7 +3,6 @@ module IntOmics {
     requires org.apache.logging.log4j;
     requires jdom2;
     requires java.xml.bind;
-    requires commons.math3;
     requires jcommander;
     requires com.google.gson;
 

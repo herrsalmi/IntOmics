@@ -55,6 +55,11 @@ public class GeneMapper {
         return internalDB.parallelStream().filter(e -> e.id.equals(id)).findAny().map(e -> e.symbol);
     }
 
+    /**
+     * Find a gene symbol for the supplied alias
+     * @param alias gene alias
+     * @return an optional containing gene symbol
+     */
     public Optional<String> getSymbolFromAlias(String alias) {
         var result = internalDB.parallelStream().filter(e -> e.symbol.equalsIgnoreCase(alias)).findAny();
         if (result.isPresent())
@@ -63,6 +68,12 @@ public class GeneMapper {
                 .filter(e -> e.synonyms.contains(alias.toUpperCase())).findAny().map(e -> e.symbol);
     }
 
+    /**
+     * Find the gene symbol matching the display name for the supplied alias
+     * @param alias gene alias
+     * @param displayName gene display name (from Reactome DB)
+     * @return an optional containing gene symbol
+     */
     public Optional<String> getSymbolFromAlias(String alias, String displayName) {
         var result = internalDB.parallelStream().filter(e -> e.symbol.equalsIgnoreCase(alias)).findAny();
         if (result.isPresent())
@@ -111,7 +122,7 @@ public class GeneMapper {
             pos = end + 1;
             end = line.indexOf('\t', pos);
             this.synonyms = line.substring(pos, end).equals("-") ? Collections.emptyList() : Arrays.asList(line.substring(pos, end).split("\\|"));
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 4; i++) {
                 pos = end + 1;
                 end = line.indexOf('\t', pos);
             }

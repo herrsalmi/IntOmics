@@ -108,3 +108,4 @@ wikipathways/
 target/*
 tmp/
 !/main.html
+!/main.html
