@@ -73,7 +73,7 @@ public class PathwayClient {
      */
     private void initDB() throws IOException, URISyntaxException, NullPointerException {
         //TODO remove this block for production
-        if (false) {
+        if (true) {
             switch (Args.getInstance().getPathwayDB()) {
                 case KEGG -> initKEGGPathways();
                 case WIKIPATHWAYS -> initWikiPathways();

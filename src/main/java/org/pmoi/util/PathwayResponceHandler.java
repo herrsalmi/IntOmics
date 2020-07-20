@@ -14,7 +14,7 @@ public class PathwayResponceHandler extends DefaultHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) {
-        elementValue = new String(ch, start, length);
+        elementValue += new String(ch, start, length);
     }
 
     @Override
@@ -24,6 +24,7 @@ public class PathwayResponceHandler extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) {
+        elementValue = "";
         if (qName.equals("ns1:result") || qName.equals("ns1:pathways"))
             pathwayResponses.add(new PathwayResponse());
     }
@@ -33,7 +34,7 @@ public class PathwayResponceHandler extends DefaultHandler {
         if ("ns2:id".equals(qName)) {
             pathwayResponses.getLast().setId(elementValue);
         } else if ("ns2:name".equals(qName)) {
-            pathwayResponses.getLast().setName(elementValue);
+            pathwayResponses.getLast().setName(elementValue.replace("&amp;", "&"));
         }
     }
 

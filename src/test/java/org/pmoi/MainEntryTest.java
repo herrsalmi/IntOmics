@@ -11,7 +11,7 @@ class MainEntryTest {
         var args = new String[]{"-p", "test/secretome_withID_full.csv",
                 "-g", "test/Gene_DE_9h.csv",
                 "-a", "test/all_genes.csv",
-                "-db", "KEGG",
+                "-db", "WikiPathways",
                 "-f", "FWF",
                 "-fc", "1.5",
                 "-s", "900",
