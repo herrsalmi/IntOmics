@@ -137,7 +137,7 @@ public class OperationDispatcher {
         service.shutdown();
         service.awaitTermination(1, TimeUnit.DAYS);
 
-        resultSet.parallelStream().forEach(e -> e.getGene().getGeneSets().removeIf(geneSet -> geneSet.getPvalue() >= 0.05));
+        //resultSet.parallelStream().forEach(e -> e.getGene().getGeneSets().removeIf(geneSet -> geneSet.getPvalue() >= 0.05));
 
         LOGGER.info("Writing results ...");
         resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
@@ -147,7 +147,7 @@ public class OperationDispatcher {
                     v.get(0).getGene().setDescription(mapper.getDescription(v.get(0).getGene().getEntrezID()).orElse("-"));
                     formatter.append(k.getName(), k.getDescription(),
                             v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
-                            v.get(0).getInteractionScore(), String.valueOf(v.get(0).getGene().getFdr()), String.valueOf(v.get(0).getGene().getFoldChange()),
+                            v.get(0).getInteractionScore(),
                             v.get(0).getGene().getGeneSets().stream()
                                     .sorted(Comparator.comparingDouble(GeneSet::getPvalue))
                                     .map(e -> e.getName() + ": {" + e.getScore() + " | " + e.getPvalue() + "} "
@@ -157,7 +157,6 @@ public class OperationDispatcher {
                     v.stream().skip(1).forEach(e -> {
                         e.getGene().setDescription(mapper.getDescription(e.getGene().getEntrezID()).orElse("-"));
                         formatter.append("", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
-                                String.valueOf(e.getGene().getFdr()), String.valueOf(e.getGene().getFoldChange()),
                                 e.getGene().getGeneSets().stream()
                                         .sorted(Comparator.comparingDouble(GeneSet::getPvalue))
                                         .map(en -> en.getName() + ": {" + en.getScore() + " | " + en.getPvalue() + "} "

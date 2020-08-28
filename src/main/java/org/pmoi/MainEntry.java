@@ -33,9 +33,8 @@ public class MainEntry {
         } catch (IOException ignored) {
         }
         var formatter = switch (params.getFormat()) {
-            case "TSV" -> new TSVFormatter();
-            case "FWF" -> new TextFormatter();
-            default -> throw new IllegalStateException("invalid format: " + params.getFormat());
+            case TSV -> new TSVFormatter();
+            case FWF -> new TextFormatter();
         };
         try {
             operationDispatcher.run("output/S2M", formatter);

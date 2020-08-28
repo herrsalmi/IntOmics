@@ -30,11 +30,33 @@ public class TranscriptomeManager {
      * @return list of gene (membranome)
      */
     public List<Gene> getMembranomeFromGenes(String fileName) {
-        //GeneOntologyMapper goMapper = new GeneOntologyMapper();
         SurfaceomeMapper surfaceomeMapper = SurfaceomeMapper.getInstance();
-        //Predicate<Gene> condition = e -> goMapper.checkMembranomeGO(e.getEntrezID());
-        Predicate<Gene> condition = e -> surfaceomeMapper.isSurfaceProtein(e.getName());
-        return getDEGenesWithCondition(condition, fileName, false);
+        var mapper = GeneMapper.getInstance();
+        List<Gene> inputGenes = Collections.emptyList();
+        try (var stream = Files.lines(Path.of(fileName))){
+            inputGenes = stream
+                    .filter(l -> !l.startsWith("#"))
+                    .filter(Predicate.not(String::isBlank))
+                    .filter(l -> !l.trim().startsWith(";"))
+                    .distinct()
+                    .map(l -> new Gene(l, ""))
+                    .collect(Collectors.toList());
+            ExecutorService executor = Executors.newFixedThreadPool(Args.getInstance().getThreads());
+            inputGenes.forEach(g -> executor.submit(() -> g.setEntrezID(mapper.getId(g.getName()).orElse(""))));
+            executor.shutdown();
+            executor.awaitTermination(10, TimeUnit.DAYS);
+        } catch (IOException e) {
+            LOGGER.error(e);
+        } catch (InterruptedException e) {
+            LOGGER.error(e);
+            Thread.currentThread().interrupt();
+        }
+
+        // if a gene has no EntrezID it will also get removed here
+        return inputGenes.parallelStream()
+                .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
+                .filter(g -> surfaceomeMapper.isSurfaceProtein(g.getName()))
+                .collect(Collectors.toList());
     }
 
     /**

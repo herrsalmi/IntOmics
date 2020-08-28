@@ -7,8 +7,8 @@ public class TSVFormatter implements OutputFormatter {
 
     public TSVFormatter() {
         this.buffer = new StringBuilder();
-        this.buffer.append(String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s%n",
-                "#protein", "name", "gene", "name", "I score", "gene_fdr", "gene_fc"));
+        this.buffer.append(String.format("%s\t%s\t%s\t%s\t%s%n",
+                "#protein", "name", "gene", "name", "I score"));
     }
 
     @Override

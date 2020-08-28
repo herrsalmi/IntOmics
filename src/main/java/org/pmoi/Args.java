@@ -1,6 +1,7 @@
 package org.pmoi;
 
 import com.beust.jcommander.Parameter;
+import org.pmoi.model.OutputMode;
 import org.pmoi.model.PathwayMode;
 import org.pmoi.validator.*;
 
@@ -25,7 +26,7 @@ public class Args {
 
     @Parameter(names = {"-f", "--format"}, description = "Output format: TSV or FWF (Fixed Width Format)",
             validateWith = FormatValidator.class)
-    private String format = "TSV";
+    private OutputMode format = OutputMode.TSV;
 
     @Parameter(names = {"-db", "--pathway"}, description = "Pathway database: KEGG or WikiPathways",
             validateWith = PathwayValidator.class)
@@ -60,7 +61,7 @@ public class Args {
         return transcriptome;
     }
 
-    public String getFormat() {
+    public OutputMode getFormat() {
         return format;
     }
 
