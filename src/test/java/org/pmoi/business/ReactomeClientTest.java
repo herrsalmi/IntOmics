@@ -33,7 +33,7 @@ class ReactomeClientTest {
         result = reactomeClient.getEntityName("R-HSA-3813400");
         assertTrue(result.isEmpty());
         result = reactomeClient.getEntityName("R-HSA-2586552");
-        System.out.println(result);
+        result.ifPresent(System.out::println);
     }
 
     @Test

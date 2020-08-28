@@ -8,10 +8,10 @@ class MainEntryTest {
 
     @Test
     void main() {
-        var args = new String[]{"-p", "test/secretome_withID_full.csv",
+        var args = new String[]{"-p", "test/secretome_withNames_test.csv",
                 "-g", "test/Gene_DE_9h.csv",
                 "-a", "test/all_genes.csv",
-                "-db", "WikiPathways",
+                "-db", "KEGG",
                 "-f", "FWF",
                 "-fc", "1.5",
                 "-s", "900",

@@ -50,8 +50,8 @@ public class GSEA {
      * @param stepWeight options: 0, 1, 1.5, 2
      */
     public double enrichmentScore(List<Gene> geneSet, List<Gene> sortedList, double stepWeight) {
-        List<BigDecimal> lHits = new ArrayList<>();
-        List<BigDecimal> lMisses = new ArrayList<>();
+        List<BigDecimal> lHits = new ArrayList<>(100);
+        List<BigDecimal> lMisses = new ArrayList<>(100);
         BigDecimal hitSum = new BigDecimal("0");
         BigDecimal missSum = new BigDecimal("0");
         var nr = sortedList.stream().filter(geneSet::contains)

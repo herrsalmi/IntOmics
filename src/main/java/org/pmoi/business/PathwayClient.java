@@ -66,14 +66,14 @@ public class PathwayClient {
     }
 
     /**
-     * Initializes the internal database (i.e. the local ConcurrentHashMap storing pathways)
+     * Initialize the internal database (i.e. the local ConcurrentHashMap storing pathways)
      * @throws IOException something wrong happened, I dunno what
      * @throws URISyntaxException something wrong happened, same reason
      * @throws NullPointerException if the obj file is not present in resources folder
      */
     private void initDB() throws IOException, URISyntaxException, NullPointerException {
         //TODO remove this block for production
-        if (true) {
+        if (false) {
             switch (Args.getInstance().getPathwayDB()) {
                 case KEGG -> initKEGGPathways();
                 case WIKIPATHWAYS -> initWikiPathways();
@@ -85,6 +85,7 @@ public class PathwayClient {
             return;
         }
         LOGGER.debug("Reading file {}", INTERNAL_DB_NAME);
+        // if the file is in resource folder this shouldn't fail. If it does fail the caller method will take care of it
         var file = new FileInputStream(new File(getClass().getClassLoader()
                 .getResource(INTERNAL_DB_NAME).toURI()));
         try (ObjectInputStream ois = new ObjectInputStream(file)) {
@@ -138,7 +139,8 @@ public class PathwayClient {
                                     "fileType=gpml&pwId=%s&revision=0", e.getId()));
                             var saxBuilder = new SAXBuilder();
                             var document = saxBuilder.build(urlP);
-                            var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream().findFirst()
+                            var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream()
+                                    .findFirst()
                                     .get().getText());
                             return new Pathway(e.getName(), genes);
                         } catch (JDOMException | IOException ex) {

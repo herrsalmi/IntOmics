@@ -129,7 +129,6 @@ public class OperationDispatcher {
                 .forEach((k, v) -> v.forEach(e -> e.getGene().getGeneSets()
                         .forEach(en ->
                                 service.submit(() -> {
-
                                     GSEA gsea = new GSEA();
                                     en.setPvalue(gsea.run(en.getGenes(), filteredTranscriptome));
                                     en.setScore(gsea.getNormalizedScore());
@@ -144,7 +143,7 @@ public class OperationDispatcher {
         resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
                 .forEach((k, v) -> {
                     k.setDescription(mapper.getDescription(k.getEntrezID()).orElse("-"));
-                    v = v.stream().sorted(Comparator.comparingDouble(o -> o.getGene().getFoldChange())).sorted(Collections.reverseOrder()).collect(Collectors.toList());
+                    v.sort(Comparator.comparingDouble((ResultRecord o) -> o.getGene().getFoldChange()).reversed());
                     v.get(0).getGene().setDescription(mapper.getDescription(v.get(0).getGene().getEntrezID()).orElse("-"));
                     formatter.append(k.getName(), k.getDescription(),
                             v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),

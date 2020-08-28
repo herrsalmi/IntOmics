@@ -40,6 +40,7 @@ public class MainEntry {
         try {
             operationDispatcher.run("output/S2M", formatter);
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             e.printStackTrace();
         }
     }

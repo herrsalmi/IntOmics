@@ -26,7 +26,7 @@ public class ReactomeClient {
     }
 
     /**
-     * performs a Solr query on the Reactome knowledgebase
+     * performs a Solr query on the Reactome knowledge base
      *
      * @param query Search term (gene symbol in this case)
      * @return list of IDs representing pathways
@@ -53,7 +53,7 @@ public class ReactomeClient {
     }
 
     /**
-     * query the Reactome knowledgebase for the display name of a given entity
+     * query the Reactome knowledge base for the display name of a given entity
      *
      * @param id entity ID
      * @return display name

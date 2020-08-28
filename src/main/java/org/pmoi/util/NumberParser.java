@@ -20,7 +20,7 @@ public class NumberParser {
             Double.parseDouble(value);
             return true;
         } catch (NumberFormatException e) {
-            LOGGER.warn("Unable to parse {}", value);
+            LOGGER.debug("Unable to parse {}", value);
             return false;
         }
     }
@@ -35,7 +35,6 @@ public class NumberParser {
             Integer.parseInt(value);
             return true;
         } catch (NumberFormatException e) {
-            LOGGER.warn("Unable to parse {}", value);
             return false;
         }
     }
