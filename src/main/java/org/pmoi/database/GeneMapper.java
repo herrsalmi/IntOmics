@@ -25,7 +25,7 @@ public class GeneMapper {
     private List<Gene> internalDB;
 
     private GeneMapper() {
-        LOGGER.debug("initializing gene mapper DB\r");
+        LOGGER.debug("initializing gene mapper DB");
         init();
         LOGGER.debug("initializing gene mapper DB done. size: {}", internalDB.size());
     }

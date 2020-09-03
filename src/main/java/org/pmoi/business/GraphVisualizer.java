@@ -1,5 +1,7 @@
 package org.pmoi.business;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.pmoi.model.vis.VisGraph;
 
 import java.io.IOException;
@@ -12,6 +14,8 @@ import java.util.List;
 
 public class GraphVisualizer {
 
+    private static final Logger LOGGER = LogManager.getRootLogger();
+
     private GraphVisualizer(){}
 
     public static void makeHTML(VisGraph graph) {
@@ -22,7 +26,7 @@ public class GraphVisualizer {
             lines.set(lines.indexOf("//anchor"), data);
             Files.write(Paths.get("main.html"), lines, StandardCharsets.UTF_8);
         } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
 
     }

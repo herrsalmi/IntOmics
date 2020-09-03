@@ -47,7 +47,7 @@ public class ReactomeClient {
             LOGGER.warn("Term [{}] not found", query);
             return Collections.emptyList();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return Collections.emptyList();
     }
@@ -67,7 +67,7 @@ public class ReactomeClient {
             LOGGER.warn("Id [{}] not found", id);
             return Optional.empty();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return Optional.empty();
     }
@@ -103,7 +103,7 @@ public class ReactomeClient {
             LOGGER.warn("Id [{}] not found", id);
             return Collections.emptyList();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
 
         return Collections.emptyList();

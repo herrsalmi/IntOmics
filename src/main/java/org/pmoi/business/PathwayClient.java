@@ -54,7 +54,7 @@ public class PathwayClient {
         LOGGER.debug("Pathways DB loaded");
     }
 
-    public synchronized static PathwayClient getInstance() {
+    public static synchronized PathwayClient getInstance() {
         if (instance == null) {
             INTERNAL_DB_NAME = switch (Args.getInstance().getPathwayDB()) {
                 case KEGG -> "pathwayDB_KEGG.obj";
@@ -111,7 +111,6 @@ public class PathwayClient {
      */
     public void initWikiPathways() {
         LOGGER.debug("Fetching WikiPathways entries");
-        int counter = 0;
         try {
             String url = "http://webservice.wikipathways.org/listPathways?organism=Homo%20sapiens";
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -141,7 +140,7 @@ public class PathwayClient {
                             var document = saxBuilder.build(urlP);
                             var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream()
                                     .findFirst()
-                                    .get().getText());
+                                    .orElseThrow().getText());
                             return new Pathway(e.getName(), genes);
                         } catch (JDOMException | IOException ex) {
                             LOGGER.error(ex);

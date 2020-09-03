@@ -65,20 +65,8 @@ public class TranscriptomeManager {
      * @return list of DE genes
      */
     public List<Gene> getDEGenes(String fileName) {
-        Predicate<Gene> condition = e -> true;
-        return getDEGenesWithCondition(condition, fileName, true);
-    }
-
-    /**
-     * Helper function to load genes from a file using a predicate as a filter
-     * @param condition predicate for filtering genes
-     * @param filename file name
-     * @param useFC filter genes also based on FC
-     * @return list of genes
-     */
-    private List<Gene> getDEGenesWithCondition(Predicate<Gene> condition, String filename, boolean useFC) {
         var mapper = GeneMapper.getInstance();
-        List<Gene> inputGenes = readDEGeneFile(filename).stream().distinct().collect(Collectors.toList());
+        List<Gene> inputGenes = readDEGeneFile(fileName).stream().distinct().collect(Collectors.toList());
         ExecutorService executor = Executors.newFixedThreadPool(Args.getInstance().getThreads());
         inputGenes.forEach(g -> executor.submit(() -> g.setEntrezID(mapper.getId(g.getName()).orElse(""))));
         executor.shutdown();
@@ -91,13 +79,9 @@ public class TranscriptomeManager {
         // if a gene has no EntrezID it will also get removed here
         return inputGenes.parallelStream()
                 .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
-                .filter(g -> {
-                    if (useFC)
-                        return Math.abs(g.getFoldChange()) >= Args.getInstance().getFoldChange();
-                    else
-                        return true;
-                })
-                .filter(condition)
+                .filter(g -> Math.abs(g.getFoldChange()) >= Args.getInstance().getFoldChange())
+                //TODO the pvalue should also be a cmd argument
+                .filter(g -> g.getFdr() < 0.05)
                 .collect(Collectors.toList());
     }
 
@@ -109,7 +93,7 @@ public class TranscriptomeManager {
     private List<Gene> readDEGeneFile(String filePath) {
         try (var stream = Files.lines(Path.of(filePath))){
             return stream
-                    .skip(1)
+                    .filter(l -> !l.startsWith("#"))
                     .filter(Predicate.not(String::isBlank))
                     .filter(l -> !l.trim().startsWith(";"))
                     .distinct()

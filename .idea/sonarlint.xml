@@ -2,7 +2,17 @@
 <project version="4">
   <component name="SonarLintProjectSettings">
     <option name="bindingEnabled" value="true" />
-    <option name="projectKey" value="IntOmics" />
+    <option name="fileExclusions">
+      <list>
+        <option value="DIRECTORY:input" />
+        <option value="DIRECTORY:logs" />
+        <option value="DIRECTORY:output" />
+        <option value="DIRECTORY:test" />
+        <option value="DIRECTORY:target" />
+        <option value="DIRECTORY:lib" />
+      </list>
+    </option>
+    <option name="projectKey" value="groupId:IntOmics" />
     <option name="serverId" value="Local connection" />
   </component>
 </project>
