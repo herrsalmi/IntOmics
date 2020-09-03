@@ -14,6 +14,7 @@ class MainEntryTest {
                 "-db", "KEGG",
                 "-f", "FWF",
                 "-fc", "1.5",
+                "-pv", "0.05",
                 "-s", "900",
                 "-t", "8"};
         assertDoesNotThrow(() -> MainEntry.main(args));

@@ -72,6 +72,7 @@ public class OperationDispatcher {
         LOGGER.info("Getting PPI network ...");
         secretome.forEach(e -> executorService.submit(() -> {
             // Adding StringDB interactors
+            // the map contains <interactor, score>
             Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
             // Add gene from the pathway to the map
             List<String> interactorsNames = new ArrayList<>(interactors.keySet());

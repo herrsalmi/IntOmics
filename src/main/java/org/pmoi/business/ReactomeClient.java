@@ -72,6 +72,11 @@ public class ReactomeClient {
         return Optional.empty();
     }
 
+    /**
+     * lookup list of participants in an entity
+     * @param id entity id
+     * @return list of gene names
+     */
     public List<String> getParticipants(String id) {
         try {
             URL url = new URL("https://reactome.org/ContentService/data/participants/" + id + "/participatingPhysicalEntities");
@@ -81,6 +86,8 @@ public class ReactomeClient {
                     Spliterators.spliteratorUnknownSize(objectArray.iterator(), Spliterator.ORDERED),
                     false);
             GeneMapper geneMapper = GeneMapper.getInstance();
+            //TODO classes of type "complex" should also be taken into account after decomposing them into subunits
+            // by calling getComplexSubunitsUsingGET
             return stream.map(JsonElement::getAsJsonObject).filter(e -> e.get("className").getAsString().equals("Protein"))
                     .map(e -> {
                         String name = e.get("displayName").getAsString().split(" ")[0];

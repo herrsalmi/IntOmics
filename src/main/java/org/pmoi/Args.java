@@ -40,6 +40,9 @@ public class Args {
             validateWith = FoldChangeValidator.class)
     private double foldChange = 1.5;
 
+    @Parameter(names = {"-pv", "--pvalue"}, description = "P-value cutoff", validateWith = PvalueValidator.class)
+    private double pvalue = 0.05;
+
     @Parameter(names = {"-t", "--threads"}, description = "Number of threads to use",
             validateWith = ThreadsValidator.class)
     private int threads = 4;
@@ -87,6 +90,10 @@ public class Args {
 
     public double getFoldChange() {
         return foldChange;
+    }
+
+    public double getPvalue() {
+        return pvalue;
     }
 
     public boolean isHelp() {

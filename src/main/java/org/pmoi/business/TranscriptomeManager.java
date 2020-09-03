@@ -80,8 +80,7 @@ public class TranscriptomeManager {
         return inputGenes.parallelStream()
                 .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
                 .filter(g -> Math.abs(g.getFoldChange()) >= Args.getInstance().getFoldChange())
-                //TODO the pvalue should also be a cmd argument
-                .filter(g -> g.getFdr() < 0.05)
+                .filter(g -> g.getFdr() < Args.getInstance().getPvalue())
                 .collect(Collectors.toList());
     }
 
