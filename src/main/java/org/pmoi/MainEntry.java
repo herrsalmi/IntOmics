@@ -37,7 +37,7 @@ public class MainEntry {
             case FWF -> new TextFormatter();
         };
         try {
-            operationDispatcher.run("output/S2M", formatter);
+            operationDispatcher.setup("output/S2M", formatter).run();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             e.printStackTrace();
