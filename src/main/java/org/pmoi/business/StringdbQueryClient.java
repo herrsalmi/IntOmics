@@ -23,7 +23,7 @@ import java.util.Map;
  * project FunctionalAnalysis
  * Created by ayyoub on 3/12/18.
  */
-public class StringdbQueryClient {
+public class StringdbQueryClient implements InteractionQueryClient{
 
     private static final Logger LOGGER = LogManager.getRootLogger();
 
@@ -32,11 +32,11 @@ public class StringdbQueryClient {
      * @param symbol gene name
      * @return map of [gene name : score]
      */
+    @Override
     public Map<String, String> getProteinNetwork(String symbol) {
         LOGGER.debug("Searching StringDB for gene {}", symbol);
         String url = String.format("https://string-db.org/api/xml/interaction_partners?species=9606&required_score=%s&identifiers=%s",
                 Args.getInstance().getStringDBScore(), symbol);
-        //TODO if i'm to use a DB that doesn't provide scores (?), I should only be using a list to store the interactors
         Map<String, String> map = new HashMap<>();
         // see if there is an entry in StringDB for the gene
         URLConnection connection;

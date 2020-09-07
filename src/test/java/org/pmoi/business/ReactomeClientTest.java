@@ -37,24 +37,24 @@ class ReactomeClientTest {
     }
 
     @Test
-    void getParticipants() {
+    void getInteractors() {
         // [R-HSA-2151209, R-HSA-381340, R-HSA-9022707, R-HSA-8943724, R-HSA-6807070]
-        var result = reactomeClient.getParticipants("R-HSA-381340");
+        var result = reactomeClient.getInteractors("R-HSA-381340");
         System.out.println(result);
         System.out.println("------------------");
-        result = reactomeClient.getParticipants("R-HSA-2151209");
+        result = reactomeClient.getInteractors("R-HSA-2151209");
         System.out.println(result);
         System.out.println("------------------");
-        result = reactomeClient.getParticipants("R-HSA-8943724");
+        result = reactomeClient.getInteractors("R-HSA-8943724");
         System.out.println(result);
         System.out.println("------------------");
-        result = reactomeClient.getParticipants("R-HSA-9022707");
+        result = reactomeClient.getInteractors("R-HSA-9022707");
         System.out.println(result);
         System.out.println("------------------");
-        result = reactomeClient.getParticipants("R-HSA-6807070");
+        result = reactomeClient.getInteractors("R-HSA-6807070");
         System.out.println(result);
         System.out.println("------------------");
-        result = reactomeClient.getParticipants("R-HSA-2586552");
+        result = reactomeClient.getInteractors("R-HSA-2586552");
         System.out.println(result);
     }
 }

@@ -25,12 +25,13 @@ import java.util.stream.Collectors;
 
 public class OperationDispatcher {
     private static final Logger LOGGER = LogManager.getRootLogger();
-    private final StringdbQueryClient stringdbQueryClient;
+    private final InteractionQueryClient ppiQueryClient;
     private OutputFormatter formatter;
     private PathwayClient pathwayClient;
 
     public OperationDispatcher() {
-        stringdbQueryClient = new StringdbQueryClient();
+        ppiQueryClient = Args.getInstance().getStringDBScore() > 700 ?
+                CachedInteractionQueryClient.getInstance() : new StringdbQueryClient();
     }
 
     public Runner setup(String prefix, OutputFormatter formatter) {
@@ -60,7 +61,7 @@ public class OperationDispatcher {
         return new Runner(secretome, membranome, transcriptome, output);
     }
 
-    public class Runner {
+    class Runner {
         private final List<Protein> secretome;
         private final List<Gene> membranome;
         private final List<Gene> transcriptome;
@@ -86,7 +87,7 @@ public class OperationDispatcher {
             secretome.forEach(e -> executorService.submit(() -> {
                 // Adding StringDB interactors
                 // the map contains <interactor, score>
-                Map<String, String> interactors = stringdbQueryClient.getProteinNetwork(e.getName());
+                Map<String, String> interactors = ppiQueryClient.getProteinNetwork(e.getName());
                 // Add gene from the pathway to the map
                 List<String> interactorsNames = new ArrayList<>(interactors.keySet());
                 interactorsNames.retainAll(membranome.stream().map(Feature::getName).collect(Collectors.toList()));
@@ -102,7 +103,7 @@ public class OperationDispatcher {
             }));
 
             executorService.shutdown();
-            executorService.awaitTermination(1, TimeUnit.DAYS);
+            executorService.awaitTermination(1, TimeUnit.HOURS);
             return this;
         }
 
@@ -150,7 +151,7 @@ public class OperationDispatcher {
                                     })
                             )));
             service.shutdown();
-            service.awaitTermination(1, TimeUnit.DAYS);
+            service.awaitTermination(1, TimeUnit.HOURS);
             //resultSet.parallelStream().forEach(e -> e.getGene().getGeneSets().removeIf(geneSet -> geneSet.getPvalue() >= 0.05));
             return this;
         }
@@ -161,7 +162,7 @@ public class OperationDispatcher {
                     .forEach((k, v) -> {
                         k.setDescription(mapper.getDescription(k.getEntrezID()).orElse("-"));
                         v.sort(Comparator.comparingDouble((ResultRecord o) -> o.getGene().getFoldChange()).reversed());
-                        v.get(0).getGene().setDescription(mapper.getDescription(v.get(0).getGene().getEntrezID()).orElse("-"));
+                        v.forEach(e -> e.getGene().setDescription(mapper.getDescription(e.getGene().getEntrezID()).orElse("-")));
                         formatter.append(k.getName(), k.getDescription(),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
                                 v.get(0).getInteractionScore(),
@@ -171,16 +172,14 @@ public class OperationDispatcher {
                                                 + e.getGenes().stream().sorted(Collections.reverseOrder())
                                                 .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
                                         .collect(Collectors.joining("; ")));
-                        v.stream().skip(1).forEach(e -> {
-                            e.getGene().setDescription(mapper.getDescription(e.getGene().getEntrezID()).orElse("-"));
-                            formatter.append("", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
-                                    e.getGene().getGeneSets().stream()
-                                            .sorted(Comparator.comparingDouble(GeneSet::getPvalue))
-                                            .map(en -> en.getName() + ": {" + en.getScore() + " | " + en.getPvalue() + "} "
-                                                    + en.getGenes().stream().sorted(Collections.reverseOrder())
-                                                    .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
-                                            .collect(Collectors.joining("; ")));
-                        });
+                        v.stream().skip(1).forEach(e ->
+                                formatter.append("", "", e.getGene().getName(), e.getGene().getDescription(), e.getInteractionScore(),
+                                e.getGene().getGeneSets().stream()
+                                        .sorted(Comparator.comparingDouble(GeneSet::getPvalue))
+                                        .map(en -> en.getName() + ": {" + en.getScore() + " | " + en.getPvalue() + "} "
+                                                + en.getGenes().stream().sorted(Collections.reverseOrder())
+                                                .map(Gene::getName).collect(Collectors.joining(",", "[", "]")))
+                                        .collect(Collectors.joining("; "))));
                     });
             try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(outputFileName))) {
                 bw.write(formatter.getText());
@@ -190,7 +189,10 @@ public class OperationDispatcher {
         }
 
         public void run() throws InterruptedException {
-            this.setInteractions().getPathways().runGSEA().writeResults();
+            this.setInteractions()
+                    .getPathways()
+                    .runGSEA()
+                    .writeResults();
             // making html graph
             VisGraph graph = new VisGraph();
             Map<String, VisNode> map = new HashMap<>();
