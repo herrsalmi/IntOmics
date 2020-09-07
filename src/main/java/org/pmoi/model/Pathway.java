@@ -20,6 +20,12 @@ public class Pathway {
         this.genes = genes;
     }
 
+    public Pathway(String pathwayID, String name, List<Gene> genes) {
+        this.pathwayID = pathwayID;
+        this.name = name;
+        this.genes = genes;
+    }
+
     public String getPathwayID() {
         return pathwayID;
     }

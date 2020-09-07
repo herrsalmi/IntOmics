@@ -2,17 +2,18 @@ package org.pmoi.business;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.pmoi.business.pathway.ReactomePathwayMapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ReactomeClientTest {
 
-    private ReactomeClient reactomeClient;
+    private ReactomePathwayMapper reactomeClient;
 
     @BeforeEach
     void setUp() {
-        reactomeClient = new ReactomeClient();
+        reactomeClient = new ReactomePathwayMapper();
     }
 
     @Test

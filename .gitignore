@@ -107,5 +107,5 @@ wikipathways/
 /wikipathways/
 target/*
 tmp/
-!/main.html
-!/main.html
+target/
+main.html

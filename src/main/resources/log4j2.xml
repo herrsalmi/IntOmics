@@ -20,7 +20,7 @@
     </Appenders>
     <Loggers>
         <Root level="DEBUG">
-            <AppenderRef ref="Console" level="INFO"/>
+            <AppenderRef ref="Console" level="DEBUG"/>
             <AppenderRef ref="RollingFileAppender" level="DEBUG"/>
         </Root>
 

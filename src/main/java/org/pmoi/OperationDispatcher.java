@@ -2,7 +2,13 @@ package org.pmoi;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.pmoi.business.*;
+import org.pmoi.business.GraphVisualizer;
+import org.pmoi.business.SecretomeManager;
+import org.pmoi.business.TranscriptomeManager;
+import org.pmoi.business.pathway.PathwayClient;
+import org.pmoi.business.ppi.CachedInteractionQueryClient;
+import org.pmoi.business.ppi.InteractionQueryClient;
+import org.pmoi.business.ppi.StringdbQueryClient;
 import org.pmoi.database.GeneMapper;
 import org.pmoi.model.*;
 import org.pmoi.model.vis.VisEdge;
@@ -123,6 +129,8 @@ public class OperationDispatcher {
                         return;
                     pathways.forEach(key::addPathway);
 
+                } else if (Args.getInstance().getPathwayDB().equals(PathwayMode.REACTOME)) {
+                    //TODO probably should remake pathway lookup using bridge pattern
                 }
                 value.forEach(resultRecord -> {
                     LOGGER.debug("Processing [P: {} # G: {}]", key.getName(), resultRecord.getGene().getName());

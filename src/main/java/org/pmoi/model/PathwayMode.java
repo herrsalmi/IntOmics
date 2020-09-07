@@ -2,7 +2,8 @@ package org.pmoi.model;
 
 public enum PathwayMode {
     KEGG ("KEGG"),
-    WIKIPATHWAYS ("WikiPathways");
+    WIKIPATHWAYS ("WikiPathways"),
+    REACTOME("Reactome");
 
     private final String name;
 

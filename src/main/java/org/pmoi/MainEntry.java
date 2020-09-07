@@ -2,6 +2,7 @@ package org.pmoi;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
+import org.pmoi.business.pathway.ReactomePathwayMapper;
 import org.pmoi.util.io.TSVFormatter;
 import org.pmoi.util.io.TextFormatter;
 
@@ -46,6 +47,12 @@ public class MainEntry {
 
 
     public static void main(String[] args) {
-        new MainEntry(args);
+        ReactomePathwayMapper rpm = new ReactomePathwayMapper();
+        try {
+            rpm.listAll();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        //new MainEntry(args);
     }
 }
