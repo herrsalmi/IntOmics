@@ -1,6 +1,7 @@
 package org.pmoi.model;
 
 import com.google.common.math.DoubleMath;
+import org.pmoi.Args;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Gene extends Feature implements Comparable<Gene>, Serializable {
     }
 
     public Gene(String line) {
-        String[] info = line.split(";");
+        String[] info = line.split(Args.getInstance().getSeparator());
         this.name = info[0];
         this.fdr = Double.parseDouble(info[1].replace(",", "."));
         this.foldChange = Double.parseDouble(info[2].replace(",", "."));

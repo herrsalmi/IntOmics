@@ -48,7 +48,7 @@ public class Args {
     private int threads = 4;
 
     @Parameter(names = {"-d"}, description = "Custom separator for CSV file")
-    private char separator = ';';
+    private String separator = ";";
 
     @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true)
     private boolean help;
@@ -76,7 +76,7 @@ public class Args {
         return allGenes;
     }
 
-    public char getSeparator() {
+    public String getSeparator() {
         return separator;
     }
 

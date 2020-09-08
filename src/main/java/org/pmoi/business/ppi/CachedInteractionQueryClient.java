@@ -3,6 +3,7 @@ package org.pmoi.business.ppi;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.Args;
+import org.pmoi.database.GeneMapper;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -43,6 +44,18 @@ public class CachedInteractionQueryClient implements InteractionQueryClient{
 
     @Override
     public Map<String, String> getProteinNetwork(String symbol) {
+        if (!internalDB.containsKey(symbol))
+            return GeneMapper.getInstance().getAliases(symbol)
+                    .stream()
+                    .map(this::getNetworkHelper)
+                    .filter(e -> !e.isEmpty())
+                    .findAny()
+                    .orElse(Collections.emptyMap());
+
+        return getNetworkHelper(symbol);
+    }
+
+    public Map<String, String> getNetworkHelper(String symbol) {
         return internalDB.getOrDefault(symbol, Collections.emptyMap())
                 .entrySet().stream()
                 .filter(e -> e.getValue() >= Args.getInstance().getStringDBScore() / 1000.)

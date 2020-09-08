@@ -37,7 +37,7 @@ public class TranscriptomeManager {
             inputGenes = stream
                     .filter(l -> !l.startsWith("#"))
                     .filter(Predicate.not(String::isBlank))
-                    .filter(l -> !l.trim().startsWith(";"))
+                    .filter(l -> !l.trim().startsWith(Args.getInstance().getSeparator()))
                     .distinct()
                     .map(l -> new Gene(l, ""))
                     .collect(Collectors.toList());
@@ -94,7 +94,7 @@ public class TranscriptomeManager {
             return stream
                     .filter(l -> !l.startsWith("#"))
                     .filter(Predicate.not(String::isBlank))
-                    .filter(l -> !l.trim().startsWith(";"))
+                    .filter(l -> !l.trim().startsWith(Args.getInstance().getSeparator()))
                     .distinct()
                     .map(Gene::new)
                     .collect(Collectors.toList());

@@ -55,11 +55,11 @@ public class OperationDispatcher {
         LOGGER.info("Loading secretome");
         var secretome = secretomeManager.loadSecretomeFile(Args.getInstance().getSecretome());
 
-        LOGGER.info("Loading membranome");
-        List<Gene> membranome = transcriptomeManager.getMembranomeFromGenes(Args.getInstance().getAllGenes());
-
         LOGGER.info("Loading transcriptome");
         List<Gene> transcriptome = transcriptomeManager.getDEGenes(Args.getInstance().getTranscriptome());
+
+        LOGGER.info("Identifying membranome");
+        List<Gene> membranome = transcriptomeManager.getMembranomeFromGenes(Args.getInstance().getAllGenes());
 
         LOGGER.info("Number of membranome genes: {}", membranome.size());
         LOGGER.info("Number of actively secreted proteins: {}", secretome.size());

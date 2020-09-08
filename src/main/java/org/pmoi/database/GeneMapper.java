@@ -56,6 +56,16 @@ public class GeneMapper {
     }
 
     /**
+     * Find aliases for a given gene symbol
+     * @param symbol gene symbol
+     * @return list of aliases
+     */
+    public List<String> getAliases(String symbol) {
+        var result = internalDB.parallelStream().filter(e -> e.symbol.equals(symbol)).findAny();
+        return result.map(e -> e.synonyms).orElse(Collections.emptyList());
+    }
+
+    /**
      * Find a gene symbol for the supplied alias
      * @param alias gene alias
      * @return an optional containing gene symbol
