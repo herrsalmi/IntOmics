@@ -10,10 +10,8 @@ import org.pmoi.model.Gene;
 import org.pmoi.model.Pathway;
 import org.pmoi.util.HttpConnector;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -31,20 +29,46 @@ public class ReactomePathwayMapper implements PathwayMapper{
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private final HttpConnector connector;
+    private Set<String> geneSet;
 
-    public ReactomePathwayMapper() {
+
+
+    ReactomePathwayMapper() {
         connector = new HttpConnector();
+        try {
+            init();
+        } catch (URISyntaxException | IOException e) {
+            LOGGER.error(e);
+        }
+    }
+
+    private void init() throws URISyntaxException, IOException {
+        var file = new FileInputStream(new File(getClass().getClassLoader()
+                .getResource("reactome_genes.obj").toURI()));
+        try (ObjectInputStream ois = new ObjectInputStream(file)) {
+            geneSet = (Set<String>) ois.readObject();
+            LOGGER.debug("Reactome genes loaded into memory. Number of genes: {}", geneSet.size());
+        } catch (ClassNotFoundException e) {
+            LOGGER.error(e);
+        } catch (EOFException e) {
+            // do nothing
+        }
     }
 
     @Override
     public List<Pathway> getPathways(String gene) {
         return search(gene).stream()
-                .map(e -> new Pathway(e, getEntityName(e).orElseGet(() -> ""),
-                        getInteractors(e).stream().map(g -> new Gene(e, "")).collect(Collectors.toList())))
+                .map(e -> new Pathway(e, getEntityName(e).orElse(""),
+                        getInteractors(e).stream().map(g -> new Gene(g, "")).collect(Collectors.toList())))
                 .collect(Collectors.toList());
     }
 
-    public void listAll() throws IOException, InterruptedException {
+    @Override
+    public boolean isInAnyPathway(String gene) {
+        return geneSet.contains(gene);
+    }
+
+    private void listAll() throws IOException, InterruptedException {
         int pages = (int) Math.ceil(pathwayCount() / 25.);
         List<String> pathwaysID = Collections.synchronizedList(new ArrayList<>());
 
@@ -57,7 +81,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
                         Spliterators.spliteratorUnknownSize(objectArray.iterator(), Spliterator.ORDERED),
                         false);
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error(e);
             }
             return null;
         };
@@ -69,17 +93,11 @@ public class ReactomePathwayMapper implements PathwayMapper{
 
         LOGGER.debug("Number of pathway IDs loaded: {}", pathwaysID.size());
 
-//        var genes = pathwaysID.parallelStream()
-//                .map(this::getInteractors)
-//                .flatMap(Collection::stream)
-//                .distinct()
-//                .collect(Collectors.toList());
-
         //////
         AtomicInteger counter = new AtomicInteger(1);
         Set<String> genes = Collections.synchronizedSet(new HashSet<>());
         ExecutorService executor = Executors.newFixedThreadPool(8);
-        System.out.println("Starting ...");
+        LOGGER.debug("Getting genes from Reactome pathways ...");
         pathwaysID.forEach(e -> executor.submit(() -> {
             genes.addAll(getInteractors(e));
             System.out.printf("\rGetting pathway %d out of 2423", counter.getAndIncrement());
@@ -89,9 +107,9 @@ public class ReactomePathwayMapper implements PathwayMapper{
         System.out.println("");
         /////
         LOGGER.debug("Number of distinct genes: {}", genes.size());
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("reactome_genes.obj"));
-        oos.writeObject(genes);
-        oos.close();
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("reactome_genes.obj"))) {
+            oos.writeObject(genes);
+        }
     }
 
     private int pathwayCount() {
@@ -100,7 +118,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
             String result = connector.getContent(url);
             return Integer.parseInt(result);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return 0;
     }
@@ -113,6 +131,8 @@ public class ReactomePathwayMapper implements PathwayMapper{
      */
     public List<String> search(String query) {
         try {
+            // look for an entry of type pathway. if no results are found, look for the protein then
+            // find any pathway containing that protein
             URL url = new URL("https://reactome.org/ContentService/search/query?query=" + query +
                     "&species=Homo%20sapiens&types=Pathway&cluster=true");
             String result = connector.getContent(url);
@@ -124,7 +144,40 @@ public class ReactomePathwayMapper implements PathwayMapper{
             }
             return idList;
         } catch (FileNotFoundException e) {
-            LOGGER.warn("Term [{}] not found", query);
+            // no entity of type pathway. looking for proteins
+            LOGGER.debug("Term [{}] not found in Reactome with type 'pathway'. Looking for a protein", query);
+            return proteinSearch(query);
+        } catch (IOException e) {
+            LOGGER.error(e);
+        }
+        return Collections.emptyList();
+    }
+
+    private List<String> proteinSearch(String query) {
+        try {
+            // look for an entry of type pathway. if no results are found, look for the protein then
+            // find any pathway containing that protein
+            URL url = new URL("https://reactome.org/ContentService/search/query?query=" + query +
+                    "&species=Homo%20sapiens&types=Protein&cluster=true");
+            String result = connector.getContent(url);
+            JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
+            var entries = jsonObject.getAsJsonArray("results").get(0).getAsJsonObject().get("entries").getAsJsonArray();
+
+            Optional<String> id = Optional.ofNullable(entries.get(0).getAsJsonObject().get("id").getAsString());
+            if (id.isEmpty())
+                return Collections.emptyList();
+            url = new URL("https://reactome.org/ContentService/data/pathways/low/entity/" + id.get() + "?species=9606");
+            result = connector.getContent(url);
+            var objectArray = JsonParser.parseString(result).getAsJsonArray();
+            var stream = StreamSupport.stream(
+                    Spliterators.spliteratorUnknownSize(objectArray.iterator(), Spliterator.ORDERED),
+                    false);
+            return stream.map(JsonElement::getAsJsonObject).map(e -> e.get("stId").getAsString()).collect(Collectors.toList());
+
+        } catch (FileNotFoundException e) {
+            // no entity of type pathway. looking for proteins
+            LOGGER.debug("Term [{}] not found in Reactome", query);
+
             return Collections.emptyList();
         } catch (IOException e) {
             LOGGER.error(e);
@@ -171,7 +224,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
      */
     private List<String> getParticipants(String id, String urlTemplate, ClassType type) {
         Function<JsonObject, String> mapperFunction = switch (type) {
-            case PROTEIN -> e -> {
+            case PROTEIN, TRANSCRIPT -> e -> {
                 GeneMapper geneMapper = GeneMapper.getInstance();
                 assert e != null;
                 String name = e.get("displayName").getAsString().split(" ")[0];
@@ -179,6 +232,8 @@ public class ReactomePathwayMapper implements PathwayMapper{
                     return name;
                 } else {
                     for (var n : e.get("name").getAsJsonArray()){
+                        if (n.getAsString().contains("_HUMAN"))
+                            return n.getAsString().substring(0, n.getAsString().indexOf("_HUMAN"));
                         var gene = geneMapper.getSymbolFromAlias(n.getAsString(), name);
                         if (gene.isPresent()) {
                             return gene.get();
@@ -193,6 +248,11 @@ public class ReactomePathwayMapper implements PathwayMapper{
             };
         };
         try {
+            List<String> names = switch (type) {
+                case PROTEIN, TRANSCRIPT -> List.of(ClassType.PROTEIN.getName(), ClassType.TRANSCRIPT.getName());
+                case COMPLEX -> List.of(ClassType.COMPLEX.getName());
+            };
+
             URL url = new URL(urlTemplate.replace("#", id));
             String result = connector.getContent(url);
             var objectArray = JsonParser.parseString(result).getAsJsonArray();
@@ -200,7 +260,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
                     Spliterators.spliteratorUnknownSize(objectArray.iterator(), Spliterator.ORDERED),
                     false);
 
-            return stream.map(JsonElement::getAsJsonObject).filter(e -> e.get("className").getAsString().equals(type.getName()))
+            return stream.map(JsonElement::getAsJsonObject).filter(e -> names.contains(e.get("className").getAsString()))
                     .map(mapperFunction)
                     .filter(Objects::nonNull)
                     .distinct()
@@ -217,7 +277,8 @@ public class ReactomePathwayMapper implements PathwayMapper{
 
     private enum ClassType {
         PROTEIN("Protein"),
-        COMPLEX("Complex");
+        COMPLEX("Complex"),
+        TRANSCRIPT("Genes and Transcripts");
 
         private final String name;
 

@@ -28,7 +28,7 @@ public class Args {
             validateWith = FormatValidator.class)
     private OutputMode format = OutputMode.TSV;
 
-    @Parameter(names = {"-db", "--pathway"}, description = "Pathway database: KEGG or WikiPathways",
+    @Parameter(names = {"-db", "--pathway"}, description = "Pathway database: [KEGG, WikiPathways, Reactome]",
             validateWith = PathwayValidator.class)
     private PathwayMode pathwayDB = PathwayMode.WIKIPATHWAYS;
 

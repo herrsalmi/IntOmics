@@ -5,7 +5,8 @@ import org.apache.logging.log4j.Logger;
 import org.pmoi.business.GraphVisualizer;
 import org.pmoi.business.SecretomeManager;
 import org.pmoi.business.TranscriptomeManager;
-import org.pmoi.business.pathway.PathwayClient;
+import org.pmoi.business.pathway.PathwayMapper;
+import org.pmoi.business.pathway.PathwayMapperFactory;
 import org.pmoi.business.ppi.CachedInteractionQueryClient;
 import org.pmoi.business.ppi.InteractionQueryClient;
 import org.pmoi.business.ppi.StringdbQueryClient;
@@ -33,7 +34,7 @@ public class OperationDispatcher {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private final InteractionQueryClient ppiQueryClient;
     private OutputFormatter formatter;
-    private PathwayClient pathwayClient;
+    private PathwayMapper pathwayMapper;
 
     public OperationDispatcher() {
         ppiQueryClient = Args.getInstance().getStringDBScore() > 700 ?
@@ -47,7 +48,7 @@ public class OperationDispatcher {
                 Args.getInstance().getFoldChange(), extension);
         TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
-        pathwayClient = PathwayClient.getInstance();
+        pathwayMapper = PathwayMapperFactory.getPathwayMapper(Args.getInstance().getPathwayDB());
         CSVValidator validator = new CSVValidator();
         if (!validator.isConform(Args.getInstance().getTranscriptome()))
             System.exit(1);
@@ -88,7 +89,7 @@ public class OperationDispatcher {
 
         private Runner setInteractions() throws InterruptedException {
             LOGGER.info("Filtering transcriptome");
-            filteredTranscriptome = transcriptome.parallelStream().filter(e -> pathwayClient.isInAnyPathway(e.getName())).collect(Collectors.toList());
+            filteredTranscriptome = transcriptome.parallelStream().filter(e -> pathwayMapper.isInAnyPathway(e.getName())).collect(Collectors.toList());
             LOGGER.info("Getting PPI network ...");
             secretome.forEach(e -> executorService.submit(() -> {
                 // Adding StringDB interactors
@@ -118,20 +119,11 @@ public class OperationDispatcher {
             var resultMap = resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein));
             resultMap.forEach((key, value) -> {
                 // get a list of pathways where the protein is involved
-                if (Args.getInstance().getPathwayDB().equals(PathwayMode.KEGG)) {
-                    var pathways = pathwayClient.KEGGSearch(key.getEntrezID());
-                    pathways.stream().map(e -> e.split(" {2}")).forEach(e -> key.addPathway(new Pathway(e[0], e[1])));
-                    key.getPathways().forEach(e -> e.setGenes(pathwayClient.getKEGGPathwayGenes(e.getPathwayID())));
+                var pathways = pathwayMapper.getPathways(key.getName());
+                if (pathways == null || pathways.isEmpty())
+                    return;
+                pathways.forEach(key::addPathway);
 
-                } else if (Args.getInstance().getPathwayDB().equals(PathwayMode.WIKIPATHWAYS)) {
-                    var pathways = pathwayClient.getPathways(key.getName());
-                    if (pathways == null || pathways.isEmpty())
-                        return;
-                    pathways.forEach(key::addPathway);
-
-                } else if (Args.getInstance().getPathwayDB().equals(PathwayMode.REACTOME)) {
-                    //TODO probably should remake pathway lookup using bridge pattern
-                }
                 value.forEach(resultRecord -> {
                     LOGGER.debug("Processing [P: {} # G: {}]", key.getName(), resultRecord.getGene().getName());
                     resultRecord.getProtein().getPathways().forEach(p -> {

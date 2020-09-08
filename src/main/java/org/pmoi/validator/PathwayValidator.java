@@ -6,7 +6,7 @@ import com.beust.jcommander.ParameterException;
 public class PathwayValidator implements IParameterValidator {
     @Override
     public void validate(String name, String value) {
-        if (!value.equals("KEGG") && !value.equals("WikiPathways")){
+        if (!value.equals("KEGG") && !value.equals("WikiPathways") && !value.equals("Reactome")){
             throw new ParameterException("Parameter " + name + " should be KEGG or WikiPathways (found " + value + ")");
         }
     }

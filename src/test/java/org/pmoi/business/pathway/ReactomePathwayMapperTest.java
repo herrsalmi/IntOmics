@@ -1,14 +1,13 @@
 package org.pmoi.business.pathway;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import org.pmoi.model.PathwayMode;
 
 class ReactomePathwayMapperTest {
 
     @Test
-    void listAll() {
-        ReactomePathwayMapper rpm = new ReactomePathwayMapper();
-        assertDoesNotThrow(rpm::listAll);
+    void search() {
+        PathwayMapper pm = PathwayMapperFactory.getPathwayMapper(PathwayMode.REACTOME);
+        System.out.println(pm.getPathways("LEP"));
     }
 }

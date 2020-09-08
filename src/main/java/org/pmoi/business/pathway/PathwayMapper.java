@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PathwayMapper {
     List<Pathway> getPathways(String gene);
+    boolean isInAnyPathway(String gene);
 }
