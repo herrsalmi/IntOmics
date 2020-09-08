@@ -38,6 +38,7 @@ public class TranscriptomeManager {
                     .filter(l -> !l.startsWith("#"))
                     .filter(Predicate.not(String::isBlank))
                     .filter(l -> !l.trim().startsWith(Args.getInstance().getSeparator()))
+                    .map(l -> l.split(Args.getInstance().getSeparator())[0])
                     .distinct()
                     .map(l -> new Gene(l, ""))
                     .collect(Collectors.toList());

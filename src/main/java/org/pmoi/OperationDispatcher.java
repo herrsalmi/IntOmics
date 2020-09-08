@@ -32,13 +32,11 @@ import java.util.stream.Collectors;
 
 public class OperationDispatcher {
     private static final Logger LOGGER = LogManager.getRootLogger();
-    private final InteractionQueryClient ppiQueryClient;
+    private InteractionQueryClient ppiQueryClient;
     private OutputFormatter formatter;
     private PathwayMapper pathwayMapper;
 
     public OperationDispatcher() {
-        ppiQueryClient = Args.getInstance().getStringDBScore() > 700 ?
-                CachedInteractionQueryClient.getInstance() : new StringdbQueryClient();
     }
 
     public Runner setup(String prefix, OutputFormatter formatter) {
@@ -46,12 +44,17 @@ public class OperationDispatcher {
         String extension = formatter instanceof TSVFormatter ? "tsv" : "txt";
         String output = String.format("%s_%s_fc%1.1f.%s", prefix, Args.getInstance().getStringDBScore(),
                 Args.getInstance().getFoldChange(), extension);
-        TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
-        SecretomeManager secretomeManager = SecretomeManager.getInstance();
-        pathwayMapper = PathwayMapperFactory.getPathwayMapper(Args.getInstance().getPathwayDB());
         CSVValidator validator = new CSVValidator();
         if (!validator.isConform(Args.getInstance().getTranscriptome()))
             System.exit(1);
+
+        LOGGER.info("Initializing ...");
+
+        ppiQueryClient = Args.getInstance().getStringDBScore() > 700 ?
+                CachedInteractionQueryClient.getInstance() : new StringdbQueryClient();
+        TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
+        SecretomeManager secretomeManager = SecretomeManager.getInstance();
+        pathwayMapper = PathwayMapperFactory.getPathwayMapper(Args.getInstance().getPathwayDB());
         LOGGER.info("Loading secretome");
         var secretome = secretomeManager.loadSecretomeFile(Args.getInstance().getSecretome());
 
