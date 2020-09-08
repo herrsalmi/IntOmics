@@ -53,8 +53,11 @@ public class Args {
     @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true)
     private boolean help;
 
-    @Parameter(names = {"-i"}, description = "Pull an up to date list of pathways")
+    @Parameter(names = {"--no-cached-sets"}, description = "Pull an up to date list of pathways")
     private boolean useOnlineDB = false;
+
+    @Parameter(names = {"--no-cached-ppi"}, description = "Pull an up to date list of pathways")
+    private boolean useOnlinePPI = false;
 
     public String getSecretome() {
         return secretome;
@@ -102,6 +105,10 @@ public class Args {
 
     public boolean useOnlineDB() {
         return useOnlineDB;
+    }
+
+    public boolean useOnlinePPI() {
+        return useOnlinePPI;
     }
 
     public static synchronized Args getInstance() {

@@ -50,8 +50,9 @@ public class OperationDispatcher {
 
         LOGGER.info("Initializing ...");
 
-        ppiQueryClient = Args.getInstance().getStringDBScore() > 700 ?
+        ppiQueryClient = Args.getInstance().getStringDBScore() > 700 && !Args.getInstance().useOnlinePPI() ?
                 CachedInteractionQueryClient.getInstance() : new StringdbQueryClient();
+
         TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
         SecretomeManager secretomeManager = SecretomeManager.getInstance();
         pathwayMapper = PathwayMapperFactory.getPathwayMapper(Args.getInstance().getPathwayDB());
