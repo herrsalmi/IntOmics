@@ -49,21 +49,21 @@ There are two main output files:
     * **Gene**: symbol corresponding to membrane protein-coding gene.
     * **Gene description**: full name of the gene.
     * **I score**: interaction score between the protein and the receptor.
-    * **Pathways**: list of pathways with and enrichment score and a p-value.
-* An HTML file representing the network of interaction between secreted proteins and receptors.
+    * **Pathways**: list of pathways with an enrichment score and a p-value.
+* An HTML file representing the network of interactions between secreted proteins and cell receptors.
     
 ## Gene set enrichment analysis
 The GSEA implemented in this tool is slightly different than the on proposed by Subramanian et al. (2005).
 
-Gene sets represent pathways from either `KEGG`, `WIKIPATHWAYS` or `REACTOME`. `WIKIPATHWAYS` is chosen by default if option `-db` is not specified. 
+Gene sets are defined as pathways from either `KEGG`, `WIKIPATHWAYS` or `REACTOME`. `WIKIPATHWAYS` is chosen by default if option `-db` is not specified. 
 This tool has prebuilt sets for `WIKIPATHWAYS` and `KEGG`, but an up to date version can be rebuilt by using option `--no-cached-sets` and stored in `sets/` folder for future use.
 Note that if no new pathways exist, the prebuilt version will be used.
 This argument though has no effect when using `REACTOME` as no prebuilt sets are available, and the online service is always queried.
  
 ## Protein-protein interactions
 Protein-protein interactions data from StringDB is used to establish a link between secreted proteins and surface receptors.
-Interaction scores are between 0 and 1000 and they do not indicate the strength or the specificity of the interaction.
-Instead, they are indicators of confidence.
+Interaction scores rank from 0 to 1000, and they do not indicate the strength or the specificity of the interaction.
+Instead, they are indicators of confidence. A score of 500 would indicate that roughly every second interaction might be erroneous (i.e., a false positive).
 
 | score              | confidence              |
 |:-------------------|:------------------------|
