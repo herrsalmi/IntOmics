@@ -27,7 +27,8 @@ public class KEGGPathwayMapper implements PathwayMapper{
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Map<String, Set<String>> pathwayDB;
-    private final String internal_db_name = "pathwayDB_KEGG.obj";
+    private static final String DB_KEGG_OBJ = "pathwayDB_KEGG.obj";
+    public static final String DB_PATH = "sets/";
     private int initialSize = 0;
 
     KEGGPathwayMapper() {
@@ -58,17 +59,17 @@ public class KEGGPathwayMapper implements PathwayMapper{
         return pathwayDB.values().parallelStream().anyMatch(e -> e.contains(gene));
     }
 
-    private void init() throws IOException, URISyntaxException, NullPointerException {
-        LOGGER.debug("Reading file {}", internal_db_name);
+    private void init() throws IOException, URISyntaxException {
+        LOGGER.debug("Reading file {}", DB_KEGG_OBJ);
         FileInputStream file;
         // check if there is an updated version in sets folder
-        if (Files.exists(Path.of("sets/" + internal_db_name), LinkOption.NOFOLLOW_LINKS)) {
-            LOGGER.debug("Newer version of {} found if sets folder", internal_db_name);
-            file = new FileInputStream(new File("sets/" + internal_db_name));
+        if (Files.exists(Path.of(DB_PATH + DB_KEGG_OBJ), LinkOption.NOFOLLOW_LINKS)) {
+            LOGGER.debug("Newer version of {} found if sets folder", DB_KEGG_OBJ);
+            file = new FileInputStream(new File(DB_PATH + DB_KEGG_OBJ));
         } else {
             // if the file is in resource folder this shouldn't fail. If it does fail the caller method will take care of it
             file = new FileInputStream(new File(getClass().getClassLoader()
-                    .getResource(internal_db_name).toURI()));
+                    .getResource(DB_KEGG_OBJ).toURI()));
         }
 
         try (ObjectInputStream ois = new ObjectInputStream(file)) {
@@ -106,7 +107,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
             } catch (MalformedURLException e) {
                 LOGGER.error(e);
             }
-            pathwayDB.put(v, new HashSet<>(getListResults(url, "[0-9]+ {2}(.+)(?=;)")));
+            pathwayDB.put(v, new HashSet<>(getListResults(url)));
         }));
         executor.shutdown();
         try {
@@ -117,12 +118,12 @@ public class KEGGPathwayMapper implements PathwayMapper{
         LOGGER.debug("Internal DB initialized with {} pathways", pathwayDB.size());
         LOGGER.debug("Writing updated version to sets folder");
         try {
-            Files.createDirectory(Path.of("sets/"));
+            Files.createDirectory(Path.of(DB_PATH));
         } catch (IOException e) {
-            LOGGER.error("Can't create directory 'sets'!");
+            LOGGER.error("Can't create directory '{}'!", DB_PATH);
             return;
         }
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("sets/" + internal_db_name)))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(DB_PATH + DB_KEGG_OBJ)))) {
             oos.writeObject(pathwayDB);
             oos.writeInt(initialSize);
         } catch (IOException e) {
@@ -155,16 +156,15 @@ public class KEGGPathwayMapper implements PathwayMapper{
     /**
      * KEGG helper function that returns a list of results matching a regex
      * @param url request
-     * @param expression regex matching the desired result
      * @return list of matching results
      */
-    private List<String> getListResults(URL url, String expression) {
+    private List<String> getListResults(URL url) {
         int counter = 0;
         while (true) {
             try {
                 HttpConnector httpConnector = new HttpConnector();
                 String result = httpConnector.getContent(url);
-                Pattern pattern = Pattern.compile(expression);
+                Pattern pattern = Pattern.compile("[0-9]+ {2}(.+)(?=;)");
                 Matcher matcher = pattern.matcher(result);
                 List<String> resultList = new ArrayList<>();
                 while (matcher.find()) {

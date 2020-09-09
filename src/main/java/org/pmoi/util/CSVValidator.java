@@ -27,12 +27,12 @@ public class CSVValidator {
     }
 
     private long countOccurrences(String line) {
-        int count = 0, index = 0;
+        int count = 0;
+        int index = 0;
         while (( index = line.indexOf(Args.getInstance().getSeparator(), index)) != -1) {
             count++;
             index++;
         }
-        //return line.codePoints().filter(ch -> ch == Args.getInstance().getSeparator()).count();
         return count;
     }
 }

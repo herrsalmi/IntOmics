@@ -6,7 +6,7 @@
 
     <groupId>groupId</groupId>
     <artifactId>IntOmics</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.9-alpha2</version>
     <packaging>jar</packaging>
 
     <properties>

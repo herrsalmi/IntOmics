@@ -27,7 +27,6 @@ public class HttpConnector {
      */
     public String getContent(URL url) throws IOException {
         int count = 0;
-        String output = null;
         while (true) {
             try {
                 URLConnection connection = url.openConnection();
@@ -39,24 +38,29 @@ public class HttpConnector {
                 int responseCode = httpConnection.getResponseCode();
 
                 if (responseCode != 200) {
-                    throw new RuntimeException("Response code was not 200. Detected response was " + responseCode);
+                    throw new HttpException("Response code was not 200. Detected response was " + responseCode);
                 }
 
-                try (Reader reader = new BufferedReader(new InputStreamReader(response, StandardCharsets.UTF_8))) {
-                    StringBuilder builder = new StringBuilder();
-                    char[] buffer = new char[8192];
-                    int read;
-                    while ((read = reader.read(buffer, 0, buffer.length)) > 0) {
-                        builder.append(buffer, 0, read);
-                    }
-                    output = builder.toString();
-                } catch (IOException e) {
-                        LOGGER.error(e);
-                }
-                return output;
+                return getString(response);
             } catch (IOException e) {
                 if (++count == 10) throw e;
             }
         }
+    }
+
+    private String getString(InputStream response) {
+        String output = null;
+        try (Reader reader = new BufferedReader(new InputStreamReader(response, StandardCharsets.UTF_8))) {
+            StringBuilder builder = new StringBuilder();
+            char[] buffer = new char[8192];
+            int read;
+            while ((read = reader.read(buffer, 0, buffer.length)) > 0) {
+                builder.append(buffer, 0, read);
+            }
+            output = builder.toString();
+        } catch (IOException e) {
+                LOGGER.error(e);
+        }
+        return output;
     }
 }

@@ -36,9 +36,6 @@ public class OperationDispatcher {
     private OutputFormatter formatter;
     private PathwayMapper pathwayMapper;
 
-    public OperationDispatcher() {
-    }
-
     public Runner setup(String prefix, OutputFormatter formatter) {
         this.formatter = formatter;
         String extension = formatter instanceof TSVFormatter ? "tsv" : "txt";

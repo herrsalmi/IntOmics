@@ -16,8 +16,7 @@ class MainEntryTest {
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-s", "900",
-                "-t", "8",
-                "--no-cached-sets"};
+                "-t", "8"};
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 }

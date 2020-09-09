@@ -60,18 +60,17 @@ public class SecretomeManager {
                 data.forEach(e -> executor.submit(() -> e.setEntrezID(mapper.getId(e.getName()).orElse(""))));
             }
             executor.shutdown();
-            try {
-                executor.awaitTermination(1, TimeUnit.DAYS);
-            } catch (InterruptedException e) {
-                LOGGER.error(e);
-                Thread.currentThread().interrupt();
-            }
+            executor.awaitTermination(1, TimeUnit.DAYS);
+
             return data.stream()
                     .filter(e -> e.getName() != null)
                     .filter(secretomeMapper)
                     .collect(Collectors.toList());
         } catch (IOException e) {
             LOGGER.error(e);
+        } catch (InterruptedException e) {
+            LOGGER.error(e);
+            Thread.currentThread().interrupt();
         }
         return Collections.emptyList();
     }

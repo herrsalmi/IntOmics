@@ -3,6 +3,8 @@ package org.pmoi.database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class GeneMapperTest {
 
     private GeneMapper mapper;
@@ -14,7 +16,6 @@ class GeneMapperTest {
 
     @Test
     void getSymbolFromAlias() {
-        System.out.println(mapper.getSymbolFromAlias("GPIV"));
-
+        assertEquals("GP6", mapper.getSymbolFromAlias("GPIV").get());
     }
 }

@@ -33,7 +33,8 @@ public class WikiPathwaysMapper implements PathwayMapper{
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Map<String, Set<String>> pathwayDB;
-    private final String internal_db_name = "pathwayDB_WP.obj";
+    private static final String DB_WP_OBJ = "pathwayDB_WP.obj";
+    private static final String DB_PATH = "sets/";
     private int initialSize = 0;
 
     WikiPathwaysMapper() {
@@ -59,17 +60,17 @@ public class WikiPathwaysMapper implements PathwayMapper{
         return pathwayDB.values().parallelStream().anyMatch(e -> e.contains(gene));
     }
 
-    private void init() throws IOException, URISyntaxException, NullPointerException {
-        LOGGER.debug("Reading file {}", internal_db_name);
+    private void init() throws IOException, URISyntaxException {
+        LOGGER.debug("Reading file {}", DB_WP_OBJ);
         FileInputStream file;
         // check if there is an updated version in sets folder
-        if (Files.exists(Path.of("sets/" + internal_db_name), LinkOption.NOFOLLOW_LINKS)) {
-            LOGGER.debug("Newer version of {} found if sets folder", internal_db_name);
-            file = new FileInputStream(new File("sets/" + internal_db_name));
+        if (Files.exists(Path.of(DB_PATH + DB_WP_OBJ), LinkOption.NOFOLLOW_LINKS)) {
+            LOGGER.debug("Newer version of {} found if sets folder", DB_WP_OBJ);
+            file = new FileInputStream(new File(DB_PATH + DB_WP_OBJ));
         } else {
             // if the file is in resource folder this shouldn't fail. If it does fail the caller method will take care of it
             file = new FileInputStream(new File(getClass().getClassLoader()
-                    .getResource(internal_db_name).toURI()));
+                    .getResource(DB_WP_OBJ).toURI()));
         }
         try (ObjectInputStream ois = new ObjectInputStream(file)) {
             pathwayDB = (Map<String, Set<String>>) ois.readObject();
@@ -127,7 +128,7 @@ public class WikiPathwaysMapper implements PathwayMapper{
                         return null;
                     })
                     .collect(Collectors.toList());
-            // Check if the pathway isn't already present under another form or a subname
+            // Check if the pathway isn't already present under another form or a sub name
             pathways.forEach(p -> {
                 if (!pathwayDB.containsKey(p.getName().replace('/', '-')) &&
                         pathwayDB.keySet().stream().filter(e -> p.getName().contains(e)).findAny().isEmpty())
@@ -147,12 +148,12 @@ public class WikiPathwaysMapper implements PathwayMapper{
         LOGGER.debug("Internal DB initialized with {} pathways", pathwayDB.size());
         LOGGER.debug("Writing updated version to sets folder");
         try {
-            Files.createDirectory(Path.of("sets/"));
+            Files.createDirectory(Path.of(DB_PATH));
         } catch (IOException e) {
-            LOGGER.error("Can't create directory 'sets'!");
+            LOGGER.error("Can't create directory '{}'!", DB_PATH);
             return;
         }
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("sets/" + internal_db_name)))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(DB_PATH + DB_WP_OBJ)))) {
             oos.writeObject(pathwayDB);
             oos.writeInt(initialSize);
         } catch (IOException e) {
