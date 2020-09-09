@@ -176,7 +176,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
 
         } catch (FileNotFoundException e) {
             // no entity of type pathway. looking for proteins
-            LOGGER.debug("Term [{}] not found in Reactome", query);
+            LOGGER.warn("Term [{}] not found in Reactome", query);
 
             return Collections.emptyList();
         } catch (IOException e) {

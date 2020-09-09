@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![Generic badge](https://img.shields.io/badge/version-0.9--alpha.1-green)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/version-0.9--alpha.2-green)](https://shields.io/)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!--badges: end -->
 ## Multi omics data integration tool
@@ -11,27 +11,27 @@ IntOmics is a tool for integrating proteomics and transcriptomics human data in 
 java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 ```
 
-## Parameters
+## Arguments
 
-| Argument          | Description                                           |
-|:------------------|:------------------------------------------------------|
-| -p \<file>        | Text file containing secreted proteins                |
-| -a \<file>        | Text file containing all expressed genes              |
-| -g \<file>        | Text file containing differentially expressed genes   |
-| -f \<string>      | Output format: TSV or FWF                             |
-| -db \<string>     | Pathway database: [KEGG, WikiPathways, Reactome]      |
-| -s \<int>         | Minimum score for PPI (range from 0 to 1000)          |
-| -fc \<double>     | Fold change cutoff                                    |
-| -pv \<double>     | P-value cutoff                                        |
-| -t \<int>         | Number of threads to use                              |
-| -d \<string>      | Custom separator for input files                      |
-| --no-cached-sets  | Pull an up to date list of pathways                   |
-| --no-cached-ppi   | Disable usage of cached PPI data                      |
-| -h                | Print the help screen                                 |
+| Option             | Description                                                                 |
+|:-------------------|:----------------------------------------------------------------------------|
+| `-p <file>`        | Text file containing secreted proteins                                      |
+| `-a <file>`        | Text file containing all expressed genes                                    |
+| `-g <file>`        | Text file containing differentially expressed genes                         |
+| `-f <string>`      | Output format: TSV or FWF. Default: TSV                                     |
+| `-db <string>`     | Pathway database: [KEGG, WIKIPATHWAYS, REACTOME]. Default: WIKIPATHWAYS     |
+| `-s <int>`         | Minimum score for PPI (range from 0 to 1000). Default: 900                  |
+| `-fc <double>`     | Fold change cutoff. Default: 1.5                                            |
+| `-pv <double>`     | P-value cutoff. Default: 0.05                                               |
+| `-t <int>`         | Number of threads to use. Default: 4                                        |
+| `-d <string>`      | Custom separator for input files: Default: ';'                              |
+| `--no-cached-sets` | Pull an up to date list of pathways                                         |
+| `--no-cached-ppi`  | Disable usage of cached PPI data                                            |
+| `-h`               | Print the help screen                                                       |
 
 
 ## Input files
-Input files should be in CSV format and can have a header line starting with `#`. The default column separator is `;`, but a different one can be specified using the argument `-d`.
+Input files should be in CSV format and can have a header line starting with `#`. The default column separator is `;`, but a different one can be specified using option `-d`.
 
 ##### Secreted proteins
 Text file containing protein names or corresponding Entrez gene id, each one on a separate line.
@@ -55,25 +55,25 @@ There are two main output files:
 ## Gene set enrichment analysis
 The GSEA implemented in this tool is slightly different than the on proposed by Subramanian et al. (2005).
 
-Gene sets represent pathways from either `KEGG`, `Wikipathways` or `Reactome`. `Wikipathways` is chosen by default if argument `-db` is not specified. 
-This tool has prebuilt sets for `Wikipathways` and `KEGG`, but an up to date version can be rebuilt by using the argument `--no-cached-sets`.
+Gene sets represent pathways from either `KEGG`, `WIKIPATHWAYS` or `REACTOME`. `WIKIPATHWAYS` is chosen by default if option `-db` is not specified. 
+This tool has prebuilt sets for `WIKIPATHWAYS` and `KEGG`, but an up to date version can be rebuilt by using option `--no-cached-sets` and stored in `sets/` folder for future use.
 Note that if no new pathways exist, the prebuilt version will be used.
-This argument though has no effect when using `Reactome` as no prebuilt sets are available, and the online service is always queried.
+This argument though has no effect when using `REACTOME` as no prebuilt sets are available, and the online service is always queried.
  
 ## Protein-protein interactions
 Protein-protein interactions data from StringDB is used to establish a link between secreted proteins and surface receptors.
 Interaction scores are between 0 and 1000 and they do not indicate the strength or the specificity of the interaction.
 Instead, they are indicators of confidence.
 
-| score               | confidence              |
-|:--------------------|:------------------------|
-| x >= 900            | highest confidence      |
-| x >= 700            | high confidence         |
-| x >= 400            | medium confidence       |
-| x >= 150            | low confidence          |
+| score              | confidence              |
+|:-------------------|:------------------------|
+| x > 900            | highest confidence      |
+| x > 700            | high confidence         |
+| x > 400            | medium confidence       |
+| x > 150            | low confidence          |
 
 A cached network of PPI is used when the interaction score threshold is greater than 700.
-You can override this behavior by using the argument `--no-cached-ppi`.
+You can override this behavior by using option `--no-cached-ppi`.
 
 
 
