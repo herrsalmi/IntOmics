@@ -20,6 +20,9 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -58,9 +61,16 @@ public class WikiPathwaysMapper implements PathwayMapper{
 
     private void init() throws IOException, URISyntaxException, NullPointerException {
         LOGGER.debug("Reading file {}", internal_db_name);
-        // if the file is in resource folder this shouldn't fail. If it does fail the caller method will take care of it
-        var file = new FileInputStream(new File(getClass().getClassLoader()
-                .getResource(internal_db_name).toURI()));
+        FileInputStream file;
+        // check if there is an updated version in sets folder
+        if (Files.exists(Path.of("sets/" + internal_db_name), LinkOption.NOFOLLOW_LINKS)) {
+            LOGGER.debug("Newer version of {} found if sets folder", internal_db_name);
+            file = new FileInputStream(new File("sets/" + internal_db_name));
+        } else {
+            // if the file is in resource folder this shouldn't fail. If it does fail the caller method will take care of it
+            file = new FileInputStream(new File(getClass().getClassLoader()
+                    .getResource(internal_db_name).toURI()));
+        }
         try (ObjectInputStream ois = new ObjectInputStream(file)) {
             pathwayDB = (Map<String, Set<String>>) ois.readObject();
             initialSize = ois.readInt();
@@ -79,7 +89,7 @@ public class WikiPathwaysMapper implements PathwayMapper{
      * Load pathways from WikiPathways into internal DB
      */
     public void initWikiPathways() {
-        LOGGER.debug("Fetching WikiPathways entries");
+        LOGGER.info("Fetching WikiPathways entries ...");
         try {
             String url = "http://webservice.wikipathways.org/listPathways?organism=Homo%20sapiens";
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -135,6 +145,19 @@ public class WikiPathwaysMapper implements PathwayMapper{
             LOGGER.error(e);
         }
         LOGGER.debug("Internal DB initialized with {} pathways", pathwayDB.size());
+        LOGGER.debug("Writing updated version to sets folder");
+        try {
+            Files.createDirectory(Path.of("sets/"));
+        } catch (IOException e) {
+            LOGGER.error("Can't create directory 'sets'!");
+            return;
+        }
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("sets/" + internal_db_name)))) {
+            oos.writeObject(pathwayDB);
+            oos.writeInt(initialSize);
+        } catch (IOException e) {
+            LOGGER.error(e);
+        }
     }
 
     /**

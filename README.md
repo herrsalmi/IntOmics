@@ -20,7 +20,7 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 | -g \<file>        | Text file containing differentially expressed genes   |
 | -f \<string>      | Output format: TSV or FWF                             |
 | -db \<string>     | Pathway database: [KEGG, WikiPathways, Reactome]      |
-| -s \<int>         | Minimum score for PPI (range from 0 to 999)           |
+| -s \<int>         | Minimum score for PPI (range from 0 to 1000)          |
 | -fc \<double>     | Fold change cutoff                                    |
 | -pv \<double>     | P-value cutoff                                        |
 | -t \<int>         | Number of threads to use                              |
@@ -62,7 +62,7 @@ This argument though has no effect when using `Reactome` as no prebuilt sets are
  
 ## Protein-protein interactions
 Protein-protein interactions data from StringDB is used to establish a link between secreted proteins and surface receptors.
-Interaction scores are between 0 and 999 and they do not indicate the strength or the specificity of the interaction.
+Interaction scores are between 0 and 1000 and they do not indicate the strength or the specificity of the interaction.
 Instead, they are indicators of confidence.
 
 | score               | confidence              |
