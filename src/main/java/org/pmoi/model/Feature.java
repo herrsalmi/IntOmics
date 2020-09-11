@@ -3,14 +3,14 @@ package org.pmoi.model;
 public abstract class Feature {
     protected String name;
     protected String entrezID;
-    protected double fdr;
+    protected double pvalue;
     protected double foldChange;
     protected String description;
 
-    public Feature(String name, String entrezID, double fdr, double foldChange) {
+    public Feature(String name, String entrezID, double pvalue, double foldChange) {
         this.name = name;
         this.entrezID = entrezID;
-        this.fdr = fdr;
+        this.pvalue = pvalue;
         this.foldChange = foldChange;
     }
 
@@ -33,12 +33,12 @@ public abstract class Feature {
         this.entrezID = entrezID;
     }
 
-    public double getFdr() {
-        return fdr;
+    public double getPvalue() {
+        return pvalue;
     }
 
-    public void setFdr(double fdr) {
-        this.fdr = fdr;
+    public void setPvalue(double pvalue) {
+        this.pvalue = pvalue;
     }
 
     public double getFoldChange() {

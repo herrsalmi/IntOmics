@@ -47,9 +47,9 @@ public class GSEA {
      *  Calculates the enrichment score defined in the GSEA algorithm
      * @param geneSet set containing gene names
      * @param sortedList list of genes having a significance score
-     * @param stepWeight options: 0, 1, 1.5, 2
+     * @param stepWeight recommended values: 0, 1, 1.5, 2
      */
-    public double enrichmentScore(List<Gene> geneSet, List<Gene> sortedList, double stepWeight) {
+    private double enrichmentScore(List<Gene> geneSet, List<Gene> sortedList, double stepWeight) {
         List<BigDecimal> lHits = new ArrayList<>(100);
         List<BigDecimal> lMisses = new ArrayList<>(100);
         BigDecimal hitSum = new BigDecimal("0");
@@ -78,12 +78,12 @@ public class GSEA {
     }
 
     /**
-     *  Calculates the enrichment score defined in the GSEA algorithm using step weight = 1
+     *  Calculates the enrichment score defined in the GSEA algorithm using step weight = 1.5
      * @param geneSet set containing gene names
      * @param geneList list of genes having a significance score
      */
-    public double enrichmentScore(List<Gene> geneSet, List<Gene> geneList) {
-        return this.enrichmentScore(geneSet, geneList, 1);
+    private double enrichmentScore(List<Gene> geneSet, List<Gene> geneList) {
+        return this.enrichmentScore(geneSet, geneList, 1.5);
     }
 
     /**

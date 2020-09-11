@@ -24,40 +24,41 @@ public class Args {
             validateWith = GeneValidator.class, order = 2)
     private String allGenes;
 
-    @Parameter(names = {"-f", "--format"}, description = "Output format: TSV or FWF (Fixed Width Format)",
-            validateWith = FormatValidator.class)
+    @Parameter(names = {"-f", "--format"}, description = "Output format: TSV or Fixed Width Format",
+            validateWith = FormatValidator.class, order = 3)
     private OutputMode format = OutputMode.TSV;
 
     @Parameter(names = {"-db", "--pathway"}, description = "Pathway database for GSEA",
-            validateWith = PathwayValidator.class)
+            validateWith = PathwayValidator.class, order = 4)
     private PathwayMode pathwayDB = PathwayMode.WIKIPATHWAYS;
 
     @Parameter(names = {"-s", "--minscore"}, description = "Minimum StringDB interaction score",
-            validateWith = InteractionScoreValidator.class)
+            validateWith = InteractionScoreValidator.class, order = 5)
     private int stringDBScore = 900;
 
     @Parameter(names = {"-fc"}, description = "Fold change cutoff",
-            validateWith = FoldChangeValidator.class)
+            validateWith = FoldChangeValidator.class, order = 6)
     private double foldChange = 1.5;
 
-    @Parameter(names = {"-pv", "--pvalue"}, description = "P-value cutoff", validateWith = PvalueValidator.class)
+    @Parameter(names = {"-pv", "--pvalue"}, description = "P-value cutoff", validateWith = PvalueValidator.class
+            , order = 7)
     private double pvalue = 0.05;
 
-    @Parameter(names = {"-t", "--threads"}, description = "Number of threads to use",
-            validateWith = ThreadsValidator.class)
-    private int threads = 4;
-
-    @Parameter(names = {"-d"}, description = "Custom separator for CSV file")
+    @Parameter(names = {"-d"}, description = "Custom separator for CSV file", order = 8)
     private String separator = ";";
 
-    @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true)
-    private boolean help;
+    @Parameter(names = {"-t", "--threads"}, description = "Number of threads to use",
+            validateWith = ThreadsValidator.class, order = 9)
+    private int threads = 4;
 
-    @Parameter(names = {"--no-cached-sets"}, description = "Pull an up to date list of pathways")
+    @Parameter(names = {"--no-cached-sets"}, description = "Pull an up to date list of pathways", order = 10)
     private boolean useOnlineDB = false;
 
-    @Parameter(names = {"--no-cached-ppi"}, description = "Pull an up to date list of pathways")
+    @Parameter(names = {"--no-cached-ppi"}, description = "Force use StringDB's online service", order = 11)
     private boolean useOnlinePPI = false;
+
+    @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true, order = 12)
+    private boolean help;
 
     public String getSecretome() {
         return secretome;

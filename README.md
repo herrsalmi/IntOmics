@@ -25,7 +25,7 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 | `-pv <double>`     | P-value cutoff. Default: 0.05                                               |
 | `-t <int>`         | Number of threads to use. Default: 4                                        |
 | `-d <string>`      | Custom separator for input files: Default: ';'                              |
-| `--no-cached-sets` | Pull an up to date list of pathways                                         |
+| `--no-cached-sets` | Pull an up-to-date list of pathways                                         |
 | `--no-cached-ppi`  | Disable usage of cached PPI data                                            |
 | `-h`               | Print the help screen                                                       |
 
@@ -56,7 +56,7 @@ There are two main output files:
 The GSEA implemented in this tool is slightly different than the on proposed by Subramanian et al. (2005).
 
 Gene sets are defined as pathways from either `KEGG`, `WIKIPATHWAYS` or `REACTOME`. `WIKIPATHWAYS` is chosen by default if option `-db` is not specified. 
-This tool has prebuilt sets for `WIKIPATHWAYS` and `KEGG`, but an up to date version can be rebuilt by using option `--no-cached-sets` and stored in `sets/` folder for future use.
+This tool has prebuilt sets for `WIKIPATHWAYS` and `KEGG`, but an up-to-date version can be rebuilt by using option `--no-cached-sets` and stored in `sets/` folder for future use.
 Note that if no new pathways exist, the prebuilt version will be used.
 This argument though has no effect when using `REACTOME` as no prebuilt sets are available, and the online service is always queried.
  

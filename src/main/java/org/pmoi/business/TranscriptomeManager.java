@@ -81,7 +81,7 @@ public class TranscriptomeManager {
         return inputGenes.parallelStream()
                 .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
                 .filter(g -> Math.abs(g.getFoldChange()) >= Args.getInstance().getFoldChange())
-                .filter(g -> g.getFdr() < Args.getInstance().getPvalue())
+                .filter(g -> g.getPvalue() < Args.getInstance().getPvalue())
                 .collect(Collectors.toList());
     }
 
