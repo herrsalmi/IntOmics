@@ -5,9 +5,8 @@
 ## Multi omics data integration tool
 IntOmics is a tool for integrating proteomics and transcriptomics human data in order to uncover cell crosstalk mechanisms.
 
-
 ## Usage
-```
+```shell script
 java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 ```
 
@@ -29,7 +28,6 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 | `--no-cached-ppi`  | Disable usage of cached PPI data                                            |
 | `-h`               | Print the help screen                                                       |
 
-
 ## Input files
 Input files should be in CSV format and can have a header line starting with `#`. The default column separator is `;`, but a different one can be specified using option `-d`.
 
@@ -39,7 +37,6 @@ Text file containing protein names or corresponding Entrez gene id, each one on 
 Text file containing symbols for all expressed genes, each one on a separate line. This list is used to infer membrane protein-coding genes.
 ##### Differential expression testing results
 Text file in CSV format with three columns: `gene name`, `p value` and `fold change`. 
-
 
 ## Outputs
 There are two main output files:
@@ -74,10 +71,3 @@ Instead, they are indicators of confidence. A score of 500 would indicate that r
 
 A cached network of PPI is used when the interaction score threshold is greater than 700.
 You can override this behavior by using option `--no-cached-ppi`.
-
-
-
-
-
-
-

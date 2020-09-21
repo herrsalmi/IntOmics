@@ -1,9 +1,8 @@
 package org.pmoi.model;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class GeneSet implements Serializable {
+public class GeneSet {
     private String name;
     private List<Gene> genes;
     private double pvalue;

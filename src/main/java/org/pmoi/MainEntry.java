@@ -12,6 +12,8 @@ import java.nio.file.Path;
 
 public class MainEntry {
 
+    public static final String OUT_DIR = "output/";
+
     public MainEntry(String[] args) {
         Args params = Args.getInstance();
         try {
@@ -37,7 +39,7 @@ public class MainEntry {
             case FWF -> new TextFormatter();
         };
         try {
-            operationDispatcher.setup("output/S2M", formatter).run();
+            operationDispatcher.setup(OUT_DIR + "S2M", formatter).run();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             e.printStackTrace();

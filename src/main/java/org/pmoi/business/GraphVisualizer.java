@@ -2,6 +2,7 @@ package org.pmoi.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.pmoi.MainEntry;
 import org.pmoi.model.vis.VisGraph;
 
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class GraphVisualizer {
             List<String> lines = Files.readAllLines(path);
             String data = "setTheData(" + graph.getNodesJson() +  "," + graph.getEdgesJson() + ")";
             lines.set(lines.indexOf("//anchor"), data);
-            Files.write(Paths.get("main.html"), lines, StandardCharsets.UTF_8);
+            Files.write(Paths.get(MainEntry.OUT_DIR + "network.html"), lines, StandardCharsets.UTF_8);
         } catch (IOException | URISyntaxException e) {
             LOGGER.error(e);
         }
