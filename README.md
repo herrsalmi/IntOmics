@@ -25,6 +25,7 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 | `-t <int>`         | Number of threads to use. Default: 4                                        |
 | `-d <string>`      | Custom separator for input files: Default: ';'                              |
 | `--no-cached-sets` | Pull an up-to-date list of pathways                                         |
+| `--ignore-check`   | Ignore checks when pulling updated pathways                                 |
 | `--no-cached-ppi`  | Disable usage of cached PPI data                                            |
 | `-h`               | Print the help screen                                                       |
 

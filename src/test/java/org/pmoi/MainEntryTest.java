@@ -16,7 +16,7 @@ class MainEntryTest {
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-s", "900",
-                "-t", "4"};
+                "-t", "8"};
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 
@@ -30,7 +30,7 @@ class MainEntryTest {
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-s", "900",
-                "-t", "4"};
+                "-t", "8"};
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 
@@ -44,7 +44,7 @@ class MainEntryTest {
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-s", "900",
-                "-t", "4"};
+                "-t", "8"};
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 
@@ -58,13 +58,13 @@ class MainEntryTest {
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-s", "900",
-                "-t", "4",
+                "-t", "8",
                 "--no-cached-ppi"};
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 
     @Test
-    void mainNoCachedPathway() {
+    void mainNoCachedWP() {
         var args = new String[]{"-p", "test/secretome_withNames_test.csv",
                 "-g", "test/Gene_DE_9h.csv",
                 "-a", "test/all_genes.csv",
@@ -73,8 +73,25 @@ class MainEntryTest {
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-s", "900",
-                "-t", "4",
-                "--no-cached-sets"};
+                "-t", "8",
+                "--no-cached-sets",
+                "--ignore-check"};
+        assertDoesNotThrow(() -> MainEntry.main(args));
+    }
+
+    @Test
+    void mainNoCachedKEGG() {
+        var args = new String[]{"-p", "test/secretome_withNames_test.csv",
+                "-g", "test/Gene_DE_9h.csv",
+                "-a", "test/all_genes.csv",
+                "-db", "KEGG",
+                "-f", "FWF",
+                "-fc", "1.5",
+                "-pv", "0.05",
+                "-s", "900",
+                "-t", "8",
+                "--no-cached-sets",
+                "--ignore-check"};
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 }

@@ -54,10 +54,13 @@ public class Args {
     @Parameter(names = {"--no-cached-sets"}, description = "Pull an up to date list of pathways", order = 10)
     private boolean useOnlineDB = false;
 
-    @Parameter(names = {"--no-cached-ppi"}, description = "Force use StringDB's online service", order = 11)
+    @Parameter(names = {"--ignore-check"}, description = "Ignore checks when pulling updated pathways", order = 11)
+    private boolean ignoreCheck = false;
+
+    @Parameter(names = {"--no-cached-ppi"}, description = "Force use StringDB's online service", order = 12)
     private boolean useOnlinePPI = false;
 
-    @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true, order = 12)
+    @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true, order = 13)
     private boolean help;
 
     public String getSecretome() {
@@ -106,6 +109,10 @@ public class Args {
 
     public boolean useOnlineDB() {
         return useOnlineDB;
+    }
+
+    public boolean ignoreCheck() {
+        return ignoreCheck;
     }
 
     public boolean useOnlinePPI() {

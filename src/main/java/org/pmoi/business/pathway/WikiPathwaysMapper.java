@@ -40,7 +40,12 @@ public class WikiPathwaysMapper implements PathwayMapper{
     WikiPathwaysMapper() {
         LOGGER.debug("Loadling WikiPathways DB");
         try {
-            init();
+            if (Args.getInstance().useOnlineDB() && Args.getInstance().ignoreCheck()) {
+                pathwayDB = new HashMap<>(400);
+                initWikiPathways();
+            } else {
+                init();
+            }
         } catch (IOException | URISyntaxException e) {
             LOGGER.error(e);
             initWikiPathways();

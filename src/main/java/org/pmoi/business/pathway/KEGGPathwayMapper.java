@@ -34,7 +34,12 @@ public class KEGGPathwayMapper implements PathwayMapper{
     KEGGPathwayMapper() {
         LOGGER.debug("Loadling KEGGG pathways DB");
         try {
-            init();
+            if (Args.getInstance().useOnlineDB() && Args.getInstance().ignoreCheck()) {
+                pathwayDB = new HashMap<>(400);
+                initKEGGPathways();
+            } else {
+                init();
+            }
         } catch (IOException | URISyntaxException e) {
             LOGGER.error(e);
             initKEGGPathways();

@@ -39,6 +39,7 @@ public class GeneMapper {
 
     private void init() {
         try (var stream = Files.lines(Path.of(getClass().getClassLoader().getResource("Homo_sapiens.gene_info").toURI()))) {
+            // the Gene class used here is the private inner class
             internalDB = stream.skip(1).map(Gene::new).collect(Collectors.toList());
         } catch (URISyntaxException | IOException e) {
             LOGGER.error("Failed to initialize gene_info_db");
