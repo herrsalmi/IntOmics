@@ -44,23 +44,27 @@ public class Args {
             , order = 7)
     private double pvalue = 0.05;
 
-    @Parameter(names = {"-d"}, description = "Custom separator for CSV file", order = 8)
+    @Parameter(names = {"-gpv", "--gpvalue"}, description = "GSEA P-value threshold",
+            validateWith = PvalueValidator.class, order = 8)
+    private double gseaPvalue = 0.05;
+
+    @Parameter(names = {"-d"}, description = "Custom separator for CSV file", order = 9)
     private String separator = ";";
 
     @Parameter(names = {"-t", "--threads"}, description = "Number of threads to use",
-            validateWith = ThreadsValidator.class, order = 9)
+            validateWith = ThreadsValidator.class, order = 10)
     private int threads = 4;
 
-    @Parameter(names = {"--no-cached-sets"}, description = "Pull an up to date list of pathways", order = 10)
+    @Parameter(names = {"--no-cached-sets"}, description = "Pull an up to date list of pathways", order = 11)
     private boolean useOnlineDB = false;
 
-    @Parameter(names = {"--ignore-check"}, description = "Ignore checks when pulling updated pathways", order = 11)
+    @Parameter(names = {"--ignore-check"}, description = "Ignore checks when pulling updated pathways", order = 12)
     private boolean ignoreCheck = false;
 
-    @Parameter(names = {"--no-cached-ppi"}, description = "Force use StringDB's online service", order = 12)
+    @Parameter(names = {"--no-cached-ppi"}, description = "Force use StringDB's online service", order = 13)
     private boolean useOnlinePPI = false;
 
-    @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true, order = 13)
+    @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true, order = 14)
     private boolean help;
 
     public String getSecretome() {
@@ -101,6 +105,10 @@ public class Args {
 
     public double getPvalue() {
         return pvalue;
+    }
+
+    public double getGseaPvalue() {
+        return gseaPvalue;
     }
 
     public boolean isHelp() {

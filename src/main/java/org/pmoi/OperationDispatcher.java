@@ -153,6 +153,8 @@ public class OperationDispatcher {
                             )));
             service.shutdown();
             service.awaitTermination(1, TimeUnit.HOURS);
+            resultSet.parallelStream()
+                    .forEach(e -> e.getGene().getGeneSets().removeIf(geneSet -> geneSet.getPvalue() > Args.getInstance().getGseaPvalue()));
             return this;
         }
 

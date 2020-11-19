@@ -7,6 +7,21 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 class MainEntryTest {
 
     @Test
+    void mainDemo() {
+        var args = new String[]{"-p", "demo/secreted.csv",
+                "-g", "demo/de_genes.csv",
+                "-a", "demo/all_genes.csv",
+                "-db", "KEGG",
+                "-f", "FWF",
+                "-fc", "1.5",
+                "-pv", "0.05",
+                "-gpv", "0.05",
+                "-s", "900",
+                "-t", "8"};
+        assertDoesNotThrow(() -> MainEntry.main(args));
+    }
+
+    @Test
     void mainKEGG() {
         var args = new String[]{"-p", "test/secretome_withNames_test.csv",
                 "-g", "test/Gene_DE_9h.csv",

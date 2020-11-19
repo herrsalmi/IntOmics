@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![Generic badge](https://img.shields.io/badge/version-0.9-green)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/version-1.0-green)](https://shields.io/)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!--badges: end -->
 ## Multi omics data integration tool
@@ -22,6 +22,7 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 | `-s <int>`         | Minimum score for PPI (range from 0 to 1000). Default: 900                  |
 | `-fc <double>`     | Fold change cutoff. Default: 1.5                                            |
 | `-pv <double>`     | P-value cutoff. Default: 0.05                                               |
+| `-gpv <double>`    | P-value cutoff for GSEA. Default: 0.05                                      |
 | `-t <int>`         | Number of threads to use. Default: 4                                        |
 | `-d <string>`      | Custom separator for input files: Default: ';'                              |
 | `--no-cached-sets` | Pull an up-to-date list of pathways                                         |
