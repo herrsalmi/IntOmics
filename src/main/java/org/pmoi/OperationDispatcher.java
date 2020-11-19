@@ -42,7 +42,7 @@ public class OperationDispatcher {
         String output = String.format("%s_%s_fc%1.1f.%s", prefix, Args.getInstance().getStringDBScore(),
                 Args.getInstance().getFoldChange(), extension);
         CSVValidator validator = new CSVValidator();
-        if (!validator.isConform(Args.getInstance().getTranscriptome()))
+        if (!validator.isConform(Args.getInstance().getDiffExpGenes()))
             System.exit(1);
 
         LOGGER.info("Initializing ...");
@@ -57,7 +57,7 @@ public class OperationDispatcher {
         var secretome = secretomeManager.loadSecretomeFile(Args.getInstance().getSecretome());
 
         LOGGER.info("Loading transcriptome");
-        List<Gene> transcriptome = transcriptomeManager.getDEGenes(Args.getInstance().getTranscriptome());
+        List<Gene> transcriptome = transcriptomeManager.getDEGenes(Args.getInstance().getDiffExpGenes());
 
         LOGGER.info("Identifying membranome");
         List<Gene> membranome = transcriptomeManager.getMembranomeFromGenes(Args.getInstance().getAllGenes());

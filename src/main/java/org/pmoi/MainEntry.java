@@ -19,8 +19,8 @@ public class MainEntry {
         try {
             JCommander jc = JCommander.newBuilder()
                     .addObject(params)
+                    .args(args)
                     .build();
-            jc.parse(args);
             if (params.isHelp()) {
                 jc.usage();
                 System.exit(0);
@@ -31,7 +31,7 @@ public class MainEntry {
         }
         OperationDispatcher operationDispatcher = new OperationDispatcher();
         try {
-            Files.createDirectory(Path.of("output"));
+            Files.createDirectory(Path.of(OUT_DIR));
         } catch (IOException ignored) {
         }
         var formatter = switch (params.getFormat()) {

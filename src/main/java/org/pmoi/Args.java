@@ -18,7 +18,7 @@ public class Args {
 
     @Parameter(names = {"-g", "--genes"}, description = "File containing differentially expressed genes", required = true,
             validateWith = GeneValidator.class, order = 1)
-    private String transcriptome;
+    private String diffExpGenes;
 
     @Parameter(names = {"-a", "--allgenes"}, description = "File containing all expressed genes", required = true,
             validateWith = GeneValidator.class, order = 2)
@@ -53,7 +53,7 @@ public class Args {
 
     @Parameter(names = {"-t", "--threads"}, description = "Number of threads to use",
             validateWith = ThreadsValidator.class, order = 10)
-    private int threads = 4;
+    private int threads = Math.min(Runtime.getRuntime().availableProcessors(), 4);
 
     @Parameter(names = {"--no-cached-sets"}, description = "Pull an up to date list of pathways", order = 11)
     private boolean useOnlineDB = false;
@@ -71,8 +71,8 @@ public class Args {
         return secretome;
     }
 
-    public String getTranscriptome() {
-        return transcriptome;
+    public String getDiffExpGenes() {
+        return diffExpGenes;
     }
 
     public OutputMode getFormat() {

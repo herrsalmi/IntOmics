@@ -8,22 +8,25 @@ class MainEntryTest {
 
     @Test
     void mainDemo() {
-        var args = new String[]{"-p", "demo/secreted.csv",
-                "-g", "demo/de_genes.csv",
-                "-a", "demo/all_genes.csv",
+        var args = new String[]{
+                "-p", "sample/secreted.csv",
+                "-g", "sample/de_genes.csv",
+                "-a", "sample/all_genes.csv",
                 "-db", "KEGG",
                 "-f", "FWF",
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-gpv", "0.05",
                 "-s", "900",
-                "-t", "8"};
+                "-t", "1"
+        };
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 
     @Test
     void mainKEGG() {
-        var args = new String[]{"-p", "test/secretome_withNames_test.csv",
+        var args = new String[]{
+                "-p", "test/secretome_withNames_test.csv",
                 "-g", "test/Gene_DE_9h.csv",
                 "-a", "test/all_genes.csv",
                 "-db", "KEGG",
@@ -31,13 +34,15 @@ class MainEntryTest {
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-s", "900",
-                "-t", "8"};
+                "-t", "8"
+        };
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 
     @Test
     void mainWP() {
-        var args = new String[]{"-p", "test/secretome_withNames_test.csv",
+        var args = new String[]{
+                "-p", "test/secretome_withNames_test.csv",
                 "-g", "test/Gene_DE_9h.csv",
                 "-a", "test/all_genes.csv",
                 "-db", "WIKIPATHWAYS",
@@ -45,13 +50,15 @@ class MainEntryTest {
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-s", "900",
-                "-t", "8"};
+                "-t", "8"
+        };
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 
     @Test
     void mainREACTOME() {
-        var args = new String[]{"-p", "test/secretome_withNames_test.csv",
+        var args = new String[]{
+                "-p", "test/secretome_withNames_test.csv",
                 "-g", "test/Gene_DE_9h.csv",
                 "-a", "test/all_genes.csv",
                 "-db", "REACTOME",
@@ -59,13 +66,15 @@ class MainEntryTest {
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-s", "900",
-                "-t", "8"};
+                "-t", "8"
+        };
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 
     @Test
     void mainStringDB() {
-        var args = new String[]{"-p", "test/secretome_withNames_test.csv",
+        var args = new String[]{
+                "-p", "test/secretome_withNames_test.csv",
                 "-g", "test/Gene_DE_9h.csv",
                 "-a", "test/all_genes.csv",
                 "-db", "KEGG",
@@ -74,13 +83,15 @@ class MainEntryTest {
                 "-pv", "0.05",
                 "-s", "900",
                 "-t", "8",
-                "--no-cached-ppi"};
+                "--no-cached-ppi"
+        };
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 
     @Test
     void mainNoCachedWP() {
-        var args = new String[]{"-p", "test/secretome_withNames_test.csv",
+        var args = new String[]{
+                "-p", "test/secretome_withNames_test.csv",
                 "-g", "test/Gene_DE_9h.csv",
                 "-a", "test/all_genes.csv",
                 "-db", "WIKIPATHWAYS",
@@ -90,13 +101,15 @@ class MainEntryTest {
                 "-s", "900",
                 "-t", "8",
                 "--no-cached-sets",
-                "--ignore-check"};
+                "--ignore-check"
+        };
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 
     @Test
     void mainNoCachedKEGG() {
-        var args = new String[]{"-p", "test/secretome_withNames_test.csv",
+        var args = new String[]{
+                "-p", "test/secretome_withNames_test.csv",
                 "-g", "test/Gene_DE_9h.csv",
                 "-a", "test/all_genes.csv",
                 "-db", "KEGG",
@@ -106,7 +119,8 @@ class MainEntryTest {
                 "-s", "900",
                 "-t", "8",
                 "--no-cached-sets",
-                "--ignore-check"};
+                "--ignore-check"
+        };
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
 }
