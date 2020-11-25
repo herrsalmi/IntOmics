@@ -6,6 +6,8 @@ import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.pmoi.Args;
+import org.pmoi.database.Species;
+import org.pmoi.database.SpeciesManager;
 import org.pmoi.model.Feature;
 import org.pmoi.model.Gene;
 import org.pmoi.model.Pathway;
@@ -20,6 +22,8 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
@@ -97,7 +101,9 @@ public class WikiPathwaysMapper implements PathwayMapper{
     public void initWikiPathways() {
         LOGGER.info("Fetching WikiPathways entries ...");
         try {
-            String url = "http://webservice.wikipathways.org/listPathways?organism=Homo%20sapiens";
+            Species species = SpeciesManager.get();
+            String url = URLEncoder.encode("http://webservice.wikipathways.org/listPathways?organism=" + species.getName(),
+                    StandardCharsets.UTF_8);
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             saxParser.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");

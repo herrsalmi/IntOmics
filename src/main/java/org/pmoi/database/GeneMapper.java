@@ -2,9 +2,15 @@ package org.pmoi.database;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.pmoi.Args;
+import org.pmoi.util.GZIPFile;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -22,7 +28,7 @@ public class GeneMapper {
 
     private static GeneMapper instance;
 
-    private List<Gene> internalDB;
+    private List<GeneInfo> internalDB;
 
     private GeneMapper() {
         LOGGER.debug("initializing gene mapper DB");
@@ -38,13 +44,34 @@ public class GeneMapper {
     }
 
     private void init() {
-        try (var stream = Files.lines(Path.of(getClass().getClassLoader().getResource("Homo_sapiens.gene_info").toURI()))) {
-            // the Gene class used here is the private inner class
-            internalDB = stream.skip(1).map(Gene::new).collect(Collectors.toList());
-        } catch (URISyntaxException | IOException e) {
-            LOGGER.error("Failed to initialize gene_info_db");
-            System.exit(1);
+        if (Args.getInstance().getSpecies().equals(SupportedSpecies.HUMAN)) {
+            try (var stream = Files.lines(Path.of(getClass().getClassLoader().getResource("Homo_sapiens.gene_info").toURI()))) {
+                // the Gene class used here is the private inner class
+                internalDB = stream.dropWhile(l -> l.startsWith("#")).map(GeneInfo::new).collect(Collectors.toList());
+            } catch (URISyntaxException | IOException e) {
+                LOGGER.error("Failed to initialize gene_info_db");
+                System.exit(1);
+            }
+        } else {
+            Species species = SpeciesManager.get();
+            try {
+                LOGGER.info("Downloading gene info file for {}", species.getName());
+                ReadableByteChannel readableByteChannel = Channels.newChannel(species.getUrl().openStream());
+                Path tmpFile = Files.createTempFile(null, null);
+                tmpFile.toFile().deleteOnExit();
+                FileOutputStream fileOutputStream  = new FileOutputStream(tmpFile.toFile());
+                FileChannel fileChannel = fileOutputStream.getChannel();
+                fileOutputStream.getChannel().transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
+
+                try (var stream = GZIPFile.lines(tmpFile)){
+                    internalDB = stream.dropWhile(l -> l.startsWith("#")).map(GeneInfo::new).collect(Collectors.toList());
+                }
+            } catch (IOException e) {
+                LOGGER.error("Unable to get gene info file from server");
+                System.exit(1);
+            }
         }
+
     }
 
     /**
@@ -115,13 +142,13 @@ public class GeneMapper {
         return internalDB.parallelStream().filter(e -> e.id.equals(id)).findAny().map(e -> e.description);
     }
 
-    private static class Gene {
+    private static class GeneInfo {
         private final String id;
         private final String symbol;
         private final String description;
         private final List<String> synonyms;
 
-        public Gene(String line) {
+        public GeneInfo(String line) {
             int pos = line.indexOf('\t') + 1;
             int end = line.indexOf('\t', pos);
             this.id = line.substring(pos, end);

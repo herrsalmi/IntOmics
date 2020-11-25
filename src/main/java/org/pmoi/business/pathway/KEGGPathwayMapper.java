@@ -3,6 +3,7 @@ package org.pmoi.business.pathway;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.Args;
+import org.pmoi.database.SpeciesManager;
 import org.pmoi.model.Gene;
 import org.pmoi.model.Pathway;
 import org.pmoi.util.HttpConnector;
@@ -69,7 +70,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
         FileInputStream file;
         // check if there is an updated version in sets folder
         if (Files.exists(Path.of(DB_PATH + DB_KEGG_OBJ), LinkOption.NOFOLLOW_LINKS)) {
-            LOGGER.debug("Newer version of {} found if sets folder", DB_KEGG_OBJ);
+            LOGGER.debug("Newer version of {} found in sets folder", DB_KEGG_OBJ);
             file = new FileInputStream(new File(DB_PATH + DB_KEGG_OBJ));
         } else {
             // if the file is in resource folder this shouldn't fail. If it does fail the caller method will take care of it
@@ -143,9 +144,10 @@ public class KEGGPathwayMapper implements PathwayMapper{
      */
     private Map<String, String> listKEGG() {
         try {
+            String keggOrgId = SpeciesManager.get().getKeggOrgId();
             HttpConnector httpConnector = new HttpConnector();
-            String result = httpConnector.getContent(new URL("http://rest.kegg.jp/list/pathway/hsa"));
-            Pattern pattern = Pattern.compile("path:(hsa\\d+)\\t(.+) -");
+            String result = httpConnector.getContent(new URL("http://rest.kegg.jp/list/pathway/" + keggOrgId));
+            Pattern pattern = Pattern.compile(String.format("path:(%s\\d+)\\t(.+) -", keggOrgId));
             Matcher matcher = pattern.matcher(result);
             Map<String, String> resultMap = new HashMap<>();
             while (matcher.find()) {

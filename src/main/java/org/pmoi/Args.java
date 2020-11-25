@@ -1,6 +1,7 @@
 package org.pmoi;
 
 import com.beust.jcommander.Parameter;
+import org.pmoi.database.SupportedSpecies;
 import org.pmoi.model.OutputMode;
 import org.pmoi.model.PathwayMode;
 import org.pmoi.validator.*;
@@ -55,16 +56,19 @@ public class Args {
             validateWith = ThreadsValidator.class, order = 10)
     private int threads = Math.min(Runtime.getRuntime().availableProcessors(), 4);
 
-    @Parameter(names = {"--no-cached-sets"}, description = "Pull an up to date list of pathways", order = 11)
+    @Parameter(names = {"--species"}, description = "Species for your data", order = 11)
+    private SupportedSpecies species = SupportedSpecies.HUMAN;
+
+    @Parameter(names = {"--no-cached-sets"}, description = "Pull an up to date list of pathways", order = 12)
     private boolean useOnlineDB = false;
 
-    @Parameter(names = {"--ignore-check"}, description = "Ignore checks when pulling updated pathways", order = 12)
+    @Parameter(names = {"--ignore-check"}, description = "Ignore checks when pulling updated pathways", order = 13)
     private boolean ignoreCheck = false;
 
-    @Parameter(names = {"--no-cached-ppi"}, description = "Force use StringDB's online service", order = 13)
+    @Parameter(names = {"--no-cached-ppi"}, description = "Force use StringDB's online service", order = 14)
     private boolean useOnlinePPI = false;
 
-    @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true, order = 14)
+    @Parameter(names = {"-h", "--help"}, description = "Print help screen", help = true, order = 15)
     private boolean help;
 
     public String getSecretome() {
@@ -125,6 +129,10 @@ public class Args {
 
     public boolean useOnlinePPI() {
         return useOnlinePPI;
+    }
+
+    public SupportedSpecies getSpecies() {
+        return species;
     }
 
     public static synchronized Args getInstance() {

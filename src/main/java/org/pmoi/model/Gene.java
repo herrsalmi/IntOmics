@@ -63,7 +63,7 @@ public class Gene extends Feature implements Comparable<Gene> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Gene gene = (Gene) o;
-        return name.equals(gene.name);
+        return name.equalsIgnoreCase(gene.name);
     }
 
     @Override

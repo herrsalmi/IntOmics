@@ -5,7 +5,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.pmoi.Args;
 import org.pmoi.database.GeneMapper;
+import org.pmoi.database.Species;
+import org.pmoi.database.SpeciesManager;
 import org.pmoi.model.Gene;
 import org.pmoi.model.Pathway;
 import org.pmoi.util.HttpConnector;
@@ -71,10 +74,11 @@ public class ReactomePathwayMapper implements PathwayMapper{
     private void listAll() throws IOException, InterruptedException {
         int pages = (int) Math.ceil(pathwayCount() / 25.);
         List<String> pathwaysID = Collections.synchronizedList(new ArrayList<>());
-
+        Species species = SpeciesManager.get();
         Function<Integer, Stream<JsonElement>> mapper = i -> {
             try {
-                URL url = new URL(String.format("https://reactome.org/ContentService/data/schema/Pathway?species=9606&page=%d&offset=25", i));
+                URL url = new URL(String.format("https://reactome.org/ContentService/data/schema/Pathway?species=%d&page=%d&offset=25",
+                        species.getTaxonomyId(), i));
                 String content = connector.getContent(url);
                 var objectArray = JsonParser.parseString(content).getAsJsonArray();
                 return StreamSupport.stream(
@@ -96,11 +100,11 @@ public class ReactomePathwayMapper implements PathwayMapper{
         //////
         AtomicInteger counter = new AtomicInteger(1);
         Set<String> genes = Collections.synchronizedSet(new HashSet<>());
-        ExecutorService executor = Executors.newFixedThreadPool(8);
+        ExecutorService executor = Executors.newFixedThreadPool(Args.getInstance().getThreads());
         LOGGER.debug("Getting genes from Reactome pathways ...");
         pathwaysID.forEach(e -> executor.submit(() -> {
             genes.addAll(getInteractors(e));
-            System.out.printf("\rGetting pathway %d out of 2423", counter.getAndIncrement());
+            System.out.printf("\rGetting pathway %d out of %d", counter.getAndIncrement(), pathwaysID.size());
         }));
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.DAYS);
@@ -114,7 +118,8 @@ public class ReactomePathwayMapper implements PathwayMapper{
 
     private int pathwayCount() {
         try {
-            URL url = new URL("https://reactome.org/ContentService/data/schema/Pathway/count?species=9606");
+            Species species = SpeciesManager.get();
+            URL url = new URL("https://reactome.org/ContentService/data/schema/Pathway/count?species=" + species.getTaxonomyId());
             String result = connector.getContent(url);
             return Integer.parseInt(result);
         } catch (IOException e) {
@@ -131,10 +136,11 @@ public class ReactomePathwayMapper implements PathwayMapper{
      */
     public List<String> search(String query) {
         try {
+            Species species = SpeciesManager.get();
             // look for an entry of type pathway. if no results are found, look for the protein then
             // find any pathway containing that protein
-            URL url = new URL("https://reactome.org/ContentService/search/query?query=" + query +
-                    "&species=Homo%20sapiens&types=Pathway&cluster=true");
+            URL url = new URL(String.format("https://reactome.org/ContentService/search/query?query=%s" +
+                    "&species=%s&types=Pathway&cluster=true", query, species.getName().replace(" ", "%20")));
             String result = connector.getContent(url);
             JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
             var entries = jsonObject.getAsJsonArray("results").get(0).getAsJsonObject().get("entries").getAsJsonArray();
@@ -157,8 +163,9 @@ public class ReactomePathwayMapper implements PathwayMapper{
         try {
             // look for an entry of type pathway. if no results are found, look for the protein then
             // find any pathway containing that protein
-            URL url = new URL("https://reactome.org/ContentService/search/query?query=" + query +
-                    "&species=Homo%20sapiens&types=Protein&cluster=true");
+            Species species = SpeciesManager.get();
+            URL url = new URL(String.format("https://reactome.org/ContentService/search/query?query=%s" +
+                    "&species=%s&types=Protein&cluster=true", query, species.getName().replace(" ", "%20")));
             String result = connector.getContent(url);
             JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
             var entries = jsonObject.getAsJsonArray("results").get(0).getAsJsonObject().get("entries").getAsJsonArray();
@@ -166,7 +173,8 @@ public class ReactomePathwayMapper implements PathwayMapper{
             Optional<String> id = Optional.ofNullable(entries.get(0).getAsJsonObject().get("id").getAsString());
             if (id.isEmpty())
                 return Collections.emptyList();
-            url = new URL("https://reactome.org/ContentService/data/pathways/low/entity/" + id.get() + "?species=9606");
+            url = new URL("https://reactome.org/ContentService/data/pathways/low/entity/" + id.get() +
+                    "?species=" + species.getTaxonomyId());
             result = connector.getContent(url);
             var objectArray = JsonParser.parseString(result).getAsJsonArray();
             var stream = StreamSupport.stream(
@@ -232,8 +240,8 @@ public class ReactomePathwayMapper implements PathwayMapper{
                     return name;
                 } else {
                     for (var n : e.get("name").getAsJsonArray()){
-                        if (n.getAsString().contains("_HUMAN"))
-                            return n.getAsString().substring(0, n.getAsString().indexOf("_HUMAN"));
+                        if (n.getAsString().contains("_"))
+                            return n.getAsString().substring(0, n.getAsString().indexOf("_"));
                         var gene = geneMapper.getSymbolFromAlias(n.getAsString(), name);
                         if (gene.isPresent()) {
                             return gene.get();

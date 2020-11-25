@@ -3,7 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!--badges: end -->
 ## Multi omics data integration tool
-IntOmics is a tool for integrating proteomics and transcriptomics human data in order to uncover cell crosstalk mechanisms.
+IntOmics is a tool for integrating secretomics and transcriptomics human data in order to uncover paracrine cell crosstalk mechanisms.
 
 ## Usage
 ```shell script
@@ -50,6 +50,7 @@ There are two main output files:
     * **Gene description**: full name of the gene.
     * **I score**: interaction score between the protein and the receptor.
     * **Pathways**: list of pathways with enrichment scores and p-values.
+
 * An HTML file representing the network of interactions between secreted proteins and cell receptors.
     
 ## Gene set enrichment analysis

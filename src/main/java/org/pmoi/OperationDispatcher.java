@@ -11,7 +11,11 @@ import org.pmoi.business.ppi.CachedInteractionQueryClient;
 import org.pmoi.business.ppi.InteractionQueryClient;
 import org.pmoi.business.ppi.StringdbQueryClient;
 import org.pmoi.database.GeneMapper;
-import org.pmoi.model.*;
+import org.pmoi.database.SupportedSpecies;
+import org.pmoi.model.Gene;
+import org.pmoi.model.GeneSet;
+import org.pmoi.model.Protein;
+import org.pmoi.model.ResultRecord;
 import org.pmoi.model.vis.VisEdge;
 import org.pmoi.model.vis.VisGraph;
 import org.pmoi.model.vis.VisNode;
@@ -47,7 +51,9 @@ public class OperationDispatcher {
 
         LOGGER.info("Initializing ...");
 
-        ppiQueryClient = Args.getInstance().getStringDBScore() > 700 && !Args.getInstance().useOnlinePPI() ?
+        ppiQueryClient = Args.getInstance().getStringDBScore() > 700
+                && Args.getInstance().getSpecies().equals(SupportedSpecies.HUMAN)
+                && !Args.getInstance().useOnlinePPI() ?
                 CachedInteractionQueryClient.getInstance() : new StringdbQueryClient();
 
         TranscriptomeManager transcriptomeManager = TranscriptomeManager.getInstance();
@@ -92,16 +98,20 @@ public class OperationDispatcher {
             LOGGER.info("Filtering transcriptome");
             filteredTranscriptome = transcriptome.parallelStream().filter(e -> pathwayMapper.isInAnyPathway(e.getName())).collect(Collectors.toList());
             LOGGER.info("Getting PPI network ...");
+            var membraneGenes = membranome.stream().map(f -> f.getName().toUpperCase()).collect(Collectors.toSet());
             secretome.forEach(e -> executorService.submit(() -> {
                 // Adding StringDB interactors
                 // the map contains <interactor, score>
                 Map<String, String> interactors = ppiQueryClient.getProteinNetwork(e.getName());
                 // Add gene from the pathway to the map
-                List<String> interactorsNames = new ArrayList<>(interactors.keySet());
-                interactorsNames.retainAll(membranome.stream().map(Feature::getName).collect(Collectors.toList()));
+                //List<String> interactorsNames = new ArrayList<>(interactors.keySet());
+                //interactorsNames.retainAll(membranome.stream().map(Feature::getName).collect(Collectors.toList()));
+                var interactorsNames = interactors.keySet().parallelStream()
+                        .filter(i -> membraneGenes.contains(i.toUpperCase()))
+                        .collect(Collectors.toList());
                 if (!interactorsNames.isEmpty()) {
                     interactorsNames.forEach(interactor -> {
-                        Gene gene = membranome.stream().filter(g -> g.getName().equals(interactor))
+                        Gene gene = membranome.stream().filter(g -> g.getName().equalsIgnoreCase(interactor))
                                 .findFirst().orElse(null);
                         // make a deep copy of the gene otherwise you will get unexpected results with pathways
                         assert gene != null;
