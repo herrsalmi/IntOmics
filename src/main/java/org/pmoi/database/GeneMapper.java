@@ -115,7 +115,7 @@ public class GeneMapper {
         if (result.isPresent())
             return result.map(gene -> gene.symbol);
         return internalDB.parallelStream()
-                .filter(e -> e.synonyms.contains(alias.toUpperCase()) && displayName.contains(e.symbol))
+                .filter(e -> e.synonyms.stream().anyMatch(alias::equalsIgnoreCase) && displayName.contains(e.symbol))
                 .findAny().map(e -> e.symbol);
     }
 
