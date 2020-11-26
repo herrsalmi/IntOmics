@@ -2,6 +2,7 @@ package org.pmoi.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.pmoi.database.SpeciesHelper;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +11,6 @@ import java.io.ObjectInputStream;
 import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class GeneOntologyMapper {
 
@@ -19,7 +19,6 @@ public class GeneOntologyMapper {
 
     public GeneOntologyMapper() {
         LOGGER.debug("Loading GO database");
-        this.internalDB = new ConcurrentHashMap<>(100000);
         try {
             load();
         } catch (IOException e) {
@@ -34,7 +33,7 @@ public class GeneOntologyMapper {
      */
     private void load() throws IOException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(
-                getClass().getClassLoader().getResource("GODB.obj").toURI())))){
+                getClass().getClassLoader().getResource("GODB_" + SpeciesHelper.get().getTaxonomyId() + ".obj").toURI())))){
             this.internalDB = (Map<String, Set<String>>) ois.readObject();
         } catch (ClassNotFoundException | URISyntaxException e) {
             LOGGER.error(e);
