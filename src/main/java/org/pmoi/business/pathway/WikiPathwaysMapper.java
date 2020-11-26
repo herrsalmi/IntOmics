@@ -49,14 +49,14 @@ public class WikiPathwaysMapper implements PathwayMapper{
                 init();
             }
         } catch (IOException | URISyntaxException e) {
-            LOGGER.error(e);
+            LOGGER.debug("Unable to load file {}. Initializing from online service ...", DB_WP_OBJ);
             initWikiPathways();
         }
     }
 
     @Override
     public List<Pathway> getPathways(String gene) {
-        return pathwayDB.entrySet().parallelStream().filter(e -> e.getValue().contains(gene))
+        return pathwayDB.entrySet().parallelStream().filter(e -> e.getValue().stream().anyMatch(gene::equalsIgnoreCase))
                 .map(e -> new Pathway(e.getKey(), e.getValue().stream().map(g -> new Gene(g, ""))
                         .collect(Collectors.toList())))
                 .collect(Collectors.toList());
@@ -64,7 +64,7 @@ public class WikiPathwaysMapper implements PathwayMapper{
 
     @Override
     public boolean isInAnyPathway(String gene) {
-        return pathwayDB.values().parallelStream().anyMatch(e -> e.contains(gene));
+        return pathwayDB.values().parallelStream().anyMatch(e -> e.stream().anyMatch(gene::equalsIgnoreCase));
     }
 
     private void init() throws IOException, URISyntaxException {
@@ -76,8 +76,10 @@ public class WikiPathwaysMapper implements PathwayMapper{
             file = new FileInputStream(new File(DB_PATH + DB_WP_OBJ));
         } else {
             // if the file is in resource folder this shouldn't fail. If it does fail the caller method will take care of it
-            file = new FileInputStream(new File(getClass().getClassLoader()
-                    .getResource(DB_WP_OBJ).toURI()));
+            var url = getClass().getClassLoader().getResource(DB_WP_OBJ);
+            if (url == null)
+                throw new IOException("File not found");
+            file = new FileInputStream(new File(url.toURI()));
         }
         try (ObjectInputStream ois = new ObjectInputStream(file)) {
             pathwayDB = (Map<String, Set<String>>) ois.readObject();
@@ -117,7 +119,11 @@ public class WikiPathwaysMapper implements PathwayMapper{
                 LOGGER.warn("No new pathways found. Using cached database" );
                 return;
             }
-            pathwayDB.clear();
+            if (pathwayDB != null) {
+                pathwayDB.clear();
+            } else {
+                pathwayDB = new HashMap<>(400);
+            }
             this.initialSize = result.size();
             var pathways = result.parallelStream()
                     .map(e -> {

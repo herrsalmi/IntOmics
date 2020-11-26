@@ -12,7 +12,7 @@ class MainEntryTest {
                 "-p", "sample/secreted.csv",
                 "-g", "sample/de_genes.csv",
                 "-a", "sample/all_genes.csv",
-                "-db", "KEGG",
+                "-db", "WIKIPATHWAYS",
                 "-f", "FWF",
                 "-fc", "1.5",
                 "-pv", "0.05",
