@@ -3,7 +3,7 @@ package org.pmoi.business.pathway;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.Args;
-import org.pmoi.database.SpeciesManager;
+import org.pmoi.database.SpeciesHelper;
 import org.pmoi.model.Gene;
 import org.pmoi.model.Pathway;
 import org.pmoi.util.HttpConnector;
@@ -28,12 +28,12 @@ public class KEGGPathwayMapper implements PathwayMapper{
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Map<String, Set<String>> pathwayDB;
-    private static final String DB_KEGG_OBJ = "pathwayDB_KEGG.obj";
+    private static final String DB_KEGG_OBJ = "pathwayDB_KEGG." + Args.getInstance().getSpecies() + ".obj";
     public static final String DB_PATH = "sets/";
     private int initialSize = 0;
 
     KEGGPathwayMapper() {
-        LOGGER.debug("Loadling KEGGG pathways DB");
+        LOGGER.debug("Loading KEGGG pathways DB");
         try {
             if (Args.getInstance().useOnlineDB() && Args.getInstance().ignoreCheck()) {
                 pathwayDB = new HashMap<>(400);
@@ -42,14 +42,14 @@ public class KEGGPathwayMapper implements PathwayMapper{
                 init();
             }
         } catch (IOException | URISyntaxException e) {
-            LOGGER.error(e);
+            LOGGER.debug("Unable to load file {}. Initializing from online service ...", DB_KEGG_OBJ);
             initKEGGPathways();
         }
     }
 
     @Override
     public List<Pathway> getPathways(String gene) {
-        return pathwayDB.entrySet().parallelStream().filter(e -> e.getValue().contains(gene))
+        return pathwayDB.entrySet().parallelStream().filter(e -> e.getValue().stream().anyMatch(gene::equalsIgnoreCase))
                 .map(e -> new Pathway(e.getKey(), e.getValue().stream().map(g -> new Gene(g, ""))
                         .collect(Collectors.toList())))
                 .collect(Collectors.toList());
@@ -62,7 +62,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
      */
     @Override
     public boolean isInAnyPathway(String gene) {
-        return pathwayDB.values().parallelStream().anyMatch(e -> e.contains(gene));
+        return pathwayDB.values().parallelStream().anyMatch(e -> e.stream().anyMatch(gene::equalsIgnoreCase));
     }
 
     private void init() throws IOException, URISyntaxException {
@@ -74,8 +74,10 @@ public class KEGGPathwayMapper implements PathwayMapper{
             file = new FileInputStream(new File(DB_PATH + DB_KEGG_OBJ));
         } else {
             // if the file is in resource folder this shouldn't fail. If it does fail the caller method will take care of it
-            file = new FileInputStream(new File(getClass().getClassLoader()
-                    .getResource(DB_KEGG_OBJ).toURI()));
+            var url = getClass().getClassLoader().getResource(DB_KEGG_OBJ);
+            if (url == null)
+                throw new IOException("File not found");
+            file = new FileInputStream(new File(url.toURI()));
         }
 
         try (ObjectInputStream ois = new ObjectInputStream(file)) {
@@ -103,7 +105,11 @@ public class KEGGPathwayMapper implements PathwayMapper{
             LOGGER.warn("No new pathways found. Using cached database" );
             return;
         }
-        pathwayDB.clear();
+        if (pathwayDB != null) {
+            pathwayDB.clear();
+        } else {
+            pathwayDB = new HashMap<>(400);
+        }
         this.initialSize = pathways.size();
         ExecutorService executor = Executors.newFixedThreadPool(4);
         pathways.forEach((k, v) -> executor.submit(() -> {
@@ -123,15 +129,20 @@ public class KEGGPathwayMapper implements PathwayMapper{
         }
         LOGGER.debug("Internal DB initialized with {} pathways", pathwayDB.size());
         LOGGER.debug("Writing updated version to sets folder");
-        try {
-            Files.createDirectory(Path.of(DB_PATH));
-        } catch (IOException e) {
-            LOGGER.error("Can't create directory '{}'!", DB_PATH);
-            return;
+        if (Files.isDirectory(Path.of(DB_PATH))) {
+            LOGGER.warn("Directory '{}' already exists! Writing file ...", DB_PATH);
+        } else {
+            try {
+                Files.createDirectory(Path.of(DB_PATH));
+            } catch (IOException e) {
+                LOGGER.error("Can't create directory '{}'!", DB_PATH);
+                return;
+            }
         }
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(DB_PATH + DB_KEGG_OBJ)))) {
             oos.writeObject(pathwayDB);
             oos.writeInt(initialSize);
+            oos.writeObject(Args.getInstance().getSpecies());
         } catch (IOException e) {
             LOGGER.error(e);
         }
@@ -144,7 +155,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
      */
     private Map<String, String> listKEGG() {
         try {
-            String keggOrgId = SpeciesManager.get().getKeggOrgId();
+            String keggOrgId = SpeciesHelper.get().getKeggOrgId();
             HttpConnector httpConnector = new HttpConnector();
             String result = httpConnector.getContent(new URL("http://rest.kegg.jp/list/pathway/" + keggOrgId));
             Pattern pattern = Pattern.compile(String.format("path:(%s\\d+)\\t(.+) -", keggOrgId));

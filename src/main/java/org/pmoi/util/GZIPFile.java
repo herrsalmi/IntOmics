@@ -7,6 +7,10 @@ import java.util.stream.Stream;
 import java.util.zip.GZIPInputStream;
 
 public class GZIPFile {
+
+    private GZIPFile(){
+    }
+
     /**
      * Get a lazily loaded stream of lines from a gzipped file, similar to
      * {@link Files#lines(java.nio.file.Path)}.

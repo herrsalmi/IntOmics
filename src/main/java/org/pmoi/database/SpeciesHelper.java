@@ -1,14 +1,14 @@
 package org.pmoi.database;
 
-public class SpeciesManager {
+public class SpeciesHelper {
 
     private static Species species;
 
-    private SpeciesManager(){
+    private SpeciesHelper(){
     }
 
-    public static void makeSpecies(SupportedSpecies type) {
-        species = switch (type) {
+    public static void makeSpecies(SupportedSpecies name) {
+        species = switch (name) {
             case HUMAN -> new Species.SpeciesBuilder("Homo sapiens")
                     .withTaxonomyId(9606)
                     .withKEGGOrgId("hsa")

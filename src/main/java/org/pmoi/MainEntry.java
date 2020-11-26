@@ -2,7 +2,7 @@ package org.pmoi;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
-import org.pmoi.database.SpeciesManager;
+import org.pmoi.database.SpeciesHelper;
 import org.pmoi.util.io.TSVFormatter;
 import org.pmoi.util.io.TextFormatter;
 
@@ -39,7 +39,7 @@ public class MainEntry {
             case TSV -> new TSVFormatter();
             case FWF -> new TextFormatter();
         };
-        SpeciesManager.makeSpecies(params.getSpecies());
+        SpeciesHelper.makeSpecies(params.getSpecies());
         try {
             operationDispatcher.setup(OUT_DIR + "S2M", formatter).run();
         } catch (InterruptedException e) {

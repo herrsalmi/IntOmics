@@ -7,7 +7,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.pmoi.Args;
 import org.pmoi.database.Species;
-import org.pmoi.database.SpeciesManager;
+import org.pmoi.database.SpeciesHelper;
 import org.pmoi.model.Feature;
 import org.pmoi.model.Gene;
 import org.pmoi.model.Pathway;
@@ -22,8 +22,6 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
@@ -37,7 +35,7 @@ public class WikiPathwaysMapper implements PathwayMapper{
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Map<String, Set<String>> pathwayDB;
-    private static final String DB_WP_OBJ = "pathwayDB_WP.obj";
+    private static final String DB_WP_OBJ = "pathwayDB_WP." + Args.getInstance().getSpecies() + ".obj";
     private static final String DB_PATH = "sets/";
     private int initialSize = 0;
 
@@ -74,7 +72,7 @@ public class WikiPathwaysMapper implements PathwayMapper{
         FileInputStream file;
         // check if there is an updated version in sets folder
         if (Files.exists(Path.of(DB_PATH + DB_WP_OBJ), LinkOption.NOFOLLOW_LINKS)) {
-            LOGGER.debug("Newer version of {} found if sets folder", DB_WP_OBJ);
+            LOGGER.debug("Newer version of {} found in sets folder", DB_WP_OBJ);
             file = new FileInputStream(new File(DB_PATH + DB_WP_OBJ));
         } else {
             // if the file is in resource folder this shouldn't fail. If it does fail the caller method will take care of it
@@ -101,9 +99,8 @@ public class WikiPathwaysMapper implements PathwayMapper{
     public void initWikiPathways() {
         LOGGER.info("Fetching WikiPathways entries ...");
         try {
-            Species species = SpeciesManager.get();
-            String url = URLEncoder.encode("http://webservice.wikipathways.org/listPathways?organism=" + species.getName(),
-                    StandardCharsets.UTF_8);
+            Species species = SpeciesHelper.get();
+            String url = "http://webservice.wikipathways.org/listPathways?organism=" + species.getName().replace(" ", "%20");
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             saxParser.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
@@ -158,15 +155,20 @@ public class WikiPathwaysMapper implements PathwayMapper{
         }
         LOGGER.debug("Internal DB initialized with {} pathways", pathwayDB.size());
         LOGGER.debug("Writing updated version to sets folder");
-        try {
-            Files.createDirectory(Path.of(DB_PATH));
-        } catch (IOException e) {
-            LOGGER.error("Can't create directory '{}'!", DB_PATH);
-            return;
+        if (Files.isDirectory(Path.of(DB_PATH))) {
+            LOGGER.warn("Directory '{}' already exists! Writing file ...", DB_PATH);
+        } else {
+            try {
+                Files.createDirectory(Path.of(DB_PATH));
+            } catch (IOException e) {
+                LOGGER.error("Can't create directory '{}'!", DB_PATH);
+                return;
+            }
         }
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(DB_PATH + DB_WP_OBJ)))) {
             oos.writeObject(pathwayDB);
             oos.writeInt(initialSize);
+            oos.writeObject(Args.getInstance().getSpecies());
         } catch (IOException e) {
             LOGGER.error(e);
         }

@@ -4,10 +4,10 @@ import com.google.gson.Gson;
 
 public class VisNode {
     private long id;
-    private String label;
-    private String title;
-    private int group;
-    private String color;
+    private final String label;
+    private final String title;
+    private final int group;
+    private final String color;
 
     public String toJson(){
         Gson gson = new Gson();
@@ -30,35 +30,4 @@ public class VisNode {
         this.id = id;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getGroup() {
-        return group;
-    }
-
-    public void setGroup(int group) {
-        this.group = group;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 }

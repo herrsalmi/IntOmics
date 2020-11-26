@@ -8,7 +8,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.pmoi.Args;
-import org.pmoi.database.SpeciesManager;
+import org.pmoi.database.SpeciesHelper;
 import org.pmoi.util.HttpConnector;
 
 import javax.xml.XMLConstants;
@@ -27,13 +27,7 @@ import java.util.Map;
 public class StringdbQueryClient implements InteractionQueryClient{
 
     private static final Logger LOGGER = LogManager.getRootLogger();
-    private static int taxonomyId;
-
-    public StringdbQueryClient() {
-        if (taxonomyId == 0) {
-            taxonomyId = SpeciesManager.get().getTaxonomyId();
-        }
-    }
+    private static final int TAXONOMY_ID = SpeciesHelper.get().getTaxonomyId();
 
     /**
      * Returns a map representing the PPI network. Keys are gene names, values are interaction score
@@ -44,7 +38,7 @@ public class StringdbQueryClient implements InteractionQueryClient{
     public Map<String, String> getProteinNetwork(String symbol) {
         LOGGER.debug("Searching StringDB for gene {}", symbol);
         String url = String.format("https://string-db.org/api/xml/interaction_partners?species=%d&required_score=%s&identifiers=%s",
-                taxonomyId, Args.getInstance().getStringDBScore(), symbol);
+                TAXONOMY_ID, Args.getInstance().getStringDBScore(), symbol);
         Map<String, String> map = new HashMap<>();
         // see if there is an entry in StringDB for the gene
         URLConnection connection;

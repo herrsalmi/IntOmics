@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.pmoi.Args;
 import org.pmoi.database.GeneMapper;
 import org.pmoi.database.Species;
-import org.pmoi.database.SpeciesManager;
+import org.pmoi.database.SpeciesHelper;
 import org.pmoi.model.Gene;
 import org.pmoi.model.Pathway;
 import org.pmoi.util.HttpConnector;
@@ -74,7 +74,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
     private void listAll() throws IOException, InterruptedException {
         int pages = (int) Math.ceil(pathwayCount() / 25.);
         List<String> pathwaysID = Collections.synchronizedList(new ArrayList<>());
-        Species species = SpeciesManager.get();
+        Species species = SpeciesHelper.get();
         Function<Integer, Stream<JsonElement>> mapper = i -> {
             try {
                 URL url = new URL(String.format("https://reactome.org/ContentService/data/schema/Pathway?species=%d&page=%d&offset=25",
@@ -108,7 +108,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
         }));
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.DAYS);
-        System.out.println("");
+        System.out.println();
         /////
         LOGGER.debug("Number of distinct genes: {}", genes.size());
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("reactome_genes.obj"))) {
@@ -118,7 +118,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
 
     private int pathwayCount() {
         try {
-            Species species = SpeciesManager.get();
+            Species species = SpeciesHelper.get();
             URL url = new URL("https://reactome.org/ContentService/data/schema/Pathway/count?species=" + species.getTaxonomyId());
             String result = connector.getContent(url);
             return Integer.parseInt(result);
@@ -136,7 +136,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
      */
     public List<String> search(String query) {
         try {
-            Species species = SpeciesManager.get();
+            Species species = SpeciesHelper.get();
             // look for an entry of type pathway. if no results are found, look for the protein then
             // find any pathway containing that protein
             URL url = new URL(String.format("https://reactome.org/ContentService/search/query?query=%s" +
@@ -163,7 +163,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
         try {
             // look for an entry of type pathway. if no results are found, look for the protein then
             // find any pathway containing that protein
-            Species species = SpeciesManager.get();
+            Species species = SpeciesHelper.get();
             URL url = new URL(String.format("https://reactome.org/ContentService/search/query?query=%s" +
                     "&species=%s&types=Protein&cluster=true", query, species.getName().replace(" ", "%20")));
             String result = connector.getContent(url);

@@ -68,7 +68,7 @@ public class Gene extends Feature implements Comparable<Gene> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name.toUpperCase());
     }
 
     @Override

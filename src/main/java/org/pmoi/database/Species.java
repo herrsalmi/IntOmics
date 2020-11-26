@@ -1,9 +1,14 @@
 package org.pmoi.database;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Species {
+
+    private static final Logger LOGGER = LogManager.getRootLogger();
 
     private final String name;
     private final int taxonomyId;
@@ -35,7 +40,7 @@ public class Species {
 
     public static class SpeciesBuilder {
         private final String name;
-        public String keggOrgId;
+        private String keggOrgId;
         private int taxonomyId;
         private URL url;
 
@@ -57,8 +62,7 @@ public class Species {
             try {
                 this.url = new URL(url);
             } catch (MalformedURLException e) {
-                //TODO handle this
-                e.printStackTrace();
+                LOGGER.error("URL malformed. url={}", url);
             }
             return this;
         }

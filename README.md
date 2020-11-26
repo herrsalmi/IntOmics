@@ -3,7 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!--badges: end -->
 ## Multi omics data integration tool
-IntOmics is a tool for integrating secretomics and transcriptomics human data in order to uncover paracrine cell crosstalk mechanisms.
+IntOmics is a tool for integrating secretomics and transcriptomics data in order to uncover paracrine cell crosstalk mechanisms.
 
 ## Usage
 ```shell script

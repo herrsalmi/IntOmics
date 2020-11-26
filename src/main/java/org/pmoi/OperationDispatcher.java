@@ -104,8 +104,6 @@ public class OperationDispatcher {
                 // the map contains <interactor, score>
                 Map<String, String> interactors = ppiQueryClient.getProteinNetwork(e.getName());
                 // Add gene from the pathway to the map
-                //List<String> interactorsNames = new ArrayList<>(interactors.keySet());
-                //interactorsNames.retainAll(membranome.stream().map(Feature::getName).collect(Collectors.toList()));
                 var interactorsNames = interactors.keySet().parallelStream()
                         .filter(i -> membraneGenes.contains(i.toUpperCase()))
                         .collect(Collectors.toList());

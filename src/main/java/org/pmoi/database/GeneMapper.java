@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,19 +52,18 @@ public class GeneMapper {
                 System.exit(1);
             }
         } else {
-            Species species = SpeciesManager.get();
-            try {
-                LOGGER.info("Downloading gene info file for {}", species.getName());
-                ReadableByteChannel readableByteChannel = Channels.newChannel(species.getUrl().openStream());
+            Species species = SpeciesHelper.get();
+            LOGGER.info("Downloading gene info file for {}", species.getName());
+            try (ReadableByteChannel readableByteChannel = Channels.newChannel(species.getUrl().openStream())){
                 Path tmpFile = Files.createTempFile(null, null);
                 tmpFile.toFile().deleteOnExit();
                 FileOutputStream fileOutputStream  = new FileOutputStream(tmpFile.toFile());
-                FileChannel fileChannel = fileOutputStream.getChannel();
                 fileOutputStream.getChannel().transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
 
                 try (var stream = GZIPFile.lines(tmpFile)){
                     internalDB = stream.dropWhile(l -> l.startsWith("#")).map(GeneInfo::new).collect(Collectors.toList());
                 }
+                fileOutputStream.close();
             } catch (IOException e) {
                 LOGGER.error("Unable to get gene info file from server");
                 System.exit(1);
