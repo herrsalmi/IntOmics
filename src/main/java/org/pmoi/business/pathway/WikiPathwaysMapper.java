@@ -8,6 +8,7 @@ import org.jdom2.input.SAXBuilder;
 import org.pmoi.Args;
 import org.pmoi.database.Species;
 import org.pmoi.database.SpeciesHelper;
+import org.pmoi.database.SupportedSpecies;
 import org.pmoi.model.Feature;
 import org.pmoi.model.Gene;
 import org.pmoi.model.Pathway;
@@ -84,6 +85,10 @@ public class WikiPathwaysMapper implements PathwayMapper{
         try (ObjectInputStream ois = new ObjectInputStream(file)) {
             pathwayDB = (Map<String, Set<String>>) ois.readObject();
             initialSize = ois.readInt();
+            // check if it's the right species
+            SupportedSpecies species = (SupportedSpecies) ois.readObject();
+            if (!Args.getInstance().getSpecies().equals(species))
+                throw new IOException("Wrong species found in file");
             LOGGER.debug("Object loaded into memory. Number of pathways: {}. Initial size = {}", pathwayDB.size(), initialSize);
         } catch (ClassNotFoundException e) {
             LOGGER.error(e);

@@ -12,14 +12,14 @@ class MainEntryTest {
                 "-p", "sample/secreted.csv",
                 "-g", "sample/de_genes.csv",
                 "-a", "sample/all_genes.csv",
-                "-db", "WIKIPATHWAYS",
+                "-db", "KEGG",
                 "-f", "FWF",
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-gpv", "0.05",
                 "-s", "900",
                 "-t", "4",
-                "--species", "mouse"
+                "--species", "human"
         };
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
