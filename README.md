@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![Generic badge](https://img.shields.io/badge/version-1.0-green)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/version-1.0.1-green)](https://shields.io/)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!--badges: end -->
 ## Multi omics data integration tool
