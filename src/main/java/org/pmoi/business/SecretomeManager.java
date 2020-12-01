@@ -31,7 +31,10 @@ public class SecretomeManager {
     private SecretomeManager() {
         mapper = GeneMapper.getInstance();
         GeneOntologyMapper goMapper = new GeneOntologyMapper();
-        secretomeMapper = protein -> goMapper.checkSecretomeGO(protein.getEntrezID());
+        secretomeMapper = switch(Args.getInstance().getSpecies()) {
+            case HUMAN -> protein -> goMapper.checkSecretomeGO(protein.getNcbiID());
+            case MOUSE, RAT, COW -> protein -> goMapper.checkMembranomeGO(protein.getNcbiID());
+        };
     }
 
     public boolean isSecreted(String gene) {
@@ -54,16 +57,24 @@ public class SecretomeManager {
 
             // convert id <=> name in order to have them both
             ExecutorService executor = Executors.newFixedThreadPool(Args.getInstance().getThreads());
-            if (data.get(0).getEntrezID() != null) {
-                data.forEach(e -> executor.submit(() -> e.setName(mapper.getSymbol(e.getEntrezID()).orElse(""))));
+            if (data.get(0).getNcbiID() != null) {
+                data.forEach(e -> executor.submit(() -> e.setName(mapper.getSymbol(e.getNcbiID()).orElse(""))));
             } else {
-                data.forEach(e -> executor.submit(() -> e.setEntrezID(mapper.getId(e.getName()).orElse(""))));
+                data.forEach(e -> executor.submit(() -> e.setNcbiID(mapper.getId(e.getName()).orElse(""))));
             }
             executor.shutdown();
             executor.awaitTermination(1, TimeUnit.DAYS);
 
             return data.stream()
                     .filter(e -> e.getName() != null)
+                    .filter(e -> {
+                        if (e.getNcbiID().isEmpty()) {
+                            LOGGER.warn("Protein {} not recognized!", e.getName());
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    })
                     .filter(secretomeMapper)
                     .collect(Collectors.toList());
         } catch (IOException e) {

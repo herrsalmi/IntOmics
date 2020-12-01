@@ -13,7 +13,7 @@ public class Gene extends Feature implements Comparable<Gene> {
 
     public Gene(Gene gene) {
         this.name = gene.name;
-        this.entrezID = gene.entrezID;
+        this.ncbiID = gene.ncbiID;
         this.pvalue = gene.pvalue;
         this.foldChange = gene.foldChange;
         this.geneSets = new ArrayList<>();
@@ -28,12 +28,12 @@ public class Gene extends Feature implements Comparable<Gene> {
     }
 
     public Gene(int entrezID) {
-        this.entrezID = String.valueOf(entrezID);
+        this.ncbiID = String.valueOf(entrezID);
     }
 
     public Gene(String name, String entrezID) {
         this.name = name;
-        this.entrezID = entrezID;
+        this.ncbiID = entrezID;
     }
 
     public Gene(String name, String entrezID, double fdr, double fc) {
@@ -55,7 +55,7 @@ public class Gene extends Feature implements Comparable<Gene> {
 
     @Override
     public String toString() {
-        return String.format("[%s : %s]", this.getName(), this.getEntrezID());
+        return String.format("[%s : %s]", this.getName(), this.getNcbiID());
     }
 
     @Override

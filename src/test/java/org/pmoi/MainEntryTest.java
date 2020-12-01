@@ -19,8 +19,7 @@ class MainEntryTest {
                 "-gpv", "0.05",
                 "-s", "900",
                 "-t", "4",
-                "--species", "mouse",
-                "--no-cached-ppi"
+                "--species", "human"
         };
         assertDoesNotThrow(() -> MainEntry.main(args));
     }

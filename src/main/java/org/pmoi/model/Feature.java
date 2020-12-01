@@ -2,14 +2,14 @@ package org.pmoi.model;
 
 public abstract class Feature {
     protected String name;
-    protected String entrezID;
+    protected String ncbiID;
     protected double pvalue;
     protected double foldChange;
     protected String description;
 
-    public Feature(String name, String entrezID, double pvalue, double foldChange) {
+    public Feature(String name, String ncbiID, double pvalue, double foldChange) {
         this.name = name;
-        this.entrezID = entrezID;
+        this.ncbiID = ncbiID;
         this.pvalue = pvalue;
         this.foldChange = foldChange;
     }
@@ -25,12 +25,12 @@ public abstract class Feature {
         this.name = name;
     }
 
-    public String getEntrezID() {
-        return entrezID;
+    public String getNcbiID() {
+        return ncbiID;
     }
 
-    public void setEntrezID(String entrezID) {
-        this.entrezID = entrezID;
+    public void setNcbiID(String ncbiID) {
+        this.ncbiID = ncbiID;
     }
 
     public double getPvalue() {

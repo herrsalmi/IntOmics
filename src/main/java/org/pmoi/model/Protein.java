@@ -11,12 +11,12 @@ public class Protein extends Feature{
 
     public Protein(String name, String entrezID) {
         this.name = name;
-        this.entrezID = entrezID;
+        this.ncbiID = entrezID;
     }
 
     public Protein(String value) {
         if (NumberParser.tryParseInt(value))
-            this.entrezID = value;
+            this.ncbiID = value;
         else
             this.name = value;
         this.pathways = new ArrayList<>();
@@ -38,13 +38,13 @@ public class Protein extends Feature{
         Protein protein = (Protein) o;
 
         if (!Objects.equals(name, protein.name)) return false;
-        return entrezID.equals(protein.entrezID);
+        return ncbiID.equals(protein.ncbiID);
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + entrezID.hashCode();
+        result = 31 * result + ncbiID.hashCode();
         return result;
     }
 

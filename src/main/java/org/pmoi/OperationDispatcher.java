@@ -170,9 +170,9 @@ public class OperationDispatcher {
             LOGGER.info("Writing results ...");
             resultSet.stream().collect(Collectors.groupingBy(ResultRecord::getProtein))
                     .forEach((k, v) -> {
-                        k.setDescription(mapper.getDescription(k.getEntrezID()).orElse("-"));
+                        k.setDescription(mapper.getDescription(k.getNcbiID()).orElse("-"));
                         v.sort(Comparator.comparingDouble((ResultRecord o) -> o.getGene().getFoldChange()).reversed());
-                        v.forEach(e -> e.getGene().setDescription(mapper.getDescription(e.getGene().getEntrezID()).orElse("-")));
+                        v.forEach(e -> e.getGene().setDescription(mapper.getDescription(e.getGene().getNcbiID()).orElse("-")));
                         formatter.append(k.getName(), k.getDescription(),
                                 v.get(0).getGene().getName(), v.get(0).getGene().getDescription(),
                                 v.get(0).getInteractionScore(),

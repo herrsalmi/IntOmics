@@ -43,7 +43,7 @@ public class TranscriptomeManager {
                     .map(l -> new Gene(l, ""))
                     .collect(Collectors.toList());
             ExecutorService executor = Executors.newFixedThreadPool(Args.getInstance().getThreads());
-            inputGenes.forEach(g -> executor.submit(() -> g.setEntrezID(mapper.getId(g.getName()).orElse(""))));
+            inputGenes.forEach(g -> executor.submit(() -> g.setNcbiID(mapper.getId(g.getName()).orElse(""))));
             executor.shutdown();
             executor.awaitTermination(10, TimeUnit.DAYS);
         } catch (IOException e) {
@@ -55,7 +55,7 @@ public class TranscriptomeManager {
 
         // if a gene has no EntrezID it will also get removed here
         return inputGenes.parallelStream()
-                .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
+                .filter(g -> g.getNcbiID() != null && !g.getNcbiID().isEmpty())
                 .filter(g -> surfaceomeMapper.isSurfaceProtein(g.getName()))
                 .collect(Collectors.toList());
     }
@@ -69,7 +69,7 @@ public class TranscriptomeManager {
         var mapper = GeneMapper.getInstance();
         List<Gene> inputGenes = readDEGeneFile(fileName).stream().distinct().collect(Collectors.toList());
         ExecutorService executor = Executors.newFixedThreadPool(Args.getInstance().getThreads());
-        inputGenes.forEach(g -> executor.submit(() -> g.setEntrezID(mapper.getId(g.getName()).orElse(""))));
+        inputGenes.forEach(g -> executor.submit(() -> g.setNcbiID(mapper.getId(g.getName()).orElse(""))));
         executor.shutdown();
         try {
             executor.awaitTermination(10, TimeUnit.DAYS);
@@ -79,7 +79,7 @@ public class TranscriptomeManager {
         }
         // if a gene has no EntrezID it will also get removed here
         return inputGenes.parallelStream()
-                .filter(g -> g.getEntrezID() != null && !g.getEntrezID().isEmpty())
+                .filter(g -> g.getNcbiID() != null && !g.getNcbiID().isEmpty())
                 .filter(g -> Math.abs(g.getFoldChange()) >= Args.getInstance().getFoldChange())
                 .filter(g -> g.getPvalue() < Args.getInstance().getPvalue())
                 .collect(Collectors.toList());

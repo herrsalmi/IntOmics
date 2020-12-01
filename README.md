@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![Generic badge](https://img.shields.io/badge/version-1.0-green)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/version-1.1-green)](https://shields.io/)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!--badges: end -->
 ## Multi omics data integration tool
@@ -12,23 +12,24 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 
 ## Arguments
 
-| Option             | Description                                                                 |
-|:-------------------|:----------------------------------------------------------------------------|
-| `-p <file>`        | Text file containing secreted proteins                                      |
-| `-a <file>`        | Text file containing all expressed genes                                    |
-| `-g <file>`        | Text file containing differentially expressed genes                         |
-| `-f <string>`      | Output format: TSV or FWF. Default: TSV                                     |
-| `-db <string>`     | Pathway database: [KEGG, WIKIPATHWAYS, REACTOME]. Default: WIKIPATHWAYS     |
-| `-s <int>`         | Minimum score for PPI (range from 0 to 1000). Default: 900                  |
-| `-fc <double>`     | Fold change cutoff. Default: 1.5                                            |
-| `-pv <double>`     | P-value cutoff. Default: 0.05                                               |
-| `-gpv <double>`    | P-value cutoff for GSEA. Default: 0.05                                      |
-| `-t <int>`         | Number of threads to use. Default: 4 or max available if less               |
-| `-d <string>`      | Custom separator for input files: Default: ';'                              |
-| `--no-cached-sets` | Pull an up-to-date list of pathways                                         |
-| `--ignore-check`   | Ignore checks when pulling updated pathways                                 |
-| `--no-cached-ppi`  | Disable usage of cached PPI data                                            |
-| `-h`               | Print the help screen                                                       |
+| Option                | Description                                                                 |
+|:----------------------|:----------------------------------------------------------------------------|
+| `-p <file>`           | Text file containing secreted proteins                                      |
+| `-a <file>`           | Text file containing all expressed genes                                    |
+| `-g <file>`           | Text file containing differentially expressed genes                         |
+| `-f <string>`         | Output format: TSV or FWF. Default: TSV                                     |
+| `-db <string>`        | Pathway database: [KEGG, WIKIPATHWAYS, REACTOME]. Default: WIKIPATHWAYS     |
+| `-s <int>`            | Minimum score for PPI (range from 0 to 1000). Default: 900                  |
+| `-fc <double>`        | Fold change cutoff. Default: 1.5                                            |
+| `-pv <double>`        | P-value cutoff. Default: 0.05                                               |
+| `-gpv <double>`       | P-value cutoff for GSEA. Default: 0.05                                      |
+| `-t <int>`            | Number of threads to use. Default: 4 or max available if less               |
+| `-d <string>`         | Custom separator for input files: Default: ';'                              |
+| `--species <string>`  | Species for your data                                                       |
+| `--no-cached-sets`    | Pull an up-to-date list of pathways                                         |
+| `--ignore-check`      | Ignore checks when pulling updated pathways                                 |
+| `--no-cached-ppi`     | Disable usage of cached PPI data                                            |
+| `-h`                  | Print the help screen                                                       |
 
 ## Input files
 Input files should be in CSV format and can have a header line starting with `#`.
@@ -40,6 +41,10 @@ Text file containing protein names or corresponding Entrez gene id, each one on 
 Text file containing symbols for all expressed genes, each one on a separate line. This list is used to infer membrane protein-coding genes.
 ##### Differential expression testing results
 Text file in CSV format with three columns: `gene name`, `p value` and `fold change`. 
+
+### Supported species
+The tool currently supports four vertebrate species: Human, Mouse, Rat, Cow. 
+If you're working with another species please open a new issue, and I'll be sure to address it.
 
 ## Outputs
 There are two main output files:
