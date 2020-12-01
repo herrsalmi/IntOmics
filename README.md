@@ -4,7 +4,7 @@
 <!--badges: end -->
 ## Multi omics data integration tool
 IntOmics is a tool for integrating secretomics and transcriptomics data in order to uncover paracrine cell crosstalk mechanisms.
-
+![workflow](workflow.png)
 ## Usage
 ```shell script
 java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
@@ -18,7 +18,7 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 | `-a <file>`           | Text file containing all expressed genes                                    |
 | `-g <file>`           | Text file containing differentially expressed genes                         |
 | `-f <string>`         | Output format: TSV or FWF. Default: TSV                                     |
-| `-db <string>`        | Pathway database: [KEGG, WIKIPATHWAYS, REACTOME]. Default: WIKIPATHWAYS     |
+| `-db <string>`        | Pathway database: [KEGG, WIKIPATHWAYS, REACTOME]. Default: KEGG             |
 | `-s <int>`            | Minimum score for PPI (range from 0 to 1000). Default: 900                  |
 | `-fc <double>`        | Fold change cutoff. Default: 1.5                                            |
 | `-pv <double>`        | P-value cutoff. Default: 0.05                                               |
@@ -59,10 +59,10 @@ There are two main output files:
 * An HTML file representing the network of interactions between secreted proteins and cell receptors.
     
 ## Gene set enrichment analysis
-The GSEA implemented in this tool is slightly different than the on proposed by Subramanian et al. (2005).
+The GSEA implemented in this tool is slightly different from the on proposed by Subramanian et al. (2005).
 
-Gene sets are defined as pathways from either `KEGG`, `WIKIPATHWAYS` or `REACTOME`. `WIKIPATHWAYS` is chosen by default if option `-db` is not specified. 
-This tool has prebuilt sets for `WIKIPATHWAYS` and `KEGG`, but an up-to-date version can be rebuilt by using option `--no-cached-sets` and stored in `sets/` folder for future use.
+Gene sets are defined as pathways from either `KEGG`, `WIKIPATHWAYS` or `REACTOME`. `KEGG` is chosen by default if option `-db` is not specified. 
+This tool has prebuilt `WIKIPATHWAYS` and `KEGG` sets for the human genome, but an up-to-date version can be rebuilt by using option `--no-cached-sets` and stored in `sets/` folder for future use.
 Note that if no new pathways exist, the prebuilt version will be used.
 This argument though has no effect when using `REACTOME` as no prebuilt sets are available, and the online service is always queried.
  
@@ -78,7 +78,7 @@ Instead, they are indicators of confidence. A score of 500 would indicate that r
 | x > 400            | medium confidence       |
 | x > 150            | low confidence          |
 
-A cached network of PPI is used when the interaction score threshold is greater than 700.
+A cached network of human PPI is used when the interaction score threshold is greater than 700.
 You can override this behavior by using option `--no-cached-ppi`.
 
 ## Sample data

@@ -31,7 +31,7 @@ public class Args {
 
     @Parameter(names = {"-db", "--pathway"}, description = "Pathway database for GSEA",
             validateWith = PathwayValidator.class, order = 4)
-    private PathwayMode pathwayDB = PathwayMode.WIKIPATHWAYS;
+    private PathwayMode pathwayDB = PathwayMode.KEGG;
 
     @Parameter(names = {"-s", "--minscore"}, description = "Minimum StringDB interaction score",
             validateWith = InteractionScoreValidator.class, order = 5)

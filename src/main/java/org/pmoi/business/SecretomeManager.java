@@ -11,7 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +23,6 @@ public class SecretomeManager {
 
     private static final Logger LOGGER = LogManager.getRootLogger();
 
-    private Set<String> internalDB;
     private Predicate<Protein> secretomeMapper;
     private GeneMapper mapper;
 
@@ -35,10 +33,6 @@ public class SecretomeManager {
             case HUMAN -> protein -> goMapper.checkSecretomeGO(protein.getNcbiID());
             case MOUSE, RAT, COW -> protein -> goMapper.checkMembranomeGO(protein.getNcbiID());
         };
-    }
-
-    public boolean isSecreted(String gene) {
-        return internalDB.contains(gene.toUpperCase());
     }
 
     /**
