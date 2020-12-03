@@ -28,11 +28,8 @@ public class SecretomeManager {
 
     private SecretomeManager() {
         mapper = GeneMapper.getInstance();
-        GeneOntologyMapper goMapper = new GeneOntologyMapper();
-        secretomeMapper = switch(Args.getInstance().getSpecies()) {
-            case HUMAN -> protein -> goMapper.checkSecretomeGO(protein.getNcbiID());
-            case MOUSE, RAT, COW -> protein -> goMapper.checkMembranomeGO(protein.getNcbiID());
-        };
+        GeneOntologyMapper goMapper = GeneOntologyMapper.getInstance();
+        secretomeMapper = protein -> goMapper.checkSecretomeGO(protein.getNcbiID());
     }
 
     /**

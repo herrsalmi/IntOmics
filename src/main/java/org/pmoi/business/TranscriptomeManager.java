@@ -56,7 +56,7 @@ public class TranscriptomeManager {
         // if a gene has no EntrezID it will also get removed here
         return inputGenes.parallelStream()
                 .filter(g -> g.getNcbiID() != null && !g.getNcbiID().isEmpty())
-                .filter(g -> surfaceomeMapper.isSurfaceProtein(g.getName()))
+                .filter(g -> surfaceomeMapper.isSurfaceProtein(g))
                 .collect(Collectors.toList());
     }
 

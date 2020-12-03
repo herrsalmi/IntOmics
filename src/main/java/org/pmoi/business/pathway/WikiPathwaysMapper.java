@@ -104,7 +104,7 @@ public class WikiPathwaysMapper implements PathwayMapper{
      * Load pathways from WikiPathways into internal DB
      */
     public void initWikiPathways() {
-        LOGGER.info("Fetching WikiPathways entries ...");
+        LOGGER.info("Getting WikiPathways entries ...");
         try {
             Species species = SpeciesHelper.get();
             String url = "http://webservice.wikipathways.org/listPathways?organism=" + species.getName().replace(" ", "%20");

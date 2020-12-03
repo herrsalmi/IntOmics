@@ -103,7 +103,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
      * Loads all KEGG pathways into internal DB
      */
     private void initKEGGPathways() {
-        LOGGER.info("Fetching KEGG pathways ...");
+        LOGGER.info("Getting KEGG pathways ...");
         var pathways = listKEGG();
         // in case the user used -i option, check if there are new pathways (only comparing the number)
         if (initialSize == pathways.size()) {

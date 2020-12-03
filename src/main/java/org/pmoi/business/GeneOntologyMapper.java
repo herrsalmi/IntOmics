@@ -14,10 +14,12 @@ import java.util.Set;
 
 public class GeneOntologyMapper {
 
+    private static GeneOntologyMapper instance;
+
     private static final Logger LOGGER = LogManager.getRootLogger();
     private Map<String, Set<String>> internalDB;
 
-    public GeneOntologyMapper() {
+    private GeneOntologyMapper() {
         LOGGER.debug("Loading GO database");
         try {
             load();
@@ -25,6 +27,12 @@ public class GeneOntologyMapper {
             LOGGER.error(e);
         }
         LOGGER.debug("GO database loaded");
+    }
+
+    public static synchronized GeneOntologyMapper getInstance() {
+        if (instance == null)
+            instance = new GeneOntologyMapper();
+        return instance;
     }
 
     /**
@@ -42,14 +50,14 @@ public class GeneOntologyMapper {
     }
 
     /**
-     * Check for annotations: "cell surface" (GO:0009986) or "plasma membrane" (GO:0005886)
+     * Check for annotations: "integral component of membrane" (GO:0016021) or "cell surface" (GO:0009986)  ["plasma membrane" (GO:0005886)]
      * @param entrezID gene ID
      * @return true if the protein product is a membrane protein
      */
     public boolean checkMembranomeGO(String entrezID) {
         if (!internalDB.containsKey(entrezID))
             return false;
-        return (internalDB.get(entrezID).contains("GO:0009986") || internalDB.get(entrezID).contains("GO:0005886"));
+        return (internalDB.get(entrezID).contains("GO:0016021") || internalDB.get(entrezID).contains("GO:0009986"));
     }
 
     /**
