@@ -26,9 +26,8 @@ class MainEntryTest {
     @Test
     void mainKEGG() {
         var args = new String[]{
-                "-p", "test/secretome_withNames_test.csv",
-                "-g", "test/Gene_DE_9h.csv",
-                "-a", "test/all_genes.csv",
+                "-p", "sample/secreted.csv",
+                "-g", "sample/de_testing.csv",
                 "-db", "KEGG",
                 "-f", "FWF",
                 "-fc", "1.5",
@@ -42,9 +41,8 @@ class MainEntryTest {
     @Test
     void mainWP() {
         var args = new String[]{
-                "-p", "test/secretome_withNames_test.csv",
-                "-g", "test/Gene_DE_9h.csv",
-                "-a", "test/all_genes.csv",
+                "-p", "sample/secreted.csv",
+                "-g", "sample/de_testing.csv",
                 "-db", "WIKIPATHWAYS",
                 "-f", "FWF",
                 "-fc", "1.5",
@@ -58,9 +56,8 @@ class MainEntryTest {
     @Test
     void mainREACTOME() {
         var args = new String[]{
-                "-p", "test/secretome_withNames_test.csv",
-                "-g", "test/Gene_DE_9h.csv",
-                "-a", "test/all_genes.csv",
+                "-p", "sample/secreted.csv",
+                "-g", "sample/de_testing.csv",
                 "-db", "REACTOME",
                 "-f", "FWF",
                 "-fc", "1.5",
@@ -74,9 +71,8 @@ class MainEntryTest {
     @Test
     void mainStringDB() {
         var args = new String[]{
-                "-p", "test/secretome_withNames_test.csv",
-                "-g", "test/Gene_DE_9h.csv",
-                "-a", "test/all_genes.csv",
+                "-p", "sample/secreted.csv",
+                "-g", "sample/de_testing.csv",
                 "-db", "KEGG",
                 "-f", "FWF",
                 "-fc", "1.5",
@@ -91,9 +87,8 @@ class MainEntryTest {
     @Test
     void mainNoCachedWP() {
         var args = new String[]{
-                "-p", "test/secretome_withNames_test.csv",
-                "-g", "test/Gene_DE_9h.csv",
-                "-a", "test/all_genes.csv",
+                "-p", "sample/secreted.csv",
+                "-g", "sample/de_testing.csv",
                 "-db", "WIKIPATHWAYS",
                 "-f", "FWF",
                 "-fc", "1.5",
@@ -109,9 +104,8 @@ class MainEntryTest {
     @Test
     void mainNoCachedKEGG() {
         var args = new String[]{
-                "-p", "test/secretome_withNames_test.csv",
-                "-g", "test/Gene_DE_9h.csv",
-                "-a", "test/all_genes.csv",
+                "-p", "sample/secreted.csv",
+                "-g", "sample/de_testing.csv",
                 "-db", "KEGG",
                 "-f", "FWF",
                 "-fc", "1.5",

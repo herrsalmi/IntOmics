@@ -79,8 +79,7 @@ A cached network of human PPI is used when the interaction score threshold is gr
 You can override this behavior by using option `--no-cached-ppi`.
 
 ## Sample data
-[Secreted proteins](sample/secreted.csv), [expressed genes](sample/all_genes.csv) and [DE testing results](sample/de_testing.csv)
-sample data are provided for testing purpose.
+[Secreted proteins](sample/secreted.csv) and [DE testing results](sample/de_testing.csv) sample data are provided for testing purpose.
 To run the example use the following command:
 ```shell script
 java -jar intOmics.jar -p secreted.csv -g de_testing.csv
