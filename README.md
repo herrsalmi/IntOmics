@@ -15,8 +15,7 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 | Option                | Description                                                                 |
 |:----------------------|:----------------------------------------------------------------------------|
 | `-p <file>`           | Text file containing secreted proteins                                      |
-| `-a <file>`           | Text file containing all expressed genes                                    |
-| `-g <file>`           | Text file containing differentially expressed genes                         |
+| `-g <file>`           | Text file containing gene differential expression data                      |
 | `-f <string>`         | Output format: TSV or FWF. Default: TSV                                     |
 | `-db <string>`        | Pathway database: [KEGG, WIKIPATHWAYS, REACTOME]. Default: KEGG             |
 | `-s <int>`            | Minimum score for PPI (range from 0 to 1000). Default: 900                  |
@@ -37,9 +36,7 @@ The default column separator is `;`, but a different one can be specified using 
 
 ##### Secreted proteins
 Text file containing protein names or corresponding Entrez gene id, each one on a separate line.
-##### Expressed genes
-Text file containing symbols for all expressed genes, each one on a separate line. This list is used to infer membrane protein-coding genes.
-##### Differential expression testing results
+##### Differential expression data
 Text file in CSV format with three columns: `gene name`, `p value` and `fold change`. 
 
 ### Supported species
@@ -82,9 +79,9 @@ A cached network of human PPI is used when the interaction score threshold is gr
 You can override this behavior by using option `--no-cached-ppi`.
 
 ## Sample data
-[Secreted proteins](sample/secreted.csv), [expressed genes](sample/all_genes.csv) and [DE testing results](sample/de_genes.csv)
+[Secreted proteins](sample/secreted.csv), [expressed genes](sample/all_genes.csv) and [DE testing results](sample/de_testing.csv)
 sample data are provided for testing purpose.
 To run the example use the following command:
 ```shell script
-java -jar intOmics.jar -p secreted.csv -a all_genes.csv -g de_genes.csv
+java -jar intOmics.jar -p secreted.csv -g de_testing.csv
 ```

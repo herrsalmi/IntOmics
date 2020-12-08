@@ -27,6 +27,8 @@ public class SurfaceomeMapper {
 
     /**
      * Load surface proteins from file into local object
+     * when dealing with human data, the human surfaceome data is used to look for surface proteins.
+     * when dealing with other species, surface proteins are defined using GO terms
      */
     private void init() {
         switch (Args.getInstance().getSpecies()) {

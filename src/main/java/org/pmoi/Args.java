@@ -17,13 +17,9 @@ public class Args {
             validateWith = ProteinValidator.class, order = 0)
     private String secretome;
 
-    @Parameter(names = {"-g", "--genes"}, description = "File containing differentially expressed genes", required = true,
+    @Parameter(names = {"-g", "--genes"}, description = "File containing gene differential expression data", required = true,
             validateWith = GeneValidator.class, order = 1)
-    private String diffExpGenes;
-
-    @Parameter(names = {"-a", "--allgenes"}, description = "File containing all expressed genes", required = true,
-            validateWith = GeneValidator.class, order = 2)
-    private String allGenes;
+    private String genesDiffExp;
 
     @Parameter(names = {"-f", "--format"}, description = "Output format: TSV or Fixed Width Format",
             validateWith = FormatValidator.class, order = 3)
@@ -75,8 +71,8 @@ public class Args {
         return secretome;
     }
 
-    public String getDiffExpGenes() {
-        return diffExpGenes;
+    public String getGenesDiffExp() {
+        return genesDiffExp;
     }
 
     public OutputMode getFormat() {
@@ -85,10 +81,6 @@ public class Args {
 
     public int getStringDBScore() {
         return stringDBScore;
-    }
-
-    public String getAllGenes() {
-        return allGenes;
     }
 
     public String getSeparator() {

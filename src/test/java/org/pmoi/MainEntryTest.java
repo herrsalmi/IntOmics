@@ -9,9 +9,8 @@ class MainEntryTest {
     @Test
     void mainDemo() {
         var args = new String[]{
-                "-p", "sample/secreted_m.csv",
-                "-g", "sample/de_genes_m.csv",
-                "-a", "sample/all_genes_m.csv",
+                "-p", "sample/secreted.csv",
+                "-g", "sample/de_testing.csv",
                 "-db", "KEGG",
                 "-f", "FWF",
                 "-fc", "1.5",
@@ -19,7 +18,7 @@ class MainEntryTest {
                 "-gpv", "0.1",
                 "-s", "900",
                 "-t", "4",
-                "--species", "mouse"
+                "--species", "human"
         };
         assertDoesNotThrow(() -> MainEntry.main(args));
     }
