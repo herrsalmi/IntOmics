@@ -12,7 +12,7 @@ class MainEntryTest {
                 "-p", "sample/secreted.csv",
                 "-g", "sample/de_testing.csv",
                 "-db", "KEGG",
-                "-f", "FWF",
+                "-f", "fwf",
                 "-fc", "1.5",
                 "-pv", "0.05",
                 "-gpv", "0.1",

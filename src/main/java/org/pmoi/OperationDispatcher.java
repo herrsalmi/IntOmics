@@ -22,7 +22,6 @@ import org.pmoi.model.vis.VisNode;
 import org.pmoi.util.CSVValidator;
 import org.pmoi.util.GSEA;
 import org.pmoi.util.io.OutputFormatter;
-import org.pmoi.util.io.TSVFormatter;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -42,7 +41,12 @@ public class OperationDispatcher {
 
     public Runner setup(String prefix, OutputFormatter formatter) {
         this.formatter = formatter;
-        String extension = formatter instanceof TSVFormatter ? "tsv" : "txt";
+        String extension = switch (Args.getInstance().getFormat()) {
+            case FWF -> "txt";
+            case TSV -> "tsv";
+            case HTML -> "html";
+        };
+
         String output = String.format("%s_%s_fc%1.1f.%s", prefix, Args.getInstance().getStringDBScore(),
                 Args.getInstance().getFoldChange(), extension);
         CSVValidator validator = new CSVValidator();
