@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![Generic badge](https://img.shields.io/badge/version-1.1-green)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/version-1.2-green)](https://shields.io/)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!--badges: end -->
 ## Multi omics data integration tool
@@ -16,7 +16,7 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 |:----------------------|:----------------------------------------------------------------------------|
 | `-p <file>`           | Text file containing secreted proteins                                      |
 | `-g <file>`           | Text file containing gene differential expression data                      |
-| `-f <string>`         | Output format: TSV or FWF. Default: TSV                                     |
+| `-f <string>`         | Output format: html, tsv or fwf. Default: html                              |
 | `-db <string>`        | Pathway database: [KEGG, WIKIPATHWAYS, REACTOME]. Default: KEGG             |
 | `-s <int>`            | Minimum score for PPI (range from 0 to 1000). Default: 900                  |
 | `-fc <double>`        | Fold change cutoff. Default: 1.5                                            |
@@ -45,7 +45,7 @@ If you're working with another species please open a new issue, and I'll be sure
 
 ## Outputs
 There are two main output files:
-* A text file either in TSV or FWF format containing:
+* A text file either in HTML, TSV or FWF format containing:
     * **Protein**: secreted proteins symbol.
     * **Protein description**: full name of the protein.
     * **Gene**: symbol corresponding to membrane protein-coding gene.
