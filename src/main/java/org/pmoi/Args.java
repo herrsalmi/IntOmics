@@ -23,7 +23,7 @@ public class Args {
 
     @Parameter(names = {"-f", "--format"}, description = "Output format: TSV or Fixed Width Format",
             validateWith = FormatValidator.class, order = 3)
-    private OutputMode format = OutputMode.TSV;
+    private OutputMode format = OutputMode.HTML;
 
     @Parameter(names = {"-db", "--pathway"}, description = "Pathway database for GSEA",
             validateWith = PathwayValidator.class, order = 4)

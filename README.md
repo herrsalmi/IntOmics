@@ -24,7 +24,7 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 | `-gpv <double>`       | P-value cutoff for GSEA. Default: 0.05                                      |
 | `-t <int>`            | Number of threads to use. Default: 4 or max available if less               |
 | `-d <string>`         | Custom separator for input files: Default: ';'                              |
-| `--species <string>`  | Species for your data                                                       |
+| `--species <string>`  | Species for your data. Default: human                                       |
 | `--no-cached-sets`    | Pull an up-to-date list of pathways                                         |
 | `--ignore-check`      | Ignore checks when pulling updated pathways                                 |
 | `--no-cached-ppi`     | Disable usage of cached PPI data                                            |
