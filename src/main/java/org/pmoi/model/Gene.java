@@ -3,11 +3,12 @@ package org.pmoi.model;
 import com.google.common.math.DoubleMath;
 import org.pmoi.Args;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Gene extends Feature implements Comparable<Gene> {
+public class Gene extends Feature implements Comparable<Gene>, Serializable {
 
     private List<GeneSet> geneSets;
 
@@ -45,8 +46,8 @@ public class Gene extends Feature implements Comparable<Gene> {
         return geneSets;
     }
 
-    public void setInteractors(String name, List<Gene> interactors) {
-        this.geneSets.add(new GeneSet(name, interactors));
+    public void setInteractors(String identifier, String name, List<Gene> interactors) {
+        this.geneSets.add(new GeneSet(identifier, name, interactors));
     }
 
     public double significanceScore() {

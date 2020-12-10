@@ -11,7 +11,7 @@ class MainEntryTest {
         var args = new String[]{
                 "-p", "sample/secreted.csv",
                 "-g", "sample/de_testing.csv",
-                "-db", "KEGG",
+                "-db", "WIKIPATHWAYS",
                 "-f", "fwf",
                 "-fc", "1.5",
                 "-pv", "0.05",

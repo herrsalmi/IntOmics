@@ -4,13 +4,19 @@ import java.util.List;
 
 public class GeneSet {
     private String name;
+    private String identifier;
     private List<Gene> genes;
     private double pvalue;
     private double score;
 
-    public GeneSet(String name, List<Gene> genes) {
+    public GeneSet(String identifier, String name, List<Gene> genes) {
+        this.identifier = identifier;
         this.name = name;
         this.genes = genes;
+    }
+
+    public String getIdentifier() {
+        return identifier;
     }
 
     public String getName() {
