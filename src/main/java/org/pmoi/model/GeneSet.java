@@ -1,5 +1,7 @@
 package org.pmoi.model;
 
+import org.pmoi.Args;
+
 import java.util.List;
 
 public class GeneSet {
@@ -20,7 +22,18 @@ public class GeneSet {
     }
 
     public String getName() {
-        return name;
+        if (Args.getInstance().getFormat().equals(OutputMode.HTML)) {
+            return switch (Args.getInstance().getPathwayDB()) {
+                case KEGG -> String.format("<a href=\"https://www.kegg.jp/kegg-bin/highlight_pathway?map=%s&keyword=%s\">%s</a>",
+                        identifier, name, name);
+                case WIKIPATHWAYS -> String.format("<a href=\"https://www.wikipathways.org/index.php/Pathway:%s\">%s</a>",
+                        identifier, name);
+                case REACTOME -> String.format("<a href=\"https://reactome.org/PathwayBrowser/#/%s\">%s</a>",
+                        identifier, name);
+            };
+        } else {
+            return name;
+        }
     }
 
     public void setName(String name) {
