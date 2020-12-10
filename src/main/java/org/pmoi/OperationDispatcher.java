@@ -141,7 +141,8 @@ public class OperationDispatcher {
                     LOGGER.debug("Processing [P: {} # G: {}]", key.getName(), resultRecord.getGene().getName());
                     resultRecord.getProtein().getPathways().forEach(p -> {
                         if (p.getGenes().contains(resultRecord.getGene()))
-                            resultRecord.getGene().setInteractors(p.getName(), p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
+                            resultRecord.getGene().setInteractors(p.getPathwayID(), p.getName(),
+                                    p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
                     });
                 });
 

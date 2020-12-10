@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.pmoi.Args;
 import org.pmoi.database.SpeciesHelper;
 import org.pmoi.database.SupportedSpecies;
+import org.pmoi.model.Feature;
 import org.pmoi.model.Gene;
 import org.pmoi.model.Pathway;
 import org.pmoi.util.HttpConnector;
@@ -28,7 +29,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
 
     private static final Logger LOGGER = LogManager.getRootLogger();
 
-    private Map<String, Set<String>> pathwayDB;
+    private List<Pathway> pathwayDB;
     private static final String DB_KEGG_OBJ = "pathwayDB_KEGG." + Args.getInstance().getSpecies() + ".obj";
     public static final String DB_PATH = "sets/";
     private int initialSize = 0;
@@ -37,7 +38,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
         LOGGER.debug("Loading KEGGG pathways DB");
         try {
             if (Args.getInstance().useOnlineDB() && Args.getInstance().ignoreCheck()) {
-                pathwayDB = new HashMap<>(400);
+                pathwayDB = new ArrayList<>(400);
                 initKEGGPathways();
             } else {
                 init();
@@ -50,9 +51,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
 
     @Override
     public List<Pathway> getPathways(String gene) {
-        return pathwayDB.entrySet().parallelStream().filter(e -> e.getValue().stream().anyMatch(gene::equalsIgnoreCase))
-                .map(e -> new Pathway(e.getKey(), e.getValue().stream().map(g -> new Gene(g, ""))
-                        .collect(Collectors.toList())))
+        return pathwayDB.parallelStream().filter(e -> e.getGenes().stream().map(Feature::getName).anyMatch(gene::equalsIgnoreCase))
                 .collect(Collectors.toList());
     }
 
@@ -63,7 +62,8 @@ public class KEGGPathwayMapper implements PathwayMapper{
      */
     @Override
     public boolean isInAnyPathway(String gene) {
-        return pathwayDB.values().parallelStream().anyMatch(e -> e.stream().anyMatch(gene::equalsIgnoreCase));
+        return pathwayDB.parallelStream().anyMatch(e -> e.getGenes().stream().map(Feature::getName)
+                .anyMatch(gene::equalsIgnoreCase));
     }
 
     private void init() throws IOException, URISyntaxException {
@@ -82,7 +82,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
         }
 
         try (ObjectInputStream ois = new ObjectInputStream(file)) {
-            pathwayDB = (Map<String, Set<String>>) ois.readObject();
+            pathwayDB = (List<Pathway>) ois.readObject();
             initialSize = ois.readInt();
             // check if it's the right species
             SupportedSpecies species = (SupportedSpecies) ois.readObject();
@@ -113,7 +113,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
         if (pathwayDB != null) {
             pathwayDB.clear();
         } else {
-            pathwayDB = new HashMap<>(400);
+            pathwayDB = new ArrayList<>(400);
         }
         this.initialSize = pathways.size();
         ExecutorService executor = Executors.newFixedThreadPool(4);
@@ -124,7 +124,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
             } catch (MalformedURLException e) {
                 LOGGER.error(e);
             }
-            pathwayDB.put(v, new HashSet<>(getListResults(url)));
+            pathwayDB.add(new Pathway(k, v, getListResults(url)));
         }));
         executor.shutdown();
         try {
@@ -181,7 +181,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
      * @param url request
      * @return list of matching results
      */
-    private List<String> getListResults(URL url) {
+    private List<Gene> getListResults(URL url) {
         int counter = 0;
         while (true) {
             try {
@@ -189,9 +189,9 @@ public class KEGGPathwayMapper implements PathwayMapper{
                 String result = httpConnector.getContent(url);
                 Pattern pattern = Pattern.compile("[0-9]+ {2}(.+)(?=;)");
                 Matcher matcher = pattern.matcher(result);
-                List<String> resultList = new ArrayList<>();
+                List<Gene> resultList = new ArrayList<>();
                 while (matcher.find()) {
-                    resultList.add(matcher.group(1).trim());
+                    resultList.add(new Gene(matcher.group(1).trim(), ""));
                 }
                 return resultList;
             } catch (IOException e) {

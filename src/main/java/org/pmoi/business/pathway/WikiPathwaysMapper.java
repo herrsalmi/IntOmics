@@ -35,7 +35,7 @@ public class WikiPathwaysMapper implements PathwayMapper{
 
     private static final Logger LOGGER = LogManager.getRootLogger();
 
-    private Map<String, Set<String>> pathwayDB;
+    private Map<String, Pathway> pathwayDB;
     private static final String DB_WP_OBJ = "pathwayDB_WP." + Args.getInstance().getSpecies() + ".obj";
     private static final String DB_PATH = "sets/";
     private int initialSize = 0;
@@ -57,15 +57,16 @@ public class WikiPathwaysMapper implements PathwayMapper{
 
     @Override
     public List<Pathway> getPathways(String gene) {
-        return pathwayDB.entrySet().parallelStream().filter(e -> e.getValue().stream().anyMatch(gene::equalsIgnoreCase))
-                .map(e -> new Pathway(e.getKey(), e.getValue().stream().map(g -> new Gene(g, ""))
-                        .collect(Collectors.toList())))
+        return pathwayDB.entrySet().parallelStream()
+                .map(Map.Entry::getValue)
+                .filter(pathway -> pathway.getGenes().stream().map(Feature::getName).anyMatch(gene::equalsIgnoreCase))
                 .collect(Collectors.toList());
     }
 
     @Override
     public boolean isInAnyPathway(String gene) {
-        return pathwayDB.values().parallelStream().anyMatch(e -> e.stream().anyMatch(gene::equalsIgnoreCase));
+        return pathwayDB.values().parallelStream()
+                .anyMatch(e -> e.getGenes().stream().map(Feature::getName).anyMatch(gene::equalsIgnoreCase));
     }
 
     private void init() throws IOException, URISyntaxException {
@@ -83,7 +84,7 @@ public class WikiPathwaysMapper implements PathwayMapper{
             file = new FileInputStream(new File(url.toURI()));
         }
         try (ObjectInputStream ois = new ObjectInputStream(file)) {
-            pathwayDB = (Map<String, Set<String>>) ois.readObject();
+            pathwayDB = (Map<String, Pathway>) ois.readObject();
             initialSize = ois.readInt();
             // check if it's the right species
             SupportedSpecies species = (SupportedSpecies) ois.readObject();
@@ -140,7 +141,7 @@ public class WikiPathwaysMapper implements PathwayMapper{
                             var genes = gpmlBase64Decoder(document.getRootElement().getChildren().stream()
                                     .findFirst()
                                     .orElseThrow().getText());
-                            return new Pathway(e.getName(), genes);
+                            return new Pathway(e.getId(), e.getName(), genes);
                         } catch (JDOMException | IOException ex) {
                             LOGGER.error(ex);
                         }
@@ -151,7 +152,7 @@ public class WikiPathwaysMapper implements PathwayMapper{
             pathways.forEach(p -> {
                 if (!pathwayDB.containsKey(p.getName().replace('/', '-')) &&
                         pathwayDB.keySet().stream().filter(e -> p.getName().contains(e)).findAny().isEmpty())
-                    pathwayDB.put(p.getName(), p.getGenes().stream().map(Feature::getName).collect(Collectors.toSet()));
+                    pathwayDB.put(p.getName(), p);
                 else if (pathwayDB.containsKey(p.getName().replace('/', '-')))
                     p.setName(p.getName().replace('/', '-'));
                 else

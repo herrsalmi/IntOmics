@@ -1,9 +1,10 @@
 package org.pmoi.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pathway {
+public class Pathway implements Serializable {
 
     private String pathwayID;
     private String name;
