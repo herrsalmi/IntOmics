@@ -142,7 +142,7 @@ public class OperationDispatcher {
                     resultRecord.getProtein().getPathways().forEach(p -> {
                         if (p.getGenes().contains(resultRecord.getGene()))
                             resultRecord.getGene().setInteractors(p.getPathwayID(), p.getName(),
-                                    p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
+                                    transcriptome.stream().filter(e -> p.getGenes().contains(e)).collect(Collectors.toList()));
                     });
                 });
 

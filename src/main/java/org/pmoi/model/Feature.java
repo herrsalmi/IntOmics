@@ -1,6 +1,8 @@
 package org.pmoi.model;
 
-public abstract class Feature {
+import java.io.Serializable;
+
+public abstract class Feature implements Serializable {
     protected String name;
     protected String ncbiID;
     protected double pvalue;
