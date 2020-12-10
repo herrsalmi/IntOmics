@@ -50,13 +50,21 @@ public class HtmlFormatter implements OutputFormatter{
                     </head>
                     <body>
                     <table class="styled-table">
+                    <colgroup>
+                       <col span="1" style="width: 5%;">
+                       <col span="1" style="width: 15%;">
+                       <col span="1" style="width: 5%;">
+                       <col span="1" style="width: 15%;">
+                       <col span="1" style="width: 5%;">
+                       <col span="1" style="width: 60%;">
+                    </colgroup>
                       <thead>
                         <tr>
                           <th>Protein</th>
                           <th>Name</th>
                           <th>Gene</th>
                           <th>Name</th>
-                          <th>I score</th>
+                          <th>Score</th>
                           <th>Pathways</th>
                         </tr>
                       <thead>
