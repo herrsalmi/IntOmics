@@ -5,14 +5,13 @@ import org.apache.logging.log4j.Logger;
 import org.pmoi.Args;
 import org.pmoi.model.Gene;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class SurfaceomeMapper {
     private static SurfaceomeMapper instance;
@@ -34,10 +33,11 @@ public class SurfaceomeMapper {
         switch (Args.getInstance().getSpecies()) {
             case HUMAN -> {
                 internalDB = new HashSet<>(3000);
-                try (Stream<String> stream = Files.lines(Path.of(getClass().getClassLoader().getResource("surfaceome.txt")
-                        .toURI()))) {
+                try (InputStream in = getClass().getResourceAsStream("/surfaceome.txt")) {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                    var stream = br.lines();
                     stream.forEach(l -> internalDB.add(l.trim()));
-                } catch (IOException | URISyntaxException e) {
+                } catch (IOException e) {
                     LOGGER.error(e);
                 }
                 surfaceomePred = gene -> internalDB.contains(gene.getName());

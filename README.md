@@ -7,7 +7,7 @@ IntOmics is a tool for integrating secretomics and transcriptomics data in order
 ![workflow](workflow.png)
 ## Usage
 ```shell script
-java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
+java -jar intOmics.jar -p <file> -g <file> [options]*
 ```
 
 ## Arguments
@@ -45,7 +45,7 @@ If you're working with another species please open a new issue, and I'll be sure
 
 ## Outputs
 There are two main output files:
-* A text file either in HTML, TSV or FWF format containing:
+* A file either in HTML, TSV or FWF format containing:
     * **Protein**: secreted proteins symbol.
     * **Protein description**: full name of the protein.
     * **Gene**: symbol corresponding to membrane protein-coding gene.
