@@ -1,8 +1,9 @@
 package org.pmoi.model;
 
 public enum OutputMode {
-    TSV("TSV"),
-    FWF("FWF");
+    TSV("tsv"),
+    FWF("fwf"),
+    HTML("html");
 
     private String mode;
 
