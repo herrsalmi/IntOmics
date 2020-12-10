@@ -68,7 +68,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
 
     private void init() throws IOException, URISyntaxException {
         LOGGER.debug("Reading file {}", DB_KEGG_OBJ);
-        FileInputStream file;
+        InputStream file;
         // check if there is an updated version in sets folder
         if (Files.exists(Path.of(DB_PATH + DB_KEGG_OBJ), LinkOption.NOFOLLOW_LINKS)) {
             LOGGER.debug("Newer version of {} found in sets folder", DB_KEGG_OBJ);
@@ -78,7 +78,7 @@ public class KEGGPathwayMapper implements PathwayMapper{
             var url = getClass().getClassLoader().getResource(DB_KEGG_OBJ);
             if (url == null)
                 throw new IOException("File not found");
-            file = new FileInputStream(new File(url.toURI()));
+            file = getClass().getResourceAsStream("/" + DB_KEGG_OBJ);
         }
 
         try (ObjectInputStream ois = new ObjectInputStream(file)) {

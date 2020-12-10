@@ -46,8 +46,7 @@ public class ReactomePathwayMapper implements PathwayMapper{
     }
 
     private void init() throws URISyntaxException, IOException {
-        var file = new FileInputStream(new File(getClass().getClassLoader()
-                .getResource("reactome_genes.obj").toURI()));
+        var file = getClass().getResourceAsStream("/reactome_genes.obj");
         try (ObjectInputStream ois = new ObjectInputStream(file)) {
             geneSet = (Set<String>) ois.readObject();
             LOGGER.debug("Reactome genes loaded into memory. Number of genes: {}", geneSet.size());
