@@ -45,8 +45,8 @@ public class Gene extends Feature implements Comparable<Gene> {
         return geneSets;
     }
 
-    public void setInteractors(String name, List<Gene> interactors) {
-        this.geneSets.add(new GeneSet(name, interactors));
+    public void setInteractors(String identifier, String name, List<Gene> interactors) {
+        this.geneSets.add(new GeneSet(identifier, name, interactors));
     }
 
     public double significanceScore() {

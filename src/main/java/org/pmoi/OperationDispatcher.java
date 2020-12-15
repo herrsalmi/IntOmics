@@ -22,7 +22,6 @@ import org.pmoi.model.vis.VisNode;
 import org.pmoi.util.CSVValidator;
 import org.pmoi.util.GSEA;
 import org.pmoi.util.io.OutputFormatter;
-import org.pmoi.util.io.TSVFormatter;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -42,11 +41,16 @@ public class OperationDispatcher {
 
     public Runner setup(String prefix, OutputFormatter formatter) {
         this.formatter = formatter;
-        String extension = formatter instanceof TSVFormatter ? "tsv" : "txt";
+        String extension = switch (Args.getInstance().getFormat()) {
+            case FWF -> "txt";
+            case TSV -> "tsv";
+            case HTML -> "html";
+        };
+
         String output = String.format("%s_%s_fc%1.1f.%s", prefix, Args.getInstance().getStringDBScore(),
                 Args.getInstance().getFoldChange(), extension);
         CSVValidator validator = new CSVValidator();
-        if (!validator.isConform(Args.getInstance().getDiffExpGenes()))
+        if (!validator.isConform(Args.getInstance().getGenesDiffExp()))
             System.exit(1);
 
         LOGGER.info("Initializing ...");
@@ -63,10 +67,10 @@ public class OperationDispatcher {
         var secretome = secretomeManager.loadSecretomeFile(Args.getInstance().getSecretome());
 
         LOGGER.info("Loading transcriptome");
-        List<Gene> transcriptome = transcriptomeManager.getDEGenes(Args.getInstance().getDiffExpGenes());
+        List<Gene> transcriptome = transcriptomeManager.getDEGenes(Args.getInstance().getGenesDiffExp());
 
         LOGGER.info("Identifying membranome");
-        List<Gene> membranome = transcriptomeManager.getMembranomeFromGenes(Args.getInstance().getAllGenes());
+        List<Gene> membranome = transcriptomeManager.getMembranomeFromGenes(Args.getInstance().getGenesDiffExp());
 
         LOGGER.info("Number of membranome genes: {}", membranome.size());
         LOGGER.info("Number of actively secreted proteins: {}", secretome.size());
@@ -137,7 +141,8 @@ public class OperationDispatcher {
                     LOGGER.debug("Processing [P: {} # G: {}]", key.getName(), resultRecord.getGene().getName());
                     resultRecord.getProtein().getPathways().forEach(p -> {
                         if (p.getGenes().contains(resultRecord.getGene()))
-                            resultRecord.getGene().setInteractors(p.getName(), p.getGenes().stream().distinct().filter(transcriptome::contains).collect(Collectors.toList()));
+                            resultRecord.getGene().setInteractors(p.getPathwayID(), p.getName(),
+                                    transcriptome.stream().filter(e -> p.getGenes().contains(e)).collect(Collectors.toList()));
                     });
                 });
 

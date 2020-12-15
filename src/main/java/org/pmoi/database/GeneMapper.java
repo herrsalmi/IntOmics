@@ -5,9 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.pmoi.Args;
 import org.pmoi.util.GZIPFile;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URISyntaxException;
+import java.io.*;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
@@ -44,10 +42,12 @@ public class GeneMapper {
 
     private void init() {
         if (Args.getInstance().getSpecies().equals(SupportedSpecies.HUMAN)) {
-            try (var stream = Files.lines(Path.of(getClass().getClassLoader().getResource("Homo_sapiens.gene_info").toURI()))) {
+            try (InputStream in = getClass().getResourceAsStream("/Homo_sapiens.gene_info")) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                var stream = br.lines();
                 // the Gene class used here is the private inner class
                 internalDB = stream.dropWhile(l -> l.startsWith("#")).map(GeneInfo::new).collect(Collectors.toList());
-            } catch (URISyntaxException | IOException e) {
+            } catch (IOException e) {
                 LOGGER.error("Failed to initialize gene_info_db");
                 System.exit(1);
             }

@@ -7,7 +7,7 @@ public class TSVFormatter implements OutputFormatter {
 
     public TSVFormatter() {
         this.buffer = new StringBuilder();
-        this.buffer.append(String.format("%s\t%s\t%s\t%s\t%s%n",
+        this.buffer.append(String.format("%s\t%s\t%s\t%s\t%s",
                 "#protein", "name", "gene", "name", "I score"));
     }
 
@@ -17,7 +17,7 @@ public class TSVFormatter implements OutputFormatter {
         for (String l : item) {
             joiner.add(l);
         }
-        buffer.append(joiner.toString()).append("\n");
+        buffer.append("\n").append(joiner.toString());
     }
 
     @Override

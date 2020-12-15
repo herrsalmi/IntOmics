@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![Generic badge](https://img.shields.io/badge/version-1.1-green)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/version-1.2-green)](https://shields.io/)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!--badges: end -->
 ## Multi omics data integration tool
@@ -7,7 +7,7 @@ IntOmics is a tool for integrating secretomics and transcriptomics data in order
 ![workflow](workflow.png)
 ## Usage
 ```shell script
-java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
+java -jar intOmics.jar -p <file> -g <file> [options]*
 ```
 
 ## Arguments
@@ -15,9 +15,8 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 | Option                | Description                                                                 |
 |:----------------------|:----------------------------------------------------------------------------|
 | `-p <file>`           | Text file containing secreted proteins                                      |
-| `-a <file>`           | Text file containing all expressed genes                                    |
-| `-g <file>`           | Text file containing differentially expressed genes                         |
-| `-f <string>`         | Output format: TSV or FWF. Default: TSV                                     |
+| `-g <file>`           | Text file containing gene differential expression data                      |
+| `-f <string>`         | Output format: html, tsv or fwf. Default: html                              |
 | `-db <string>`        | Pathway database: [KEGG, WIKIPATHWAYS, REACTOME]. Default: KEGG             |
 | `-s <int>`            | Minimum score for PPI (range from 0 to 1000). Default: 900                  |
 | `-fc <double>`        | Fold change cutoff. Default: 1.5                                            |
@@ -25,7 +24,7 @@ java -jar intOmics.jar -p <file> -a <file> -g <file> [options]*
 | `-gpv <double>`       | P-value cutoff for GSEA. Default: 0.05                                      |
 | `-t <int>`            | Number of threads to use. Default: 4 or max available if less               |
 | `-d <string>`         | Custom separator for input files: Default: ';'                              |
-| `--species <string>`  | Species for your data                                                       |
+| `--species <string>`  | Species for your data. Default: human                                       |
 | `--no-cached-sets`    | Pull an up-to-date list of pathways                                         |
 | `--ignore-check`      | Ignore checks when pulling updated pathways                                 |
 | `--no-cached-ppi`     | Disable usage of cached PPI data                                            |
@@ -37,9 +36,7 @@ The default column separator is `;`, but a different one can be specified using 
 
 ##### Secreted proteins
 Text file containing protein names or corresponding Entrez gene id, each one on a separate line.
-##### Expressed genes
-Text file containing symbols for all expressed genes, each one on a separate line. This list is used to infer membrane protein-coding genes.
-##### Differential expression testing results
+##### Differential expression data
 Text file in CSV format with three columns: `gene name`, `p value` and `fold change`. 
 
 ### Supported species
@@ -48,7 +45,7 @@ If you're working with another species please open a new issue, and I'll be sure
 
 ## Outputs
 There are two main output files:
-* A text file either in TSV or FWF format containing:
+* A file either in HTML, TSV or FWF format containing:
     * **Protein**: secreted proteins symbol.
     * **Protein description**: full name of the protein.
     * **Gene**: symbol corresponding to membrane protein-coding gene.
@@ -82,9 +79,8 @@ A cached network of human PPI is used when the interaction score threshold is gr
 You can override this behavior by using option `--no-cached-ppi`.
 
 ## Sample data
-[Secreted proteins](sample/secreted.csv), [expressed genes](sample/all_genes.csv) and [DE testing results](sample/de_genes.csv)
-sample data are provided for testing purpose.
+[Secreted proteins](sample/secreted.csv) and [DE testing results](sample/de_testing.csv) sample data are provided for testing purpose.
 To run the example use the following command:
 ```shell script
-java -jar intOmics.jar -p secreted.csv -a all_genes.csv -g de_genes.csv
+java -jar intOmics.jar -p secreted.csv -g de_testing.csv
 ```

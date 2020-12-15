@@ -5,7 +5,7 @@ public class TextFormatter implements OutputFormatter {
 
     public TextFormatter() {
         this.buffer = new StringBuilder();
-        buffer.append(String.format("%-10s %-50s %-10s %-50s %-10s%n",
+        buffer.append(String.format("%-10s %-50s %-10s %-50s %-10s",
                 "#protein", "name", "gene", "name", "I score"));
     }
 
@@ -14,11 +14,11 @@ public class TextFormatter implements OutputFormatter {
         String n1 = item[1].length() > 49 ? item[1].substring(0, 46) + "..." : item[1];
         String n2 = item[3].length() > 49 ? item[3].substring(0, 46) + "..." : item[3];
         if (item.length == 6) {
-            buffer.append(String.format("%-10s %-50s %-10s %-50s %-10s %s%n",
+            buffer.append(String.format("%n%-10s %-50s %-10s %-50s %-10s %s",
                 item[0], n1, item[2], n2, item[4], item[5]));
         }
         else {
-            buffer.append(String.format("%-10s %-50s %-10s %-50s %-10s%n",
+            buffer.append(String.format("%n%-10s %-50s %-10s %-50s %-10s",
                     item[0], n1, item[2], n2, item[4]));
         }
     }

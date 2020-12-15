@@ -35,10 +35,10 @@ public class TranscriptomeManager {
         List<Gene> inputGenes = Collections.emptyList();
         try (var stream = Files.lines(Path.of(fileName))){
             inputGenes = stream
-                    .filter(l -> !l.startsWith("#"))
+                    .dropWhile(l -> l.startsWith("#"))
                     .filter(Predicate.not(String::isBlank))
                     .filter(l -> !l.trim().startsWith(Args.getInstance().getSeparator()))
-                    .map(l -> l.split(Args.getInstance().getSeparator())[0])
+                    .map(l -> l.substring(0, l.indexOf(Args.getInstance().getSeparator())))
                     .distinct()
                     .map(l -> new Gene(l, ""))
                     .collect(Collectors.toList());
@@ -56,7 +56,7 @@ public class TranscriptomeManager {
         // if a gene has no EntrezID it will also get removed here
         return inputGenes.parallelStream()
                 .filter(g -> g.getNcbiID() != null && !g.getNcbiID().isEmpty())
-                .filter(g -> surfaceomeMapper.isSurfaceProtein(g))
+                .filter(surfaceomeMapper::isSurfaceProtein)
                 .collect(Collectors.toList());
     }
 
@@ -93,7 +93,7 @@ public class TranscriptomeManager {
     private List<Gene> readDEGeneFile(String filePath) {
         try (var stream = Files.lines(Path.of(filePath))){
             return stream
-                    .filter(l -> !l.startsWith("#"))
+                    .dropWhile(l -> l.startsWith("#"))
                     .filter(Predicate.not(String::isBlank))
                     .filter(l -> !l.trim().startsWith(Args.getInstance().getSeparator()))
                     .distinct()

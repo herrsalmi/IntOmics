@@ -3,6 +3,7 @@ package org.pmoi;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import org.pmoi.database.SpeciesHelper;
+import org.pmoi.util.io.HtmlFormatter;
 import org.pmoi.util.io.TSVFormatter;
 import org.pmoi.util.io.TextFormatter;
 
@@ -38,6 +39,7 @@ public class MainEntry {
         var formatter = switch (params.getFormat()) {
             case TSV -> new TSVFormatter();
             case FWF -> new TextFormatter();
+            case HTML -> new HtmlFormatter();
         };
         SpeciesHelper.makeSpecies(params.getSpecies());
         try {

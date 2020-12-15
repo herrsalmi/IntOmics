@@ -4,11 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pmoi.database.SpeciesHelper;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
-import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Set;
 
@@ -40,10 +38,10 @@ public class GeneOntologyMapper {
      * @throws IOException something wrong happened, I don't care
      */
     private void load() throws IOException {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(
-                getClass().getClassLoader().getResource("GODB_" + SpeciesHelper.get().getTaxonomyId() + ".obj").toURI())))){
+        try (InputStream in = getClass().getResourceAsStream("/GODB_" + SpeciesHelper.get().getTaxonomyId() + ".obj")){
+            ObjectInputStream ois = new ObjectInputStream(in);
             this.internalDB = (Map<String, Set<String>>) ois.readObject();
-        } catch (ClassNotFoundException | URISyntaxException e) {
+        } catch (ClassNotFoundException e) {
             LOGGER.error(e);
         }
 

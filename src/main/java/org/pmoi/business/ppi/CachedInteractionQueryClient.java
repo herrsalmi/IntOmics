@@ -6,7 +6,6 @@ import org.pmoi.Args;
 import org.pmoi.database.GeneMapper;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
@@ -34,10 +33,10 @@ public class CachedInteractionQueryClient implements InteractionQueryClient{
     }
 
     private void load() throws IOException{
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(
-                getClass().getClassLoader().getResource("ppi.obj").toURI())))){
+        try (InputStream in = getClass().getResourceAsStream("/ppi.obj")){
+            ObjectInputStream ois = new ObjectInputStream(in);
             this.internalDB = (Map<String, Map<String, Double>>) ois.readObject();
-        } catch (ClassNotFoundException | URISyntaxException e) {
+        } catch (ClassNotFoundException e) {
             LOGGER.error(e);
         }
     }
