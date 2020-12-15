@@ -15,6 +15,9 @@ import java.nio.file.Path;
 
 public class MainEntry {
 
+    private static final String VERSION = "1.2.1";
+    private static final String PROG_NAME = "IntOmics";
+
     public static final String OUT_DIR = "output/";
 
     public MainEntry(String[] args) {
@@ -24,7 +27,10 @@ public class MainEntry {
                     .addObject(params)
                     .args(args)
                     .build();
+            jc.setProgramName(PROG_NAME);
             if (params.isHelp()) {
+                System.out.println("Program: IntOmics (secretomics and transcriptomics data integration)");
+                System.out.println("Version: " + VERSION);
                 jc.usage();
                 System.exit(0);
             }
