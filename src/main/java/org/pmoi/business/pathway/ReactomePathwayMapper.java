@@ -230,8 +230,11 @@ public class ReactomePathwayMapper implements PathwayMapper{
      * @return list of gene names
      */
     private List<String> getParticipants(String id, String urlTemplate, ClassType type) {
-        Function<JsonObject, String> mapperFunction = switch (type) {
-            case PROTEIN, TRANSCRIPT -> e -> {
+        Function<JsonObject, String> mapperFunction;
+        switch (type) {
+            case PROTEIN:
+            case TRANSCRIPT:
+                mapperFunction = e -> {
                 GeneMapper geneMapper = GeneMapper.getInstance();
                 assert e != null;
                 String name = e.get("displayName").getAsString().split(" ")[0];
@@ -249,16 +252,29 @@ public class ReactomePathwayMapper implements PathwayMapper{
                 }
                 return null;
             };
-            case COMPLEX -> e -> {
+                break;
+            case COMPLEX:
+                mapperFunction = e -> {
                 assert e != null;
                 return e.get("stId").getAsString();
             };
-        };
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + type);
+        }
         try {
-            List<String> names = switch (type) {
-                case PROTEIN, TRANSCRIPT -> List.of(ClassType.PROTEIN.getName(), ClassType.TRANSCRIPT.getName());
-                case COMPLEX -> List.of(ClassType.COMPLEX.getName());
-            };
+            List<String> names;
+            switch (type) {
+                case PROTEIN:
+                case TRANSCRIPT:
+                    names = List.of(ClassType.PROTEIN.getName(), ClassType.TRANSCRIPT.getName());
+                    break;
+                case COMPLEX:
+                    names = List.of(ClassType.COMPLEX.getName());
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + type);
+            }
 
             URL url = new URL(urlTemplate.replace("#", id));
             String result = connector.getContent(url);

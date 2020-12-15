@@ -31,7 +31,7 @@ public class SurfaceomeMapper {
      */
     private void init() {
         switch (Args.getInstance().getSpecies()) {
-            case HUMAN -> {
+            case HUMAN:
                 internalDB = new HashSet<>(3000);
                 try (InputStream in = getClass().getResourceAsStream("/surfaceome.txt")) {
                     BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -41,11 +41,13 @@ public class SurfaceomeMapper {
                     LOGGER.error(e);
                 }
                 surfaceomePred = gene -> internalDB.contains(gene.getName());
-            }
-            case MOUSE, RAT, COW -> {
+                break;
+            case MOUSE:
+            case RAT:
+            case COW:
                 GeneOntologyMapper goMapper = GeneOntologyMapper.getInstance();
                 surfaceomePred = gene -> goMapper.checkMembranomeGO(gene.getNcbiID());
-            }
+                break;
         }
 
     }

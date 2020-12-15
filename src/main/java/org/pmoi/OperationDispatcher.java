@@ -41,11 +41,7 @@ public class OperationDispatcher {
 
     public Runner setup(String prefix, OutputFormatter formatter) {
         this.formatter = formatter;
-        String extension = switch (Args.getInstance().getFormat()) {
-            case FWF -> "txt";
-            case TSV -> "tsv";
-            case HTML -> "html";
-        };
+        String extension = Args.getInstance().getFormat().getMode();
 
         String output = String.format("%s_%s_fc%1.1f.%s", prefix, Args.getInstance().getStringDBScore(),
                 Args.getInstance().getFoldChange(), extension);
