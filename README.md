@@ -1,6 +1,7 @@
 <!-- badges: start -->
 [![Generic badge](https://img.shields.io/badge/version-1.2-green)](https://shields.io/)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![DOI](https://zenodo.org/badge/235995264.svg)](https://zenodo.org/badge/latestdoi/235995264)
 <!--badges: end -->
 ## Multi omics data integration tool
 IntOmics is a tool for integrating secretomics and transcriptomics data in order to uncover paracrine cell crosstalk mechanisms.
