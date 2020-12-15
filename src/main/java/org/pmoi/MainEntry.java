@@ -4,6 +4,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import org.pmoi.database.SpeciesHelper;
 import org.pmoi.util.io.HtmlFormatter;
+import org.pmoi.util.io.OutputFormatter;
 import org.pmoi.util.io.TSVFormatter;
 import org.pmoi.util.io.TextFormatter;
 
@@ -36,11 +37,20 @@ public class MainEntry {
             Files.createDirectory(Path.of(OUT_DIR));
         } catch (IOException ignored) {
         }
-        var formatter = switch (params.getFormat()) {
-            case TSV -> new TSVFormatter();
-            case FWF -> new TextFormatter();
-            case HTML -> new HtmlFormatter();
-        };
+        OutputFormatter formatter;
+        switch (params.getFormat()) {
+            case TSV:
+                formatter = new TSVFormatter();
+                break;
+            case FWF:
+                formatter = new TextFormatter();
+                break;
+            case HTML:
+                formatter = new HtmlFormatter();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + params.getFormat());
+        }
         SpeciesHelper.makeSpecies(params.getSpecies());
         try {
             operationDispatcher.setup(OUT_DIR + "S2M", formatter).run();
