@@ -42,7 +42,7 @@ public class HtmlFormatter implements OutputFormatter{
                 "\t\t\t.styled-table tbody tr:last-of-type {\n" +
                 "\t\t\t\tborder-bottom: 2px solid #009879;\n" +
                 "\t\t\t}\t\n" +
-                "\t\t<style/>\n" +
+                "\t\t</style>\n" +
                 "\t</head>\n" +
                 "\t<body>\n" +
                 "\t\t<table class=\"styled-table\">\n" +
