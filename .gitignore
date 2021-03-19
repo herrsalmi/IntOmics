@@ -96,9 +96,6 @@ fabric.properties
 logs/
 
 # Input and output files
-*.csv
-*.tsv
-*.txt
 /input
 /output
 
